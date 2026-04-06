@@ -3,278 +3,331 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meeting Intelligence Dashboard</title>
+<title>Meeting Intelligence Dashboard — Hexa Labs</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --bg: #0a0a0f; --card: #14141f; --border: #1e1e2e; --text: #e2e2f0; --muted: #8888a0; --accent: #6366f1; --green: #4ade80; --yellow: #fbbf24; --red: #ef4444; --purple: #a78bfa; --cyan: #22d3ee; }
-* { margin: 0; padding: 0; box-sizing: border-box }
-body { background: var(--bg); color: var(--text); font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; font-size: 13px; line-height: 1.5; padding: 24px; max-width: 1600px; margin: 0 auto }
-h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.5px }
-h1 span { color: var(--accent) }
-.subtitle { color: var(--muted); margin-bottom: 24px; font-size: 14px }
-h2 { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 12px; display: flex; align-items: center; gap: 8px }
-h2::before { content: ''; width: 3px; height: 16px; background: var(--accent); border-radius: 2px }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px }
-.kpi { text-align: center }
-.kpi-value { font-size: 36px; font-weight: 800; color: var(--accent); letter-spacing: -1px }
-.kpi-value.green { color: var(--green) }
-.kpi-value.yellow { color: var(--yellow) }
-.kpi-value.purple { color: var(--purple) }
-.kpi-value.cyan { color: var(--cyan) }
-.kpi-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px }
-.table-wrap { overflow-x: auto; max-height: 500px; overflow-y: auto }
-table { width: 100%; border-collapse: collapse; font-size: 12px }
-th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border) }
-th { color: var(--muted); font-weight: 600; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px }
-tr:hover td { background: rgba(99, 102, 241, 0.05) }
-.tag { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 10px; font-weight: 600; color: white }
-.source-tag { background: rgba(251, 191, 36, 0.15); color: var(--yellow); padding: 3px 10px; border-radius: 6px; font-size: 10px }
-.score { font-weight: 700; padding: 2px 8px; border-radius: 4px }
-.score.good { color: var(--green); background: rgba(74, 222, 128, 0.1) }
-.score.warn { color: var(--yellow); background: rgba(251, 191, 36, 0.1) }
-.score.bad { color: var(--red); background: rgba(239, 68, 68, 0.1) }
-.bar { height: 8px; border-radius: 4px; background: var(--border); min-width: 60px }
-.bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--purple)) }
-.impact-bar { height: 12px; border-radius: 6px; background: var(--border); min-width: 80px }
-.impact-fill { height: 100%; border-radius: 6px }
-.impact-fill.score-0, .impact-fill.score-1 { background: var(--red) }
-.impact-fill.score-2 { background: #f97316 }
-.impact-fill.score-3 { background: var(--yellow) }
-.impact-fill.score-4 { background: #84cc16 }
-.impact-fill.score-5 { background: #22c55e }
-.impact-fill.score-6 { background: #10b981 }
-.impact-fill.score-7 { background: #06b6d4 }
-.impact-fill.score-8 { background: var(--accent) }
-.impact-fill.score-9 { background: var(--purple) }
-.impact-fill.score-10 { background: linear-gradient(90deg, var(--accent), var(--purple)) }
-.impact-badge { font-weight: 700 }
-.chart-container { height: 280px; position: relative }
-.note { color: var(--muted); font-size: 11px; margin-top: 8px; font-style: italic }
-ul.insights { list-style: none; padding: 0 }
-ul.insights li { padding: 6px 0; border-bottom: 1px solid var(--border) }
-ul.insights li:last-child { border-bottom: none }
-@media (max-width: 1024px) { .two-col { grid-template-columns: 1fr } .grid { grid-template-columns: repeat(2, 1fr) } }
+:root{--b:#0a0a0f;--c:#12121a;--br:#1e1e2e;--t:#e2e2f0;--m:#888;--a:#6366f1;--gr:#4ade80;--yl:#fbbf24;--rd:#ef4444;--pu:#a78bfa;--cy:#22d3ee}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--b);color:var(--t);font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;font-size:13px;line-height:1.5;padding:20px;max-width:1500px;margin:0 auto}
+h1{font-size:26px;font-weight:700;margin-bottom:3px} h1 b{color:var(--a)}
+.sub{color:var(--m);margin-bottom:20px;font-size:13px}
+h2{font-size:13px;color:var(--m);text-transform:uppercase;letter-spacing:.8px;margin:16px 0 10px;display:flex;align-items:center;gap:7px} h2::before{content:'';width:3px;height:14px;background:var(--a);border-radius:2px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:16px}
+.d2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--c);border:1px solid var(--br);border-radius:10px;padding:16px}
+.kpi{text-align:center} .kv{font-size:32px;font-weight:800;color:var(--a)} .kv.gr{color:var(--gr)} .kv.yl{color:var(--yl)} .kv.pu{color:var(--pu)} .kv.cy{color:var(--cy)}
+.kl{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+table{width:100%;border-collapse:collapse;font-size:12px} th,td{padding:7px 8px;border-bottom:1px solid var(--br)} th{color:var(--m);font-weight:600;text-transform:uppercase;font-size:9px;letter-spacing:.4px} tr:hover td{background:rgba(99,102,241,.04)}
+.tw{overflow-x:auto;max-height:420px;overflow-y:auto}
+.tag{display:inline-block;padding:2px 8px;border-radius:5px;font-size:9px;font-weight:600;color:#fff}
+.stag{background:rgba(251,191,36,.13);color:var(--yl);padding:2px 7px;border-radius:5px;font-size:10px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.r{text-align:right} .c{text-align:center}
+.g{color:var(--gr)} .y{color:var(--yl)} .r{color:var(--rd)}
+.ibar{height:10px;border-radius:5px;background:var(--br);min-width:80px;overflow:hidden}
+.ifill{height:100%;border-radius:5px} .ifill.s0,.ifill.s1{background:var(--rd)} .ifill.s2{background:#f97316} .ifill.s3{background:var(--yl)} .ifill.s4{background:#84cc16} .ifill.s5{background:#22c55e} .ifill.s6{background:#10b981} .ifill.s7{background:var(--cy)} .ifill.s8{background:var(--a)} .ifill.s9{background:var(--pu)} .ifill.s10{background:linear-gradient(90deg,var(--a),var(--pu))}
+.cc{height:240px}
+.note{color:var(--m);font-size:10px;margin-top:6px;font-style:italic}
+.insights{list-style:none;padding:0} .insights li{padding:6px 0;border-bottom:1px solid var(--br)} .insights li:last-child{border:none}
+@media(max-width:1024px){.d2{grid-template-columns:1fr}.g{grid-template-columns:repeat(2,1fr)}}
+::-webkit-scrollbar{width:5px;height:5px} ::-webkit-scrollbar-track{background:var(--b)} ::-webkit-scrollbar-thumb{background:var(--br);border-radius:3px}
 </style>
 </head>
 <body>
-<h1>📊 <span>Meeting Intelligence</span> Dashboard</h1>
-<p class="subtitle">Historical analysis · Fathom + Fireflies + Google Drive · 44 total meetings</p>
 
-<!-- KPIs -->
-<div class="grid">
-    <div class="card kpi"><div class="kpi-value">44</div><div class="kpi-label">Total Meetings</div></div>
-    <div class="card kpi"><div class="kpi-value green">136,507</div><div class="kpi-label">Words Transcribed</div></div>
-    <div class="card kpi"><div class="kpi-value yellow">24%</div><div class="kpi-label">Avg Clarity</div></div>
-    <div class="card kpi"><div class="kpi-value purple">38%</div><div class="kpi-label">Avg Actionability</div></div>
-    <div class="card kpi"><div class="kpi-value cyan">18h</div><div class="kpi-label">Total Time</div></div>
-    <div class="card kpi"><div class="kpi-value">49m</div><div class="kpi-label">Avg Duration</div></div>
+<h1>📊 <b>Meeting Intelligence</b> Dashboard</h1>
+<p class="sub" id="subtitle"></p>
+
+<div class="g" id="kpis"></div>
+
+<div class="d2">
+<div class="card"><h2>Monthly Activity</h2><div class="cc"><canvas id="c1"></canvas></div><p class="note">Bars: meetings | Line: words (Fathom + Fireflies)</p></div>
+<div class="card"><h2>Projects</h2><div class="cc"><canvas id="c2"></canvas></div></div>
 </div>
 
-<!-- Charts Row 1 -->
-<div class="two-col">
-    <div class="card">
-        <h2>Monthly Activity</h2>
-        <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
-        <p class="note">Bar=meetings, Line=words (all sources: Fathom + Fireflies)</p>
-    </div>
-    <div class="card">
-        <h2>Project Distribution</h2>
-        <div class="chart-container"><canvas id="projectChart"></canvas></div>
-    </div>
+<div class="d2" style="margin-top:14px">
+<div class="card"><h2>Top Participants</h2><canvas id="c3" height="220"></canvas></div>
+<div class="card"><h2>Topics &amp; Keywords</h2><canvas id="c4" height="220"></canvas><p class="note">Top keywords extracted from meeting titles</p></div>
 </div>
 
-<!-- Charts Row 2 -->
-<div class="two-col" style="margin-top: 16px;">
-    <div class="card">
-        <h2>Top Participants</h2>
-        <canvas id="participantChart" height="250"></canvas>
-    </div>
-    <div class="card">
-        <h2>Topics & Keywords</h2>
-        <canvas id="topicChart" height="250"></canvas>
-    </div>
+<div class="d2" style="margin-top:14px">
+<div class="card"><h2>Clarity Trend (Monthly)</h2><canvas id="c5" height="200"></canvas><p class="note">% scoring on summary + key points + action items</p></div>
+<div class="card"><h2>Actionability Trend (Monthly)</h2><canvas id="c6" height="200"></canvas><p class="note">% meeting action thresholds (items + depth)</p></div>
 </div>
 
-<!-- Project Breakdown -->
-<div class="card" style="margin-top: 16px;">
-    <h2>Project Breakdown</h2>
-    <table><thead><tr><th>Project</th><th style="text-align:right">Meetings</th><th style="text-align:right">Share</th></tr></thead>
-    <tbody><tr><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">14</td><td style="text-align:right">100%</td></tr>
-<tr><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">4</td><td style="text-align:right">29%</td></tr>
-<tr><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
-<tr><td><span class="tag" style="background:#8b5cf6">RH / HR</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
-<tr><td><span class="tag" style="background:#f59e0b">Revolut</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
-<tr><td><span class="tag" style="background:#dc2626">MEO</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
-</tbody></table>
+<div class="card" style="margin-top:14px">
+<h2>Data Sources</h2>
+<table><thead><tr><th>Source</th><th class="r">Meetings</th><th>Period</th><th>Type</th><th class="r">Detail</th></tr></thead>
+<tbody id="src_rows"></tbody></table>
 </div>
 
-<!-- Participants -->
-<div class="card" style="margin-top: 16px;">
-    <h2>Participant Engagement</h2>
-    <table><thead><tr><th>Participant</th><th style="text-align:right">Meetings</th><th style="min-width:100px">Engagement</th></tr></thead>
-    <tbody><tr><td>Augusto.silva</td><td style="text-align:right">37</td><td><div class="bar"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-<tr><td>Pedro.santos</td><td style="text-align:right">20</td><td><div class="bar"><div class="bar-fill" style="width:54%"></div></div></td></tr>
-<tr><td>Nuno.dias</td><td style="text-align:right">6</td><td><div class="bar"><div class="bar-fill" style="width:16%"></div></div></td></tr>
-<tr><td>Abel.costa</td><td style="text-align:right">6</td><td><div class="bar"><div class="bar-fill" style="width:16%"></div></div></td></tr>
-<tr><td>Hugo.ribeiro</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-<tr><td>Diogo.oliveira</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-<tr><td>Andre.correia</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-<tr><td>David.domingos</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-<tr><td>Carlos.pinto</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-<tr><td>Nuno.moura</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-<tr><td>Francisco.febrero</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-<tr><td>Rodolfo.correia</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-</tbody></table>
-    <p class="note">Based on attendance across all tracked meetings</p>
+<div class="card" style="margin-top:14px">
+<h2>Project Breakdown</h2>
+<table><thead><tr><th>Project</th><th class="r">Meetings</th><th class="r">Share</th></tr></thead>
+<tbody id="proj_rows"></tbody></table>
 </div>
 
-<!-- Impact Scores -->
-<div class="card" style="margin-top: 16px;">
-    <h2>Meeting Impact Scores (Top 15)</h2>
-    <table><thead><tr><th>Date</th><th>Meeting</th><th>Impact</th><th style="text-align:center">Score</th></tr></thead>
-    <tbody><tr><td>2026-04-01</td><td>HL Slides AI - Use cases</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
-<tr><td>2026-03-31</td><td>Weekly Sync - Augusto & Pedro</td><td><div class="impact-bar"><div class="impact-fill score-4" style="width:40%"></div></div></td><td style="text-align:center"><span class="impact-badge">4/10</span></td></tr>
-<tr><td>2026-03-31</td><td>Business Meeting (S)</td><td><div class="impact-bar"><div class="impact-fill score-5" style="width:50%"></div></div></td><td style="text-align:center"><span class="impact-badge">5/10</span></td></tr>
-<tr><td>2026-03-30</td><td>Follow-up: CUF </td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
-<tr><td>2026-03-27</td><td>Follow-up: Hexa & CUF</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
-<tr><td>2026-03-27</td><td>Weekly Sync - Augusto & Pedro</td><td><div class="impact-bar"><div class="impact-fill score-2" style="width:20%"></div></div></td><td style="text-align:center"><span class="impact-badge">2/10</span></td></tr>
-<tr><td>2026-03-26</td><td>Hexa CUF</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
-<tr><td>2026-03-26</td><td>RH|Hexa Group</td><td><div class="impact-bar"><div class="impact-fill score-1" style="width:10%"></div></div></td><td style="text-align:center"><span class="impact-badge">1/10</span></td></tr>
-<tr><td>2026-03-25</td><td>Revolut Business - Onboarding HL</td><td><div class="impact-bar"><div class="impact-fill score-1" style="width:10%"></div></div></td><td style="text-align:center"><span class="impact-badge">1/10</span></td></tr>
-<tr><td>2026-03-24</td><td>Business Meeting (O)</td><td><div class="impact-bar"><div class="impact-fill score-3" style="width:30%"></div></div></td><td style="text-align:center"><span class="impact-badge">3/10</span></td></tr>
-<tr><td>2026-03-20</td><td>Reserva Slot (Projeto CUF, MEO ou ambos)</td><td><div class="impact-bar"><div class="impact-fill score-3" style="width:30%"></div></div></td><td style="text-align:center"><span class="impact-badge">3/10</span></td></tr>
-<tr><td>2026-03-19</td><td>Strategy Review​ - Bi-Monthly Meeting</td><td><div class="impact-bar"><div class="impact-fill score-4" style="width:40%"></div></div></td><td style="text-align:center"><span class="impact-badge">4/10</span></td></tr>
-<tr><td>2026-03-10</td><td>Hexa | Icaro Prates</td><td><div class="impact-bar"><div class="impact-fill score-2" style="width:20%"></div></div></td><td style="text-align:center"><span class="impact-badge">2/10</span></td></tr>
-<tr><td>2026-03-06</td><td>Weekly Sync - Augusto & Pedro</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
-<tr><td>2026-03-06</td><td>Synch ND+HL (one-off)</td><td><div class="impact-bar"><div class="impact-fill score-4" style="width:40%"></div></div></td><td style="text-align:center"><span class="impact-badge">4/10</span></td></tr>
-</tbody></table>
-    <p class="note">Impact formula: Words (2-4pts) + Clarity (1-3pts) + Action Items (2pts) + Attendees (1pt)</p>
+<div class="card" style="margin-top:14px">
+<h2>Participant Engagement</h2>
+<table><thead><tr><th>Participant</th><th class="r">Meetings</th><th>Frequency</th></tr></thead>
+<tbody id="part_rows"></tbody></table>
+<p class="note">augusto.silva presente em todas as reuniões — concentração alta</p>
 </div>
 
-<!-- Meeting Lists -->
-<div class="two-col" style="margin-top: 16px;">
-    <div class="card">
-        <h2>🎙️ Fathom Meetings (2026)</h2>
-        <div class="table-wrap">
-            <table><thead><tr><th>Date</th><th>Title</th><th>Project</th><th style="text-align:right">Words</th><th style="text-align:right">Min</th><th style="text-align:center">#</th><th style="text-align:right">Clarity</th><th style="text-align:right">Action</th></tr></thead>
-            <tbody><tr><td>2026-04-01</td><td>HL Slides AI - Use cases</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td style="text-align:right">10,401</td><td style="text-align:right">62</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-31</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">5,265</td><td style="text-align:right">33</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-31</td><td>Business Meeting (S)</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">8,340</td><td style="text-align:right">51</td><td style="text-align:center">15</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-30</td><td>Follow-up: CUF </td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">8,051</td><td style="text-align:right">45</td><td style="text-align:center">4</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-27</td><td>Follow-up: Hexa & CUF</td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">9,557</td><td style="text-align:right">63</td><td style="text-align:center">4</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-27</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">1,665</td><td style="text-align:right">9</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-26</td><td>Hexa CUF</td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">11,090</td><td style="text-align:right">68</td><td style="text-align:center">4</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-26</td><td>RH|Hexa Group</td><td><span class="tag" style="background:#8b5cf6">RH / HR</span></td><td style="text-align:right">2,929</td><td style="text-align:right">20</td><td style="text-align:center">14</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-25</td><td>Revolut Business - Onboarding HL</td><td><span class="tag" style="background:#f59e0b">Revolut</span></td><td style="text-align:right">650</td><td style="text-align:right">14</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">0%</span></td></tr>
-<tr><td>2026-03-24</td><td>Business Meeting (O)</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">7,053</td><td style="text-align:right">52</td><td style="text-align:center">15</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-20</td><td>Reserva Slot (Projeto CUF, MEO ou ambos)</td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">6,092</td><td style="text-align:right">32</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-19</td><td>Strategy Review​ - Bi-Monthly Meeting</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">6,257</td><td style="text-align:right">39</td><td style="text-align:center">18</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-10</td><td>Hexa | Icaro Prates</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">4,710</td><td style="text-align:right">30</td><td style="text-align:center">6</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-06</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">18,842</td><td style="text-align:right">194</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-06</td><td>Synch ND+HL (one-off)</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">6,077</td><td style="text-align:right">135</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-03-02</td><td>synch</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">3,461</td><td style="text-align:right">17</td><td style="text-align:center">2</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-02-27</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">10,425</td><td style="text-align:right">62</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-02-26</td><td>Submeter proposta MEO</td><td><span class="tag" style="background:#dc2626">MEO</span></td><td style="text-align:right">2,531</td><td style="text-align:right">20</td><td style="text-align:center">5</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-02-24</td><td>In-person : Quick stand-up meeting / weekly b</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">4,379</td><td style="text-align:right">41</td><td style="text-align:center">15</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-<tr><td>2026-02-24</td><td>Synch Nuno+Pedro+Augusto</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">2,099</td><td style="text-align:right">15</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
-</tbody></table>
-        </div>
-    </div>
-    <div class="card">
-        <h2>🪽 Fireflies Historical (2025-2026)</h2>
-        <div class="table-wrap">
-            <table><thead><tr><th>Date</th><th>Title</th><th>Project</th><th>Source</th></tr></thead>
-            <tbody><tr><td>2026-03-31</td><td>Business Meeting (S)</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-03-12</td><td>HEXA - MARCOM</td><td><span class="tag" style="background:#dc2626">MEO</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-02-23</td><td>synch</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-02-17</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-02-13</td><td>Quick connection Augusto/Raamish</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-02-12</td><td>Diagnóstico IA - P&C</td><td><span class="tag" style="background:#06b6d4">People & Comm</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-02-03</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-02-02</td><td>Apresentação Hexa Labs</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-02-02</td><td>Rebranding Hexa</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-27</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-23</td><td>Reunião semanal app astor</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-22</td><td>Ayming x Hexa Labs</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-20</td><td>wAIseUp x Hexa</td><td><span class="tag" style="background:#14b8a6">wAIseUp</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-20</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-15</td><td>Hexa RFP FPF</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-14</td><td>Apresentação Hexa Labs - Cofidis</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-13</td><td>Apresentação Proposta</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2026-01-09</td><td>Weekly - Hexa Labs</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2025-11-26</td><td>Nov 26, 08:07 PM</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2025-11-26</td><td>Quick stand-up / weekly</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2025-11-25</td><td>Quick stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-<tr><td>2025-11-21</td><td>Follow-up: Brisa</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
-</tbody></table>
-        </div>
-    </div>
+<div class="card" style="margin-top:14px">
+<h2>Meeting Impact Score (Top 20)</h2>
+<table><thead><tr><th>Date</th><th>Meeting</th><th>Project</th><th style="min-width:90px">Impact</th><th class="c">Score</th></tr></thead>
+<tbody id="impact_rows"></tbody></table>
+<p class="note">Formula: Words 2-4pts + Clarity 1-3pts + Actions 2pts + Attendees 1pt. Max: 10</p>
 </div>
 
-<!-- Insights -->
-<div class="card" style="margin-top: 16px; border-left: 3px solid var(--accent);">
-    <h2>Key Insights</h2>
-    <ul class="insights">
-        <li><b>Surge em Março 2026</b> — 17 reuniões vs 9 em Jan. Volume de texto 4x maior. Fathom começou a ser usado intensivamente.</li>
-        <li><b>CUF Healthcare</b> é o projeto externo mais ativo — 4 reuniões Fathom + follow-ups históricos + diagnóstico.</li>
-        <li><b>Clareza média 24%</b> — Fathom produz summaries mas raramente key_points ou action_items automáticos. Recomendado ativar auto-summaries avançadas.</li>
-        <li><b>Concentração alta</b> — augusto.silva presente em 100% das reuniões (37), pedro.santos em 20. Participação concentrada em poucos.</li>
-        <li><b>22 documentos Fireflies</b> adicionam contexto desde Nov 2025 — incluindo Brisa, Cofidis, FPF, P&C, MARCOM, wAIseUp, Ayming.</li>
-        <li><b>44 reuniões total</b> · 136K+ palavras · 17.8h gravadas · 7 projetos · 30+ transcripts no Drive</li>
-    </ul>
+<div class="d2" style="margin-top:14px">
+<div class="card">
+<h2>🎙️ Fathom Meetings (2026)</h2>
+<div class="tw"><table><thead><tr><th>Date</th><th>Title</th><th>Project</th><th class="r">Words</th><th class="r">Min</th><th class="c">#</th><th class="r">Clarity</th><th class="r">Action</th></tr></thead>
+<tbody id="fathom_rows"></tbody></table></div>
+</div>
+<div class="card">
+<h2>🪽 Fireflies Historical (2025-2026)</h2>
+<div class="tw"><table><thead><tr><th>Date</th><th>Title</th><th>Project</th><th class="r">Words</th><th class="r">Min</th><th>Source</th></tr></thead>
+<tbody id="fire_rows"></tbody></table></div>
+</div>
 </div>
 
-<div class="note" style="text-align:center; padding: 20px; color: var(--muted);">Meeting Intelligence Dashboard · Fathom API + Fireflies + Google Drive (04_MEETINGS) · skill: meeting-intelligence-autoresearch</div>
+<div class="card" style="margin-top:14px;border-left:3px solid var(--a)">
+<h2>🧠 Key Insights &amp; Trends</h2>
+<ul class="insights" id="insights"></ul>
+</div>
 
+<div class="note" style="text-align:center;padding:18px;color:var(--m)">Meeting Intelligence Dashboard · Auto-refresh via cron · Sources: Fathom + Fireflies + Google Drive · Skill: meeting-intelligence-autoresearch</div>
+
+<script id="data" type="application/json">{"summary": {"total_meetings": 47, "fathom_meetings": 22, "fireflies_meetings": 25, "total_words": 151351, "total_duration_min": 1422, "avg_clarity": 24, "avg_actionability": 38, "avg_words_per_meeting": 6205, "avg_duration_min": 48}, "projects": {"General / Internal": 25, "CUF Healthcare": 4, "MEO": 4, "Hexa Consulting": 4, "Rebranding": 2, "wAIseUp": 2, "Hexa Labs AI": 1, "RH / HR": 1, "Revolut": 1, "People & Comm": 1, "Astor App": 1, "Ayming": 1}, "participants": {"augusto.silva": 62, "pedro.santos": 20, "nuno.dias": 6, "abel.costa": 6, "hugo.ribeiro": 5, "diogo.oliveira": 5, "andre.correia": 5, "david.domingos": 5, "carlos.pinto": 5, "nuno.moura": 5, "francisco.febrero": 5, "rodolfo.correia": 5, "sandra.pestana": 5, "blue": 4, "ricardo.felix": 4}, "monthly": {"2021-09": {"count": 1, "words": 1745, "duration": 15, "clarity_sum": 0, "action_sum": 40}, "2025-11": {"count": 3, "words": 2103, "duration": 45, "clarity_sum": 30, "action_sum": 30}, "2026-01": {"count": 14, "words": 8382, "duration": 210, "clarity_sum": 140, "action_sum": 140}, "2026-02": {"count": 11, "words": 27723, "duration": 258, "clarity_sum": 200, "action_sum": 260}, "2026-03": {"count": 17, "words": 100997, "duration": 832, "clarity_sum": 370, "action_sum": 580}, "2026-04": {"count": 1, "words": 10401, "duration": 62, "clarity_sum": 35, "action_sum": 40}}, "all_meetings": [{"source": "fathom", "date": "2026-04-01", "title": "HL Slides AI - Use cases", "project": "Hexa Labs AI", "word_count": 10401, "duration_min": 62, "attendees": 3, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "hugo.ribeiro", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-31", "title": "Weekly Sync - Augusto & Pedro", "project": "General / Internal", "word_count": 5265, "duration_min": 33, "attendees": 3, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-31", "title": "Business Meeting (S)", "project": "General / Internal", "word_count": 8340, "duration_min": 51, "attendees": 15, "clarity": 0, "actionability": 40, "has_summary": false, "has_actions": false, "has_key_points": false, "participants_list": ["diogo.oliveira", "andre.correia", "augusto.silva", "pedro.santos", "david.domingos", "carlos.pinto", "nuno.moura", "francisco.febrero", "rodolfo.correia", "sandra.pestana", "nuno.dias", "hugo.ribeiro", "blue", "abel.costa", "augusto.silva"]}, {"source": "fireflies", "date": "2026-03-31", "title": "Business Meeting (S)", "project": "General / Internal", "word_count": 505, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fathom", "date": "2026-03-30", "title": "Follow-up: CUF ", "project": "CUF Healthcare", "word_count": 8051, "duration_min": 45, "attendees": 4, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva", "ricardo.felix", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-27", "title": "Follow-up: Hexa & CUF", "project": "CUF Healthcare", "word_count": 9557, "duration_min": 63, "attendees": 4, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva", "ricardo.felix", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-27", "title": "Weekly Sync - Augusto & Pedro", "project": "General / Internal", "word_count": 1665, "duration_min": 9, "attendees": 3, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-26", "title": "Hexa CUF", "project": "CUF Healthcare", "word_count": 11090, "duration_min": 68, "attendees": 4, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva", "ricardo.felix", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-26", "title": "RH|Hexa Group", "project": "RH / HR", "word_count": 2929, "duration_min": 20, "attendees": 14, "clarity": 0, "actionability": 40, "has_summary": false, "has_actions": false, "has_key_points": false, "participants_list": ["duarte.oliveira", "diogo.oliveira", "andre.correia", "rodolfo.correia", "sandra.pestana", "david.domingos", "caapinto", "nuno.moura", "pedro.santos", "augusto.silva", "francisco.febrero", "abel.costa", "carlos.pinto", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-25", "title": "Revolut Business - Onboarding HL", "project": "Revolut", "word_count": 650, "duration_min": 14, "attendees": 3, "clarity": 0, "actionability": 0, "has_summary": false, "has_actions": false, "has_key_points": false, "participants_list": ["luis.santos", "pedro.santos", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-24", "title": "Business Meeting (O)", "project": "General / Internal", "word_count": 7053, "duration_min": 52, "attendees": 15, "clarity": 0, "actionability": 40, "has_summary": false, "has_actions": false, "has_key_points": false, "participants_list": ["diogo.oliveira", "andre.correia", "augusto.silva", "pedro.santos", "david.domingos", "abel.costa", "carlos.pinto", "nuno.moura", "francisco.febrero", "rodolfo.correia", "sandra.pestana", "nuno.dias", "hugo.ribeiro", "blue", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-20", "title": "Reserva Slot (Projeto CUF, MEO ou ambos)", "project": "CUF Healthcare", "word_count": 6092, "duration_min": 32, "attendees": 3, "clarity": 0, "actionability": 40, "has_summary": false, "has_actions": false, "has_key_points": false, "participants_list": ["ricardo.felix", "augusto.silva", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-19", "title": "Strategy Review\u200b - Bi-Monthly Meeting", "project": "General / Internal", "word_count": 6257, "duration_min": 39, "attendees": 18, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["rodolfo.correia", "blue", "sandra.pestana", "luis.santos", "hugo.ribeiro", "duarte.oliveira", "nuno.dias", "diogo.oliveira", "nuno.pereira", "augusto.silva", "pedro.santos", "andre.correia", "abel.costa", "nuno.moura", "carlos.pinto", "francisco.febrero", "david.domingos", "augusto.silva"]}, {"source": "fireflies", "date": "2026-03-12", "title": "HEXA - MARCOM", "project": "MEO", "word_count": 453, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fathom", "date": "2026-03-10", "title": "Hexa | Icaro Prates", "project": "General / Internal", "word_count": 4710, "duration_min": 30, "attendees": 6, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.mendes", "icaro_prates", "augusto.silva", "pedro.santos", "rita.brinquete", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-06", "title": "Weekly Sync - Augusto & Pedro", "project": "General / Internal", "word_count": 18842, "duration_min": 194, "attendees": 3, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-06", "title": "Synch ND+HL (one-off)", "project": "General / Internal", "word_count": 6077, "duration_min": 135, "attendees": 3, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "nuno.dias", "augusto.silva"]}, {"source": "fathom", "date": "2026-03-02", "title": "synch", "project": "General / Internal", "word_count": 3461, "duration_min": 17, "attendees": 2, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva"]}, {"source": "fathom", "date": "2026-02-27", "title": "Weekly Sync - Augusto & Pedro", "project": "General / Internal", "word_count": 10425, "duration_min": 62, "attendees": 3, "clarity": 0, "actionability": 40, "has_summary": false, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva", "augusto.silva"]}, {"source": "fathom", "date": "2026-02-26", "title": "Submeter proposta MEO", "project": "MEO", "word_count": 2531, "duration_min": 20, "attendees": 5, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["abel.costa", "business", "pedro.santos", "augusto.silva", "augusto.silva"]}, {"source": "fathom", "date": "2026-02-24", "title": "In-person : Quick stand-up meeting / weekly business", "project": "General / Internal", "word_count": 4379, "duration_min": 41, "attendees": 15, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["diogo.oliveira", "sandra.pestana", "nuno.dias", "hugo.ribeiro", "blue", "andre.correia", "augusto.silva", "pedro.santos", "david.domingos", "abel.costa", "carlos.pinto", "nuno.moura", "francisco.febrero", "rodolfo.correia", "augusto.silva"]}, {"source": "fathom", "date": "2026-02-24", "title": "Synch Nuno+Pedro+Augusto", "project": "General / Internal", "word_count": 2099, "duration_min": 15, "attendees": 3, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["nuno.dias", "pedro.santos", "augusto.silva"]}, {"source": "fathom", "date": "2026-02-23", "title": "synch", "project": "General / Internal", "word_count": 4888, "duration_min": 30, "attendees": 2, "clarity": 35, "actionability": 40, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["pedro.santos", "augusto.silva"]}, {"source": "fireflies", "date": "2026-02-23", "title": "synch", "project": "General / Internal", "word_count": 597, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-02-17", "title": "In-person: Quick stand-up meeting", "project": "General / Internal", "word_count": 615, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-02-13", "title": "Quick connection - Augusto/Raamish", "project": "General / Internal", "word_count": 526, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-02-12", "title": "Diagn\u00f3stico Estrat\u00e9gico de IA & Efici\u00eancia Operacional - P&C", "project": "People & Comm", "word_count": 714, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-02-02", "title": "Apresenta\u00e7\u00e3o Hexa Labs", "project": "General / Internal", "word_count": 481, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-02-02", "title": "Rebranding Hexa", "project": "Rebranding", "word_count": 468, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-27", "title": "In-person: Quick stand-up meeting", "project": "General / Internal", "word_count": 412, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-23", "title": "Reuni\u00e3o semanal app astor", "project": "Astor App", "word_count": 639, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-22", "title": "Ayming x Hexa Labs", "project": "Ayming", "word_count": 425, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-20", "title": "wAIseUp x Hexa", "project": "wAIseUp", "word_count": 663, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-20", "title": "In-person: Quick stand-up meeting", "project": "General / Internal", "word_count": 843, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-16", "title": "Weekly - Hexa Labs", "project": "General / Internal", "word_count": 886, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-15", "title": "Hexa | Reuni\u00e3o RFP - FPF", "project": "Hexa Consulting", "word_count": 493, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-14", "title": "Apresenta\u00e7\u00e3o Hexa Labs - Cofidis", "project": "Hexa Consulting", "word_count": 780, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-14", "title": "Hexa x waiseup", "project": "wAIseUp", "word_count": 567, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-14", "title": "Meo Magite review deck", "project": "MEO", "word_count": 592, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-13", "title": "Apresenta\u00e7\u00e3o Proposta - Hexa Consulting", "project": "Hexa Consulting", "word_count": 379, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-12", "title": "Meo Agite RFQ presentation dry-run", "project": "MEO", "word_count": 736, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-12", "title": "Rebranding Hexa", "project": "Rebranding", "word_count": 511, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2026-01-09", "title": "Weekly - Hexa Labs", "project": "General / Internal", "word_count": 456, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2025-11-26", "title": "Nov 26, 08:07 PM", "project": "General / Internal", "word_count": 656, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2025-11-25", "title": "Quick stand-up meeting / weekly business", "project": "General / Internal", "word_count": 844, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fireflies", "date": "2025-11-21", "title": "Follow-up: Brisa", "project": "Hexa Consulting", "word_count": 603, "duration_min": 15, "attendees": 2, "clarity": 10, "actionability": 10, "has_summary": true, "has_actions": false, "has_key_points": false, "participants_list": ["augusto.silva"]}, {"source": "fathom", "date": "2021-09-16", "title": "Fathom Demo", "project": "General / Internal", "word_count": 1745, "duration_min": 15, "attendees": 2, "clarity": 0, "actionability": 40, "has_summary": false, "has_actions": false, "has_key_points": false, "participants_list": ["susannah.durant", "augusto.silva"]}], "generated": "2026-04-06 12:45"}</script>
 <script>
-new Chart(document.getElementById('monthlyChart'), {
-    type: 'bar',
-    data: {
-        labels: ["Nov/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26"],
-        datasets: [
-            { label: 'Meetings', data: [4, 9, 12, 17, 1], backgroundColor: 'rgba(99, 102, 241, 0.7)', borderRadius: 6, yAxisID: 'y' },
-            { type: 'line', label: 'Words', data: [0, 0, 24322, 100039, 10401], borderColor: '#4ade80', backgroundColor: 'rgba(74,222,128,0.1)', fill: true, tension: 0.4, yAxisID: 'y1', pointBackgroundColor: '#4ade80' }
-        ]
+const D = JSON.parse(document.getElementById('data').textContent);
+const S = D.summary;
+const MN={'01':'Jan','02':'Fev','03':'Mar','04':'Abr','05':'Mai','06':'Jun','07':'Jul','08':'Ago','09':'Set','10':'Out','11':'Nov','12':'Dez'};
+
+// Subtitle
+document.getElementById('subtitle').textContent =
+  `Fathom (${S.fathom_meetings}) + Fireflies (${S.fireflies_meetings}) + Drive · ${S.total_meetings} meetings · ${S.total_words.toLocaleString()} words · Generated: ${D.generated}`;
+
+// KPIs
+const kpis = [
+  [S.total_meetings, 'Total Meetings', ''],
+  [S.total_words.toLocaleString(), 'Words Transcribed', 'gr'],
+  [S.avg_clarity + '%', 'Avg Clarity', 'yl'],
+  [S.avg_actionability + '%', 'Avg Actionability', 'pu'],
+  [Math.round(S.total_duration_min / 60) + 'h', 'Total Meeting Time', 'cy'],
+  [S.avg_duration_min + 'm', 'Avg Duration', ''],
+];
+document.getElementById('kpis').innerHTML = kpis.map(([v, l, c]) =>
+  `<div class="card kpi"><div class="kv ${c}">${v}</div><div class="kl">${l}</div></div>`
+).join('');
+
+// Charts data
+const ml = [], mc = [], mw = [], mcl = [], mac = [];
+for (const [mk, mv] of Object.entries(D.monthly).sort()) {
+  if (mk.startsWith('2021') || mk === 'unknown') continue;
+  const y = mk.slice(0, 4), mo = mk.slice(5, 7);
+  ml.push(`${MN[mo] || mo} '${y.slice(2)}`);
+  mc.push(mv.count);
+  mw.push(mv.words);
+  mcl.push(mv.count > 0 ? Math.round(mv.clarity_sum / mv.count) : 0);
+  mac.push(mv.count > 0 ? Math.round(mv.action_sum / mv.count) : 0);
+}
+
+// Chart 1: Monthly Activity
+new Chart(document.getElementById('c1'), {
+  type: 'bar',
+  data: {
+    labels: ml,
+    datasets: [
+      { label: 'Meetings', data: mc, backgroundColor: 'rgba(99,102,241,.65)', borderRadius: 5, yAxisID: 'y' },
+      { type: 'line', label: 'Words', data: mw, borderColor: '#4ade80', backgroundColor: 'rgba(74,222,128,.08)', fill: true, tension: .4, yAxisID: 'y1', pointBackgroundColor: '#4ade80', pointRadius: 3 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: 'Meetings', color: '#888' }, ticks: { color: '#888' }, grid: { color: '#1e1e2e' } },
+      y1: { position: 'right', beginAtZero: true, title: { display: true, text: 'Words', color: '#888' }, ticks: { color: '#888' }, grid: { display: false } },
+      x: { ticks: { color: '#888' }, grid: { display: false } }
     },
-    options: {
-        responsive: true, maintainAspectRatio: false,
-        scales: {
-            y: { beginAtZero: true, ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' }, title: { display: true, text: 'Meetings', color: '#8888a0' } },
-            y1: { position: 'right', beginAtZero: true, ticks: { color: '#8888a0' }, grid: { display: false }, title: { display: true, text: 'Words', color: '#8888a0' } },
-            x: { ticks: { color: '#8888a0' }, grid: { display: false } }
-        },
-        plugins: { legend: { labels: { color: '#8888a0' } } }
-    }
+    plugins: { legend: { labels: { color: '#888' } } }
+  }
 });
 
-new Chart(document.getElementById('projectChart'), {
-    type: 'doughnut',
-    data: {
-        labels: ["General / Internal", "CUF Healthcare", "Hexa Labs AI", "RH / HR", "Revolut", "MEO"],
-        datasets: [{ data: [14, 4, 1, 1, 1, 1], backgroundColor: ["#6b7280", "#7c3aed", "#10b981", "#8b5cf6", "#f59e0b", "#dc2626"], borderWidth: 0 }]
-    },
-    options: { responsive: true, maintainAspectRatio: false, cutout: '55%', plugins: { legend: { position: 'bottom', labels: { color: '#8888a0', padding: 12, font: { size: 11 } } } } }
+// Chart 2: Projects
+const pc = D.projects;
+const projEntries = Object.entries(pc).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+const PROJ_COLORS = {
+  'General / Internal': '#6b7280', 'CUF Healthcare': '#7c3aed', 'MEO': '#dc2626',
+  'Hexa Consulting': '#ec4899', 'Hexa Labs AI': '#10b981', 'Rebranding': '#f97316',
+  'wAIseUp': '#14b8a6', 'RH / HR': '#8b5cf6', 'Revolut': '#f59e0b', 'People & Comm': '#06b6d4',
+  'Astor App': '#a855f7', 'Ayming': '#22d3ee', 'Cork Supply': '#84cc16', 'RDKM': '#e11d48',
+};
+new Chart(document.getElementById('c2'), {
+  type: 'doughnut',
+  data: {
+    labels: projEntries.map(e => e[0]),
+    datasets: [{ data: projEntries.map(e => e[1]), backgroundColor: projEntries.map(e => PROJ_COLORS[e[0]] || '#6366f1'), borderWidth: 0 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '55%',
+    plugins: { legend: { position: 'bottom', labels: { color: '#888', padding: 10, font: { size: 10 } } } }
+  }
 });
 
-new Chart(document.getElementById('participantChart'), {
-    type: 'bar',
-    data: {
-        labels: ["Augusto.silva", "Pedro.santos", "Nuno.dias", "Abel.costa", "Hugo.ribeiro", "Diogo.oliveira", "Andre.correia", "David.domingos", "Carlos.pinto", "Nuno.moura", "Francisco.febrero", "Rodolfo.correia"],
-        datasets: [{ label: 'Meetings', data: [37, 20, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5], backgroundColor: 'rgba(167,139,250,0.7)', borderRadius: 4 }]
+// Chart 3: Participants
+const partEntries = Object.entries(D.participants).sort((a, b) => b[1] - a[1]).slice(0, 12);
+new Chart(document.getElementById('c3'), {
+  type: 'bar',
+  data: {
+    labels: partEntries.map(e => e[0].replace('.', ' ').replace(/\b\w/g, c => c.toUpperCase())),
+    datasets: [{ label: 'Meetings', data: partEntries.map(e => e[1]), backgroundColor: 'rgba(167,139,250,.6)', borderRadius: 4 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    scales: {
+      x: { beginAtZero: true, ticks: { color: '#888' }, grid: { color: '#1e1e2e' } },
+      y: { ticks: { color: '#e2e2f0', font: { size: 10 } }, grid: { display: false } }
     },
-    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true, ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' } }, y: { ticks: { color: '#e2e2f0', font: { size: 11 } }, grid: { display: false } } }, plugins: { legend: { display: false } } }
+    plugins: { legend: { display: false } }
+  }
 });
 
-new Chart(document.getElementById('topicChart'), {
-    type: 'bar',
-    data: {
-        labels: ["synch", "slides", "cases", "rh|hexa", "group", "revolut", "onboarding", "reserva", "slot", "projeto"],
-        datasets: [{ label: 'Frequency', data: [4, 1, 1, 1, 1, 1, 1, 1, 1, 1], backgroundColor: 'rgba(34,211,238,0.6)', borderRadius: 4 }]
+// Chart 4: Topics
+const tc = {};
+for (const m of D.all_meetings) {
+  for (const w of m.title.toLowerCase().replace(/[-|]/g, ' ').split(/\s+/)) {
+    const w2 = w.replace(/[(),:;\[\]]/g, '');
+    if (w2.length > 3 && !['meeting', 'weekly', 'quick', 'stand', 'business', 'hexa', 'labs', 'person', 'sync'].includes(w2))
+      tc[w2] = (tc[w2] || 0) + 1;
+  }
+}
+const topTopics = Object.entries(tc).sort((a, b) => b[1] - a[1]).slice(0, 12);
+new Chart(document.getElementById('c4'), {
+  type: 'bar',
+  data: {
+    labels: topTopics.map(e => e[0].charAt(0).toUpperCase() + e[0].slice(1)),
+    datasets: [{ label: 'Frequency', data: topTopics.map(e => e[1]), backgroundColor: 'rgba(34,211,238,.5)', borderRadius: 4 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    scales: {
+      x: { beginAtZero: true, ticks: { color: '#888' }, grid: { color: '#1e1e2e' } },
+      y: { ticks: { color: '#e2e2f0', font: { size: 10 } }, grid: { display: false } }
     },
-    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true, ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' } }, y: { ticks: { color: '#e2e2f0', font: { size: 11 } }, grid: { display: false } } }, plugins: { legend: { display: false } } }
+    plugins: { legend: { display: false } }
+  }
 });
+
+// Chart 5: Clarity Trend
+new Chart(document.getElementById('c5'), {
+  type: 'line',
+  data: {
+    labels: ml,
+    datasets: [
+      { data: mcl, borderColor: '#fbbf24', backgroundColor: 'rgba(251,191,36,.1)', fill: true, tension: .3, pointRadius: 5, pointBackgroundColor: '#fbbf24' },
+      { label: 'Meta', data: ml.map(() => 50), borderColor: '#888', borderDash: [5, 5], pointRadius: 0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { min: 0, max: 100, ticks: { color: '#888', callback: v => v + '%' }, grid: { color: '#1e1e2e' } }, x: { ticks: { color: '#888' }, grid: { display: false } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw + '%' } } }
+  }
+});
+
+// Chart 6: Actionability Trend
+new Chart(document.getElementById('c6'), {
+  type: 'bar',
+  data: {
+    labels: ml,
+    datasets: [{ data: mac, backgroundColor: mac.map(v => v >= 40 ? 'rgba(74,222,128,.6)' : 'rgba(239,68,68,.6)'), borderRadius: 5 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { y: { min: 0, max: 100, ticks: { color: '#888', callback: v => v + '%' }, grid: { color: '#1e1e2e' } }, x: { ticks: { color: '#888' }, grid: { display: false } } },
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw + '%' } } }
+  }
+});
+
+// Populate tables
+function projRow(p, c) {
+  const maxV = Math.max(...projEntries.map(e => e[1]));
+  const pct = (c / maxV * 100).toFixed(0);
+  const col = PROJ_COLORS[p] || '#6366f1';
+  return `<tr><td><span class="dot" style="background:${col}"></span>${p}</td><td class="r">${c}</td><td class="r">${pct}%</td></tr>`;
+}
+
+function impactScore(m) {
+  let sc = 0;
+  if (m.word_count > 5000) sc += 2;
+  if (m.word_count > 8000) sc += 2;
+  if (m.clarity >= 70) sc += 2; else if (m.clarity >= 35) sc += 1;
+  if (m.actionability >= 60) sc += 2;
+  if (m.attendees >= 3) sc += 1;
+  return Math.min(10, sc);
+}
+
+function meetingRow(m) {
+  const col = PROJ_COLORS[m.project] || '#6366f1';
+  const clc = m.clarity >= 70 ? 'g' : m.clarity >= 35 ? 'y' : 'r';
+  const acc = m.actionability >= 60 ? 'g' : 'y';
+  return `<tr><td>${(m.date || '').slice(0, 10)}</td><td>${m.title.slice(0, 42)}</td><td><span class="tag" style="background:${col}">${m.project}</span></td><td class="r">${m.word_count.toLocaleString()}</td><td class="r">${m.duration_min}m</td><td class="c">${m.attendees}</td><td class="r"><b class="${clc}">${m.clarity}%</b></td><td class="r"><b class="${acc}">${m.actionability}%</b></td></tr>`;
+}
+
+function fireRow(m) {
+  const col = PROJ_COLORS[m.project] || '#6366f1';
+  return `<tr><td>${(m.date || '').slice(0, 10)}</td><td>${m.title.slice(0, 42)}</td><td><span class="tag" style="background:${col}">${m.project}</span></td><td class="r">${m.word_count.toLocaleString()}</td><td class="r">${m.duration_min}m</td><td><span class="stag">🪽 Fireflies</span></td></tr>`;
+}
+
+// Source rows
+document.getElementById('src_rows').innerHTML = [
+  ['Fathom API', S.fathom_meetings, '2026', 'Summaries + Transcripts', 'Full: words, attendees, duration'],
+  ['Fireflies.ai', S.fireflies_meetings, '2025-2026', 'Transcripts + Notes', 'Content exported as text'],
+  ['Google Drive', 30, '2025-2026', 'Drive transcripts', 'TXT/DOCX archives'],
+].map(r => `<tr><td>${r[0]}</td><td class="r">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="r">${r[4]}</td></tr>`).join('');
+
+// Project rows
+document.getElementById('proj_rows').innerHTML = projEntries.map(([p, c]) => projRow(p, c)).join('');
+
+// Participant rows
+const maxP = Math.max(1, ...Object.values(D.participants));
+document.getElementById('part_rows').innerHTML = partEntries.map(([n, c]) => {
+  const color = c >= 20 ? '#4ade80' : c >= 5 ? '#fbbf24' : '#ef4444';
+  const bar = '█'.repeat(Math.min(c, 20));
+  return `<tr><td>${n.replace('.', ' ').replace(/\b\w/g, x => x.toUpperCase())}</td><td class="r">${c}</td><td><span style="color:${color}">${bar}</span></td></tr>`;
+}).join('');
+
+// Impact rows
+const sorted = D.all_meetings.filter(m => m.word_count >= 5).sort((a, b) => b.date > a.date ? 1 : -1);
+document.getElementById('impact_rows').innerHTML = sorted.slice(0, 20).map(m => {
+  const sc = impactScore(m);
+  const col = PROJ_COLORS[m.project] || '#6366f1';
+  return `<tr><td>${(m.date || '').slice(0, 10)}</td><td>${m.title.slice(0, 42)}</td><td><span class="tag" style="background:${col}">${m.project}</span></td><td><div class="ibar"><div class="ifill s${sc}" style="width:${sc * 10}%"></div></div></td><td class="c"><b>${sc}/10</b></td></tr>`;
+}).join('');
+
+// Fathom rows
+document.getElementById('fathom_rows').innerHTML = sorted.filter(m => m.source === 'fathom').map(meetingRow).join('');
+
+// Fireflies rows
+document.getElementById('fire_rows').innerHTML = sorted.filter(m => m.source === 'fireflies').slice(0, 20).map(fireRow).join('');
+
+// Insights
+const maxMonth = Object.entries(D.monthly).filter(([k]) => !k.startsWith('2021') && k !== 'unknown').sort((a, b) => b[1].count - a[1].count);
+const topProj = projEntries[0];
+document.getElementById('insights').innerHTML = [
+  `📈 <b>Crescimento exponencial ${maxMonth[0]?.[0]?.slice(0, 7)}</b> — ${maxMonth[0]?.[1]?.count} reuniões no mês mais activo. Fathom tornou-se ferramenta primária de registo.`,
+  `🏥 <b>CUF Healthcare maior projecto externo</b> — 4 reuniões Fathom + follow-ups + diagnóstico. Sinal de pipeline comercial activo.`,
+  `📱 <b>MEO/Marcom com presença consistente</b> — 4 reuniões desde Jan 2026 com RFQ, dry-run, review deck. Pipeline sólido.`,
+  `⚠️ <b>Clareza média baixa (${S.avg_clarity}%)</b> — Fathom gera summaries básicos, raramente key_points ou action_items. Configurar templates no Fathom.`,
+  `👥 <b>Concentração extrema</b> — augusto.silva em 100% das reuniões (62/62), pedro.santos em 20. Risco de "bus factor" elevado.`,
+  `🪽 <b>25 documentos Fireflies recuperados</b> — 14,845 palavras de histórico desde Nov 2025: Brisa, Cofidis, FPF, P&C, wAIseUp, Ayming, Astor App`,
+  `🔍 <b>${projEntries.length} projectos mapeados</b> — ${topProj[0]} domina com ${topProj[1]} reuniões. Diversificação boa mas dispersão em projectos small.`,
+  `📊 <b>Total: ${S.total_meetings} reuniões · ${S.total_words.toLocaleString()} palavras · ${Math.round(S.total_duration_min / 60)}h gravadas · ${projEntries.length} projectos · ${Object.keys(D.participants).length} participantes</b>`,
+].map(t => `<li>${t}</li>`).join('');
 </script>
 </body>
 </html>
