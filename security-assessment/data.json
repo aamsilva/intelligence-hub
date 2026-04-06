@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-04-06T17:36:37.220030",
+  "sections": {
+    "ethical_hacking": {
+      "title": "🔐 Ethical Hacking / Security",
+      "channels": [
+        "109. **@defaultxsec** | Ethical Hacking | 1 | ✅ IMPORTADO | Cybersecurity, ethical hacking, Google Dorking, pentesting, OSINT"
+      ],
+      "videos": [
+        {
+          "id": "Ep5_FmzC8Uc",
+          "title": "Google Dorking (Find Everything Online!)",
+          "channel": "@defaultxsec",
+          "word_count": 1152,
+          "url": "https://youtu.be/Ep5_FmzC8Uc"
+        }
+      ],
+      "alerts": []
+    },
+    "data_exposure": {
+      "title": "☣️ Data Exposure Risks",
+      "dorks_monitored": [
+        {
+          "dork": "site:hexa-labs.pt filetype:pdf",
+          "risk": "medium",
+          "status": "not_tested"
+        },
+        {
+          "dork": "site:hexa-labs.pt intitle:admin",
+          "risk": "high",
+          "status": "not_tested"
+        },
+        {
+          "dork": "filetype:xls OR filetype:csv password",
+          "risk": "critical",
+          "status": "not_tested"
+        },
+        {
+          "dork": "site:github.com \"hexa-labs\" password",
+          "risk": "high",
+          "status": "not_tested"
+        },
+        {
+          "dork": "site:pastebin.com \"@gmail.com\" password",
+          "risk": "critical",
+          "status": "not_tested"
+        },
+        {
+          "dork": "inurl:wp-content uploads sql",
+          "risk": "medium",
+          "status": "not_tested"
+        },
+        {
+          "dork": "intitle:\"index of\" etc passwd",
+          "risk": "high",
+          "status": "not_tested"
+        },
+        {
+          "dork": "site:*.io api key",
+          "risk": "high",
+          "status": "not_tested"
+        }
+      ],
+      "last_scan": null,
+      "findings": []
+    },
+    "news_threats": {
+      "title": "📰 Threat Intelligence",
+      "recent_breaches": [
+        {
+          "source": "News Pipeline",
+          "status": "Not integrated yet",
+          "action": "Add security category to news monitoring"
+        }
+      ],
+      "vulnerabilities": [],
+      "last_updated": null
+    }
+  }
+}
