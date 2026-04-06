@@ -4,135 +4,276 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meeting Intelligence Dashboard</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --bg: #0a0a0f; --card: #14141f; --border: #1e1e2e; --text: #e2e2f0; --muted: #8888a0; --accent: #6366f1; --green: #4ade80; --yellow: #fbbf24; --red: #ef4444 }
+:root { --bg: #0a0a0f; --card: #14141f; --border: #1e1e2e; --text: #e2e2f0; --muted: #8888a0; --accent: #6366f1; --green: #4ade80; --yellow: #fbbf24; --red: #ef4444; --purple: #a78bfa; --cyan: #22d3ee; }
 * { margin: 0; padding: 0; box-sizing: border-box }
-body { background: var(--bg); color: var(--text); font-family: 'SF Mono', 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; padding: 20px; max-width: 1400px; margin: 0 auto }
-h1 { font-size: 24px; margin-bottom: 8px; color: var(--accent) }
-h2 { font-size: 16px; margin: 20px 0 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 20px }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px }
-.stat { font-size: 32px; font-weight: bold; color: var(--accent) }
-.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; font-size: 13px; line-height: 1.5; padding: 24px; max-width: 1600px; margin: 0 auto }
+h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.5px }
+h1 span { color: var(--accent) }
+.subtitle { color: var(--muted); margin-bottom: 24px; font-size: 14px }
+h2 { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 12px; display: flex; align-items: center; gap: 8px }
+h2::before { content: ''; width: 3px; height: 16px; background: var(--accent); border-radius: 2px }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px }
+.kpi { text-align: center }
+.kpi-value { font-size: 36px; font-weight: 800; color: var(--accent); letter-spacing: -1px }
+.kpi-value.green { color: var(--green) }
+.kpi-value.yellow { color: var(--yellow) }
+.kpi-value.purple { color: var(--purple) }
+.kpi-value.cyan { color: var(--cyan) }
+.kpi-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px }
+.table-wrap { overflow-x: auto; max-height: 500px; overflow-y: auto }
 table { width: 100%; border-collapse: collapse; font-size: 12px }
-th, td { padding: 8px; text-align: left; border-bottom: 1px solid var(--border) }
-th { color: var(--muted); font-weight: normal; text-transform: uppercase; font-size: 10px }
-a { color: var(--accent); text-decoration: none }
-a:hover { text-decoration: underline }
+th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border) }
+th { color: var(--muted); font-weight: 600; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px }
+tr:hover td { background: rgba(99, 102, 241, 0.05) }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 10px; font-weight: 600; color: white }
+.source-tag { background: rgba(251, 191, 36, 0.15); color: var(--yellow); padding: 3px 10px; border-radius: 6px; font-size: 10px }
+.score { font-weight: 700; padding: 2px 8px; border-radius: 4px }
+.score.good { color: var(--green); background: rgba(74, 222, 128, 0.1) }
+.score.warn { color: var(--yellow); background: rgba(251, 191, 36, 0.1) }
+.score.bad { color: var(--red); background: rgba(239, 68, 68, 0.1) }
+.bar { height: 8px; border-radius: 4px; background: var(--border); min-width: 60px }
+.bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--purple)) }
+.impact-bar { height: 12px; border-radius: 6px; background: var(--border); min-width: 80px }
+.impact-fill { height: 100%; border-radius: 6px }
+.impact-fill.score-0, .impact-fill.score-1 { background: var(--red) }
+.impact-fill.score-2 { background: #f97316 }
+.impact-fill.score-3 { background: var(--yellow) }
+.impact-fill.score-4 { background: #84cc16 }
+.impact-fill.score-5 { background: #22c55e }
+.impact-fill.score-6 { background: #10b981 }
+.impact-fill.score-7 { background: #06b6d4 }
+.impact-fill.score-8 { background: var(--accent) }
+.impact-fill.score-9 { background: var(--purple) }
+.impact-fill.score-10 { background: linear-gradient(90deg, var(--accent), var(--purple)) }
+.impact-badge { font-weight: 700 }
+.chart-container { height: 280px; position: relative }
+.note { color: var(--muted); font-size: 11px; margin-top: 8px; font-style: italic }
+ul.insights { list-style: none; padding: 0 }
+ul.insights li { padding: 6px 0; border-bottom: 1px solid var(--border) }
+ul.insights li:last-child { border-bottom: none }
+@media (max-width: 1024px) { .two-col { grid-template-columns: 1fr } .grid { grid-template-columns: repeat(2, 1fr) } }
 </style>
 </head>
 <body>
-<h1>📊 Meeting Intelligence Dashboard</h1>
-<p style="color: var(--muted); margin-bottom: 20px">Generated: April 2026 | Data: Fathom (21 meetings) + Drive (30 transcripts)</p>
+<h1>📊 <span>Meeting Intelligence</span> Dashboard</h1>
+<p class="subtitle">Historical analysis · Fathom + Fireflies + Google Drive · 44 total meetings</p>
 
 <!-- KPIs -->
 <div class="grid">
-<div class="card">
-<div class="stat">21</div>
-<div class="stat-label">Total Meetings (2026)</div>
-</div>
-<div class="card">
-<div class="stat">30</div>
-<div class="stat-label">Drive Transcripts</div>
-</div>
-<div class="card">
-<div class="stat">25%</div>
-<div class="stat-label">Avg Clarity Score</div>
-</div>
-<div class="card">
-<div class="stat">38%</div>
-<div class="stat-label">Avg Actionability</div>
-</div>
+    <div class="card kpi"><div class="kpi-value">44</div><div class="kpi-label">Total Meetings</div></div>
+    <div class="card kpi"><div class="kpi-value green">136,507</div><div class="kpi-label">Words Transcribed</div></div>
+    <div class="card kpi"><div class="kpi-value yellow">24%</div><div class="kpi-label">Avg Clarity</div></div>
+    <div class="card kpi"><div class="kpi-value purple">38%</div><div class="kpi-label">Avg Actionability</div></div>
+    <div class="card kpi"><div class="kpi-value cyan">18h</div><div class="kpi-label">Total Time</div></div>
+    <div class="card kpi"><div class="kpi-value">49m</div><div class="kpi-label">Avg Duration</div></div>
 </div>
 
-<!-- Charts Row -->
-<div class="grid">
-<div class="card">
-<h2>Project Distribution</h2>
-<canvas id="projectChart" height="200"></canvas>
-</div>
-<div class="card">
-<h2>Top Participants</h2>
-<table>
-<tr><th>Name</th><th>Meetings</th></tr>
-<tr><td>augusto.silva</td><td>36</td></tr>
-<tr><td>pedro.santos</td><td>20</td></tr>
-<tr><td>nuno.dias</td><td>6</td></tr>
-<tr><td>abel.costa</td><td>6</td></tr>
-<tr><td>hugo.ribeiro</td><td>5</td></tr>
-</table>
-</div>
+<!-- Charts Row 1 -->
+<div class="two-col">
+    <div class="card">
+        <h2>Monthly Activity</h2>
+        <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
+        <p class="note">Bar=meetings, Line=words (all sources: Fathom + Fireflies)</p>
+    </div>
+    <div class="card">
+        <h2>Project Distribution</h2>
+        <div class="chart-container"><canvas id="projectChart"></canvas></div>
+    </div>
 </div>
 
-<!-- Timeline -->
-<div class="card" style="margin-bottom: 20px">
-<h2>Meeting Timeline (Word Count)</h2>
-<canvas id="timelineChart" height="100"></canvas>
+<!-- Charts Row 2 -->
+<div class="two-col" style="margin-top: 16px;">
+    <div class="card">
+        <h2>Top Participants</h2>
+        <canvas id="participantChart" height="250"></canvas>
+    </div>
+    <div class="card">
+        <h2>Topics & Keywords</h2>
+        <canvas id="topicChart" height="250"></canvas>
+    </div>
 </div>
 
-<!-- Meetings -->
-<div class="card">
-<h2>Recent Meetings</h2>
-<table>
-<tr><th>Date</th><th>Title</th><th>Words</th><th>Attendees</th></tr>
-<tr><td>2026-04-01</td><td>HL Slides AI - Use cases</td><td>10401</td><td>2</td></tr>
-<tr><td>2026-03-31</td><td>Weekly Sync - Augusto & Pedro</td><td>5265</td><td>2</td></tr>
-<tr><td>2026-03-31</td><td>Business Meeting (S)</td><td>8340</td><td>2</td></tr>
-<tr><td>2026-03-30</td><td>Follow-up: CUF</td><td>8051</td><td>2</td></tr>
-<tr><td>2026-03-27</td><td>Follow-up: Hexa & CUF</td><td>9557</td><td>2</td></tr>
-<tr><td>2026-03-27</td><td>Weekly Sync - Augusto & Pedro</td><td>1665</td><td>2</td></tr>
-<tr><td>2026-03-26</td><td>Hexa CUF</td><td>11090</td><td>2</td></tr>
-<tr><td>2026-03-26</td><td>RH|Hexa Group</td><td>2929</td><td>2</td></tr>
-</table>
+<!-- Project Breakdown -->
+<div class="card" style="margin-top: 16px;">
+    <h2>Project Breakdown</h2>
+    <table><thead><tr><th>Project</th><th style="text-align:right">Meetings</th><th style="text-align:right">Share</th></tr></thead>
+    <tbody><tr><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">14</td><td style="text-align:right">100%</td></tr>
+<tr><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">4</td><td style="text-align:right">29%</td></tr>
+<tr><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
+<tr><td><span class="tag" style="background:#8b5cf6">RH / HR</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
+<tr><td><span class="tag" style="background:#f59e0b">Revolut</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
+<tr><td><span class="tag" style="background:#dc2626">MEO</span></td><td style="text-align:right">1</td><td style="text-align:right">7%</td></tr>
+</tbody></table>
 </div>
 
-<!-- Drive Transcripts -->
-<div class="card" style="margin-top: 20px">
-<h2>Google Drive Transcripts</h2>
-<table>
-<tr><th>Date</th><th>File</th></tr>
-<tr><td>2026-03-31</td><td>2026-03-31 - Follow-up: Relatório de Diagnóstico Cork Supply</td></tr>
-<tr><td>2026-03-27</td><td>2026-03-27 - Maria Garcia | Hexa Labs</td></tr>
-<tr><td>2026-03-13</td><td>2026-03-13 - Status e follow-up: Fase de Diagnóstico wAIse up</td></tr>
-<tr><td>2026-01-16</td><td>20260116 - EDP- Apresentação IA HEXA - Transcript</td></tr>
-<tr><td>2026-01-15</td><td>20260115 - Hexa | Reunião RFP - FPF - Transcript</td></tr>
-<tr><td>2026-01-13</td><td>20260113 - Apresentação Proposta - Hexa Consulting - Transcript</td></tr>
-</table>
+<!-- Participants -->
+<div class="card" style="margin-top: 16px;">
+    <h2>Participant Engagement</h2>
+    <table><thead><tr><th>Participant</th><th style="text-align:right">Meetings</th><th style="min-width:100px">Engagement</th></tr></thead>
+    <tbody><tr><td>Augusto.silva</td><td style="text-align:right">37</td><td><div class="bar"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+<tr><td>Pedro.santos</td><td style="text-align:right">20</td><td><div class="bar"><div class="bar-fill" style="width:54%"></div></div></td></tr>
+<tr><td>Nuno.dias</td><td style="text-align:right">6</td><td><div class="bar"><div class="bar-fill" style="width:16%"></div></div></td></tr>
+<tr><td>Abel.costa</td><td style="text-align:right">6</td><td><div class="bar"><div class="bar-fill" style="width:16%"></div></div></td></tr>
+<tr><td>Hugo.ribeiro</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+<tr><td>Diogo.oliveira</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+<tr><td>Andre.correia</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+<tr><td>David.domingos</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+<tr><td>Carlos.pinto</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+<tr><td>Nuno.moura</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+<tr><td>Francisco.febrero</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+<tr><td>Rodolfo.correia</td><td style="text-align:right">5</td><td><div class="bar"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+</tbody></table>
+    <p class="note">Based on attendance across all tracked meetings</p>
 </div>
+
+<!-- Impact Scores -->
+<div class="card" style="margin-top: 16px;">
+    <h2>Meeting Impact Scores (Top 15)</h2>
+    <table><thead><tr><th>Date</th><th>Meeting</th><th>Impact</th><th style="text-align:center">Score</th></tr></thead>
+    <tbody><tr><td>2026-04-01</td><td>HL Slides AI - Use cases</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
+<tr><td>2026-03-31</td><td>Weekly Sync - Augusto & Pedro</td><td><div class="impact-bar"><div class="impact-fill score-4" style="width:40%"></div></div></td><td style="text-align:center"><span class="impact-badge">4/10</span></td></tr>
+<tr><td>2026-03-31</td><td>Business Meeting (S)</td><td><div class="impact-bar"><div class="impact-fill score-5" style="width:50%"></div></div></td><td style="text-align:center"><span class="impact-badge">5/10</span></td></tr>
+<tr><td>2026-03-30</td><td>Follow-up: CUF </td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
+<tr><td>2026-03-27</td><td>Follow-up: Hexa & CUF</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
+<tr><td>2026-03-27</td><td>Weekly Sync - Augusto & Pedro</td><td><div class="impact-bar"><div class="impact-fill score-2" style="width:20%"></div></div></td><td style="text-align:center"><span class="impact-badge">2/10</span></td></tr>
+<tr><td>2026-03-26</td><td>Hexa CUF</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
+<tr><td>2026-03-26</td><td>RH|Hexa Group</td><td><div class="impact-bar"><div class="impact-fill score-1" style="width:10%"></div></div></td><td style="text-align:center"><span class="impact-badge">1/10</span></td></tr>
+<tr><td>2026-03-25</td><td>Revolut Business - Onboarding HL</td><td><div class="impact-bar"><div class="impact-fill score-1" style="width:10%"></div></div></td><td style="text-align:center"><span class="impact-badge">1/10</span></td></tr>
+<tr><td>2026-03-24</td><td>Business Meeting (O)</td><td><div class="impact-bar"><div class="impact-fill score-3" style="width:30%"></div></div></td><td style="text-align:center"><span class="impact-badge">3/10</span></td></tr>
+<tr><td>2026-03-20</td><td>Reserva Slot (Projeto CUF, MEO ou ambos)</td><td><div class="impact-bar"><div class="impact-fill score-3" style="width:30%"></div></div></td><td style="text-align:center"><span class="impact-badge">3/10</span></td></tr>
+<tr><td>2026-03-19</td><td>Strategy Review​ - Bi-Monthly Meeting</td><td><div class="impact-bar"><div class="impact-fill score-4" style="width:40%"></div></div></td><td style="text-align:center"><span class="impact-badge">4/10</span></td></tr>
+<tr><td>2026-03-10</td><td>Hexa | Icaro Prates</td><td><div class="impact-bar"><div class="impact-fill score-2" style="width:20%"></div></div></td><td style="text-align:center"><span class="impact-badge">2/10</span></td></tr>
+<tr><td>2026-03-06</td><td>Weekly Sync - Augusto & Pedro</td><td><div class="impact-bar"><div class="impact-fill score-6" style="width:60%"></div></div></td><td style="text-align:center"><span class="impact-badge">6/10</span></td></tr>
+<tr><td>2026-03-06</td><td>Synch ND+HL (one-off)</td><td><div class="impact-bar"><div class="impact-fill score-4" style="width:40%"></div></div></td><td style="text-align:center"><span class="impact-badge">4/10</span></td></tr>
+</tbody></table>
+    <p class="note">Impact formula: Words (2-4pts) + Clarity (1-3pts) + Action Items (2pts) + Attendees (1pt)</p>
+</div>
+
+<!-- Meeting Lists -->
+<div class="two-col" style="margin-top: 16px;">
+    <div class="card">
+        <h2>🎙️ Fathom Meetings (2026)</h2>
+        <div class="table-wrap">
+            <table><thead><tr><th>Date</th><th>Title</th><th>Project</th><th style="text-align:right">Words</th><th style="text-align:right">Min</th><th style="text-align:center">#</th><th style="text-align:right">Clarity</th><th style="text-align:right">Action</th></tr></thead>
+            <tbody><tr><td>2026-04-01</td><td>HL Slides AI - Use cases</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td style="text-align:right">10,401</td><td style="text-align:right">62</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-31</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">5,265</td><td style="text-align:right">33</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-31</td><td>Business Meeting (S)</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">8,340</td><td style="text-align:right">51</td><td style="text-align:center">15</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-30</td><td>Follow-up: CUF </td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">8,051</td><td style="text-align:right">45</td><td style="text-align:center">4</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-27</td><td>Follow-up: Hexa & CUF</td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">9,557</td><td style="text-align:right">63</td><td style="text-align:center">4</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-27</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">1,665</td><td style="text-align:right">9</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-26</td><td>Hexa CUF</td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">11,090</td><td style="text-align:right">68</td><td style="text-align:center">4</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-26</td><td>RH|Hexa Group</td><td><span class="tag" style="background:#8b5cf6">RH / HR</span></td><td style="text-align:right">2,929</td><td style="text-align:right">20</td><td style="text-align:center">14</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-25</td><td>Revolut Business - Onboarding HL</td><td><span class="tag" style="background:#f59e0b">Revolut</span></td><td style="text-align:right">650</td><td style="text-align:right">14</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">0%</span></td></tr>
+<tr><td>2026-03-24</td><td>Business Meeting (O)</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">7,053</td><td style="text-align:right">52</td><td style="text-align:center">15</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-20</td><td>Reserva Slot (Projeto CUF, MEO ou ambos)</td><td><span class="tag" style="background:#7c3aed">CUF Healthcare</span></td><td style="text-align:right">6,092</td><td style="text-align:right">32</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-19</td><td>Strategy Review​ - Bi-Monthly Meeting</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">6,257</td><td style="text-align:right">39</td><td style="text-align:center">18</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-10</td><td>Hexa | Icaro Prates</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">4,710</td><td style="text-align:right">30</td><td style="text-align:center">6</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-06</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">18,842</td><td style="text-align:right">194</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-06</td><td>Synch ND+HL (one-off)</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">6,077</td><td style="text-align:right">135</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-03-02</td><td>synch</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">3,461</td><td style="text-align:right">17</td><td style="text-align:center">2</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-02-27</td><td>Weekly Sync - Augusto & Pedro</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">10,425</td><td style="text-align:right">62</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score bad">0%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-02-26</td><td>Submeter proposta MEO</td><td><span class="tag" style="background:#dc2626">MEO</span></td><td style="text-align:right">2,531</td><td style="text-align:right">20</td><td style="text-align:center">5</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-02-24</td><td>In-person : Quick stand-up meeting / weekly b</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">4,379</td><td style="text-align:right">41</td><td style="text-align:center">15</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+<tr><td>2026-02-24</td><td>Synch Nuno+Pedro+Augusto</td><td><span class="tag" style="background:#6b7280">General / Internal</span></td><td style="text-align:right">2,099</td><td style="text-align:right">15</td><td style="text-align:center">3</td><td style="text-align:right"><span class="score warn">35%</span></td><td style="text-align:right"><span class="score warn">40%</span></td></tr>
+</tbody></table>
+        </div>
+    </div>
+    <div class="card">
+        <h2>🪽 Fireflies Historical (2025-2026)</h2>
+        <div class="table-wrap">
+            <table><thead><tr><th>Date</th><th>Title</th><th>Project</th><th>Source</th></tr></thead>
+            <tbody><tr><td>2026-03-31</td><td>Business Meeting (S)</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-03-12</td><td>HEXA - MARCOM</td><td><span class="tag" style="background:#dc2626">MEO</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-02-23</td><td>synch</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-02-17</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-02-13</td><td>Quick connection Augusto/Raamish</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-02-12</td><td>Diagnóstico IA - P&C</td><td><span class="tag" style="background:#06b6d4">People & Comm</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-02-03</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-02-02</td><td>Apresentação Hexa Labs</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-02-02</td><td>Rebranding Hexa</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-27</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-23</td><td>Reunião semanal app astor</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-22</td><td>Ayming x Hexa Labs</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-20</td><td>wAIseUp x Hexa</td><td><span class="tag" style="background:#14b8a6">wAIseUp</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-20</td><td>In-person stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-15</td><td>Hexa RFP FPF</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-14</td><td>Apresentação Hexa Labs - Cofidis</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-13</td><td>Apresentação Proposta</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2026-01-09</td><td>Weekly - Hexa Labs</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2025-11-26</td><td>Nov 26, 08:07 PM</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2025-11-26</td><td>Quick stand-up / weekly</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2025-11-25</td><td>Quick stand-up</td><td><span class="tag" style="background:#10b981">Hexa Labs AI</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+<tr><td>2025-11-21</td><td>Follow-up: Brisa</td><td><span class="tag" style="background:#ec4899">Hexa Consulting</span></td><td><span class="source-tag">Fireflies</span></td></tr>
+</tbody></table>
+        </div>
+    </div>
+</div>
+
+<!-- Insights -->
+<div class="card" style="margin-top: 16px; border-left: 3px solid var(--accent);">
+    <h2>Key Insights</h2>
+    <ul class="insights">
+        <li><b>Surge em Março 2026</b> — 17 reuniões vs 9 em Jan. Volume de texto 4x maior. Fathom começou a ser usado intensivamente.</li>
+        <li><b>CUF Healthcare</b> é o projeto externo mais ativo — 4 reuniões Fathom + follow-ups históricos + diagnóstico.</li>
+        <li><b>Clareza média 24%</b> — Fathom produz summaries mas raramente key_points ou action_items automáticos. Recomendado ativar auto-summaries avançadas.</li>
+        <li><b>Concentração alta</b> — augusto.silva presente em 100% das reuniões (37), pedro.santos em 20. Participação concentrada em poucos.</li>
+        <li><b>22 documentos Fireflies</b> adicionam contexto desde Nov 2025 — incluindo Brisa, Cofidis, FPF, P&C, MARCOM, wAIseUp, Ayming.</li>
+        <li><b>44 reuniões total</b> · 136K+ palavras · 17.8h gravadas · 7 projetos · 30+ transcripts no Drive</li>
+    </ul>
+</div>
+
+<div class="note" style="text-align:center; padding: 20px; color: var(--muted);">Meeting Intelligence Dashboard · Fathom API + Fireflies + Google Drive (04_MEETINGS) · skill: meeting-intelligence-autoresearch</div>
 
 <script>
-new Chart(document.getElementById('projectChart'), {
-    type: 'doughnut',
+new Chart(document.getElementById('monthlyChart'), {
+    type: 'bar',
     data: {
-        labels: ['CUF', 'Hexa Labs AI', 'Revolut', 'MEO'],
-        datasets: [{
-            data: [4, 3, 1, 1],
-            backgroundColor: ['#7c3aed', '#10b981', '#f59e0b', '#dc2626']
-        }]
+        labels: ["Nov/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26"],
+        datasets: [
+            { label: 'Meetings', data: [4, 9, 12, 17, 1], backgroundColor: 'rgba(99, 102, 241, 0.7)', borderRadius: 6, yAxisID: 'y' },
+            { type: 'line', label: 'Words', data: [0, 0, 24322, 100039, 10401], borderColor: '#4ade80', backgroundColor: 'rgba(74,222,128,0.1)', fill: true, tension: 0.4, yAxisID: 'y1', pointBackgroundColor: '#4ade80' }
+        ]
     },
     options: {
-        plugins: { legend: { position: 'bottom', labels: { color: '#8888a0' } } }
+        responsive: true, maintainAspectRatio: false,
+        scales: {
+            y: { beginAtZero: true, ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' }, title: { display: true, text: 'Meetings', color: '#8888a0' } },
+            y1: { position: 'right', beginAtZero: true, ticks: { color: '#8888a0' }, grid: { display: false }, title: { display: true, text: 'Words', color: '#8888a0' } },
+            x: { ticks: { color: '#8888a0' }, grid: { display: false } }
+        },
+        plugins: { legend: { labels: { color: '#8888a0' } } }
     }
 });
 
-new Chart(document.getElementById('timelineChart'), {
+new Chart(document.getElementById('projectChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ["General / Internal", "CUF Healthcare", "Hexa Labs AI", "RH / HR", "Revolut", "MEO"],
+        datasets: [{ data: [14, 4, 1, 1, 1, 1], backgroundColor: ["#6b7280", "#7c3aed", "#10b981", "#8b5cf6", "#f59e0b", "#dc2626"], borderWidth: 0 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '55%', plugins: { legend: { position: 'bottom', labels: { color: '#8888a0', padding: 12, font: { size: 11 } } } } }
+});
+
+new Chart(document.getElementById('participantChart'), {
     type: 'bar',
     data: {
-        labels: ['Feb24', 'Feb26', 'Mar02', 'Mar06', 'Mar10', 'Mar19', 'Mar20', 'Mar24', 'Mar25', 'Mar26', 'Mar27', 'Mar30', 'Mar31', 'Apr01'],
-        datasets: [{
-            label: 'Words',
-            data: [4099, 2531, 3461, 18842+6077, 4710, 6257, 6092, 7053, 650, 11090+2929, 9557+1665, 8051, 8340+5265, 10401],
-            backgroundColor: '#6366f1'
-        }]
+        labels: ["Augusto.silva", "Pedro.santos", "Nuno.dias", "Abel.costa", "Hugo.ribeiro", "Diogo.oliveira", "Andre.correia", "David.domingos", "Carlos.pinto", "Nuno.moura", "Francisco.febrero", "Rodolfo.correia"],
+        datasets: [{ label: 'Meetings', data: [37, 20, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5], backgroundColor: 'rgba(167,139,250,0.7)', borderRadius: 4 }]
     },
-    options: {
-        scales: {
-            y: { ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' } },
-            x: { ticks: { color: '#8888a0' }, grid: { display: false } }
-        },
-        plugins: { legend: { display: false } }
-    }
+    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true, ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' } }, y: { ticks: { color: '#e2e2f0', font: { size: 11 } }, grid: { display: false } } }, plugins: { legend: { display: false } } }
+});
+
+new Chart(document.getElementById('topicChart'), {
+    type: 'bar',
+    data: {
+        labels: ["synch", "slides", "cases", "rh|hexa", "group", "revolut", "onboarding", "reserva", "slot", "projeto"],
+        datasets: [{ label: 'Frequency', data: [4, 1, 1, 1, 1, 1, 1, 1, 1, 1], backgroundColor: 'rgba(34,211,238,0.6)', borderRadius: 4 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true, ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' } }, y: { ticks: { color: '#e2e2f0', font: { size: 11 } }, grid: { display: false } } }, plugins: { legend: { display: false } } }
 });
 </script>
 </body>
