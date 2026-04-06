@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting Intelligence Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root { --bg: #0a0a0f; --card: #14141f; --border: #1e1e2e; --text: #e2e2f0; --muted: #8888a0; --accent: #6366f1; --green: #4ade80; --yellow: #fbbf24; --red: #ef4444 }
+* { margin: 0; padding: 0; box-sizing: border-box }
+body { background: var(--bg); color: var(--text); font-family: 'SF Mono', 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; padding: 20px; max-width: 1400px; margin: 0 auto }
+h1 { font-size: 24px; margin-bottom: 8px; color: var(--accent) }
+h2 { font-size: 16px; margin: 20px 0 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 20px }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px }
+.stat { font-size: 32px; font-weight: bold; color: var(--accent) }
+.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase }
+table { width: 100%; border-collapse: collapse; font-size: 12px }
+th, td { padding: 8px; text-align: left; border-bottom: 1px solid var(--border) }
+th { color: var(--muted); font-weight: normal; text-transform: uppercase; font-size: 10px }
+a { color: var(--accent); text-decoration: none }
+a:hover { text-decoration: underline }
+</style>
+</head>
+<body>
+<h1>📊 Meeting Intelligence Dashboard</h1>
+<p style="color: var(--muted); margin-bottom: 20px">Generated: April 2026 | Data: Fathom (21 meetings) + Drive (30 transcripts)</p>
+
+<!-- KPIs -->
+<div class="grid">
+<div class="card">
+<div class="stat">21</div>
+<div class="stat-label">Total Meetings (2026)</div>
+</div>
+<div class="card">
+<div class="stat">30</div>
+<div class="stat-label">Drive Transcripts</div>
+</div>
+<div class="card">
+<div class="stat">25%</div>
+<div class="stat-label">Avg Clarity Score</div>
+</div>
+<div class="card">
+<div class="stat">38%</div>
+<div class="stat-label">Avg Actionability</div>
+</div>
+</div>
+
+<!-- Charts Row -->
+<div class="grid">
+<div class="card">
+<h2>Project Distribution</h2>
+<canvas id="projectChart" height="200"></canvas>
+</div>
+<div class="card">
+<h2>Top Participants</h2>
+<table>
+<tr><th>Name</th><th>Meetings</th></tr>
+<tr><td>augusto.silva</td><td>36</td></tr>
+<tr><td>pedro.santos</td><td>20</td></tr>
+<tr><td>nuno.dias</td><td>6</td></tr>
+<tr><td>abel.costa</td><td>6</td></tr>
+<tr><td>hugo.ribeiro</td><td>5</td></tr>
+</table>
+</div>
+</div>
+
+<!-- Timeline -->
+<div class="card" style="margin-bottom: 20px">
+<h2>Meeting Timeline (Word Count)</h2>
+<canvas id="timelineChart" height="100"></canvas>
+</div>
+
+<!-- Meetings -->
+<div class="card">
+<h2>Recent Meetings</h2>
+<table>
+<tr><th>Date</th><th>Title</th><th>Words</th><th>Attendees</th></tr>
+<tr><td>2026-04-01</td><td>HL Slides AI - Use cases</td><td>10401</td><td>2</td></tr>
+<tr><td>2026-03-31</td><td>Weekly Sync - Augusto & Pedro</td><td>5265</td><td>2</td></tr>
+<tr><td>2026-03-31</td><td>Business Meeting (S)</td><td>8340</td><td>2</td></tr>
+<tr><td>2026-03-30</td><td>Follow-up: CUF</td><td>8051</td><td>2</td></tr>
+<tr><td>2026-03-27</td><td>Follow-up: Hexa & CUF</td><td>9557</td><td>2</td></tr>
+<tr><td>2026-03-27</td><td>Weekly Sync - Augusto & Pedro</td><td>1665</td><td>2</td></tr>
+<tr><td>2026-03-26</td><td>Hexa CUF</td><td>11090</td><td>2</td></tr>
+<tr><td>2026-03-26</td><td>RH|Hexa Group</td><td>2929</td><td>2</td></tr>
+</table>
+</div>
+
+<!-- Drive Transcripts -->
+<div class="card" style="margin-top: 20px">
+<h2>Google Drive Transcripts</h2>
+<table>
+<tr><th>Date</th><th>File</th></tr>
+<tr><td>2026-03-31</td><td>2026-03-31 - Follow-up: Relatório de Diagnóstico Cork Supply</td></tr>
+<tr><td>2026-03-27</td><td>2026-03-27 - Maria Garcia | Hexa Labs</td></tr>
+<tr><td>2026-03-13</td><td>2026-03-13 - Status e follow-up: Fase de Diagnóstico wAIse up</td></tr>
+<tr><td>2026-01-16</td><td>20260116 - EDP- Apresentação IA HEXA - Transcript</td></tr>
+<tr><td>2026-01-15</td><td>20260115 - Hexa | Reunião RFP - FPF - Transcript</td></tr>
+<tr><td>2026-01-13</td><td>20260113 - Apresentação Proposta - Hexa Consulting - Transcript</td></tr>
+</table>
+</div>
+
+<script>
+new Chart(document.getElementById('projectChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['CUF', 'Hexa Labs AI', 'Revolut', 'MEO'],
+        datasets: [{
+            data: [4, 3, 1, 1],
+            backgroundColor: ['#7c3aed', '#10b981', '#f59e0b', '#dc2626']
+        }]
+    },
+    options: {
+        plugins: { legend: { position: 'bottom', labels: { color: '#8888a0' } } }
+    }
+});
+
+new Chart(document.getElementById('timelineChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Feb24', 'Feb26', 'Mar02', 'Mar06', 'Mar10', 'Mar19', 'Mar20', 'Mar24', 'Mar25', 'Mar26', 'Mar27', 'Mar30', 'Mar31', 'Apr01'],
+        datasets: [{
+            label: 'Words',
+            data: [4099, 2531, 3461, 18842+6077, 4710, 6257, 6092, 7053, 650, 11090+2929, 9557+1665, 8051, 8340+5265, 10401],
+            backgroundColor: '#6366f1'
+        }]
+    },
+    options: {
+        scales: {
+            y: { ticks: { color: '#8888a0' }, grid: { color: '#1e1e2e' } },
+            x: { ticks: { color: '#8888a0' }, grid: { display: false } }
+        },
+        plugins: { legend: { display: false } }
+    }
+});
+</script>
+</body>
+</html>
