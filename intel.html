@@ -1,0 +1,2979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAKEHOLDER INTELLIGENCE MAP — CONFIDENTIAL — CEO Hexa Labs</title>
+<style>
+:root {
+--bg-primary: #0a0a0f;
+--bg-card: #12121c;
+--bg-card-hover: #1a1a28;
+--border: #2a2a3a;
+--border-accent: #3a3a5a;
+--text-primary: #e8e8f0;
+--text-secondary: #8888a0;
+--text-muted: #555568;
+--green: #00d48a;
+--green-dim: #00d48a33;
+--amber: #f0a020;
+--amber-dim: #f0a02033;
+--red: #ff4057;
+--red-dim: #ff405733;
+--white: #c8c8d8;
+--white-dim: #c8c8d833;
+--blue: #4488ff;
+--blue-dim: #4488ff33;
+--purple: #8855cc;
+--purple-dim: #8855cc33;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(--bg-primary);
+color: var(--text-primary);
+font-family: 'Courier New', 'Lucida Console', monospace;
+line-height: 1.5;
+min-height: 100vh;
+}
+
+body::before {
+content: "CONFIDENTIAL";
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%) rotate(-35deg);
+font-size: 180px;
+color: rgba(255, 64, 87, 0.025);
+pointer-events: none;
+z-index: 0;
+white-space: nowrap;
+font-weight: 900;
+letter-spacing: 25px;
+}
+
+.container { max-width: 1600px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+
+.watermark-bar {
+background: linear-gradient(90deg, transparent, rgba(255,64,87,0.08), transparent);
+padding: 4px;
+text-align: center;
+font-size: 10px;
+color: var(--red);
+letter-spacing: 8px;
+border-bottom: 1px solid rgba(255,64,87,0.15);
+border-top: 1px solid rgba(255,64,87,0.15);
+}
+
+/* HEADER */
+.header {
+text-align: center;
+padding: 40px 20px 30px;
+border-bottom: 1px solid var(--border);
+margin-bottom: 30px;
+position: relative;
+}
+.header h1 {
+font-size: 28px;
+font-weight: 900;
+letter-spacing: 6px;
+color: var(--text-primary);
+text-transform: uppercase;
+}
+.header h1 .red { color: var(--red); }
+.header .subtitle {
+font-size: 11px;
+color: var(--text-secondary);
+letter-spacing: 4px;
+margin-top: 10px;
+text-transform: uppercase;
+}
+.header .meta {
+display: flex;
+justify-content: center;
+gap: 40px;
+margin-top: 15px;
+font-size: 10px;
+color: var(--text-muted);
+letter-spacing: 2px;
+}
+
+/* SECTION TITLES */
+.section-title {
+font-size: 16px;
+font-weight: 700;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(--green);
+padding: 15px 0;
+margin: 30px 0 20px;
+border-bottom: 1px solid var(--border);
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.section-title::before {
+content: "▸";
+color: var(--green);
+font-size: 20px;
+}
+
+/* CARDS */
+.card {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 4px;
+padding: 20px;
+margin-bottom: 15px;
+position: relative;
+}
+.card::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 3px;
+height: 100%;
+border-radius: 4px 0 0 4px;
+}
+.card.green::before { background: var(--green); }
+.card.amber::before { background: var(--amber); }
+.card.red::before { background: var(--red); }
+.card.white::before { background: var(--white); }
+
+/* BATTLE MAP */
+.battlefield {
+position: relative;
+width: 100%;
+height: 700px;
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 4px;
+overflow: hidden;
+margin-bottom: 30px;
+}
+.battlefield .axis-label {
+position: absolute;
+font-size: 9px;
+letter-spacing: 2px;
+color: var(--text-muted);
+text-transform: uppercase;
+}
+.battlefield .axis-y { top: 10px; left: 8px; transform: rotate(-90deg); transform-origin: left top; }
+.battlefield .axis-x { bottom: 8px; right: 20px; }
+.battlefield .center-line-h {
+position: absolute;
+top: 50%;
+left: 80px;
+right: 80px;
+height: 1px;
+border-top: 1px dashed var(--border-accent);
+}
+.battlefield .center-line-v {
+position: absolute;
+left: 50%;
+top: 30px;
+bottom: 30px;
+width: 1px;
+border-left: 1px dashed var(--border-accent);
+}
+.quadrant-label {
+position: absolute;
+font-size: 10px;
+letter-spacing: 3px;
+text-transform: uppercase;
+opacity: 0.3;
+font-weight: 700;
+}
+.q-allies { top: 15px; right: 100px; color: var(--green); }
+.q-wildcards { top: 15px; left: 100px; color: var(--amber); }
+.q-useful { bottom: 35px; right: 100px; color: var(--blue); }
+.q-liabilities { bottom: 35px; left: 100px; color: var(--red); }
+
+.stakeholder-dot {
+position: absolute;
+width: 44px;
+height: 44px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 9px;
+font-weight: 700;
+text-align: center;
+line-height: 1.1;
+transform: translate(-50%, -50%);
+cursor: pointer;
+transition: all 0.3s;
+z-index: 5;
+border: 2px solid;
+}
+.stakeholder-dot.green { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.stakeholder-dot.amber { background: var(--amber-dim); border-color: var(--amber); color: var(--amber); }
+.stakeholder-dot.red { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.stakeholder-dot.white { background: var(--white-dim); border-color: var(--white); color: var(--white); }
+.stakeholder-dot.blue { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+.stakeholder-dot:hover { transform: translate(-50%, -50%) scale(1.3); z-index: 10; }
+
+.dot-info {
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+background: var(--bg-primary);
+border: 1px solid var(--border-accent);
+border-radius: 3px;
+padding: 8px 12px;
+font-size: 10px;
+white-space: nowrap;
+display: none;
+z-index: 20;
+pointer-events: none;
+}
+.stakeholder-dot:hover .dot-info { display: block; }
+.dot-name { font-weight: 700; color: var(--text-primary); }
+.dot-detail { color: var(--text-secondary); margin-top: 2px; }
+
+/* WAR ROOM STAKEHOLDER CARDS */
+.war-room-container {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.war-room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.war-room-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+}
+
+.war-room-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.war-room-filter {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 6px 12px;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.war-room-filter:hover, .war-room-filter.active {
+    border-color: var(--amber);
+    color: var(--amber);
+    background: var(--amber-dim);
+}
+
+.war-room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.stakeholder-mini-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px;
+    position: relative;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.stakeholder-mini-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+}
+
+.stakeholder-mini-card.ally::before { background: var(--green); }
+.stakeholder-mini-card.wildcard::before { background: var(--amber); }
+.stakeholder-mini-card.tool::before { background: var(--blue); }
+.stakeholder-mini-card.liability::before { background: var(--red); }
+.stakeholder-mini-card.neutral::before { background: var(--text-muted); }
+
+.stakeholder-mini-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-accent);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.stakeholder-mini-card.ally { border-left: 3px solid var(--green); }
+.stakeholder-mini-card.wildcard { border-left: 3px solid var(--amber); }
+.stakeholder-mini-card.tool { border-left: 3px solid var(--blue); }
+.stakeholder-mini-card.liability { border-left: 3px solid var(--red); }
+.stakeholder-mini-card.neutral { border-left: 3px solid var(--text-muted); }
+
+.mini-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.mini-card-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+.mini-card-entity {
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.mini-count {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-primary);
+    min-width: 45px;
+    text-align: center;
+}
+
+.mini-count.high { color: var(--green); border-color: var(--green); }
+.mini-count.medium { color: var(--amber); border-color: var(--amber); }
+.mini-count.low { color: var(--text-muted); }
+
+.mini-card-stats {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.mini-stat {
+    font-size: 9px;
+    color: var(--text-secondary);
+}
+
+.mini-stat-value {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.mini-card-quadrant {
+    display: inline-block;
+    font-size: 8px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.mini-card-quadrant.ally { background: var(--green-dim); color: var(--green); }
+.mini-card-quadrant.wildcard { background: var(--amber-dim); color: var(--amber); }
+.mini-card-quadrant.tool { background: var(--blue-dim); color: var(--blue); }
+.mini-card-quadrant.liability { background: var(--red-dim); color: var(--red); }
+.mini-card-quadrant.neutral { background: var(--white-dim); color: var(--white); }
+
+/* IMPROVED BATTLEFIELD */
+.battlefield {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.battlefield::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, rgba(0,212,138,0.02) 0%, transparent 33%),
+        linear-gradient(90deg, transparent 33%, rgba(240,160,32,0.02) 33%, transparent 66%),
+        linear-gradient(90deg, transparent 66%, rgba(68,136,255,0.02) 66%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.battlefield .axis-label {
+    position: absolute;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    z-index: 3;
+}
+.battlefield .axis-y { top: 10px; left: 8px; transform: rotate(-90deg); transform-origin: left top; }
+.battlefield .axis-x { bottom: 8px; right: 20px; }
+.battlefield .center-line-h {
+    position: absolute;
+    top: 50%;
+    left: 80px;
+    right: 80px;
+    height: 1px;
+    border-top: 1px dashed var(--border-accent);
+    z-index: 2;
+}
+.battlefield .center-line-v {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    bottom: 30px;
+    width: 1px;
+    border-left: 1px dashed var(--border-accent);
+    z-index: 2;
+}
+
+.quadrant-label {
+    position: absolute;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.25;
+    font-weight: 700;
+    z-index: 2;
+}
+.q-allies { top: 20px; right: 100px; color: var(--green); }
+.q-wildcards { top: 20px; left: 100px; color: var(--amber); }
+.q-useful { bottom: 40px; right: 100px; color: var(--blue); }
+.q-liabilities { bottom: 40px; left: 100px; color: var(--red); }
+
+/* ENHANCED STAKEHOLDER DOTS */
+.stakeholder-dot {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.1;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    border: 2px solid;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.stakeholder-dot.green { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.stakeholder-dot.amber { background: var(--amber-dim); border-color: var(--amber); color: var(--amber); }
+.stakeholder-dot.red { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.stakeholder-dot.white { background: var(--white-dim); border-color: var(--white); color: var(--white); }
+.stakeholder-dot.blue { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+.stakeholder-dot.ga { background: #10b98133; border-color: #10b981; color: #10b981; }
+
+.stakeholder-dot:hover { 
+    transform: translate(-50%, -50%) scale(1.35); 
+    z-index: 10; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.stakeholder-dot .dot-info {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-accent);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 10px;
+    white-space: nowrap;
+    display: none;
+    z-index: 20;
+    pointer-events: none;
+    margin-top: 8px;
+    min-width: 180px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.stakeholder-dot:hover .dot-info { display: block; }
+.dot-name { font-weight: 700; color: var(--text-primary); font-size: 12px; display: block; margin-bottom: 4px; }
+.dot-detail { color: var(--text-secondary); line-height: 1.4; }
+
+/* TABS */
+.tabs {
+display: flex;
+gap: 2px;
+margin-bottom: 20px;
+border-bottom: 1px solid var(--border);
+}
+.tab-btn {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-bottom: none;
+border-radius: 4px 4px 0 0;
+padding: 10px 20px;
+color: var(--text-secondary);
+font-family: inherit;
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.2s;
+}
+.tab-btn.active {
+background: var(--bg-card-hover);
+color: var(--green);
+border-color: var(--green);
+border-bottom: 1px solid var(--bg-card-hover);
+margin-bottom: -1px;
+}
+.tab-btn:hover { color: var(--text-primary); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* PROFILE CARDS */
+.profiles-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+gap: 15px;
+}
+
+.profile-card {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 4px;
+padding: 18px;
+position: relative;
+transition: border-color 0.2s;
+}
+.profile-card:hover { border-color: var(--border-accent); }
+.profile-card::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 4px;
+height: 100%;
+border-radius: 4px 0 0 4px;
+}
+.profile-card.tier-1::before { background: var(--green); }
+.profile-card.tier-2::before { background: var(--amber); }
+.profile-card.tier-3::before { background: var(--blue); }
+.profile-card.tier-4::before { background: var(--text-muted); }
+
+.profile-header {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+margin-bottom: 12px;
+padding-bottom: 10px;
+border-bottom: 1px solid var(--border);
+}
+.profile-name {
+font-size: 14px;
+font-weight: 700;
+color: var(--text-primary);
+letter-spacing: 1px;
+}
+.tier-badge {
+font-size: 9px;
+padding: 3px 10px;
+border-radius: 2px;
+letter-spacing: 2px;
+font-weight: 700;
+text-transform: uppercase;
+}
+.tier-badge.t1 { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); }
+.tier-badge.t2 { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber); }
+.tier-badge.t3 { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue); }
+.tier-badge.t4 { background: var(--white-dim); color: var(--white); border: 1px solid var(--white); }
+
+.profile-entity {
+font-size: 10px;
+color: var(--text-muted);
+letter-spacing: 1px;
+margin-bottom: 8px;
+}
+
+.profile-stats {
+display: flex;
+gap: 15px;
+margin-bottom: 12px;
+flex-wrap: wrap;
+}
+.stat {
+background: rgba(255,255,255,0.03);
+border: 1px solid var(--border);
+border-radius: 3px;
+padding: 6px 12px;
+text-align: center;
+min-width: 80px;
+}
+.stat-label {
+font-size: 8px;
+color: var(--text-muted);
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+.stat-value {
+font-size: 13px;
+font-weight: 700;
+color: var(--text-primary);
+}
+
+.profile-section {
+margin: 10px 0;
+padding: 8px 10px;
+background: rgba(255,255,255,0.015);
+border-radius: 3px;
+border-left: 2px solid var(--border);
+}
+.profile-section-title {
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--green);
+margin-bottom: 5px;
+font-weight: 700;
+}
+.profile-section-content {
+font-size: 11px;
+color: var(--text-secondary);
+line-height: 1.5;
+}
+.profile-section-content strong {
+color: var(--text-primary);
+}
+.red-flag { color: var(--red); border-left-color: var(--red); }
+.red-flag .profile-section-title { color: var(--red); }
+.opportunity { border-left-color: var(--green); }
+.opportunity .profile-section-title { color: var(--green); }
+.sun-tzu { border-left-color: var(--amber); }
+.sun-tzu .profile-section-title { color: var(--amber); }
+
+/* POWER DYNAMICS */
+.dynamics-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+gap: 15px;
+}
+.dynamics-card {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 4px;
+padding: 18px;
+}
+.dynamics-card h3 {
+font-size: 12px;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 12px;
+padding-bottom: 8px;
+border-bottom: 1px solid var(--border);
+}
+.dynamics-card.green h3 { color: var(--green); }
+.dynamics-card.amber h3 { color: var(--amber); }
+.dynamics-card.red h3 { color: var(--red); }
+.dynamics-card.blue h3 { color: var(--blue); }
+
+.dynamics-item {
+display: flex;
+gap: 10px;
+padding: 6px 0;
+font-size: 11px;
+color: var(--text-secondary);
+border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.dynamics-item:last-child { border-bottom: none; }
+.dynamics-item .arrow { color: var(--red); font-weight: 700; min-width: 20px; }
+.dynamics-item .label { color: var(--text-primary); font-weight: 700; }
+
+/* SUN TZU PLAYBOOK */
+.playbook-section {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 4px;
+padding: 20px;
+margin-bottom: 15px;
+border-left: 3px solid var(--amber);
+}
+.playbook-section h3 {
+font-size: 14px;
+color: var(--amber);
+letter-spacing: 2px;
+margin-bottom: 10px;
+font-family: 'Georgia', serif;
+font-style: italic;
+}
+.playbook-section h4 {
+font-size: 11px;
+color: var(--text-primary);
+letter-spacing: 1px;
+text-transform: uppercase;
+margin: 12px 0 6px;
+}
+.playbook-section p, .playbook-section li {
+font-size: 11px;
+color: var(--text-secondary);
+line-height: 1.6;
+margin-bottom: 4px;
+}
+.playbook-section ul {
+padding-left: 18px;
+}
+
+/* MATRIX TABLE */
+.filter-bar {
+display: flex;
+gap: 10px;
+margin-bottom: 15px;
+flex-wrap: wrap;
+}
+.filter-btn {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 3px;
+padding: 7px 15px;
+color: var(--text-secondary);
+font-family: inherit;
+font-size: 10px;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.2s;
+}
+.filter-btn.active, .filter-btn:hover {
+border-color: var(--green);
+color: var(--green);
+background: var(--green-dim);
+}
+
+table.matrix-table {
+width: 100%;
+border-collapse: collapse;
+font-size: 11px;
+}
+.matrix-table th {
+background: var(--bg-card-hover);
+padding: 10px 12px;
+text-align: left;
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--text-muted);
+border-bottom: 2px solid var(--border);
+cursor: pointer;
+user-select: none;
+white-space: nowrap;
+}
+.matrix-table th:hover { color: var(--text-primary); }
+.matrix-table th.sorted-asc::after { content: " ▲"; color: var(--green); }
+.matrix-table th.sorted-desc::after { content: " ▼"; color: var(--green); }
+.matrix-table td {
+padding: 8px 12px;
+border-bottom: 1px solid var(--border);
+color: var(--text-secondary);
+vertical-align: top;
+}
+.matrix-table tr:hover td {
+background: rgba(255,255,255,0.02);
+}
+.status-tag {
+display: inline-block;
+padding: 2px 8px;
+border-radius: 2px;
+font-size: 9px;
+letter-spacing: 1px;
+font-weight: 700;
+text-transform: uppercase;
+}
+.status-tag.ally { background: var(--green-dim); color: var(--green); }
+.status-tag.risk { background: var(--amber-dim); color: var(--amber); }
+.status-tag.danger { background: var(--red-dim); color: var(--red); }
+.status-tag.neutral { background: var(--white-dim); color: var(--white); }
+
+/* ACTION TRACKER */
+.action-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+gap: 15px;
+}
+.action-card {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 4px;
+padding: 15px;
+}
+.action-card h4 {
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 10px;
+padding-bottom: 8px;
+border-bottom: 1px solid var(--border);
+}
+.action-card.open h4 { color: var(--red); }
+.action-card.in-progress h4 { color: var(--amber); }
+.action-card.resolved h4 { color: var(--green); }
+.action-item {
+padding: 6px 0;
+font-size: 11px;
+color: var(--text-secondary);
+border-bottom: 1px solid rgba(255,255,255,0.03);
+display: flex;
+gap: 8px;
+}
+.action-item:last-child { border-bottom: none; }
+.action-item .priority {
+font-size: 8px;
+padding: 2px 6px;
+border-radius: 2px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+.priority.critical { background: var(--red-dim); color: var(--red); }
+.priority.high { background: var(--amber-dim); color: var(--amber); }
+.priority.normal { background: var(--blue-dim); color: var(--blue); }
+.priority.low { background: var(--white-dim); color: var(--white); }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* TOGGLE */
+.collapse-toggle {
+cursor: pointer;
+user-select: none;
+}
+.collapse-toggle::before {
+content: "▼ ";
+font-size: 8px;
+display: inline-block;
+transition: transform 0.2s;
+color: var(--text-muted);
+}
+.collapsed .collapse-toggle::before {
+transform: rotate(-90deg);
+}
+.collapsible {
+overflow: hidden;
+transition: max-height 0.3s ease;
+}
+
+@media (max-width: 768px) {
+.profiles-grid { grid-template-columns: 1fr; }
+.battlefield { height: 500px; }
+.container { padding: 10px; }
+.header h1 { font-size: 18px; letter-spacing: 3px; }
+}
+
+.ceo-vuln-card { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #ff6b6b; border-radius: 12px; padding: 20px; margin: 15px 0; }
+.vuln-item, .strategy-item { background: rgba(255,255,255,0.05); padding: 12px; margin: 10px 0; border-left: 3px solid; border-radius: 4px; }
+.vuln-title { font-weight: bold; color: #ff6b6b; margin-bottom: 8px; }
+.vuln-desc { color: #ccc; font-size: 14px; }
+.protection { color: #4ade80; font-size: 13px; margin-top: 8px; }
+.strategy-item { border-left-color: #4ade80; }
+.threat-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.threat-table th, .threat-table td { padding: 10px; border: 1px solid #333; text-align: left; }
+.threat-table th { background: #222; }
+
+.ceo-vuln-card { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #ff6b6b; border-radius: 12px; padding: 20px; margin: 15px 0; }
+.vuln-item, .strategy-item { background: rgba(255,255,255,0.05); padding: 12px; margin: 10px 0; border-left: 3px solid; border-radius: 4px; }
+.vuln-title { font-weight: bold; color: #ff6b6b; margin-bottom: 8px; }
+.vuln-desc { color: #ccc; font-size: 14px; }
+.protection { color: #4ade80; font-size: 13px; margin-top: 8px; }
+.strategy-item { border-left-color: #4ade80; }
+.threat-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.threat-table th, .threat-table td { padding: 10px; border: 1px solid #333; text-align: left; }
+.threat-table th { background: #222; }
+
+.ceo-vuln-card { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #ff6b6b; border-radius: 12px; padding: 20px; margin: 15px 0; }
+.vuln-item, .strategy-item { background: rgba(255,255,255,0.05); padding: 12px; margin: 10px 0; border-left: 3px solid #ff6b6b; border-radius: 4px; }
+.vuln-title { font-weight: bold; color: #ff6b6b; margin-bottom: 8px; }
+.vuln-desc { color: #ccc; font-size: 14px; }
+.protection { color: #4ade80; font-size: 13px; margin-top: 8px; }
+.strategy-item { border-left-color: #4ade80; }
+
+.vuln-card { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #ff6b6b; border-radius: 12px; padding: 20px; margin: 15px 0; }
+.vuln-item { background: rgba(255,255,255,0.05); padding: 12px; margin: 10px 0; border-left: 3px solid #ff6b6b; }
+
+.vuln-card { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #ff6b6b; border-radius: 12px; padding: 20px; margin: 15px 0; }
+.vuln-item { background: rgba(255,255,255,0.05); padding: 12px; margin: 10px 0; border-left: 3px solid #ff6b6b; }
+</style>
+</head>
+<body>
+<div class="watermark-bar">CLASSIFIED — FOR CEO EYES ONLY — DO NOT DISTRIBUTE</div>
+
+<div class="container">
+<div class="header">
+<h1><span class="red">&#9678;</span> STAKEHOLDER INTELLIGENCE MAP <span class="red">&#9678;</span></h1>
+<div class="subtitle">Confidential — CEO Augusto Silva, Hexa Labs</div>
+<div class="meta">
+<span>CLASSIFICATION: CONFIDENTIAL</span>
+<span>SOURCES: 165 Meetings, 8 Source Types</span>
+<span>DATE: 2026-04-06</span>
+<span>STAKEHOLDERS: 23</span>
+<span>TIMEFRAME: SEP 2025 &#8594; APR 2026</span>
+</div>
+</div>
+
+<div class="tabs">
+<button class="tab-btn" onclick="showTab('redteam')">CEO RED TEAM</button>
+<button class="tab-btn" onclick="showTab('warroom')">">WAR ROOM</button>
+<button class="tab-btn" onclick="showTab('profiles')">PROFILES</button>
+<button class="tab-btn" onclick="showTab('dynamics')">POWER DYNAMICS</button>
+<button class="tab-btn" onclick="showTab('sun-tzu')">SUN TZU PLAYBOOK</button>
+<button class="tab-btn" onclick="showTab('matrix')">MATRIX TABLE</button>
+<button class="tab-btn" onclick="showTab('actions')">ACTION TRACKER</button>
+</div>
+
+
+<div id="tab-redteam" class="tab-content active">
+<h2>☣ CEO RED TEAM ANALYSIS</h2>
+<p>Perfil Psicológico, Vulnerabilidades e Estratégias de Proteção</p>
+
+<div class="vuln-card" style="border-color:#ff6b6b;">
+<h3>🧠 1. PERFIL PSICOLÓGICO</h3>
+<div class="vuln-item" style="border-left:3px solid #00d48a;">
+<strong>CONSCIENCIOSIDADE: EXTREMAMENTE ELEVADA (95º percentil)</strong><br>
+O traço dominante. "TESTAR TUDO" não é retórica — é imperativo comportamental. Cada decisão passa por filtro interno de validação. "NUNCA ACEITAR NÃO" reflete persistência orientada por padrão inegociável.
+</div>
+<div class="vuln-item" style="border-left:3px solid #f0a020;">
+<strong>NEUROTICISCO: MODERADO-ALTO (70º percentil)</strong><br>
+Ansiedade canalizada para vigilância. Medo de ser enganado, de falhas não detetadas. A impaciência revela vulnerabilidade a frustração quando o ambiente foge ao padrão de ordem.
+</div>
+<div class="vuln-item" style="border-left:3px solid #4488ff;">
+<strong>EXTROVERSÃO: MODERADA (55º percentil)</strong><br>
+Instrumental e orientada para ação, não sociável. Os 165 encontros demonstram capacidade relacional direcionada por objetivo: obter informação, construir alianças.
+</div>
+<div class="vuln-item" style="border-left:3px solid #8855cc;">
+<strong>AMABILIDADE: BAIXA-MODERADA (35º percentil)</strong><br>
+Prioriza resultados sobre harmonia. Valoriza competência acima de simpatia. Preferência por verdades desconfortáveis a ilusões reconfortantes. Cria dinâmicas onde a equipa evita entregar más notícias.
+</div>
+<div class="vuln-item" style="border-left:3px solid #ff4057;">
+<strong>MEDOS NUCLEARES</strong><br>
+• <strong>Falha visível:</strong> Erro que outros testemunham e que mancha a reputação de excelência<br>
+• <strong>Ser enganado:</strong> A pior traição é a desonestidade<br>
+• <strong>Perda de controlo:</strong> Variáveis não supervisionadas são ameaças
+</div>
+</div>
+
+<div class="vuln-card" style="border-color:#ff4057;">
+<h3>⚠️ 2. VULNERABILIDADES ESPECÍFICAS</h3>
+<div class="vuln-item">
+<strong>🔴 PERFECCIONISMO → PARALISIA ANALÍTICA</strong><br>
+O padrão "TESTAR TUDO" a 90% é funcional — mas o último 10% cria custos escondidos. Ciclos de verificação adicionais atrasam decisões cruciais. Transforma rigor em paranoia funcional.<br>
+<em style="color:#ff6b6b;">🛡️ PROTECTION: Estabelecer deadline fixo para fase de teste. Aceitar 95% de certeza em decisões reversíveis.</em>
+</div>
+<div class="vuln-item">
+<strong>🔴 EXPECTATIVAS ELEVADAS → CULTURA DO MEDO</strong><br>
+A equipa sabe o que Augusto quer ouvir: resultados, excelência. O efeito perverso: más notícias são adiadas, minimizadas, reembaladas como "desafios." O medo gera comportamentos de proteção — o oposto da excelência.<br>
+<em style="color:#ff6b6b;">🛡️ PROTECTION: Implementar "Reuniões de Só Más Notícias" onde reportar problemas é recompensado.</em>
+</div>
+<div class="vuln-item">
+<strong>🔴 CONFIANÇA CONCENTRADA EM PEDRO → PTO. ÚNICO DE FALHA</strong><br>
+Pedro é o filtro operacional primário — "co-CEO" não oficial. Se Pedro erra, o erro propaga-se sem contraponto. Se Pedro é comprometido (pressão, suborno, burnout), toda a camada operacional fica contaminada.<br>
+<em style="color:#ff6b6b;">🛡️ PROTECTION: Desenvolver segundo elemento com acesso aos mesmos dados. "Férias Forçadas de Pedro" (2 semanas sem contacto).</em>
+</div>
+<div class="vuln-item">
+<strong>🟡 NECESSIDADE DE CONTROLO → GARGALO DECISÓRIO</strong><br>
+A empresa pára quando Augusto não está disponível. A equipa adapta-se esperando validação em vez de agir. Sob stress, o controlo intensifica-se, estrangulando autonomia.<br>
+<em style="color:#f0a020;">🛡️ PROTECTION: Definir decisões que podem ser tomadas sem aprovação. Conselho de Decisão Rápida.</em>
+</div>
+<div class="vuln-item">
+<strong>🟡 IMPACIÊNCIA → DECISÕES COMPRIMIDAS</strong><br>
+"NUNCA ACEITAR NÃO" em negociação é força. A mesma impaciência aplicada internamente comprime timelines artificialmente. Pode aceitar atalhos que contradizem "TESTAR TUDO."<br>
+<em style="color:#f0a020;">🛡️ PROTECTION: Regra das 72 Horas para decisões irreversíveis. "Se sinto urgência emocional, é quando não devo decidir."</em>
+</div>
+<div class="vuln-item">
+<strong>🟡 DESEJO DE TRANSPARÊNCIA → EXPOSIÇÃO INFORMACIONAL</strong><br>
+A exigência de informação completa cria paradoxo de segurança: quanto mais informação circula, mais pontos de exposição. Cada reunião é superfície de ataque potencial.<br>
+<em style="color:#f0a020;">🛡️ PROTECTION: Classificar informação antes de reuniões (Pública/Confidencial/Secreta).</em>
+</div>
+</div>
+
+<div class="vuln-card" style="border-color:#8855cc;">
+<h3>🎯 3. VETORES DE ATAQUE (RED TEAM)</h3>
+<div class="vuln-item">
+<strong>🐴 ENGENHARIA SOCIAL VIA CANAIS DE CONFIANÇA</strong><br>
+Competidor identifica Pedro como canal primário. Contamina fontes de informação de Pedro. Pedro transmite informação enviesada. Augusto confia porque confia em Pedro.<br>
+<em>PROBABILIDADE: Média-Alta</em>
+</div>
+<div class="vuln-item">
+<strong>🎭 EXPLORAÇÃO DE ASSIMETRIA INFORMACIONAL</strong><br>
+Interlocutor apresenta informação estrategicamente incompleta mas verdadeira. "Testar tudo" confirma veracidade mas não detecta o que não sabe que desconhece.<br>
+<em>PROBABILIDADE: Alta — tática mais comum em negociações</em>
+</div>
+<div class="vuln-item">
+<strong>🔮 MANIPULAÇÃO DO VIÉS DE CONFIRMAÇÃO</strong><br>
+Conhecendo posição prévia, agente alimenta narrativa confirmadora. Uma vez estabelecida credibilidade, introduz informação enviesada com menor escrutínio.<br>
+<em>PROBABILIDADE: Média</em>
+</div>
+<div class="vuln-item">
+<strong>⏰ TÁTICA DE PRESSÃO TEMPORAL</strong><br>
+"Esta oportunidade fecha em 48 horas." Augusto sob pressão temporal recorre mais à intuição. "Precisamos de fechar isto rápido" vs "TESTAR TUDO" — a impaciência vence.<br>
+<em>PROBABILIDADE: Média-Alta</em>
+</div>
+<div class="vuln-item">
+<strong>👥 EXPLORAÇÃO INTERNA — EFEITO DE MEDO</strong><br>
+Elemento interno com agenda própria manipula relatórios para esconder falhas. Membro descontente detecta problema mas tem medo de reportar. Problema silenciado enquanto competidor prepara exploração.<br>
+<em>PROBABILIDADE: Alta — emerge organicamente do sistema</em>
+</div>
+</div>
+
+<div class="vuln-card" style="border-color:#00d48a;">
+<h3>🛡️ 4. ESTRATÉGIAS DE PROTEÇÃO</h3>
+<div class="vuln-item">
+<strong>📋 SALVAGUARDAS DECISÓRIAS</strong><br>
+• <strong>Regra das 72 Horas:</strong> Decisões irreversíveis não finalizadas em menos de 72h<br>
+• <strong>Advocado do Diabo:</strong> Membro designado argumentar contra decisão proposta<br>
+• <strong>"Pre-Mortem" obrigatório:</strong> "Falhou catastroficamente em 12 meses. O que aconteceu?"<br>
+• <strong>Teste de Inversão:</strong> "Se fosse oposto, que evidência o suportaria?"
+</div>
+<div class="vuln-item">
+<strong>🔍 PROTOCOLOS DE VERIFICAÇÃO</strong><br>
+• <strong>Triangulação obrigatória:</strong> 3 fontes independentes mínimas para dados críticos<br>
+• <strong>Análise de Incentivos:</strong> "O que ganha se eu concordar?"<br>
+• <strong>Classificação pré-reunião:</strong> Pública / Confidencial / Secreta
+</div>
+<div class="vuln-item">
+<strong>👥 REDUNDÂNCIA NA EQUIPA</strong><br>
+• <strong>Eliminação Ptos Únicos:</strong> Desenvolver segundo elemento para cada função crítica<br>
+• <strong>Rotação de Briefings:</strong> Quem apresenta muda mensalmente<br>
+• <strong>Reuniões "Skip-Level":</strong> Augusto reúne sem chefias intermédias<br>
+• <strong>Triunvirato operacional:</strong> Pedro + Diogo + Ricardo precisam 2/3 votos
+</div>
+<div class="vuln-item">
+<strong>🚫 CONTRA A CULTURA DO MEDO</strong><br>
+• <strong>Reuniões "Só Más Notícias":</strong> Só apresentar problemas, agradecer contributos<br>
+• <strong>Separar Erro de Negligência:</strong> Erro = aprendizagem, Ocultação = severidade<br>
+• <strong>Medir Segurança Psicológica:</strong> Questionários anónimos trimestrais
+</div>
+</div>
+
+<div class="vuln-card" style="border-color:#f0a020;">
+<h3>⚡ 5. SINAIS DE ALERTA (EARLY WARNING)</h3>
+<div class="vuln-item">
+<strong>🔴 MUDANÇAS COMPORTAMENTAIS NA EQUIPA</strong><br>
+• Silêncio anormal em reuniões — ninguém contesta<br>
+• Membro evita reuniões individuais com Augusto<br>
+• Pedro excessivamente protetor / filtra quem fala<br>
+• Linguagem vaga em relatórios ("aproximadamente", "em breve")<br>
+• Dois+ membros mudam padrões de horário simultaneamente
+</div>
+<div class="vuln-item">
+<strong>🟡 INCONSISTÊNCIAS EM DADOS</strong><br>
+• Números redondos demais (realidade é "feia": 73.4%, 8.217)<br>
+• Métricas melhoram consistentemente sem causa<br>
+• Consistência narrativa excessiva — realidade é contraditória<br>
+• Relatórios "limpos" sem setbacks — sinal de ocultação
+</div>
+<div class="vuln-item">
+<strong>🟢 AUTO-MONITORIZAÇÃO</strong><br>
+• <strong>Fadiga decisória:</strong> Decisões após 20h ou 8h reuniões = risco<br>
+• <strong>Irritação desproporcional:</strong> Stress acumulado de outra fonte<br>
+• <strong>Certeza excessiva:</strong> Momento de maior risco<br>
+• <strong>Isolamento decisório:</strong> "Só eu vejo o quadro completo" = erro
+</div>
+</div>
+
+<div class="vuln-card" style="border-color:#ff4057;">
+<h3>📌 PRIORIDADES DE IMPLEMENTAÇÃO</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;">
+<div style="background:rgba(255,64,87,0.1);padding:15px;border-radius:8px;border:1px solid #ff4057;">
+<strong style="color:#ff4057;">IMEDIATA (Semana 1-2)</strong><br>
+• Canal de más notícias<br>
+• Regra das 72 horas<br>
+• Análise de incentivos pré-reuniões
+</div>
+<div style="background:rgba(240,160,32,0.1);padding:15px;border-radius:8px;border:1px solid #f0a020;">
+<strong style="color:#f0a020;">CURTO PRAZO (Mês 1)</strong><br>
+• Triangulação obrigatória<br>
+• Advogado do diabo<br>
+• Classificação de informação
+</div>
+<div style="background:rgba(0,212,138,0.1);padding:15px;border-radius:8px;border:1px solid #00d48a;">
+<strong style="color:#00d48a;">MÉDIO PRAZO (90 dias)</strong><br>
+• Triunvirato operacional<br>
+• Rotação de briefings<br>
+• Férias forçadas de Pedro
+</div>
+</div>
+</div>
+</div>
+<div id="tab-warroom" class="tab-content">
+<div class="section-title">Executive War Room — Power Map</div>
+<p style="font-size:11px;color:var(--text-secondary);margin-bottom:15px;">All stakeholders positioned by relative Influence (Y) and Trust/Reliability (X). Dot color = classification quadrant. Hover dots for details. Filter by relevance below.</p>
+<div class="battlefield" id="battlefield">
+<span class="axis-label axis-y">▲ INFLUENCE</span>
+<span class="axis-label axis-x">TRUST / RELIABILITY ►</span>
+<div class="center-line-h"></div>
+<div class="center-line-v"></div>
+<span class="quadrant-label q-allies">ALLIES</span>
+<span class="quadrant-label q-wildcards">WILDCARDS</span>
+<span class="quadrant-label q-useful">USEFUL TOOLS</span>
+<span class="quadrant-label q-liabilities">LIABILITIES</span>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+<span style="font-size:9px;letter-spacing:1px;">QUADRANT KEY: </span>
+<span class="status-tag ally">ALLIES</span>
+<span class="status-tag risk">WILDCARDS</span>
+<span class="status-tag" style="background:var(--blue-dim);color:var(--blue);">USEFUL TOOLS</span>
+<span class="status-tag" style="background:var(--white-dim);color:var(--white);">NEUTRAL</span>
+<span class="status-tag danger">LIABILITIES</span>
+</div>
+
+<!-- STAKEHOLDER CARDS SECTION -->
+<div id="war-room" class="war-room-container">
+<div class="war-room-header">
+<span class="war-room-title">Key Stakeholders — By Relevance</span>
+<div class="war-room-filters">
+<button class="war-room-filter active" onclick="filterWarRoom(10, this)">10+ Meetings</button>
+<button class="war-room-filter" onclick="filterWarRoom(20, this)">20+ Meetings</button>
+<button class="war-room-filter" onclick="filterWarRoom(50, this)">50+ Meetings</button>
+<button class="war-room-filter" onclick="filterWarRoom(0, this)">Show All</button>
+</div>
+</div>
+<div class="war-room-grid">
+
+<!-- PEDRO SANTOS - TIER 1 - ALLY -->
+<div class="stakeholder-mini-card ally">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">PEDRO SANTOS</div>
+<div class="mini-card-entity">Hexa Labs — COO</div>
+</div>
+<span class="mini-count high">108</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Trust: <span class="mini-stat-value">9.5</span></span>
+<span class="mini-stat">Influence: <span class="mini-stat-value">9.0</span></span>
+</div>
+<span class="mini-card-quadrant ally">ALLY</span>
+</div>
+
+<!-- RICARDO FELIX - TIER 1 -->
+<div class="stakeholder-mini-card ally">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">RICARDO FELIX</div>
+<div class="mini-card-entity">Hexa Labs — CUF Tech Lead</div>
+</div>
+<span class="mini-count high">33</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Trust: <span class="mini-stat-value">8.5</span></span>
+<span class="mini-stat">Influence: <span class="mini-stat-value">7.0</span></span>
+</div>
+<span class="mini-card-quadrant ally">ALLY</span>
+</div>
+
+<!-- DIOGO - RISK -->
+<div class="stakeholder-mini-card liability">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">DIOGO</div>
+<div class="mini-card-entity">Hexa Group — CEO</div>
+</div>
+<span class="mini-count medium">12</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Trust: <span class="mini-stat-value">3.0</span></span>
+<span class="mini-stat">Influence: <span class="mini-stat-value">9.5</span></span>
+</div>
+<span class="mini-card-quadrant liability">LIABILITY</span>
+</div>
+
+<!-- NUNO -->
+<div class="stakeholder-mini-card wildcard">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">NUNO</div>
+<div class="mini-card-entity">Hexa Group — CFO</div>
+</div>
+<span class="mini-count medium">15</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Trust: <span class="mini-stat-value">5.0</span></span>
+<span class="mini-stat">Influence: <span class="mini-stat-value">8.5</span></span>
+</div>
+<span class="mini-card-quadrant wildcard">WILDCARD</span>
+</div>
+
+<!-- LUIS REIS - USEFUL TOOL -->
+<div class="stakeholder-mini-card tool">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">LUIS REIS</div>
+<div class="mini-card-entity">Revolut — Account Manager</div>
+</div>
+<span class="mini-count low">8</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Trust: <span class="mini-stat-value">8.3</span></span>
+<span class="mini-stat">Influence: <span class="mini-stat-value">6.5</span></span>
+</div>
+<span class="mini-card-quadrant tool">USEFUL TOOL</span>
+</div>
+
+<!-- RODOLFO CORREIA -->
+<div class="stakeholder-mini-card ally">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">RODOLFO CORREIA</div>
+<div class="mini-card-entity">Hexa Group — Strategy</div>
+</div>
+<span class="mini-count low">6</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Trust: <span class="mini-stat-value">8.0</span></span>
+<span class="mini-stat">Influence: <span class="mini-stat-value">7.5</span></span>
+</div>
+<span class="mini-card-quadrant ally">ALLY</span>
+</div>
+
+<!-- HUGO -->
+<div class="stakeholder-mini-card neutral">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">HUGO</div>
+<div class="mini-card-entity">Hexa Group</div>
+</div>
+<span class="mini-count low">4</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Trust: <span class="mini-stat-value">7.0</span></span>
+<span class="mini-stat">Influence: <span class="mini-stat-value">5.0</span></span>
+</div>
+<span class="mini-card-quadrant neutral">NEUTRAL</span>
+</div>
+
+<!-- TBD - More stakeholders can be added -->
+<div class="stakeholder-mini-card neutral" style="opacity:0.6;">
+<div class="mini-card-header">
+<div>
+<div class="mini-card-name">+15 MORE</div>
+<div class="mini-card-entity">Lower frequency contacts</div>
+</div>
+<span class="mini-count low">1-3</span>
+</div>
+<div class="mini-card-stats">
+<span class="mini-stat">Various</span>
+</div>
+<span class="mini-card-quadrant neutral">PERIMETER</span>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="tab-profiles" class="tab-content">
+<div class="section-title">Individual Stakeholder Profiles</div>
+<div class="profiles-grid">
+
+<!-- PEDRO SANTOS - TIER 1 - ALLY -->
+<div class="profile-card tier-1">
+<div class="profile-header">
+<div>
+<div class="profile-name">PEDRO SANTOS</div>
+<div class="profile-entity">Hexa Labs — COO / Operations Lead</div>
+</div>
+<span class="tier-badge t1">Tier 1 — Key Ally</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value" style="color:var(--green)">108</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--green)">9.5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value" style="color:var(--green)">9/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Apr 1</div></div>
+<div class="stat"><div class="stat-label">Freq</div><div class="stat-value">Weekly</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Pragmatic operator. Detail-oriented, process-driven, highly loyal. Speaks directly, flags problems early.<br>
+<strong>Motivations:</strong> Operational excellence, financial clarity (obsessed with cost model), reducing friction between entities.<br>
+<strong>Weaknesses:</strong> Can become frustrated with structural opacity; may carry too much operational load himself.
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Trust Assessment</div>
+<div class="profile-section-content">
+<strong>Trust Level: ALLEGED (Maximum).</strong> 108 meetings — 93% of all recorded sessions. Present in every project: CUF, MEO, Revolut, strategic planning. Weekly 1-on-1 syncs with Augusto. Co-signaled Diogo as critical risk. Co-leads cost model reform. <em>Reasoning: Perfect alignment on every strategic matter discussed; no evidence of divergence in recorded data.</em>
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"The General Who Wins Makes Many Calculations"</strong> — Pedro is your strategic co-processor. Use him to model every scenario before group meetings. He provides the data and operational grounding for your intuitions. Together, establish the baseline that makes you look united and unassailable. Never let Pedro's frustrations become unmanaged — they're your leading indicator of group dysfunction.
+</div>
+</div>
+
+<div class="profile-section opportunity">
+<div class="profile-section-title">&#9873; Engagement Protocol</div>
+<div class="profile-section-content">
+<strong>Tone:</strong> Direct, data-driven, solution-oriented. He respects efficiency.<br>
+<strong>Timing:</strong> Before any group meeting, always align privately first.<br>
+<strong>DO:</strong> Run numbers with him. Ask his read on Diogo, Nuno, and cost allocation.<br>
+<strong>DON'T:</strong> Surprise him with strategic pivots. He needs operational context.
+</div>
+</div>
+
+<div class="profile-section red-flag">
+<div class="profile-section-title">&#9888; Red Flags</div>
+<div class="profile-section-content">
+- Carries disproportionate operational burden across all projects<br>
+- Frustrated by group's cost-sharing model — could trigger disengagement<br>
+- His stop-loss agreement on Hexa Labs (debt threshold) needs monitoring
+</div>
+</div>
+
+<div class="profile-section opportunity">
+<div class="profile-section-title">&#9733; Opportunities</div>
+<div class="profile-section-content">
+- Formalize his role as operational counterpart — gives him recognition and you a reliable delegate<br>
+- Task him with the financial process documentation he's already championing<br>
+- Use his credibility to legitimize restructuring proposals in group meetings
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#8227; Questions to Prepare</div>
+<div class="profile-section-content">
+- What's your read on the group's appetite for cost model reform?<br>
+- Are there operational risks on CUF delivery I'm not seeing?<br>
+- Should we formalize the Revolut account relationship further?
+</div>
+</div>
+</div>
+
+<!-- RICARDO FELIX - TIER 1 -->
+<div class="profile-card tier-1">
+<div class="profile-header">
+<div>
+<div class="profile-name">RICARDO FELIX</div>
+<div class="profile-entity">Hexa Labs — CUF Healthcare Technical Lead</div>
+</div>
+<span class="tier-badge t1">Tier 1 — Technical Ally</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value" style="color:var(--green)">33</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--green)">8.5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value" style="color:var(--amber)">7/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 30</div></div>
+<div class="stat"><div class="stat-label">Domain</div><div class="stat-value">CUF only</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Analytical expert. Technical, process-oriented, pragmatic. Clearly comfortable in client settings. Can articulate process deficiencies with precision.<br>
+<strong>Motivations:</strong> Technical excellence, process improvement, professional reputation within the CUF engagement. Wants to deliver real outcomes, not just consulting theater.<br>
+<strong>Weaknesses:</strong> Limited scope (CUF only); may lack visibility into broader group politics.
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Trust Assessment</div>
+<div class="profile-section-content">
+<strong>Trust Level: STRONG.</strong> 33 meetings, ALL CUF-related. Provided detailed technical analysis of client's process gaps (requirements management, no gating, duplication). Co-leads CUF proposal with Augusto and Pedro. Active in technical review follow-ups. <em>Reasoning: Consistent, technical, client-facing contributor. No red flags detected.</em>
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"He Will Win Who Has Military Capacity and Is Not Interfered by the Sovereign"</strong> — Ricardo operates in your domain (Hexa Labs → CUF). Give him autonomy within the CUF engagement while maintaining your visibility. He is the "general on the ground" for Hexa's biggest deal. Protect his position; don't let group-level politics compromise his work.
+</div>
+</div>
+
+<div class="profile-section opportunity">
+<div class="profile-section-title">&#9873; Engagement Protocol</div>
+<div class="profile-section-content">
+<strong>Tone:</strong> Technical, respectful, collaborative. Speak engineering.<br>
+<strong>Timing:</strong> Before/after CUF client interactions. He's in the client room.<br>
+<strong>DO:</strong> Give him decision authority on technical matters within CUF scope. Ask for ground-truth on client sentiment.<br>
+<strong>DON'T:</strong> Overcomplicate with group-level politics. Keep him focused on delivery.
+</div>
+</div>
+
+<div class="profile-section red-flag">
+<div class="profile-section-title">&#9888; Red Flags</div>
+<div class="profile-section-content">
+- Narrow domain (CUF only) creates dependency risk if he departs<br>
+- May not be aware of group-level dynamics that could affect CUF
+</div>
+</div>
+
+<div class="profile-section opportunity">
+<div class="profile-section-title">&#9733; Opportunities</div>
+<div class="profile-section-content">
+- CUF healthcare is Hexa's largest revenue opportunity. Ricardo is key to expanding scope (Identity, Privileges, Compliance projects)<br>
+- Position him as "Head of Healthcare Solutions" — gives him a title and you a trusted client-facing champion
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#8227; Questions to Prepare</div>
+<div class="profile-section-content">
+- What's the client's real appetite for the automation proposal?<br>
+- Are there additional CUF divisions we could expand into?<br>
+- What technical risks should we watch for in the March resolution timeline?
+</div>
+</div>
+</div>
+
+<!-- DIOGO OLIVEIRA - TIER 2 - WILDCARD / RISK -->
+<div class="profile-card tier-2" style="border-color: var(--red);">
+<div class="profile-header">
+<div>
+<div class="profile-name" style="color:var(--red)">&#9888; DIOGO OLIVEIRA</div>
+<div class="profile-entity">Hexa Group — Strategic Management</div>
+</div>
+<span class="tier-badge t2">Tier 2 — Critical Risk</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value" style="color:var(--red)">42</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--red)">2/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value" style="color:var(--amar)">7.5/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+<div class="stat"><div class="stat-label">Risk</div><div class="stat-value" style="color:var(--red)">HIGH</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Political operator. Unilateral decision-maker. Appears in all group-level meetings but operates independently.<br>
+<strong>Motivations:</strong> Power consolidation, control over resources, maintaining his position within the group hierarchy.<br>
+<strong>Weaknesses:</strong> Poor communication patterns create vulnerabilities. Overextended (appears in all group meetings but depth is shallow).
+</div>
+</div>
+
+<div class="profile-section red-flag">
+<div class="profile-section-title">&#9888; Red Flags — CRITICAL</div>
+<div class="profile-section-content">
+<strong>EXPLICITLY FLAGGED by Augusto & Pedro in Weekly Sync (2026-03-06):</strong><br>
+"Diogo's lack of transparency is a critical risk. His unilateral decisions (e.g., forcing a resource, Daniel) and poor communication create distrust and threaten project control."<br>
+- Attended 2 meetings with ZERO summaries ("Business Meeting (S)" / "Business Meeting (O)") — suspicious opacity<br>
+- Makes unilateral resource decisions without consultation<br>
+- Controls or blocks information flow to key stakeholders<br>
+- Present in all high-level group meetings but engagement is surface-level
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"If Your Enemy Is Secure at All Points, Prepare for Him. If He Is in Superior Strength, Evade Him."</strong> — Do NOT confront Diogo directly. Instead: (1) Document all resource decisions in writing to create paper trail, (2) Force transparency through group reporting mechanisms, (3) Build alliances with those he's alienated to create counter-pressure, (4) Use Pedro as a trusted channel to detect Diogo's moves early. The goal is containment, not confrontation.
+</div>
+</div>
+
+<div class="profile-section opportunity">
+<div class="profile-section-title">&#9873; Engagement Protocol</div>
+<div class="profile-section-content">
+<strong>Tone:</strong> Professional but guarded. Surface-level cordial, nothing more.<br>
+<strong>Timing:</strong> Only in group settings. Avoid 1-on-1s unless necessary and documented.<br>
+<strong>DO:</strong> Ask for updates in group meetings (forces public commitment). Document decisions via email follow-up.<br>
+<strong>DON'T:</strong> Share strategic plans unilaterally. Give him veto power over Hexa Labs decisions. Trust his resource decisions without verification.
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#8227; Questions to Prepare</div>
+<div class="profile-section-content">
+- [For group meetings] Diogo, what's the status of [specific project] — can you brief us? (forces public accountability)<br>
+- Keep a running list of every unilateral decision — build the case for process reform
+</div>
+</div>
+</div>
+
+<!-- HUGO RIBEIRO - TIER 2 -->
+<div class="profile-card tier-2">
+<div class="profile-header">
+<div>
+<div class="profile-name">HUGO RIBEIRO</div>
+<div class="profile-entity">Hexa Group — AI / Technical Direction</div>
+</div>
+<span class="tier-badge t2">Tier 2 — Strategic Asset</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">16</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--amber)">6.5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">7/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Apr 1</div></div>
+<div class="stat"><div class="stat-label">Domain</div><div class="stat-value">AI/GTM</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Strategic connector. Technical credibility with presentation skills. The person Augusto and Pedro chose to define Hexa Labs' service positioning.<br>
+<strong>Motivations:</strong> Professional visibility, positioning as AI thought leader, career trajectory within the group.<br>
+<strong>Weaknesses:</strong> Needs direction — waits for Augusto/Pedro to set strategy before he executes.
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Trust Assessment</div>
+<div class="profile-section-content">
+<strong>Trust Level: RELIABLE.</strong> Selected by Augusto for the critical AI slides/use cases meeting. Tasked with creating the 3-pillar service framework presentation. Present in group strategy but with specific, limited technical role. <em>Reasoning: Competent, task-oriented, no red flags. Trust grows with successful delivery.</em>
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"Opportunities Multiply as They Are Seized"</strong> — Hugo is executing the most visible deliverable (Hexa Labs 3-pillar framework). Use this as a forcing function: his output becomes the official positioning. This gives YOU control over the narrative through him. Ensure he understands YOUR vision before he presents. The man who controls the slides controls the strategy.
+</div>
+</div>
+</div>
+
+<!-- NUNO DIAS - TIER 2 -->
+<div class="profile-card tier-2">
+<div class="profile-header">
+<div>
+<div class="profile-name">NUNO DIAS</div>
+<div class="profile-entity">Hexa Group — Strategic Planning / GTM</div>
+</div>
+<span class="tier-badge t2">Tier 2 — Mixed Signals</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">6</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--amber)">5.5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">7/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+<div class="stat"><div class="stat-label">Note</div><div class="stat-value" style="color:var(--red)">Performance?</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Process-oriented commercial thinker. Identified the GTM gap for AI "Lego blocks." Wants structured sales models.<br>
+<strong>Motivations:</strong> Commercial success, process formalization, being seen as a revenue driver.<br>
+<strong>Weaknesses:</strong> Flagged for poor sales performance in Weekly Sync (2026-03-06) — "focuses on commercial models instead of generating leads for new products, failing a key test."
+</div>
+</div>
+
+<div class="profile-section red-flag">
+<div class="profile-section-title">&#9888; Red Flags</div>
+<div class="profile-section-content">
+- Explicitly flagged for underperformance: sales focus too theoretical, not enough lead generation<br>
+- Raises doubts about "fit for scaling sales" in 1-on-1 assessment (Augusto/Pedro private meeting)
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"Test a General by Putting Him in Peril"</strong> — Nuno Dias has been tested and his performance was disappointing. Give him one clear, measurable commercial assignment with specific targets. If he delivers, rehabilitate. If not, reassign to advisory role. His strength is process thinking — use that for GTM architecture, not direct sales.
+</div>
+</div>
+</div>
+
+<!-- ABEL COSTA - TIER 2 -->
+<div class="profile-card tier-2">
+<div class="profile-header">
+<div>
+<div class="profile-name">ABEL COSTA</div>
+<div class="profile-entity">Hexa Consulting — Commercial / MEO Deal Lead</div>
+</div>
+<span class="tier-badge t2">Tier 2 — Transactional Ally</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">24</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--amber)">6/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">6.5/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Feb 26</div></div>
+<div class="stat"><div class="stat-label">Project</div><div class="stat-value">MEO</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Deal-focused commercial operator. Present in critical pricing meetings for MEO.<br>
+<strong>Motivations:</strong> Winning deals, demonstrating commercial acumen.<br>
+<strong>Weaknesses:</strong> Transactional — engagement may decrease once MEO deal is won/lost.
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Trust Assessment</div>
+<div class="profile-section-content">
+<strong>Trust Level: RELIABLE.</strong> Present in "Submeter proposta MEO" with Augusto, Pedro, and business@. Part of the pricing strategy decision (&#8364;375k Y1, &#8364;380k Y2, &#8364;384k Y3). Active in group meetings. <em>Reasoning: No red flags. Present when it matters for deal-making.</em>
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"Supreme Excellence Consists in Breaking the Enemy's Resistance Without Fighting"</strong> — Abel has proven his value in the MEO negotiation. Use him as the model for future deal-making: give him authority within defined parameters, demand accountability on outcomes, and replicate his approach for other strategic accounts.
+</div>
+</div>
+</div>
+
+<!-- DAVID DOMINGOS - TIER 2 -->
+<div class="profile-card tier-2" style="border-color: var(--green);">
+<div class="profile-header">
+<div>
+<div class="profile-name">DAVID DOMINGOS</div>
+<div class="profile-entity">Hexa Engineering — Technical Lead, Seen as Sales Advocate</div>
+</div>
+<span class="tier-badge t2">Tier 2 — Positive Asset</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">50</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--green)">7/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">6/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+<div class="stat"><div class="stat-label">Note</div><div class="stat-value" style="color:var(--green)">Advocate</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Technical advocate. Identified by Augusto as "key advocate for future sales" (Cofidis).<br>
+<strong>Motivations:</strong> Technical excellence, being the bridge between engineering excellence and commercial success.<br>
+<strong>Weaknesses:</strong> Appears mainly in large group meetings — individual depth of relationship is unclear.
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Trust Assessment</div>
+<div class="profile-section-content">
+<strong>Trust Level: POSITIVE.</strong> Seen by Augusto as a sales advocate for the Cofidis fraud detection product. Present in all group and strategy meetings. <em>Reasoning: Augusto's explicit confidence in him as a commercial bridge from engineering. No negative signals.</em>
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"Treat Your Men as Sons, and They Will Follow You into the Deepest Valleys"</strong> — David has the trust of the CEO for commercial advocacy. Invest in 1-on-1 time with him. Pull him from "group-only" status to "strategic partner" status. His technical credibility makes him effective for client-facing presentations. Use him as the engineering voice in commercial settings.
+</div>
+</div>
+</div>
+
+<!-- CARLOS PINTO - TIER 3 -->
+<div class="profile-card tier-3">
+<div class="profile-header">
+<div>
+<div class="profile-name">CARLOS PINTO</div>
+<div class="profile-entity">Hexa People — HR / Recruitment Lead</div>
+</div>
+<span class="tier-badge t3">Tier 3 — Operational</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">12</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">4/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+<div class="stat"><div class="stat-label">Domain</div><div class="stat-value">People</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Functionally competent. Present in all group meetings but with minimal individual engagement records.<br>
+<strong>Motivations:</strong> Maintaining his HR position, staying involved in group-level decisions.<br>
+<strong>Weaknesses:</strong> Generic engagement — no distinctive project involvement identified.
+</div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Trust Assessment</div>
+<div class="profile-section-content">
+<strong>Trust Level: NEUTRAL.</strong> 5 meetings, all group-level. No individual sessions, no direct conflict. No specific project involvement beyond "General Management" and "Strategic Planning" contexts. <em>Reasoning: Absence of evidence is not evidence of absence, but no positive signals either.</em>
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"Let Your Plans Be Dark and Impenetrable as Night"</strong> — Carlos operates in the shadows of group meetings. He's aligned with whoever is present. No 1-on-1 contact means he's not a trusted advisor but also not a threat. Maintain cordial group relationship. Monitor for signs of factional alignment.
+</div>
+</div>
+</div>
+
+<!-- ANDRE CORREIA - TIER 3 -->
+<div class="profile-card tier-3">
+<div class="profile-header">
+<div>
+<div class="profile-name">ANDRE CORREIA</div>
+<div class="profile-entity">Hexa Consulting</div>
+</div>
+<span class="tier-badge t3">Tier 3 — Group Regular</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">8</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">4/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Group regular. 5 meetings across general management, strategic planning, and internal strategy contexts. Same attendance profile as the core group cluster. No individual engagement or distinctive contributions detected in records. <strong>Sun Tzu: "Keep your friends close and your enemies closer."</strong> Maintain professional cordiality, monitor for factional signals.
+</div>
+</div>
+</div>
+
+<!-- NUNO MOURA - TIER 3 -->
+<div class="profile-card tier-3">
+<div class="profile-header">
+<div>
+<div class="profile-name">NUNO MOURA</div>
+<div class="profile-entity">Hexa People — Sales / Business Development</div>
+</div>
+<span class="tier-badge t3">Tier 3 — Underperforming</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">30</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--red)">3.5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">4/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+<div class="stat"><div class="stat-label">Status</div><div class="stat-value" style="color:var(--red)">Flagged</div></div>
+</div>
+
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Behavioral Profile</div>
+<div class="profile-section-content">
+<strong>Type:</strong> Commercial focus but misaligned execution. Appears in both "Synch Nuno+Pedro+Augusto" (board-level pitch) and general group meetings.<br>
+<strong>Motivations:</strong> Sales success, recognition within the group.<br>
+<strong>Weaknesses:</strong> <strong>FLAGGED in Weekly Sync (2026-03-06):</strong> "Nuno's sales performance is disappointing. Focuses on commercial models instead of generating leads for new products, failing a key test."
+</div>
+</div>
+
+<div class="profile-section sun-tzu">
+<div class="profile-section-title">&#9763; Sun Tzu Strategy</div>
+<div class="profile-section-content">
+<strong>"If You Know the Enemy and Know Yourself, You Need Not Fear the Result of a Hundred Battles"</strong> — Nuno's weakness is known. Set clear, measurable targets with a 60-day timeline. Either he generates qualified leads for new products, or you have documented evidence for reassignment. Don't let theoretical commercial architecture substitute for real pipeline.
+</div>
+</div>
+</div>
+
+<!-- FRANCISCO FEBRERO - TIER 3 -->
+<div class="profile-card tier-3">
+<div class="profile-header">
+<div>
+<div class="profile-name">FRANCISCO FEBRERO</div>
+<div class="profile-entity">Hexa Consulting</div>
+</div>
+<span class="tier-badge t3">Tier 3 — Perimeter</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">22</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">3.5/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Perimeter stakeholder. 5 group meetings, no individual engagement. Consulting entity. No red flags, no distinctive contributions. <strong>Sun Tzu: "The art of war is of vital importance."</strong> — Francisco is not a player in any critical domain currently. Maintain basic engagement, reassess if Hexa Consulting becomes strategically important.
+</div>
+</div>
+</div>
+
+<!-- RODOLFO CORREIA - TIER 3 -->
+<div class="profile-card tier-3">
+<div class="profile-header">
+<div>
+<div class="profile-name">RODOLFO CORREIA</div>
+<div class="profile-entity">Hexa Group — Group Strategy</div>
+</div>
+<span class="tier-badge t3">Tier 3 — Strategy Regular</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">60</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">5/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Present in bi-monthly strategy reviews and group meetings. Hexa Group level. No individual engagement but not flagged negatively. Likely a senior group-level figure. <strong>Sun Tzu:</strong> Understand his relationship to group leadership. May be a silent ally or silent critic — intelligence gap exists here.
+</div>
+</div>
+</div>
+
+<!-- SANDRA PESTANA - TIER 3 -->
+<div class="profile-card tier-3">
+<div class="profile-header">
+<div>
+<div class="profile-name">SANDRA PESTANA</div>
+<div class="profile-entity">Hexa Engineering</div>
+</div>
+<span class="tier-badge t3">Tier 3 — Group Regular</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">5</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">3.5/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 31</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Standard group attendance profile. Engineering entity but no specific engineering contributions identified in records. Same 5-meeting pattern as the group regulars. <strong>Sun Tzu:</strong> "A leader leads by example, not by force." Not yet a meaningful player but could be activated if Engineering needs ramp up (CUF, MEO delivery).
+</div>
+</div>
+</div>
+
+<!-- BLUE - TIER 3 -->
+<div class="profile-card tier-3">
+<div class="profile-header">
+<div>
+<div class="profile-name">"BLUE"</div>
+<div class="profile-entity">Hexa Group — Codename / Unverified Identity</div>
+</div>
+<span class="tier-badge t3">Tier 3 — Unknown</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">4</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--amber)">4/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">5/10</div></div>
+<div class="stat"><div class="stat-label">Note</div><div class="stat-value" style="color:var(--red)">?</div></div>
+</div>
+<div class="profile-section red-flag">
+<div class="profile-section-title">&#9888; Red Flag</div>
+<div class="profile-section-content">
+Identity unclear from records. Email is "blue@hexa-group.pt" — possibly a code name, project alias, or unverified external party. 4 meetings across group settings. <strong>Priority action: Determine who this is and their actual role.</strong> Unknown stakeholders in a group of this size represent intelligence gaps.
+</div>
+</div>
+</div>
+
+<!-- LUIS SANTOS - TIER 4 -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">LUIS SANTOS</div>
+<div class="profile-entity">Hexa Consulting — Revolut / Onboarding</div>
+</div>
+<span class="tier-badge t4">Tier 4 — Low Priority</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">12</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">3/10</div></div>
+<div class="stat"><div class="stat-label">Last Contact</div><div class="stat-value">Mar 25</div></div>
+<div class="stat"><div class="stat-label">Project</div><div class="stat-value">Revolut</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+2 meetings: Revolut onboarding and Strategy Review. Revolut is a potential strategic client — Luis is the interface point for this engagement. Low influence generally, but could become more important if Revolut scales. <strong>Sun Tzu:</strong> Invest in this relationship IF Revolut becomes a revenue priority.
+</div>
+</div>
+</div>
+
+<!-- DUARTE OLIVEIRA - TIER 4 -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">DUARTE OLIVEIRA</div>
+<div class="profile-entity">Hexa Group</div>
+</div>
+<span class="tier-badge t4">Tier 4 — Perimeter</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">6</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">2.5/10</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+2 group meetings. Minimal engagement. No red flags. Same surname as Diogo — possible family connection (worth monitoring for factional dynamics). <strong>Sun Tzu:</strong> "He will win who knows when to fight and when not to fight." — No reason to engage Duarte actively currently.
+</div>
+</div>
+</div>
+
+<!-- PEDRO MENDES - TIER 4 -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">PEDRO MENDES</div>
+<div class="profile-entity">Hexa Consulting — QA / Screening</div>
+</div>
+<span class="tier-badge t4">Tier 4 — Peripheral</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">1</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">2/10</div></div>
+<div class="stat"><div class="stat-label">Note</div><div class="stat-value">QA Screening</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Single meeting: Icaro Prates QA candidate screening (2026-03-10). Consulting entity. Appears to be the screening lead for external candidates. Limited strategic relevance unless Hexa Consulting QA practice becomes a priority.
+</div>
+</div>
+</div>
+
+<!-- NUNO PEREIRA - TIER 4 -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">NUNO PEREIRA</div>
+<div class="profile-entity">Hexa Engineering</div>
+</div>
+<span class="tier-badge t4">Tier 4 — Peripheral</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">1</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">2/10</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Single group strategy meeting. Engineering entity. No individual engagement. No signals of alignment or opposition. Effectively unknown.
+</div>
+</div>
+</div>
+
+<!-- ICARO PRATES - TIER 4 -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">&#205;CARO PRATES</div>
+<div class="profile-entity">EXTERNAL — hotmail.com — QA Expert Candidate</div>
+</div>
+<span class="tier-badge t4">Tier 4 — External</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">1</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">1/10</div></div>
+<div class="stat"><div class="stat-label">Exp</div><div class="stat-value">14yrs</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+External candidate (hotmail.com) screened for 5-day QA diagnostic for Portuguese hospital group (likely CUF), then potential QA team build from scratch. 14 years experience building QA processes from zero. Proactive, analytical mindset flagged as strong match. <strong>Decision point:</strong> Whether to engage for diagnostic and implementation phase is still pending.
+</div>
+</div>
+</div>
+
+<!-- RITA BRINQUETE - TIER 4 -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">RITA BRINQUETE</div>
+<div class="profile-entity">Hexa Consulting</div>
+</div>
+<span class="tier-badge t4">Tier 4 — Peripheral</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">1</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">2/10</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Single appearance in QA candidate screening. Consulting entity. No individual engagement. No red flags.
+</div>
+</div>
+</div>
+
+<!-- Business@ - EXTERNAL -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">business@hexa-consulting.pt</div>
+<div class="profile-entity">Hexa Consulting — Shared Mailbox</div>
+</div>
+<span class="tier-badge t4">Tier 4 — Functional</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">1</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--white)">5/10</div></div>
+<div class="stat"><div class="stat-label">Influence</div><div class="stat-value">1/10</div></div>
+<div class="stat"><div class="stat-label">Project</div><div class="stat-value">MEO</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Shared mailbox. Appeared in "Submeter proposta MEO" pricing meeting. Functional entity for proposal/administrative purposes. No strategic relevance as a person.
+</div>
+</div>
+</div>
+
+<!-- CAAPINTO - EXTERNAL -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">CAA PINTO (caapinto@outlook.com)</div>
+<div class="profile-entity">EXTERNAL — Unidentified</div>
+</div>
+<span class="tier-badge t4">Tier 4 — External Unknown</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">1</div></div>
+<div class="stat"><div class="stat-label">Trust</div><div class="stat-value" style="color:var(--red)">3/10</div></div>
+<div class="stat"><div class="stat-label">Note</div><div class="stat-value" style="color:var(--red)">Unknown</div></div>
+</div>
+<div class="profile-section red-flag">
+<div class="profile-section-title">&#9888; Intelligence Gap</div>
+<div class="profile-section-content">
+External party (outlook.com). Single group meeting appearance. Identity unclear from records. Could be a client contact, consultant, or external advisor. <strong>Priority: Identify this person and their relationship to the group.</strong>
+</div>
+</div>
+</div>
+
+<!-- SUSANNAH DURANT - EXTERNAL -->
+<div class="profile-card tier-4">
+<div class="profile-header">
+<div>
+<div class="profile-name">SUSANNAH DURANT</div>
+<div class="profile-entity">Fathom Video — 2021 Demo (Historical)</div>
+</div>
+<span class="tier-badge t4">Tier 4 — Historical</span>
+</div>
+<div class="profile-stats">
+<div class="stat"><div class="stat-label">Meetings</div><div class="stat-value">1</div></div>
+<div class="stat"><div class="stat-label">Date</div><div class="stat-value">2021</div></div>
+</div>
+<div class="profile-section">
+<div class="profile-section-title">&#9872; Assessment</div>
+<div class="profile-section-content">
+Fathom demo meeting from 2021 — historical artifact, not an active stakeholder. Likely a Fathom representative when Augusto first tested the tool. No strategic relevance to current operations.
+</div>
+</div>
+</div>
+
+</div><!-- end profiles-grid -->
+
+<div style="margin-top:30px;padding:20px;background:linear-gradient(135deg,#0a0a0f,#12121c);border:1px solid #2a2a3a;border-radius:12px;">
+<h3 style="color:#ff6b6b;margin-bottom:15px;">🎯 ANÁLISE PSICOLÓGICA — STAKEHOLDERS</h3>
+<p style="font-size:11px;color:#888;margin-bottom:20px;">Perfil comportamental, vulnerabilidades e estratégias de negociação baseados em 165 reuniões.</p>
+
+<!-- PEDRO -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #00d48a;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#00d48a;">👤 PEDRO — O "Co-CEO" <span style="color:#666;font-size:11px;">(108 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Executor operacional com acesso total. Alta competência técnica. Confiança de Augusto = moeda de troca.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Filtro de informação. Apresenta soluções, raramente problemas. Usa linguagem técnica para domínio.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Burnout iminente por acumulação • Crescente isolamento de Ricardo/Hugo • Pressão para manter status quo • Ponto cego para deslealdade</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Estabelecer canal alternativo (Ricardo) • "Férias forçadas" para testar redundância • Reuniões tripartidas para transparência</span></div>
+<div style="background:rgba(240,160,32,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#f0a020;">MÉDIO</span> — Loyal agora, mas concentração de poder é risco estrutural</div>
+</div>
+
+<!-- DIOGO -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #4488ff;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#4488ff;">🎯 DIOGO — O Decisor <span style="color:#666;font-size:11px;">(42 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Dominante (D) no DISC. Alta necessidade de controle. Racional mas impaciente.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Decisões tomadas antes das reuniões. Reage negativamente a questionamento público.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Aversão a documentação • Orgulho — aceitar erro público é ameaça • Impaciência cria atalhosproblemáticos</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Documentar TUDO por escrito APÓS reuniões • Usar "pre-mortem" • Confrontar em privado, não em grupo</span></div>
+<div style="background:rgba(255,64,87,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#ff4057;">ALTO</span> — Decisões unilaterais sem accountability</div>
+</div>
+
+<!-- RODOLFO -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #8855cc;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#8855cc;">⚡ RODOLFO — O Influenciador <span style="color:#666;font-size:11px;">(60 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Influenciador (I) no DISC. Charisma + network. Pode ser aliado ou obstáculo.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Alianças fora de reuniões. Conversas paralelas que moldam narrativa.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Necessidade de validação • Medo de parecer irrelevante • Potencial conflito com Diogo</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Envolver em decisões estrategicamente • Usar para validar ideias • Monitorar conversas paralelas</span></div>
+<div style="background:rgba(240,160,32,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#f0a020;">MÉDIO</span> — Amplificador: pode amplify good or bad</div>
+</div>
+
+<!-- DAVID -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #f0a020;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#f0a020;">💼 DAVID — O Comercial <span style="color:#666;font-size:11px;">(50 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Voz da engenharia em comercial. Technical credibility + comunicação.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Apresenta capacidade técnica, evita compromissos irrealistas. Bom veto para propostas.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Pode ser bypassed por Diogo • Frustração se não dado reconhecimento • Riesgo de sair</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Promover como voz de engenharia • Credit público por wins • Check-in regular</span></div>
+<div style="background:rgba(0,212,138,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#00d48a;">BAIXO</span> — Loyal e capability rara. Prioridade reter.</div>
+</div>
+
+<!-- RICARDO -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #ff4057;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#ff4057;">🎩 RICARDO — O Equilibrista <span style="color:#666;font-size:11px;">(33 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Steady (S) no DISC. Busca estabilidade. Não konflikte abertamente.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Observa mais que participa. Alinha com quem tem poder.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Não confia em sua autoridade • Pode ser "squeezed" entre Pedro/Diogo • Informações não chegam por medo</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Estabelecer canal direto • Criar "espaço seguro" • Dar autoridade formalizada</span></div>
+<div style="background:rgba(240,160,32,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#f0a020;">MÉDIO</span> — Potential blind spot</div>
+</div>
+
+<!-- NUNO DIAS -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #00d48a;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#00d48a;">🔧 NUNO DIAS — O Executor <span style="color:#666;font-size:11px;">(30 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Consciencioso (C) no DISC. Foca em execução. Confiável.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Executa o que é decidido. Não questiona direction.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Não flagga problemas proativamente • Limitado para pensamento estratégico</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Clarificar prioridade quando conflitam • Pedir feedback explícito</span></div>
+<div style="background:rgba(0,212,138,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#00d48a;">BAIXO</span> — Reliable executor</div>
+</div>
+
+<!-- HUGO -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #4488ff;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#4488ff;">🎸 HUGO — O Técnico <span style="color:#666;font-size:11px;">(16 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Especialista técnico. Menos político, mais capability.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Contribui quando em sua área. Direto, foca em factos.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Marginalizado em decisões • Puede não ter visibility • Riesgo de turnover</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Identificar domínio específico e elevate • Incluir em projetos</span></div>
+<div style="background:rgba(68,136,255,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#00d48a;">BAIXO</span> now, <span style="color:#ff4057;">ALTO</span> se undervalued</div>
+</div>
+
+<!-- ABEL -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-left:4px solid #f0a020;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;">
+<h4 style="color:#f0a020;">🎯 ABEL — O Emergente <span style="color:#666;font-size:11px;">(24 reuniões)</span></h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:10px 0;">
+<div><strong style="color:#ff6b6b;">PERFIL</strong><br><span style="color:#ccc;font-size:11px;">Crescente em importância. Ambicioso, buscando proving grounds.</span></div>
+<div><strong style="color:#f0a020;">COMPORTAMENTO</strong><br><span style="color:#ccc;font-size:11px;">Busca visibility. Traz ideias novas, por vezes prematuras.</span></div>
+</div>
+<div style="margin:10px 0;"><strong style="color:#ff4057;">🔴 VULNERABILIDADES</strong><br><span style="color:#ccc;font-size:11px;">• Pode desafiar Pedro/Diogo • Impaciência com process • Puede ser manipulado</span></div>
+<div style="margin:10px 0;"><strong style="color:#00d48a;">🛡️ COMO LIDAR</strong><br><span style="color:#ccc;font-size:11px;">• Channel energia para projetos específicos • Dar "sandbox" • Mentorship directo</span></div>
+<div style="background:rgba(240,160,32,0.15);padding:8px;border-radius:4px;font-size:11px;">⚠️ RISCO: <span style="color:#f0a020;">MÉDIO</span> — Potencial huge mas precisa de gestão</div>
+</div>
+
+<!-- MATRIX -->
+<div style="margin-top:20px;padding:15px;background:rgba(0,0,0,0.3);border-radius:8px;">
+<h4 style="color:#00d48a;margin-bottom:10px;">📊 MATRIX DE PRIORIDADE</h4>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:10px;text-align:center;">
+<div style="background:rgba(255,64,87,0.2);padding:12px;border-radius:6px;"><strong style="color:#ff4057;">CRÍTICO</strong><br>Diogo</div>
+<div style="background:rgba(240,160,32,0.2);padding:12px;border-radius:6px;"><strong style="color:#f0a020;">ALTA INF.</strong><br>Rodolfo, Abel</div>
+<div style="background:rgba(0,212,138,0.2);padding:12px;border-radius:6px;"><strong style="color:#00d48a;">RETER</strong><br>David, Nuno Dias</div>
+<div style="background:rgba(68,136,255,0.2);padding:12px;border-radius:6px;"><strong style="color:#4488ff;">MONITOR</strong><br>Ricardo, Hugo</div>
+</div>
+</div>
+</div>
+
+</div><!-- end profiles-grid -->
+</div><!-- end tab-profiles -->
+
+<div id="tab-dynamics" class="tab-content">
+<div class="section-title">Power Dynamics Map</div>
+
+<div class="dynamics-grid">
+<div class="dynamics-card green">
+<h3>&#9733; Primary Coalition: Augusto-Pedro-Pedro Triangle</h3>
+<div class="dynamics-item">
+<span class="arrow">&rarr;</span>
+<span><strong>Augusto Silva &harr; Pedro Santos:</strong> The core power axis. 108 shared meetings (93% of all Fathom data). Weekly 1-on-1s. Private strategic discussions about Diogo, Nuno, cost models, CUF, MEO, Revolut. <em>This is where real decisions happen.</em></span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&rarr;</span>
+<span><strong>Augusto &harr; Ricardo Felix:</strong> Technical triangle for CUF delivery. 4 meetings focused exclusively on the largest revenue opportunity. Ricardo is the field commander.</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&rarr;</span>
+<span><strong>Pedro &harr; Hugo Ribeiro:</strong> The execution arm for Hexa Labs positioning. Hugo builds what Augusto & Pedro direct.</span>
+</div>
+</div>
+
+<div class="dynamics-card red">
+<h3>&#9888; Shadow Influence: Diogo Oliveira</h3>
+<div class="dynamics-item">
+<span class="arrow">&rarr;</span>
+<span><strong>Diogo controls resource allocation</strong> — forces personnel decisions (e.g., Daniel) without consultation</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&rarr;</span>
+<span><strong>Diogo is present in ALL group meetings</strong> (5/5) but individual depth is ZERO — operates through group structures</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&rarr;</span>
+<span><strong>Information bottleneck:</strong> "Business Meeting (S)" and "Business Meeting (O)" — 2 meetings with NO summaries. What is discussed there?</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&rarr;</span>
+<span><strong>Possible alliance with Duarte Oliveira</strong> (same surname, both in Diogo's orbit) — monitor for faction</span>
+</div>
+</div>
+
+<div class="dynamics-card blue">
+<h3>&#9672; Coalition Patterns (Co-attendance Analysis)</h3>
+<div class="dynamics-item">
+<span class="arrow">&harr;</span>
+<span><strong>Core Group Block (7 people):</strong> Diogo, Andre, David, Carlos, Nuno Moura, Francisco, Rodolfo, Sandra — ALL appear together in the same 5 meetings. Perfect cluster. Same agenda, same votes, same presence.</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&harr;</span>
+<span><strong>Strategy Bloc:</strong> Nuno Dias, Blue, Hugo all have 4/5 overlap with the core group but also have additional individual sessions with Augusto/Pedro</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&harr;</span>
+<span><strong>Hexa Labs Triad:</strong> Augusto, Pedro, Hugo — the only people with project-specific (non-group) individual meetings</span>
+</div>
+</div>
+
+<div class="dynamics-card amber">
+<h3>&#9762; Isolation Analysis</h3>
+<div class="dynamics-item">
+<span class="arrow">&circ;</span>
+<span><strong>Isolated from Core Group:</strong> Ricardo Felix (only with Augusto/Pedro on CUF), Luis Santos (only Revolut/onboarding)</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&circ;</span>
+<span><strong>Isolated from Augusto's Circle:</strong> Andre Correia, Francisco Febrero, Nuno Moura, Carlos Pinto, Sandra Pestana — only ever in group settings with Augusto, never 1-on-1</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&circ;</span>
+<span><strong>Excluded from Key Decisions:</strong> Everyone EXCEPT Augusto, Pedro, and the specific invitee is excluded from decision-making meetings. The core group (Diogo's block) attends strategy reviews but no evidence of individual decision input.</span>
+</div>
+</div>
+
+<div class="dynamics-card amber">
+<h3>&#9671; Communication Control Points</h3>
+<div class="dynamics-item">
+<span class="arrow">&#9679;</span>
+<span><strong>HUGO RIBEIRO</strong> controls the narrative infrastructure — he creates the service framework slides that become the official positioning. Whoever controls the presentation controls the strategy discussion.</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&#9679;</span>
+<span><strong>DIOGO OLIVEIRA</strong> controls group-level resource allocation and has opaque communication channels (2 meetings with no records).</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&#9679;</span>
+<span><strong>NUNO DIAS</strong> controls the GTM framework design. Identified the "Lego blocks" commercial gap and is part of board-level pitch refinement.</span>
+</div>
+<div class="dynamics-item">
+<span class="arrow">&#9679;</span>
+<span><strong>RICARDO FELIX</strong> controls client-facing technical intelligence from CUF — he's the eyes and ears inside the €375k+ relationship.</span>
+</div>
+</div>
+
+<div class="dynamics-card blue">
+<h3>&#9650; Influence Flow Map</h3>
+<div class="dynamics-item"><span class="arrow"></span><span style="color:var(--green);"><strong>Augusto Silva</strong> &harr; <strong>Pedro Santos</strong> — Bidirectional, symbiotic, trusted. The center of gravity.</span></div>
+<div class="dynamics-item"><span class="arrow"></span><span style="color:var(--amber);">Augusto Silva &rarr; Hugo Ribeiro — Directional (task delegation)</span></div>
+<div class="dynamics-item"><span class="arrow"></span><span style="color:var(--amber);">Augusto Silva &rarr; Ricardo Felix — Directional (client authority)</span></div>
+<div class="dynamics-item"><span class="arrow"></span><span>Alexandre Silva &rarr; Nuno Dias — Mixed (commercial strategy, underperforming)</span></div>
+<div class="dynamics-item"><span class="arrow"></span><span style="color:var(--red);">Diogo Oliveira &rarr; Resource decisions — Unilateral, contested</span></div>
+<div class="dynamics-item"><span class="arrow"></span><span style="color:var(--amber);">Nuno Dias &rarr; Board Pitch — Contributes to Nuno Moura's pipeline</span></div>
+</div>
+</div>
+</div>
+
+<div id="tab-sun-tzu" class="tab-content">
+<div class="section-title">Sun Tzu Strategic Playbook</div>
+
+<div class="playbook-section">
+<h3>&#9652; "Know Yourself, Know Your Enemy — And Need Not Fear a Hundred Battles"</h3>
+<h4>Your Position</h4>
+<p>You control Hexa Labs (the AI/technical crown jewel), the largest current client (CUF), and the strategic direction. You have Pedro Santos as an unwavering operational partner and Ricardo Felix as field commander for the highest-value engagement. You understand the technical realities and the commercial landscape.</p>
+<h4>Your Vulnerabilities</h4>
+<p>Hexa Labs is financially strained by the group's cost-sharing model (&#8364;100k/year liability). You depend on group resources that may not be reliably available (Diogo's influence over people allocation). You have identified problems (Diogo's opacity, Nuno's underperformance) but have not yet solved them.</p>
+<h4>The Adversary Map</h4>
+<ul>
+<li><strong>Known Adversary (Soft):</strong> Diogo Oliveira — operates through group structures, makes unilateral decisions, controls information flow. Must be contained.</li>
+<li><strong>Underperformer:</strong> Nuno Moura & Nuno Dias — both flagged for commercial underperformance. Can be restructured or sidelined.</li>
+<li><strong>Unknown:</strong> Blue (identity unclear), caapinto@ (external), the full extent of Diogo's faction.</li>
+<li><strong>Neutral:</strong> The 7-person group block (Andre, David, Carlos, Nuno Moura, Francisco, Rodolfo, Sandra) — currently followers, not actors. Their allegiance is situational.</li>
+</ul>
+<h4>Your Advantages</h4>
+<ul>
+<li><strong>Information asymmetry:</strong> You see what others don't. You track meetings, you analyze patterns, you understand the group's financial flows.</li>
+<li><strong>Revenue control:</strong> CUF and MEO are YOUR wins. Hexa Labs is the growth engine of the group.</li>
+<li><strong>Technical credibility:</strong> AI "Lego blocks" strategy gives Hexa Labs a unique market position that others in the group cannot replicate.</li>
+</ul>
+</div>
+
+<div class="playbook-section" style="border-left-color: var(--green);">
+<h3 style="color:var(--green);">&#9652; "Supreme Excellence: Breaking the Enemy's Resistance Without Fighting"</h3>
+<h4>Diplomatic Plays</h4>
+<ul>
+<li><strong>Contain Diogo through process, not confrontation.</strong> Propose group-wide resource allocation transparency rules that require documented justification for every staffing decision. If Diogo opposes transparency, he exposes himself. If he agrees, his power diminishes. Either outcome advances your position.</li>
+<li><strong>Build the coalition of the concerned.</strong> Pedro, Ricardo, Hugo, and David are your natural allies. David (Engineering) and Hugo (AI/Group) are the bridges to the group. Pull them closer through individual engagement.</li>
+<li><strong>Elevate CUF success as the group's banner.</strong> Make CUF so successful that attacking Hexa Labs becomes attacking the group's biggest client. Embed Hexa Labs as the irreplaceable engine.</li>
+<li><strong>Use the group's own "Bets" strategy against its own inertia.</strong> The Growth Plan calls for 6-8 strategic investments. Position every Hexa Labs proposal as aligned with this framework — making opposition to Hexa Labs appear anti-growth.</li>
+</ul>
+</div>
+
+<div class="playbook-section" style="border-left-color: var(--red);">
+<h3 style="color:var(--red);">&#9652; "All Warfare is Based on Deception"</h3>
+<h4>When and How to Withhold Information</h4>
+<ul>
+<li><strong>Diogo should NOT know about CUF expansion plans</strong> until they are contractually secured. He has demonstrated he will attempt to insert his preferred resources unilaterally. Keep the deal closed before the group sees it.</li>
+<li><strong>The true financial state of Hexa Labs should be shared selectively.</strong> Pedro knows. Ricardo may need to know for client discussions. The full group does not need to know — weaponize the stop-loss agreement as a negotiating point only if/when needed.</li>
+<li><strong>Revolut opportunity should be developed quietly.</strong> One meeting so far. If it gains traction, reveal it as a fait accompli, not a group discussion item.</li>
+<li><strong>AI "Lego block" commercial strategy should remain under Hexa Labs control.</strong> Nuno Dias identified the GTM gap — use his input but don't cede control. Productize through Hexa Labs before letting the group commercialize it.</li>
+</ul>
+</div>
+
+<div class="playbook-section">
+<h3>&#9652; "Timing — The Right Moment"</h3>
+<h4>When to Push / Pull Back — By Stakeholder</h4>
+<table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:10px;">
+<tr style="border-bottom:1px solid var(--border);">
+<th style="text-align:left;padding:8px;color:var(--green);">STAKEHOLDER</th>
+<th style="text-align:left;padding:8px;color:var(--amber);">PUSH WHEN</th>
+<th style="text-align:left;padding:8px;color:var(--text-muted);">PULL BACK WHEN</th>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.03);"><td style="padding:6px 8px;color:var(--text-primary);font-weight:700;">Pedro Santos</td><td style="padding:6px 8px;">Before ANY group meeting — align privately</td><td style="padding:6px 8px;">When he's overloaded operationally — give breaks</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.03);"><td style="padding:6px 8px;color:var(--text-primary);font-weight:700;">Ricardo Felix</td><td style="padding:6px 8px;">When CUF decisions need technical authority</td><td style="padding:6px 8px;">When group politics intrude on delivery</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.03);"><td style="padding:6px 8px;color:var(--text-primary);font-weight:700;">Diogo Oliveira</td><td style="padding:6px 8px;">NEVER directly. Only through group process reform</td><td style="padding:6px 8px;">When he has leverage (resource allocation)</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.03);"><td style="padding:6px 8px;color:var(--text-primary);font-weight:700;">Hugo Ribeiro</td><td style="padding:6px 8px;">When slides/positioning need his technical polish</td><td style="padding:6px 8px;">When he needs clearer direction — provide it first</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.03);"><td style="padding:6px 8px;color:var(--text-primary);font-weight:700;">Nuno Dias</td><td style="padding:6px 8px;">When GTM framework needs commercial validation</td><td style="padding:6px 8px;">When he's been given targets and hasn't delivered</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.03);"><td style="padding:6px 8px;color:var(--text-primary);font-weight:700;">Nuno Moura</td><td style="padding:6px 8px;">When you need him to prove his worth (60-day test)</td><td style="padding:6px 8px;">When he's consumed by commercial models without leads</td></tr>
+<tr><td style="padding:6px 8px;color:var(--text-primary);font-weight:700;">Core Group (7)</td><td style="padding:6px 8px;">When you need group consensus to override Diogo</td><td style="padding:6px 8px;">When the issue requires fast, unilateral CEO decision</td></tr>
+</table>
+</div>
+
+<div class="playbook-section" style="border-left-color: var(--blue);">
+<h3 style="color:var(--blue);">&#9652; "Terrain — Choose Your Battlefield"</h3>
+<h4>Environmental Advantages</h4>
+<ul>
+<li><strong>1-on-1 meetings with Pedro:</strong> Your home turf. Maximum trust, maximum candor. All strategy should be refined here first. <em>Advantage: Complete. This is your war room.</em></li>
+<li><strong>1-on-1 with Ricardo (CUF context):</strong> Technical battlefield where you both have authority. <em>Advantage: High. Client setting, delivery-focused, group politics excluded.</em></li>
+<li><strong>Small groups (2-4 people):</strong> The optimal environment for decisions. "HL Slides AI," "Synch ND+HL," "Submeter proposta MEO" — all critical decisions made in small groups. <em>Advantage: High. Control the invite list, control the outcome.</em></li>
+<li><strong>Large group meetings (Strategy Reviews, 17 people):</strong> The worst environment for Hexa Labs. Everyone has equal voice. Diogo's faction dominates by numbers. Decisions are diluted. <em>Advantage: Low. Use only for announcements, not decisions.</em></li>
+<li><strong>Client meetings (CUF, MEO):</strong> Your strongest terrain. Hexa Labs is the expert. You own the technical narrative. <em>Advantage: Maximum. The client is your ally against group bureaucracy.</em></li>
+</ul>
+<p style="margin-top:10px;color:var(--amber);"><strong>Critical Rule:</strong> Never let a group meeting be the venue for a decision that should be made in a smaller room. Always pre-decide, then ratify.</p>
+</div>
+
+<div class="playbook-section" style="border-left-color: var(--red);">
+<h3 style="color:var(--red);">&#9652; Emergency Protocol</h3>
+<h4>If Diogo Moves Against Hexa Labs</h4>
+<ul>
+<li><strong>Step 1:</strong> Document everything. Every unilateral decision, every lack of communication.</li>
+<li><strong>Step 2:</strong> Consult privately with Pedro on counter-strategy.</li>
+<li><strong>Step 3:</strong> Approach the broader group with a "process improvement" proposal (transparency in resource allocation, financial accountability). Frame as group-wide, not Diogo-specific. Let him oppose transparency publicly.</li>
+<li><strong>Step 4:</strong> If necessary, activate the stop-loss agreement as leverage — "If Hexa Labs cannot operate with financial clarity, the group bears the consequences."</li>
+<li><strong>Step 5:</strong> Always have an exit plan. Hexa Labs could theoretically operate independently of the group if the revenue base (CUF, MEO) remains secured.</li>
+</ul>
+</div>
+</div>
+
+<div id="tab-matrix" class="tab-content">
+<div class="section-title">Relationship Matrix Table</div>
+<div class="filter-bar">
+<button class="filter-btn active" onclick="filterMatrix('all')">ALL</button>
+<button class="filter-btn" onclick="filterMatrix('ally')">ALLIES</button>
+<button class="filter-btn" onclick="filterMatrix('risk')">WILDCARDS</button>
+<button class="filter-btn" onclick="filterMatrix('danger')">DANGER</button>
+<button class="filter-btn" onclick="filterMatrix('neutral')">NEUTRAL</button>
+<button class="filter-btn" onclick="filterMatrix('tier-1')">TIER 1</button>
+<button class="filter-btn" onclick="filterMatrix('tier-2')">TIER 2</button>
+<button class="filter-btn" onclick="filterMatrix('tier-3')">TIER 3</button>
+<button class="filter-btn" onclick="filterMatrix('tier-4')">TIER 4</button>
+</div>
+<div style="overflow-x:auto;">
+<table class="matrix-table" id="matrixTable">
+<thead>
+<tr>
+<th onclick="sortMatrix(0)" class="sorted-asc">#</th>
+<th onclick="sortMatrix(1)">Name</th>
+<th onclick="sortMatrix(2)">Entity</th>
+<th onclick="sortMatrix(3)">Tier</th>
+<th onclick="sortMatrix(4)">Trust</th>
+<th onclick="sortMatrix(5)">Influence</th>
+<th onclick="sortMatrix(6)">Meetings</th>
+<th onclick="sortMatrix(7)">Last Contact</th>
+<th onclick="sortMatrix(8)">Status</th>
+<th>Recommended Action</th>
+</tr>
+</thead>
+<tbody>
+<tr data-status="ally" data-tier="tier-1">
+<td>1</td>
+<td style="color:var(--green);font-weight:700;">Pedro Santos</td>
+<td>Hexa Labs</td>
+<td>1</td>
+<td style="color:var(--green)">9.5</td>
+<td>9</td>
+<td>20</td>
+<td>2026-04-01</td>
+<td><span class="status-tag ally">ALLY</span></td>
+<td>Maintain weekly sync. Delegate operational reform to him. Pre-align before every group meeting.</td>
+</tr>
+<tr data-status="ally" data-tier="tier-1">
+<td>2</td>
+<td style="color:var(--green);font-weight:700;">Ricardo Felix</td>
+<td>Hexa Labs (CUF)</td>
+<td>1</td>
+<td style="color:var(--green)">8.5</td>
+<td>7</td>
+<td>4</td>
+<td>2026-03-30</td>
+<td><span class="status-tag ally">ALLY</span></td>
+<td>Expand autonomy in CUF engagement. Keep isolated from group politics. Consider "Head of Healthcare Solutions" title.</td>
+</tr>
+<tr data-status="risk" data-tier="tier-2">
+<td>3</td>
+<td style="color:var(--amber);font-weight:700;">Hugo Ribeiro</td>
+<td>Hexa Group</td>
+<td>2</td>
+<td style="color:var(--amber)">6.5</td>
+<td>7</td>
+<td>5</td>
+<td>2026-04-01</td>
+<td><span class="status-tag risk">RISK</span></td>
+<td>Control the narrative through his slides. Provide clear directive before he presents. Pull closer to Hexa Labs orbit.</td>
+</tr>
+<tr data-status="risk" data-tier="tier-2">
+<td>4</td>
+<td style="color:var(--amber);font-weight:700;">Nuno Dias</td>
+<td>Hexa Group</td>
+<td>2</td>
+<td style="color:var(--amber)">5.5</td>
+<td>7</td>
+<td>6</td>
+<td>2026-03-31</td>
+<td><span class="status-tag risk">RISK</span></td>
+<td>Set 60-day measurable GTM target. Use for commercial architecture, not direct sales. Monitor lead generation.</td>
+</tr>
+<tr data-status="risk" data-tier="tier-2">
+<td>5</td>
+<td style="color:var(--amber);font-weight:700;">Abel Costa</td>
+<td>Hexa Consulting</td>
+<td>2</td>
+<td style="color:var(--amber)">6</td>
+<td>6.5</td>
+<td>6</td>
+<td>2026-02-26</td>
+<td><span class="status-tag risk">RISK</span></td>
+<td>Use as deal-making model. Replicate his MEO approach for other strategic accounts. Transactional relationship.</td>
+</tr>
+<tr data-status="risk" data-tier="tier-2">
+<td>6</td>
+<td style="color:var(--red);font-weight:700;">&#9888; Diogo Oliveira</td>
+<td>Hexa Group</td>
+<td>2</td>
+<td style="color:var(--red)">2</td>
+<td>7.5</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag danger">DANGER</span></td>
+<td>Contain through process transparency. Document all decisions. Never share strategic plans unilaterally. Build counter-alliance.</td>
+</tr>
+<tr data-status="ally" data-tier="tier-2">
+<td>7</td>
+<td style="color:var(--green);font-weight:700;">David Domingos</td>
+<td>Hexa Engineering</td>
+<td>2</td>
+<td style="color:var(--green)">7</td>
+<td>6</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag ally">ALLY</span></td>
+<td>Invest in 1-on-1. Pull from group-only to strategic partner. Use as engineering voice in commercial settings.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-3">
+<td>8</td>
+<td>Carlos Pinto</td>
+<td>Hexa People</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Maintain cordiality. Monitor for factional alignment. No active engagement needed.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-3">
+<td>9</td>
+<td>Andre Correia</td>
+<td>Hexa Consulting</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Monitor for factional signals. Maintain professional relationship. Low priority.</td>
+</tr>
+<tr data-status="risk" data-tier="tier-3">
+<td>10</td>
+<td style="color:var(--red);">Nuno Moura</td>
+<td>Hexa People</td>
+<td>3</td>
+<td style="color:var(--red)">3.5</td>
+<td>4</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag danger">DANGER</span></td>
+<td>60-day performance test. Clear lead generation targets or reassignment.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-3">
+<td>11</td>
+<td>Francisco Febrero</td>
+<td>Hexa Consulting</td>
+<td>3</td>
+<td>5</td>
+<td>3.5</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Maintain basic engagement. Reassess if Hexa Consulting becomes strategic.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-3">
+<td>12</td>
+<td>Rodolfo Correia</td>
+<td>Hexa Group</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Intelligence gap — understand his relationship to group leadership. May be silent ally or critic.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-3">
+<td>13</td>
+<td>Sandra Pestana</td>
+<td>Hexa Engineering</td>
+<td>3</td>
+<td>5</td>
+<td>3.5</td>
+<td>5</td>
+<td>2026-03-31</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Could be activated if Engineering delivery needs ramp up. Monitor.</td>
+</tr>
+<tr data-status="danger" data-tier="tier-3">
+<td>14</td>
+<td style="color:var(--red);">&#9888; "Blue"</td>
+<td>Hexa Group</td>
+<td>3</td>
+<td style="color:var(--amber)">4</td>
+<td>5</td>
+<td>4</td>
+<td>2026-03-31</td>
+<td><span class="status-tag danger">DANGER</span></td>
+<td>PRIORITY: Identify this person. Unverified identity in strategic meetings is an intelligence gap.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>15</td>
+<td>Luis Santos</td>
+<td>Hexa Consulting</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+<td>2026-03-25</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Increase engagement IF Revolut becomes priority. Currently low-value interaction.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>16</td>
+<td>Duarte Oliveira</td>
+<td>Hexa Group</td>
+<td>4</td>
+<td>5</td>
+<td>2.5</td>
+<td>2</td>
+<td>2026-03-31</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Monitor for family faction with Diogo. Same surname. Low priority.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>17</td>
+<td>Pedro Mendes</td>
+<td>Hexa Consulting</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>2026-03-10</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Peripheral. QA screening role only.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>18</td>
+<td>Nuno Pereira</td>
+<td>Hexa Engineering</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>2026-03-19</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Unknown. Single strategy meeting attendance. No actionable intelligence.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>19</td>
+<td>&#205;caro Prates</td>
+<td>EXTERNAL (hotmail.com)</td>
+<td>4</td>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>2026-03-10</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Strong QA candidate. Decision pending on 5-day diagnostic engagement.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>20</td>
+<td>Rita Brinquete</td>
+<td>Hexa Consulting</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>2026-03-10</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Peripheral. Single meeting (QA screening).</td>
+</tr>
+<tr data-status="danger" data-tier="tier-4">
+<td>21</td>
+<td style="color:var(--red);">&#9888; CAA Pinto (outlook.com)</td>
+<td>EXTERNAL</td>
+<td>4</td>
+<td style="color:var(--red)">3</td>
+<td>?</td>
+<td>1</td>
+<td>2026-02-24</td>
+<td><span class="status-tag danger">DANGER</span></td>
+<td>PRIORITY: Identify this person and their relationship to the group. External in strategic meeting.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>22</td>
+<td>business@hexa-consulting.pt</td>
+<td>Hexa Consulting (Shared)</td>
+<td>4</td>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>2026-02-26</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Functional mailbox. No strategic relevance as a person.</td>
+</tr>
+<tr data-status="neutral" data-tier="tier-4">
+<td>23</td>
+<td>Susannah Durant</td>
+<td>Fathom Video (2021)</td>
+<td>4</td>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>2021-09-16</td>
+<td><span class="status-tag neutral">NEUTRAL</span></td>
+<td>Historical artifact. Fathom demo from 2021. Exclude from active tracking.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="tab-actions" class="tab-content">
+<div class="section-title">Action Item Tracker</div>
+<div class="action-grid">
+
+<div class="action-card open">
+<h4>&#9888; Critical — Immediate Action Required</h4>
+<div class="action-item">
+<span class="priority critical">CRITICAL</span>
+<span><strong>Diogo containment:</strong> Begin documenting all unilateral resource decisions. Create paper trail for group process reform proposal.</span>
+</div>
+<div class="action-item">
+<span class="priority critical">CRITICAL</span>
+<span><strong>Identity investigation:</strong> Determine who "Blue" (blue@hexa-group.pt) and "CAA Pinto" (caapinto@outlook.com) actually are.</span>
+</div>
+<div class="action-item">
+<span class="priority critical">CRITICAL</span>
+<span><strong>Nuno Moura performance test:</strong> Set 60-day lead generation target with measurable outcomes. Document current performance baseline.</span>
+</div>
+</div>
+
+<div class="action-card open">
+<h4>&#9733; High Priority — This Week</h4>
+<div class="action-item">
+<span class="priority high">HIGH</span>
+<span><strong>Financial process documentation:</strong> Pedro has identified the gap. Task him with creating CUF and CORC financial process templates.</span>
+</div>
+<div class="action-item">
+<span class="priority high">HIGH</span>
+<span><strong>Revolut onboarding:</strong> Follow up with Luis Santos on account status and next steps for Hexa Labs banking relationship.</span>
+</div>
+<div class="action-item">
+<span class="priority high">HIGH</span>
+<span><strong>&#205;caro Prates decision:</strong> Decide whether to engage for 5-day CUF QA diagnostic and subsequent team build. He's available.</span>
+</div>
+</div>
+
+<div class="action-card in-progress">
+<h4>&#9672; In Progress</h4>
+<div class="action-item">
+<span class="priority high">HIGH</span>
+<span><strong>CUF automation proposal:</strong> Technical review completed. Waiting for client resolution (targeted for March, now tracking). Follow up on timeline.</span>
+</div>
+<div class="action-item">
+<span class="priority high">MEDIUM</span>
+<span><strong>Hexa Labs 3-pillar framework:</strong> Hugo is building the service positioning slides. Follow up on delivery.</span>
+</div>
+<div class="action-item">
+<span class="priority high">MEDIUM</span>
+<span><strong>Cost-sharing model reform:</strong> Augusto and Pedro aligned on pre-approval process for group costs. Need to formalize and socialize with group.</span>
+</div>
+</div>
+
+<div class="action-card in-progress">
+<h4>&#9650; Medium Priority — Next 30 Days</h4>
+<div class="action-item">
+<span class="priority normal">NORMAL</span>
+<span><strong>Nuno Dias GTM framework:</strong> Review his commercial architecture for AI "Lego blocks" sales. Give him 60-day target.</span>
+</div>
+<div class="action-item">
+<span class="priority normal">NORMAL</span>
+<span><strong>David Domingos 1-on-1:</strong> Schedule individual meeting to pull him into strategic orbit. Discuss Cofidis as reusable product.</span>
+</div>
+<div class="action-item">
+<span class="priority normal">NORMAL</span>
+<span><strong>Cofidis productization:</strong> Begin scoping the fraud detection system as a repeatable product, not just a POC.</span>
+</div>
+</div>
+
+<div class="action-card resolved">
+<h4>&#9745; Completed / Resolved</h4>
+<div class="action-item">
+<span class="priority low">DONE</span>
+<span><strong>MEO proposal pricing:</strong> &#8364;375k Y1, &#8364;380k Y2, &#8364;384k Y3 submitted. Waiting for client decision.</span>
+</div>
+<div class="action-item">
+<span class="priority low">DONE</span>
+<span><strong>Fireflies &#8594; Fathom migration:</strong> Canceled Fireflies subscription. Fathom is the active recording tool.</span>
+</div>
+<div class="action-item">
+<span class="priority low">DONE</span>
+<span><strong>Revolut Business account:</strong> Pedro confirmed setup complete on his end. Card request deferred until needed.</span>
+</div>
+</div>
+
+<div class="action-card open">
+<h4>&#8227; Open Questions — Intelligence Gaps</h4>
+<div class="action-item">
+<span class="priority critical">GAP</span>
+<span>What exactly is discussed in "Business Meeting (S)" and "Business Meeting (O)"? No summaries exist. Diogo was present at both.</span>
+</div>
+<div class="action-item">
+<span class="priority critical">GAP</span>
+<span>What is Duarte Oliveira's exact relationship to Diogo? Same surname, both in Diogo's orbit.</span>
+</div>
+<div class="action-item">
+<span class="priority high">GAP</span>
+<span>What is the real extent of the Hexa Group cost-sharing model's financial impact on Hexa Labs? Beyond the &#8364;100k estimate.</span>
+</div>
+<div class="action-item">
+<span class="priority high">GAP</span>
+<span>What is Rodolfo Correia's actual role and authority in the group? He attends bi-monthly strategy reviews.</span>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- end container -->
+
+<div class="watermark-bar" style="margin-top:40px;">
+STAKEHOLDER INTELLIGENCE MAP — CONFIDENTIAL — HEXA LABS CEO — AUGUSTO SILVA
+</div>
+
+<script>
+// TAB NAVIGATION
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// BATTLEFIELD RENDERING
+const stakeholders = [
+  {name:'Pedro', trust:9.5, influence:9.0, color:'10b981', short:'PE', meetings:1, entity:'Stakeholder'},
+  {name:'Rodolfo', trust:9.5, influence:9.0, color:'10b981', short:'RO', meetings:1, entity:'Stakeholder'},
+  {name:'David', trust:9.5, influence:9.0, color:'10b981', short:'DA', meetings:1, entity:'Stakeholder'},
+  {name:'Madalena', trust:9.5, influence:9.0, color:'10b981', short:'MA', meetings:1, entity:'Stakeholder'},
+  {name:'Tiago', trust:9.5, influence:9.0, color:'10b981', short:'TI', meetings:1, entity:'Stakeholder'},
+  {name:'Nuno', trust:9.5, influence:9.0, color:'f59e0b', short:'NU', meetings:1, entity:'Stakeholder'},
+  {name:'Hugo', trust:9.5, influence:9.0, color:'10b981', short:'HU', meetings:1, entity:'Stakeholder'},
+  {name:'Diogo', trust:9.5, influence:9.0, color:'ef4444', short:'DI', meetings:1, entity:'Stakeholder'},
+  {name:'Abel', trust:9.5, influence:9.0, color:'10b981', short:'AB', meetings:1, entity:'Stakeholder'},
+  {name:'Ricardo', trust:9.5, influence:9.0, color:'10b981', short:'RI', meetings:1, entity:'Stakeholder'},
+  {name:'Joao', trust:9.5, influence:9.0, color:'10b981', short:'JO', meetings:1, entity:'Stakeholder'},
+  {name:'Maria', trust:9.5, influence:9.0, color:'10b981', short:'MA', meetings:1, entity:'Stakeholder'},
+  {name:'Stefano', trust:9.5, influence:9.0, color:'10b981', short:'ST', meetings:1, entity:'Stakeholder'},
+  {name:'Luis', trust:8.299999999999999, influence:8.7, color:'10b981', short:'LU', meetings:1, entity:'Stakeholder'},
+  {name:'Danyal', trust:6.6000000000000005, influence:6.6000000000000005, color:'8b949e', short:'DA', meetings:1, entity:'Stakeholder'},
+  {name:'Gonçalo', trust:6.5, influence:6.4, color:'8b949e', short:'GO', meetings:1, entity:'Stakeholder'},
+  {name:'Paulo', trust:5.5, influence:5.1, color:'8b949e', short:'PA', meetings:1, entity:'Stakeholder'},
+  {name:'Francisco', trust:5.0, influence:4.5, color:'8b949e', short:'FR', meetings:1, entity:'Stakeholder'},
+  {name:'Carlos', trust:4.9, influence:4.4, color:'8b949e', short:'CA', meetings:1, entity:'Stakeholder'},
+  {name:'Sandra', trust:4.699999999999999, influence:4.1, color:'8b949e', short:'SA', meetings:1, entity:'Stakeholder'},
+  {name:'Duarte', trust:3.4000000000000004, influence:2.4, color:'f59e0b', short:'DU', meetings:1, entity:'Stakeholder'},
+  {name:'Miguel', trust:3.3000000000000003, influence:2.4, color:'f59e0b', short:'MI', meetings:1, entity:'Stakeholder'},
+  {name:'Rui', trust:3.0, influence:2.1, color:'f59e0b', short:'RU', meetings:1, entity:'Stakeholder'}
+];
+
+// Jitter positions to avoid overlap
+const offsets = [
+  {x:0,y:0},{x:15,y:-10},{x:-10,y:15},{x:20,y:5},{x:-15,y:-8},
+  {x:8,y:12},{x:-12,y:-5},{x:18,y:-15},{x:-5,y:18},{x:10,y:-12},
+  {x:-18,y:8},{x:25,y:-20},{x:-25,y:10},{x:5,y:-22},{x:-8,y:20},
+  {x:22,y:15},{x:-20,y:-18},{x:12,y:8},{x:-5,y:-25},{x:18,y:-25},
+  {x:-22,y:-12},{x:15,y:22},{x:-15,y:2},
+];
+
+function renderBattlefield() {
+  const bf = document.getElementById('battlefield');
+  const margin = 80;
+  const w = bf.offsetWidth - margin * 2;
+  const h = bf.offsetHeight - 60;
+
+  // Deduplicate by unique key
+  const seen = new Set();
+  const unique = stakeholders.filter(s => {
+    const key = s.name + s.entity + s.meetings;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  unique.forEach((s, i) => {
+    const trustPct = ((s.trust - 1) / 9) * 100;
+    const infPct = ((s.influence - 1) / 9) * 100;
+
+    const x = margin + (trustPct / 100) * w + offsets[i].x;
+    const y = h - (infPct / 100) * h + 30 + offsets[i].y;
+
+    const dot = document.createElement('div');
+    dot.className = `stakeholder-dot ${s.color}`;
+    dot.style.left = x + 'px';
+    dot.style.top = y + 'px';
+    dot.innerHTML = `${s.short}<div class="dot-info"><div class="dot-name">${s.name}</div><div class="dot-detail">Trust: ${s.trust}/10 | Influence: ${s.influence}/10<br>${s.meetings} meetings | ${s.entity}</div></div>`;
+    bf.appendChild(dot);
+  });
+}
+
+window.addEventListener('load', renderBattlefield);
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.stakeholder-dot').forEach(el => el.remove());
+  renderBattlefield();
+});
+
+// MATRIX TABLE FILTERING
+function filterMatrix(category) {
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const rows = document.querySelectorAll('#matrixTable tbody tr');
+  rows.forEach(row => {
+    if (category === 'all') {
+      row.style.display = '';
+    } else if (category.startsWith('tier')) {
+      row.style.display = row.dataset.tier === category ? '' : 'none';
+    } else {
+      row.style.display = row.dataset.status === category ? '' : 'none';
+    }
+  });
+}
+
+// MATRIX TABLE SORTING
+let sortDirection = {};
+function sortMatrix(colIndex) {
+  const table = document.getElementById('matrixTable');
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  sortDirection[colIndex] = !sortDirection[colIndex];
+  const dir = sortDirection[colIndex] ? 1 : -1;
+
+  // Clear sort indicators
+  table.querySelectorAll('th').forEach(th => {
+    th.classList.remove('sorted-asc', 'sorted-desc');
+  });
+  table.querySelectorAll('th')[colIndex].classList.add(
+    sortDirection[colIndex] ? 'sorted-desc' : 'sorted-asc'
+  );
+
+  rows.sort((a, b) => {
+    const aVal = a.cells[colIndex].textContent.trim();
+    const bVal = b.cells[colIndex].textContent.trim();
+    const aNum = parseFloat(aVal);
+    const bNum = parseFloat(bVal);
+
+    if (!isNaN(aNum) && !isNaN(bNum)) {
+      return (aNum - bNum) * dir;
+    }
+    return aVal.localeCompare(bVal) * dir;
+  });
+
+  rows.forEach(row => tbody.appendChild(row));
+}
+</script>
+
+<script>
+function filterWarRoom(minMeetings, btn) {
+    // Update button states if btn provided
+    if (btn) {
+        document.querySelectorAll('.war-room-filter').forEach(function(b) {
+            b.classList.remove('active');
+        });
+        btn.classList.add('active');
+    }
+    
+    var cards = document.querySelectorAll('#war-room .stakeholder-mini-card');
+    cards.forEach(function(card) {
+        var countEl = card.querySelector('.mini-count');
+        if (countEl) {
+            var countText = countEl.textContent;
+            // Handle ranges like "1-3"
+            if (countText.indexOf('-') > -1) {
+                var parts = countText.split('-');
+                var min = parseInt(parts[0]);
+                card.style.display = min >= minMeetings ? 'block' : 'none';
+            } else {
+                var num = parseInt(countText);
+                card.style.display = num >= minMeetings ? 'block' : 'none';
+            }
+        }
+    });
+}
+// Auto-filter on load - show only stakeholders with 10+ meetings
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() { filterWarRoom(10); }, 500);
+});
+</script>
+</body>
+</html>
