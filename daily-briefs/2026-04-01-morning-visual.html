@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — 1 Apr 2026</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0c14;color:#e5e5ee;line-height:1.6;min-height:100vh}
+  .bg{position:fixed;inset:0;background:linear-gradient(135deg,#0a0c14 0%,#0f1525 30%,#0a1628 60%,#14081f 100%);z-index:0}
+  .bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(88,28,135,0.08) 0%,transparent 60%)}
+  .container{max-width:1280px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}
+  header{text-align:center;margin-bottom:3rem;padding:3rem 0 2rem}
+  header h1{font-size:3rem;font-weight:800;background:linear-gradient(135deg,#ff6b35,#ffa726,#ffcc02);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.3rem}
+  header .date{font-size:1.1rem;color:#888;font-weight:400}
+  header .subtitle{color:#6b7280;font-size:0.9rem;margin-top:0.5rem}
+  .section{margin-bottom:2.5rem}
+  .section h2{font-size:1.5rem;font-weight:700;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .section h2 .label-sm{font-size:0.75rem;color:#6b7280;display:inline-block;background:rgba(255,255,255,0.04);padding:2px 10px;border-radius:4px;margin-left:8px}
+  .cards{display:grid;gap:1rem}
+  .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.4rem;backdrop-filter:blur(16px);transition:transform 0.2s,border-color 0.2s}
+  .card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.1)}
+  .card h3{font-size:1.05rem;font-weight:600;margin-bottom:0.4rem}
+  .card .tag{display:inline-block;font-size:0.7rem;padding:2px 10px;border-radius:6px;font-weight:600;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em}
+  .tag-red{background:rgba(239,68,68,0.12);color:#ef4444}
+  .tag-yellow{background:rgba(234,179,8,0.12);color:#eab308}
+  .tag-green{background:rgba(34,197,94,0.12);color:#22c55e}
+  .tag-blue{background:rgba(59,130,246,0.12);color:#3b82f6}
+  .tag-purple{background:rgba(147,51,234,0.12);color:#9333ea}
+  .card p{color:#a1a1b5;font-size:0.88rem;line-height:1.5}
+  .card .source{font-size:0.75rem;color:#6b7280;margin-top:0.5rem;font-style:italic}
+  .story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+  .markets{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0.75rem}
+  .market-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:1rem 1.2rem;text-align:center;backdrop-filter:blur(10px)}
+  .market-card .symbol{font-weight:700;font-size:0.85rem;margin-bottom:0.25rem}
+  .market-card .value{font-size:1.3rem;font-weight:800}
+  .market-card .change{font-size:0.8rem;margin-top:0.2rem}
+  .market-card .context{font-size:0.7rem;color:#6b7280;margin-top:3px}
+  .green{color:#22c55e}
+  .red{color:#ef4444}
+  .yellow{color:#eab308}
+  .white{color:#e5e5ee}
+  .gray{color:#9ca3af}
+  .insight{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.2rem 1.4rem;backdrop-filter:blur(16px);margin-bottom:0.75rem}
+  .insight h3{font-size:1rem;font-weight:600;margin-bottom:0.25rem;color:#ffcc02}
+  .insight p{font-size:0.88rem;color:#a1a1b5}
+  .quote{text-align:center;padding:1.5rem;border-left:3px solid #ffcc02;background:rgba(255,204,2,0.03);border-radius:0 12px 12px 0;margin:0.5rem 0}
+  .quote p{font-size:1.1rem;font-style:italic;color:#e5e5ee}
+  .quote .attr{font-size:0.8rem;color:#6b7280;margin-top:0.3rem}
+  .pred{text-align:center;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);border-radius:12px;padding:1rem;font-size:0.95rem;color:#93c5fd}
+  .yt-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+  .yt-table th{background:rgba(255,255,255,0.04);padding:0.7rem 1rem;text-align:left;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .yt-table td{padding:0.6rem 1rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+  .yt-table tr:hover td{background:rgba(255,255,255,0.02)}
+  footer{text-align:center;padding:2rem 0;color:#6b7280;font-size:0.8rem}
+  footer .divider{height:1px;background:rgba(255,255,255,0.06);margin:2rem 0}
+  .flag{font-size:1.2rem;margin-right:5px}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="container">
+
+<header>
+  <h1>☕ THE DAILY BRIEF</h1>
+  <div class="date">1 April 2026 — Wednesday</div>
+  <div class="subtitle">Format: Tim Ferriss "5-Bullet Friday" + James Clear "3-2-1" | ~12 min read</div>
+</header>
+
+<!-- PORTUGAL SECTION -->
+<div class="section">
+  <h2><span class="flag">🇵🇹</span> PORTUGAL <span class="label-sm">Country News</span></h2>
+  <div class="cards story-grid">
+    <div class="card">
+      <span class="tag tag-red">Breaking</span>
+      <h3>Lei da Nacionalidade aprovada — 152 votos a favor</h3>
+      <p>PSD e Chega fecharam acordo antes do debate. 152 votos a favor, 64 contra, 1 abstenção. Reapreciada após chumbo do Tribunal Constitucional.</p>
+      <div class="source">Público / DN</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-red">Urgent</span>
+      <h3>Crimes de Ódio +2236% em 10 anos</h3>
+      <p>Dados alarmantes: em 2025, 12 suspeitos tinham menos de 16 anos. Participação preocupante de menores sugere necessidade urgente de políticas preventivas.</p>
+      <div class="source">Diário de Notícias</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">Education</span>
+      <h3>8.000 vagas docentes (-24%)</h3>
+      <p>Fenprof denuncia "redução expressiva" face a 11.482 vagas no ano passado.</p>
+      <div class="source">Público</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-green">Sports</span>
+      <h3>Portugal 2-0 EUA</h3>
+      <p>Seleção vence amistosamente na pausa FIFA internacional.</p>
+      <div class="source">Record.pt</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">Taxes</span>
+      <h3>IRS 2026 — O que muda?</h3>
+      <p>Novas regras tributárias, deduções e prazos de submissão.</p>
+      <div class="source">DN</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">Geopolitics</span>
+      <h3>Sintra remove 200 outdoors | Drones Lajes</h3>
+      <p>Marco Almeida: "bandalheira dos ferros enferrujados". PS questiona MQ-9 Reaper na Base das Lajes.</p>
+      <div class="source">DN / Lusa</div>
+    </div>
+  </div>
+</div>
+
+<!-- WORLD SECTION -->
+<div class="section">
+  <h2><span class="flag">🚨</span> THE BIG 5 <span class="label-sm">What Matters Globally</span></h2>
+  <div class="cards story-grid">
+    <div class="card">
+      <span class="tag tag-red">Geopolitics</span>
+      <h3>🇮🇷 Trump: Iran war ends in 2-3 weeks</h3>
+      <p>Markets surged — S&P 500 +2.91%, Nasdaq +3.83%, Dow +1,125 pts (biggest gain in 10 months). Brent at $101.65. US Gas at $4/gal.</p>
+      <div class="source">Reuters / BBC / CNBC</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-blue">Finance</span>
+      <h3>🚀 SpaceX Project Apex — Mega IPO</h3>
+      <p>21 banks lined up. $3B from retail in a $122B round. SoftBank lent $40B separately.</p>
+      <div class="source">Reuters Business</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-purple">AI</span>
+      <h3>🤖 OpenAI $122B — Largest Private Round</h3>
+      <p>Harvey confirmed $11B valuation. Whoop valuation tripled to $10B. Seed AI startups: 3x valuations.</p>
+      <div class="source">TechCrunch / CNBC</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-blue">Space</span>
+      <h3>🌕 Artemis II Launches Wednesday</h3>
+      <p>3 Americans + 1 Canadian. First crewed lunar mission since Apollo 17 (1972). It's more about the China space race.</p>
+      <div class="source">BBC Science</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">Football</span>
+      <h3>⚽ Italy out of World Cup — 3rd time</h3>
+      <p>Lost on penalties to Bosnia. Turkey qualified after 24-year absence.</p>
+      <div class="source">BBC Sport</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARKETS -->
+<div class="section">
+  <h2>📊 MARKETS & NUMBERS <span class="label-sm">~30 seconds</span></h2>
+  <div class="markets">
+    <div class="market-card"><div class="symbol white">S&P 500</div><div class="value green">6,528.52</div><div class="change green">+2.91% 🔼</div><div class="context">Best since May '25</div></div>
+    <div class="market-card"><div class="symbol white">Nasdaq</div><div class="value green">21,590.63</div><div class="change green">+3.83% 🔼</div><div class="context">Tech rally</div></div>
+    <div class="market-card"><div class="symbol white">Dow</div><div class="value green">46,341.51</div><div class="change green">+1,125 pts 🔼</div><div class="context">Best in 10 months</div></div>
+    <div class="market-card"><div class="symbol white">STOXX 600</div><div class="value yellow">583.14</div><div class="change yellow">+0.41% 🔼</div><div class="context">Worst month since '22</div></div>
+    <div class="market-card"><div class="symbol yellow">Brent</div><div class="value white">$101.65</div><div class="change yellow">+0.27%</div><div class="context">War premium</div></div>
+    <div class="market-card"><div class="symbol yellow">Gold</div><div class="value white">$4,732.50</div><div class="change green">+1.15% 🔼</div><div class="context">Safe-haven</div></div>
+    <div class="market-card"><div class="symbol gray">Bitcoin</div><div class="value gray">~$68K</div><div class="change gray">Flat ↔️</div><div class="context">No catalyst</div></div>
+    <div class="market-card"><div class="symbol white">US 10Y</div><div class="value green">4.300%</div><div class="change green">-0.19% 🔽</div><div class="context">Bonds rally</div></div>
+  </div>
+  <div style="margin-top:1rem;padding:0.8rem 1rem;background:rgba(255,255,255,0.02);border-radius:10px;font-size:0.85rem">
+    <strong class="green">🟢 Marvell Tech +12.8%</strong> · <strong class="green">ON Semi +11.25%</strong> · <strong class="red">🔴 Nike -9%</strong> (China -20%) · <strong class="red">🔴 Microsoft worst quarter since 2008</strong> · <strong class="yellow">⛽ US Gas $4/gal — 1st since Aug 2022</strong>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>🔒 SECURITY WATCH <span class="label-sm">Supply Chain Alert</span></h2>
+  <div class="insight">
+    <h3>North Korean Hackers Compromise Axios</h3>
+    <p>Open-source project <code>Axios</code> (millions of installs) compromised to distribute malware. Check your versions immediately if you use this library or dependent software.</p>
+  </div>
+</div>
+
+<!-- INSIGHTS -->
+<div class="section">
+  <h2>💡 THOUGHTS & REFLECTIONS <span class="label-sm">3-2-1 Format</span></h2>
+  
+  <div class="insight"><h3>1. War Ends, Markets Rebound — Then What?</h3><p>Today's rally is about hopes, not certainties. If peace arrives → tech + energy transition lead. If conflict prolongs → commodities and defensives.</p></div>
+  <div class="insight"><h3>2. The $122 Billion Question</h3><p>OpenAI raised $122B — more than many countries' GDP. The question isn't "is AI real?" but "who's overvalued and who isn't?" Ben Felix: "The AI Bubble."</p></div>
+  <div class="insight"><h3>3. Artemis II is About China, Not the Moon</h3><p>10% science, 90% geopolitics. Whoever controls space controls communications, navigation, and mineral futures.</p></div>
+  
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0">
+    <div class="quote">
+      <p>"The capability is almost certainly there. It's a skill issue."</p>
+      <div class="attr">— Andrej Karpathy on AI agents</div>
+    </div>
+    <div class="quote">
+      <p>"We need counter-AI forces to move at the speed of AI."</p>
+      <div class="attr">— Peter Diamandis</div>
+    </div>
+  </div>
+  
+  <div class="pred"><strong>🔮 48h Prediction:</strong> Trump announces ceasefire in Wednesday night address. S&P 500 tests 6,800. Brent drops to ~$95.</div>
+</div>
+
+<!-- YOUTUBE -->
+<div class="section">
+  <h2>📺 WHAT TO WATCH <span class="label-sm">Top 5 Picks</span></h2>
+  <table class="yt-table">
+    <thead><tr><th>#</th><th>Video</th><th>Channel</th><th>Why?</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Jensen Huang: "AGI Is Now"</td><td>Lex Fridman #494</td><td>NVIDIA CEO says AGI has arrived</td></tr>
+      <tr><td>2</td><td>Skill Issue: Karpathy on Agents</td><td>Sarah Guo</td><td>AutoResearch is the right path</td></tr>
+      <tr><td>3</td><td>Claude MYTHOS Leaked</td><td>Matthew Berman</td><td>Model withheld for cyber risk</td></tr>
+      <tr><td>4</td><td>The AI Bubble (2.6M views)</td><td>Ben Felix</td><td>Skeptical counter to AI hype</td></tr>
+      <tr><td>5</td><td>DeepMind AI Changed Science</td><td>TwoMinutePapers</td><td>AI revolutionizing real research</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  <div class="divider"></div>
+  <p>📰 Generated by <strong>Hermes Agent</strong> — News Intelligence Hub</p>
+  <p style="margin-top:0.3rem">Sources: Reuters, TechCrunch, BBC, CNBC, Público, DN, Record · 1 April 2026, 18:45 UTC</p>
+  <p style="margin-top:0.3rem;color:#4b5563">Next briefing: Tomorrow at 07:00</p>
+</footer>
+
+</div>
+</body>
+</html>

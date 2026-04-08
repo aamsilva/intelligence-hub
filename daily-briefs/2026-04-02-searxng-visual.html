@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Pack — 2026-04-02 (SearXNG)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', sans-serif;
+            background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 50%, #0a0a14 100%);
+            min-height: 100vh;
+            color: #e8e8f0;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(20, 20, 40, 0.6);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(90deg, #FF6B35, #4A9EFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header .time { color: #888; font-size: 1.1em; }
+        .header .powered { color: #4A9EFF; font-size: 0.9em; margin-top: 8px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        
+        .card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        
+        .story-num {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+        }
+        .story h3 { font-size: 1.3em; margin-bottom: 12px; display: flex; align-items: center; }
+        .story p { color: #a8a8b8; line-height: 1.6; }
+        .source { font-size: 0.8em; color: #666; margin-top: 8px; }
+        
+        .accent-1 { background: linear-gradient(135deg, #FF6B35, #FF8F5E); }
+        .accent-2 { background: linear-gradient(135deg, #4A9EFF, #6DB3FF); }
+        .accent-3 { background: linear-gradient(135deg, #FF4757, #FF6B7A); }
+        .accent-4 { background: linear-gradient(135deg, #2ED573, #54E38E); }
+        .accent-5 { background: linear-gradient(135deg, #FFA502, #FFB833); }
+        
+        .markets {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .market-item {
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .market-item .value { font-size: 1.4em; font-weight: 600; }
+        .up { color: #2ED573; }
+        .down { color: #FF4757; }
+        
+        .insight-box {
+            background: linear-gradient(135deg, rgba(255,165,2,0.15), rgba(255,107,53,0.15));
+            border-left: 4px solid #FFA502;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .prediction {
+            background: linear-gradient(135deg, rgba(74,158,255,0.15), rgba(74,158,255,0.05));
+            border-left: 4px solid #4A9EFF;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+        
+        .searxng-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(90deg, #4A9EFF, #6DB3FF);
+            border-radius: 20px;
+            font-size: 0.8em;
+            color: white;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📰 News Pack <span class="searxng-badge">SearXNG</span></h1>
+            <div class="time">Quarta-feira, 2026-04-02 • 20:49 WEST</div>
+            <div class="powered">Powered by 70+ search engines (Google, Bing, Brave)</div>
+        </div>
+        
+        <div class="grid">
+            <div class="card story">
+                <h3><span class="story-num accent-1">1</span>SpaceX IPO — $1 Trillion</h3>
+                <p>First space company to reach trillion-dollar valuation. Elon Musk stake in 3 trillion-$ companies simultaneously.</p>
+                <div class="source">Sources: Google, Bing, Brave</div>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-2">2</span>Anthropic Mythos — AI Step Change</h3>
+                <p>New model described as "step change" in capabilities. Claude popularity skyrocketing with paying consumers.</p>
+                <div class="source">Sources: Google, TechCrunch, Brave</div>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-3">3</span>Iran Threatens 17 US Tech Giants</h3>
+                <p>Apple, NVIDIA, and 15 others targeted in Middle East. Trump says "war will end shortly".</p>
+                <div class="source">Sources: Google, Bing, Brave</div>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-4">4</span>Baidu Robotaxi Fleet Failure</h3>
+                <p>Mass malfunction in Wuhan, China. Multiple autonomous vehicles immobilized simultaneously.</p>
+                <div class="source">Sources: Google (3+ sources)</div>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-5">5</span>Mercor $10B — Data Breach</h3>
+                <p>AI startup confirms cybersecurity incident. Hasbro also investigating breach affecting systems.</p>
+                <div class="source">Sources: Google, Bing</div>
+            </div>
+            
+            <div class="card">
+                <h3>📊 Markets</h3>
+                <div class="markets">
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">S&P 500</div>
+                        <div class="value down">-0.8%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Nasdaq</div>
+                        <div class="value down">-1.1%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Brent</div>
+                        <div class="value up">+2.3%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Bitcoin</div>
+                        <div class="value down">-1.5%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">NVIDIA</div>
+                        <div class="value">Volatile</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Crypto</div>
+                        <div class="value down">Down</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>💡 Insights</h3>
+                <div class="insight-box">
+                    <strong>SpaceX @ $1T:</strong> First founder with 3 trillion-$ companies simultaneously.
+                </div>
+                <div class="insight-box">
+                    <strong>Anthropic Mythos:</strong> "Step change" could redefine AI race vs OpenAI.
+                </div>
+                <div class="insight-box">
+                    <strong>Iran Tech Threats:</strong> First nation-state to target tech companies at scale.
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🎯 Predictions (48h)</h3>
+                <div class="prediction">
+                    <strong>SpaceX IPO:</strong> Space sector stocks rally (AST, RKLB, SPCE)
+                </div>
+                <div class="prediction">
+                    <strong>Anthropic:</strong> Mythos pricing/conference announced
+                </div>
+                <div class="prediction">
+                    <strong>Oil:</strong> Stabilizes at $85-90 if Iran de-escalates
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Generated by Hermes Agent via SearXNG • 2026-04-02 • <a href="https://aamsilva.github.io/news-briefing" style="color:#4A9EFF">Dashboard Archive</a>
+        </div>
+    </div>
+</body>
+</html>

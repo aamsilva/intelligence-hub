@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evening News Pack — 2026-04-02</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', sans-serif;
+            background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 50%, #0a0a14 100%);
+            min-height: 100vh;
+            color: #e8e8f0;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(20, 20, 40, 0.6);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(90deg, #FF6B35, #4A9EFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header .time { color: #888; font-size: 1.1em; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        
+        .card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        
+        .story-num {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+        }
+        .story h3 { font-size: 1.3em; margin-bottom: 12px; display: flex; align-items: center; }
+        .story p { color: #a8a8b8; line-height: 1.6; }
+        
+        .accent-1 { background: linear-gradient(135deg, #FF6B35, #FF8F5E); }
+        .accent-2 { background: linear-gradient(135deg, #4A9EFF, #6DB3FF); }
+        .accent-3 { background: linear-gradient(135deg, #FF4757, #FF6B7A); }
+        .accent-4 { background: linear-gradient(135deg, #2ED573, #54E38E); }
+        .accent-5 { background: linear-gradient(135deg, #FFA502, #FFB833); }
+        
+        .markets {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .market-item {
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .market-item .value { font-size: 1.4em; font-weight: 600; }
+        .up { color: #2ED573; }
+        .down { color: #FF4757; }
+        
+        .insight-box {
+            background: linear-gradient(135deg, rgba(255,165,2,0.15), rgba(255,107,53,0.15));
+            border-left: 4px solid #FFA502;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌙 Evening News Pack</h1>
+            <div class="time">Quarta-feira, 2026-04-02 • 20:42 WEST</div>
+        </div>
+        
+        <div class="grid">
+            <div class="card story">
+                <h3><span class="story-num accent-1">1</span>SpaceX $1 Trillion</h3>
+                <p>Elon Musk's SpaceX caminha para valuation de $1 trillion. Primeira empresa espacial a atingir este marco. IPO planeado.</p>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-2">2</span>Claude Code Limits</h3>
+                <p>Utilizadores do Claude Code atingem limites de uso mais rápido que o esperado. Adopção massiva pressiona capacidade.</p>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-3">3</span>Hasbro Cyber-Attack</h3>
+                <p>Dono de Peppa Pig e Transformers atacado. Dados de clientes em risco. Detalhes ainda a emergir.</p>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-4">4</span>China Robotaxi Fail</h3>
+                <p>Avaria em massa de robotaxis bloqueou trânsito. Veículos Baidu Apollo imobilizados simultaneamente.</p>
+            </div>
+            
+            <div class="card story">
+                <h3><span class="story-num accent-5">5</span>Oil Jumps on Iran</h3>
+                <p>Petróleo disparou após Trump ameaçar ataques ao Irão. Brent +2.3%. Bolsas em queda.</p>
+            </div>
+            
+            <div class="card">
+                <h3>📊 Markets</h3>
+                <div class="markets">
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Brent</div>
+                        <div class="value up">+2.3%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">S&P 500</div>
+                        <div class="value down">-0.8%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Nasdaq</div>
+                        <div class="value down">-1.1%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Bitcoin</div>
+                        <div class="value down">-1.5%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">Gasoline</div>
+                        <div class="value up">+3.1%</div>
+                    </div>
+                    <div class="market-item">
+                        <div style="color:#888;font-size:0.8em">US 10Y</div>
+                        <div class="value">4.32%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>💡 Insights</h3>
+                <div class="insight-box">
+                    <strong>SpaceX @ $1T:</strong> Se confirmado, Musk controlará ~40% do valor de três trillion-dollar companies.
+                </div>
+                <div class="insight-box">
+                    <strong>Claude Limits:</strong> Demanda por AI coding assistants excede capacidade. Pricing terá de evoluir.
+                </div>
+                <div class="insight-box">
+                    <strong>Robotaxi:</strong> Primeiro "blue screen of death" para uma cidade inteira.
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Generated by Hermes Agent • 2026-04-02 • <a href="https://aamsilva.github.io/news-briefing" style="color:#4A9EFF">Dashboard Archive</a>
+        </div>
+    </div>
+</body>
+</html>

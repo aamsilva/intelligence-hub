@@ -11,9 +11,13 @@
   },
   "youtube": {
     "total_transcripts": 3839,
-    "date_folders": 7,
-    "latest_date": "2026-04-08",
+    "date_folders": 8,
+    "latest_date": "2026-04-09",
     "transcripts_per_day": [
+      {
+        "date": "2026-04-09",
+        "count": 0
+      },
       {
         "date": "2026-04-08",
         "count": 1734
@@ -37,14 +41,10 @@
       {
         "date": "2026-04-03",
         "count": 0
-      },
-      {
-        "date": "2026-04-02",
-        "count": 0
       }
     ],
-    "avg_words_per_transcript": 6839,
-    "total_estimated_words": 26254921,
+    "avg_words_per_transcript": 0,
+    "total_estimated_words": 0,
     "pipeline_state": {
       "started_at": "2026-04-03T17:16:09.865731",
       "last_run": "2026-04-08T23:58:17.922368",
@@ -230,141 +230,5 @@
     },
     "timestamp": "2026-04-05T00:06:31.072111"
   },
-  "sample_scoring": [
-    {
-      "id": "aa2e387f",
-      "title": "Do Retention Ponds Actually Work?",
-      "source": "2026-04-08",
-      "score": 56,
-      "kill_reason": null,
-      "urgency": 4,
-      "economics": 19,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Engineering Leadership (CTO/VP Eng)",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "d6904523",
-      "title": "So You Want to Build a Tunnel...",
-      "source": "2026-04-08",
-      "score": 39,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 7,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "ca92c02f",
-      "title": "How Earthquake Bearings Work",
-      "source": "2026-04-08",
-      "score": 56,
-      "kill_reason": null,
-      "urgency": 9,
-      "economics": 14,
-      "moat": 12,
-      "feasibility": 2,
-      "sales": 12,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Engineering Leadership (CTO/VP Eng)",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "af5bf55b",
-      "title": "The Los Angeles Aqueduct is Wild",
-      "source": "2026-04-08",
-      "score": 42,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 15,
-      "sales": 7,
-      "mvp": "DevTool / Infra",
-      "buyer": "Engineering Leadership (CTO/VP Eng)",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "436ecb04",
-      "title": "The Highway Loophole That Created The Worst Town in America",
-      "source": "2026-04-08",
-      "score": 35,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "14ace10a",
-      "title": "Nobody Knows How Tylenol Works",
-      "source": "2026-04-08",
-      "score": 64,
-      "kill_reason": null,
-      "urgency": 9,
-      "economics": 14,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 12,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Engineering Leadership (CTO/VP Eng)",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "d69ca90b",
-      "title": "The Crazy-Fast Logistics of Flower Distribution",
-      "source": "2026-04-08",
-      "score": 66,
-      "kill_reason": null,
-      "urgency": 9,
-      "economics": 14,
-      "moat": 17,
-      "feasibility": 12,
-      "sales": 7,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "bf4d13d2",
-      "title": "The International Airport That Can Only Send Flights to Turkey",
-      "source": "2026-04-08",
-      "score": 27,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 2,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "f51b45c4",
-      "title": "Is The Penny *Finally* Dead?",
-      "source": "2026-04-08",
-      "score": 52,
-      "kill_reason": null,
-      "urgency": 4,
-      "economics": 19,
-      "moat": 12,
-      "feasibility": 2,
-      "sales": 7,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    }
-  ]
+  "sample_scoring": []
 }

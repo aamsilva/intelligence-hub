@@ -1,0 +1,118 @@
+{
+  "timestamp": "2026-04-02T10:09:29Z",
+  "total_time_s": 11.0,
+  "searxng_urls": 40,
+  "rss_urls": 27,
+  "urls_attempted": 15,
+  "urls_extracted": 9,
+  "failed": 6,
+  "success_rate": 60.0,
+  "total_content_chars": 24288,
+  "categories": {
+    "iran": {
+      "url_count": 14,
+      "extracted_count": 3,
+      "snippets": [
+        {
+          "title": "\u4f0a\u6717 - \u77e5\u4e4e",
+          "engine": "bing",
+          "extracted_chars": 500
+        },
+        {
+          "title": "Middle East crisis live: Trump claims war will end in \u2018two or ...",
+          "engine": "aol",
+          "extracted_chars": 500
+        },
+        {
+          "title": "Iran war live: Trump claims goals nearing completion, vows to 'finish ...",
+          "engine": "startpage",
+          "extracted_chars": 500
+        }
+      ]
+    },
+    "markets": {
+      "url_count": 9,
+      "extracted_count": 1,
+      "snippets": [
+        {
+          "title": "Chart alert: US stock indices rally smells like a dead cat bounce",
+          "engine": "aol",
+          "extracted_chars": 500
+        },
+        {
+          "title": "Stock Market News, March 31, 2026: Nasdaq Leads Rally Built ...",
+          "engine": "aol",
+          "extracted_chars": 0
+        },
+        {
+          "title": "\u600e\u4e48\u8bb0 stock \u8fd9\u4e2a\u5355\u8bcd\u7684\u8bcd\u610f\uff1f - \u77e5\u4e4e",
+          "engine": "bing",
+          "extracted_chars": 0
+        }
+      ]
+    },
+    "openai": {
+      "url_count": 27,
+      "extracted_count": 1,
+      "snippets": [
+        {
+          "title": "\u5982\u4f55\u8bc4\u4ef7OpenAI\u53d1\u5e03Codex\u684c\u9762\u7248Codex App\uff1f\u548c Claude Code ...",
+          "engine": "bing",
+          "extracted_chars": 0
+        },
+        {
+          "title": "OpenAI Finalizes $110 Billion Funding at $730 Billion Value",
+          "engine": "aol",
+          "extracted_chars": 0
+        },
+        {
+          "title": "Anthropic raises $30 billion in Series G funding at $380 billion post ...",
+          "engine": "startpage",
+          "extracted_chars": 500
+        }
+      ]
+    },
+    "spacex": {
+      "url_count": 9,
+      "extracted_count": 2,
+      "snippets": [
+        {
+          "title": "SpaceX",
+          "engine": "bing",
+          "extracted_chars": 0
+        },
+        {
+          "title": "SpaceX Worth $1.5 Trillion In 2026 IPO? Here's How You Can ...",
+          "engine": "aol",
+          "extracted_chars": 500
+        },
+        {
+          "title": "SpaceX confidentially files for IPO, setting stage for record offering",
+          "engine": "startpage",
+          "extracted_chars": 500
+        }
+      ]
+    },
+    "portugal": {
+      "url_count": 8,
+      "extracted_count": 2,
+      "snippets": [
+        {
+          "title": "Guide de voyage et vacances au Portugal - Routard.com",
+          "engine": "bing",
+          "extracted_chars": 500
+        },
+        {
+          "title": "Reuters | Breaking International News & Views",
+          "engine": "aol",
+          "extracted_chars": 0
+        },
+        {
+          "title": "Portugal economy has stabilised, but many pressures remain",
+          "engine": "startpage",
+          "extracted_chars": 500
+        }
+      ]
+    }
+  }
+}

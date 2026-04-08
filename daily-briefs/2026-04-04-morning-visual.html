@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Briefing — 4 Abril 2026 | Hermes Agent</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: rgba(20, 20, 35, 0.85);
+            --bg-card-hover: rgba(30, 30, 50, 0.9);
+            --accent-gold: #d4af37;
+            --accent-gold-dim: #a08030;
+            --accent-red: #ff4757;
+            --accent-green: #2ed573;
+            --accent-blue: #3742fa;
+            --text-primary: #f0f0f5;
+            --text-dim: #8888aa;
+            --border-color: rgba(212, 175, 55, 0.15);
+            --gradient-1: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            --gradient-gold: linear-gradient(90deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%);
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: var(--gradient-1);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Animated background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle { color: var(--text-dim); font-size: 1rem; }
+        
+        /* Section styling */
+        section { margin-bottom: 50px; }
+        
+        h2 {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 .flag { font-size: 1.8rem; }
+        
+        /* Cards grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+            border-color: var(--accent-gold-dim);
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+        
+        .card-content { font-size: 0.95rem; color: var(--text-dim); }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .tag-breaking { background: var(--accent-red); color: white; }
+        .tag-trending { background: var(--accent-blue); color: white; }
+        
+        /* Markets table */
+        .markets-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .markets-table th, .markets-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .markets-table th {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        
+        .markets-table tr:last-child td { border-bottom: none; }
+        
+        .positive { color: var(--accent-green); }
+        .negative { color: var(--accent-red); }
+        
+        /* Insights */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20, 20, 35, 0.9) 100%);
+            border-left: 4px solid var(--accent-gold);
+        }
+        
+        .quote {
+            font-style: italic;
+            color: var(--text-dim);
+            border-left: 3px solid var(--accent-gold-dim);
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+        
+        .prediction {
+            background: rgba(55, 66, 250, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        /* Security */
+        .security-alert {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid var(--accent-red);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+        
+        .footer-logo { color: var(--accent-gold); font-weight: 600; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .grid { grid-template-columns: 1fr; }
+            .markets-table { font-size: 0.9rem; }
+        }
+        
+        /* Live ticker */
+        .ticker {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌅 Morning Briefing</h1>
+            <p class="subtitle">Sábado, 4 Abril 2026 | Hermes Agent powered by SearXNG</p>
+        </header>
+        
+        <div class="ticker">
+            <div class="ticker-content">
+                🔴 BREAKING: Jato americano abatido sobre Irã • SpaceX IPO pode atingir $1T • Artemis II deixa órbita terrestre • Anthropic compra biotech por $400M • Portugal goleia México 6-0 na El Salvador Cup
+            </div>
+        </div>
+        
+        <section>
+            <h2><span class="flag">🇵🇹</span> Portugal</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-title">Banco de Portugal agrava previsões</div>
+                    <div class="card-meta">Economia | Fonte: SAPO</div>
+                    <div class="card-content">BdP corta crescimento e agrava inflação para 2,8% em 2026 (+0,7pp). Inflação mais alta = poder de compra menor.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">FC Porto questiona arbitragem</div>
+                    <div class="card-meta">Desporto | Fonte: Record.pt</div>
+                    <div class="card-content">Porto contesta critérios de arbitragem no clássico com Sporting, comparando com caso Santa Clara.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Portugal goleia México 6-0</div>
+                    <div class="card-meta">Desporto | Fonte: Record.pt</div>
+                    <div class="card-content">Seleção de futebol de praia vence segunda partida na El Salvador Cup com números expressivos.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Luka Doncic lesionado</div>
+                    <div class="card-meta">NBA | Fonte: Record.pt</div>
+                    <div class="card-content">Base dos Lakers falha últimos 5 jogos da fase regular por lesão. Candidato a MVP.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="flag">💻</span> Tech & AI</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="tag tag-breaking">BREAKING</span>
+                    <div class="card-title">SpaceX IPO — $1 trilião</div>
+                    <div class="card-meta">SpaceX | Fontes: BBC, NYT</div>
+                    <div class="card-content">Musk exige que bancos subscrevam Grok para aconselhar o deal. Maior IPO da história possível.</div>
+                </div>
+                <div class="card">
+                    <span class="tag tag-breaking">BREAKING</span>
+                    <div class="card-title">Anthropic compra biotech por $400M</div>
+                    <div class="card-meta">AI | Fonte: TechCrunch</div>
+                    <div class="card-content">Adquiriu Coefficient Bio, startup de biotech AI. Drug discovery com AI é mercado de triliões.</div>
+                </div>
+                <div class="card">
+                    <span class="tag tag-breaking">BREAKING</span>
+                    <div class="card-title">OpenAI compra TBPN</div>
+                    <div class="card-meta">AI | Fontes: TechCrunch, NYT</div>
+                    <div class="card-content">COO Brad Lightcap assume "special projects". CMO Kate Rouch sai para recuperação. Controlo narrativo sobre AI.</div>
+                </div>
+                <div class="card">
+                    <span class="tag tag-trending">TRENDING</span>
+                    <div class="card-title">Claude Code com limites</div>
+                    <div class="card-meta">Anthropic | Fonte: BBC</div>
+                    <div class="card-content">Utilizadores atingem limites "mais rápido que o esperado". Bug confirmado, a corrigir.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Tesla Texas: workforce -22%</div>
+                    <div class="card-meta">Automação | Fonte: TechCrunch</div>
+                    <div class="card-content">Factory desce de 21.191 para 16.506 trabalhadores. Segundo ano consecutivo de vendas em queda.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Anthropic cria PAC político</div>
+                    <div class="card-meta">Política | Fonte: TechCrunch</div>
+                    <div class="card-content">Political Action Committee para apoiar candidatos alinhados com AI, a tempo das midterm elections.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">AI cria empresa de $1,8B</div>
+                    <div class="card-meta">Startups | Fonte: NYT</div>
+                    <div class="card-content">Dois irmãos construíram Medvi usando AI para maioria das tarefas corporativas. "Super eficiente."</div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="flag">🚨</span> The Big 5 — Global</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="tag tag-breaking">BREAKING</span>
+                    <div class="card-title">Jato americano abatido sobre Irã</div>
+                    <div class="card-meta">Geopolítica | Fonte: NPR</div>
+                    <div class="card-content">Jato militar americano abatido. Um tripulante resgatado, buscas pelo segundo. Escalada direta do conflito.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Artemis II deixa órbita terrestre</div>
+                    <div class="card-meta">Espaço | Fontes: BBC, NYT</div>
+                    <div class="card-content">Primeiros humanos fora da órbita terrestre em 54 anos. Crew tirou fotos "espetaculares" com iPhones (sem internet).</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Rússia: "Escalada da Páscoa"</div>
+                    <div class="card-meta">Ucrânia | Fonte: BBC</div>
+                    <div class="card-content">Zelensky accusing Russia of launching hundreds of drones/mísseis. 6 civis mortos, 40 feridos.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">EUA: 178K empregos em Março</div>
+                    <div class="card-meta">Economia | Fonte: BBC</div>
+                    <div class="card-content">Mercado laboral muito acima das expetativas. Desemprego baixou para 4,3%.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Europa debate regresso ao nuclear</div>
+                    <div class="card-meta">Energia | Fonte: BBC</div>
+                    <div class="card-content">Guerra dispara preços de energia. Europa pergunta se nuclear é resposta para independência.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="flag">📊</span> Markets & Numbers</h2>
+            <table class="markets-table">
+                <thead>
+                    <tr>
+                        <th>Indicador</th>
+                        <th>Valor</th>
+                        <th>Contexto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Empregos EUA (Mar)</td>
+                        <td class="positive">+178K</td>
+                        <td>vs ~140K exp — muito resiliente</td>
+                    </tr>
+                    <tr>
+                        <td>Desemprego EUA</td>
+                        <td class="positive">4,3%</td>
+                        <td>Em queda</td>
+                    </tr>
+                    <tr>
+                        <td>Orçamento Defesa Trump</td>
+                        <td>$1,5T</td>
+                        <td>Maior pedido em décadas</td>
+                    </tr>
+                    <tr>
+                        <td>SpaceX IPO (proj.)</td>
+                        <td class="positive">$1T</td>
+                        <td>Pode ser a maior da história</td>
+                    </tr>
+                    <tr>
+                        <td>Petróleo</td>
+                        <td class="negative">Sob pressão</td>
+                        <td>Estreito de Hormuz no conflito</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section>
+            <h2><span class="flag">🔒</span> Security Watch</h2>
+            <div class="card security-alert">
+                <div class="card-title">⚠️ Hasbro — Ciberataque Confirmado</div>
+                <div class="card-content">Dona do Peppa Pig e Transformers confirma hack que "pode causar atrasos."<br><br><strong>O que fazer:</strong> Muda password, ativa 2FA em contas gaming/entretenimento.</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="flag">💡</span> Insights</h2>
+            <div class="grid">
+                <div class="card insight-card">
+                    <div class="card-title">1. Anthropic já não é só AI</div>
+                    <div class="card-content">Biotech ($400M) + PAC político = transformação em conglomerado. O modelo de "fazer chatbots úteis" acabou.</div>
+                </div>
+                <div class="card insight-card">
+                    <div class="card-title">2. Artemis II é o Sputnik do século</div>
+                    <div class="card-content">Humanos fora da órbita terrestre em 54 anos, usando iPhones. A ironia é perfeita.</div>
+                </div>
+                <div class="card insight-card">
+                    <div class="card-title">3. SpaceX + Grok = weaponização de capital</div>
+                    <div class="card-content">Obrigar bancos a subscrever Grok para aceder ao maior IPO da história é poder financeiro weaponizado.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="flag">🎯</span> Predição 48h</h2>
+            <div class="prediction">
+                <div class="card-title">SpaceX confirma data formal do IPO até segunda-feira</div>
+                <div class="card-content">Drafts já submetidos à SEC. Com $1T em jogo, não podem esperar.</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="flag">📺</span> YouTube — O que assistir</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-title">Artemis II Mission Highlights</div>
+                    <div class="card-meta">NASA</div>
+                    <div class="card-content">Primeiros humanos fora da órbita em 54 anos. Imagens da crew com iPhones.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">SpaceX IPO Analysis</div>
+                    <div class="card-meta">Bloomberg</div>
+                    <div class="card-content">Análise do maior IPO da história e o papel do Grok.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Anthropic's Biotech Move</div>
+                    <div class="card-meta">TechCrunch</div>
+                    <div class="card-content">O que a compra de $400M significa para o futuro da AI.</div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p class="footer-logo">🤖 Hermes Agent</p>
+            <p>Gerado em 04/04/2026 19:14 | Fontes: BBC, TechCrunch, NYT, NPR, Record.pt, SAPO</p>
+            <p>Powered by SearXNG + RSS Feeds | 11 fontes verificadas</p>
+        </footer>
+    </div>
+</body>
+</html>

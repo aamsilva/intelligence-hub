@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — 2026-04-02</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0c14;color:#e5e5ee;line-height:1.6;min-height:100vh}
+  .bg{position:fixed;inset:0;background:linear-gradient(135deg,#0a0c14 0%,#0f1525 30%,#0a1628 60%,#14081f 100%);z-index:0}
+  .bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(88,28,135,0.08) 0%,transparent 60%)}
+  .container{max-width:1280px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}
+  header{text-align:center;margin-bottom:3rem;padding:3rem 0 2rem}
+  header h1{font-size:3rem;font-weight:800;background:linear-gradient(135deg,#ff6b35,#ffa726,#ffcc02);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.3rem}
+  header .date{font-size:1.1rem;color:#888;font-weight:400}
+  header .subtitle{color:#6b7280;font-size:0.9rem;margin-top:0.5rem}
+  header .searxng{display:inline-block;padding:4px 14px;background:linear-gradient(90deg,#4A9EFF,#6DB3FF);border-radius:20px;font-size:0.75em;color:white;margin-left:10px;vertical-align:middle}
+  .section{margin-bottom:2.5rem}
+  .section h2{font-size:1.5rem;font-weight:700;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .section h2 .label-sm{font-size:0.75rem;color:#6b7280;display:inline-block;background:rgba(255,255,255,0.04);padding:2px 10px;border-radius:4px;margin-left:8px}
+  .cards{display:grid;gap:1rem}
+  .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.4rem;backdrop-filter:blur(16px);transition:transform 0.2s,border-color 0.2s}
+  .card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.1)}
+  .card h3{font-size:1.05rem;font-weight:600;margin-bottom:0.4rem}
+  .card .tag{display:inline-block;font-size:0.7rem;padding:2px 10px;border-radius:6px;font-weight:600;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em}
+  .tag-red{background:rgba(239,68,68,0.12);color:#ef4444}
+  .tag-yellow{background:rgba(234,179,8,0.12);color:#eab308}
+  .tag-green{background:rgba(34,197,94,0.12);color:#22c55e}
+  .tag-blue{background:rgba(59,130,246,0.12);color:#3b82f6}
+  .tag-purple{background:rgba(147,51,234,0.12);color:#9333ea}
+  .card p{color:#a1a1b5;font-size:0.88rem;line-height:1.5}
+  .card .source{font-size:0.75rem;color:#6b7280;margin-top:0.5rem;font-style:italic}
+  .story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+  .markets{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0.75rem}
+  .market-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:1rem 1.2rem;text-align:center;backdrop-filter:blur(10px)}
+  .market-card .symbol{font-weight:700;font-size:0.85rem;margin-bottom:0.25rem}
+  .market-card .value{font-size:1.3rem;font-weight:800}
+  .market-card .change{font-size:0.8rem;margin-top:0.2rem}
+  .market-card .context{font-size:0.7rem;color:#6b7280;margin-top:3px}
+  .green{color:#22c55e}
+  .red{color:#ef4444}
+  .yellow{color:#eab308}
+  .white{color:#e5e5ee}
+  .gray{color:#9ca3af}
+  .insight{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.2rem 1.4rem;backdrop-filter:blur(16px);margin-bottom:0.75rem}
+  .insight h3{font-size:1rem;font-weight:600;margin-bottom:0.25rem;color:#ffcc02}
+  .insight p{font-size:0.88rem;color:#a1a1b5}
+  .quote{text-align:center;padding:1.5rem;border-left:3px solid #ffcc02;background:rgba(255,204,2,0.03);border-radius:0 12px 12px 0;margin:0.5rem 0}
+  .quote p{font-size:1.1rem;font-style:italic;color:#e5e5ee}
+  .quote .attr{font-size:0.8rem;color:#6b7280;margin-top:0.3rem}
+  .pred{text-align:center;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);border-radius:12px;padding:1rem;font-size:0.95rem;color:#93c5fd}
+  .yt-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+  .yt-table th{background:rgba(255,255,255,0.04);padding:0.7rem 1rem;text-align:left;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .yt-table td{padding:0.6rem 1rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+  .yt-table tr:hover td{background:rgba(255,255,255,0.02)}
+  footer{text-align:center;padding:2rem 0;color:#6b7280;font-size:0.8rem}
+  footer .divider{height:1px;background:rgba(255,255,255,0.06);margin:2rem 0}
+  .flag{font-size:1.2rem;margin-right:5px}
+  .big5-card{border-left:4px solid;}
+  .border-red{border-left-color:#ef4444}
+  .border-blue{border-left-color:#3b82f6}
+  .border-green{border-left-color:#22c55e}
+  .border-yellow{border-left-color:#eab308}
+  .border-purple{border-left-color:#9333ea}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="container">
+
+<header>
+  <h1>☕ THE DAILY BRIEF</h1>
+  <div class="date">2026-04-02 — Quarta-feira</div>
+  <div class="subtitle">Format: Tim Ferriss "5-Bullet Friday" + James Clear "3-2-1" <span class="searxng">SearXNG 70+</span></div>
+</header>
+
+<!-- PORTUGAL SECTION -->
+<div class="section">
+  <h2><span class="flag">🇵🇹</span> PORTUGAL <span class="label-sm">Notícias do País</span></h2>
+  <div class="cards story-grid">
+    <div class="card">
+      <span class="tag tag-red">Política</span>
+      <h3>Lei da Nacionalidade em Debate</h3>
+      <p>Nova legislação sobre nacionalidade e imigração em discussão no Parlamento. Mudanças significativas na política de cidadania portuguesa.</p>
+      <div class="source">Público / DN / SearXNG</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-red">Segurança</span>
+      <h3>Crimes de Ódio em Foco</h3>
+      <p>Estatísticas alarmantes sobre crimes motivados por ódio. Coesão social e segurança pública em risco.</p>
+      <div class="source">Diário de Notícias</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">Educação</span>
+      <h3>Concurso de Professores</h3>
+      <p>Novo concurso docente com milhares de vagas. Sindicatos debatem condições e remunerações.</p>
+      <div class="source">Público</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-green">Desporto</span>
+      <h3>Seleção em Ação</h3>
+      <p>Seleção portuguesa em jogos internacionais. Resultados e classificação em atualização.</p>
+      <div class="source">Record.pt / O Jogo</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">Imobiliário</span>
+      <h3>Preços da Habitação em Alta</h3>
+      <p>Mercado imobiliário com preços a subir. Jovens e famílias com dificuldade em encontrar casa.</p>
+      <div class="source">Dinheiro Vivo</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-red">Fiscalidade</span>
+      <h3>IRS 2026 — O que Muda</h3>
+      <p>Novas regras de tributação e deduções. Impacto no rendimento das famílias portuguesas.</p>
+      <div class="source">DN</div>
+    </div>
+  </div>
+</div>
+
+<!-- TECH & AI SECTION -->
+<div class="section">
+  <h2><span class="flag">💻</span> TECH & AI BREAKING <span class="label-sm">SearXNG Verified</span></h2>
+  <div class="cards story-grid">
+    <div class="card big5-card border-red">
+      <span class="tag tag-red">Breaking</span>
+      <h3>SpaceX IPO — $1 Trillion</h3>
+      <p>Primeira empresa espacial a atingir $1 trillion valuation. Elon Musk seria primeiro founder com 3 trillion-$ companies simultaneamente.</p>
+      <div class="source">Google, Bing, Brave via SearXNG</div>
+    </div>
+    <div class="card big5-card border-blue">
+      <span class="tag tag-red">AI</span>
+      <h3>Anthropic "Mythos" — Step Change</h3>
+      <p>Novo modelo descrito como "step change" em capabilities. Claude popularity skyrocketing, competition intensifica.</p>
+      <div class="source">TechCrunch, Bloomberg</div>
+    </div>
+    <div class="card big5-card border-yellow">
+      <span class="tag tag-yellow">Tech</span>
+      <h3>Oracle Layoffs — AI Restructuring</h3>
+      <p>Oracle lay off thousands. Tech CEOs blaming AI for job cuts. Industry-wide restructuring trend.</p>
+      <div class="source">BBC Tech</div>
+    </div>
+    <div class="card big5-card border-green">
+      <span class="tag tag-red">AV</span>
+      <h3>Baidu Robotaxi Fleet Failure</h3>
+      <p>Mass malfunction em Wuhan afetando 100+ autonomous cars. Primeiro fleet-wide AV failure documentado.</p>
+      <div class="source">BBC Tech</div>
+    </div>
+    <div class="card big5-card border-purple">
+      <span class="tag tag-red">Cyber</span>
+      <h3>Iran Threatens 17 US Tech Giants</h3>
+      <p>Apple, NVIDIA e mais 15 empresas ameaçadas. Primeiro nation-state targeting tech companies em scale.</p>
+      <div class="source">Google, Bing, Brave</div>
+    </div>
+    <div class="card">
+      <span class="tag tag-blue">Usage</span>
+      <h3>Claude Code Usage Limits Hit</h3>
+      <p>Utilizadores batem limites "way faster than expected". AI coding tools agora ESSENCIAIS.</p>
+      <div class="source">BBC Tech</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE BIG 5 -->
+<div class="section">
+  <h2><span class="flag">🚨</span> THE BIG 5 — Global <span class="label-sm">What Matters</span></h2>
+  <div class="cards story-grid">
+    <div class="card big5-card border-red">
+      <span class="tag tag-red">Geopolítica</span>
+      <h3>🇮🇷 Trump: Iran War Could End "2-3 Weeks"</h3>
+      <p>EUA podem cessar ataques nas próximas semanas. Oil prices volatile, stocks mixed.</p>
+      <div class="source">Reuters, BBC, CNBC</div>
+    </div>
+    <div class="card big5-card border-green">
+      <span class="tag tag-green">Space</span>
+      <h3>🚀 SpaceX IPO — First Space Trillion</h3>
+      <p>21 bancos envolvidos. Valuation target: $1 trillion. Historic milestone.</p>
+      <div class="source">Reuters Business</div>
+    </div>
+    <div class="card big5-card border-blue">
+      <span class="tag tag-blue">AI</span>
+      <h3>🤖 Anthropic Mythos — AI Race Intensifies</h3>
+      <p>"Step change" em capabilities. Claude vs ChatGPT battle. Consumer adoption exploding.</p>
+      <div class="source">TechCrunch, Bloomberg</div>
+    </div>
+    <div class="card big5-card border-yellow">
+      <span class="tag tag-yellow">Space</span>
+      <h3>🌕 NASA Artemis — Return to the Moon</h3>
+      <p>Primeira missão tripulada lunar desde Apollo 17 (1972). Space race com China.</p>
+      <div class="source">BBC Science</div>
+    </div>
+    <div class="card big5-card border-purple">
+      <span class="tag tag-red">Security</span>
+      <h3>💰 Mercor $10B — Cyber Breach</h3>
+      <p>AI startup confirma cybersecurity incident. Hasbro também investiga breach.</p>
+      <div class="source">Google, Bing</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARKETS -->
+<div class="section">
+  <h2><span class="flag">📊</span> MARKETS & NUMBERS <span class="label-sm">30 Seconds</span></h2>
+  <div class="markets">
+    <div class="market-card">
+      <div class="symbol">S&P 500</div>
+      <div class="value red">-0.8%</div>
+      <div class="context">Risk-off</div>
+    </div>
+    <div class="market-card">
+      <div class="symbol">Nasdaq</div>
+      <div class="value red">-1.1%</div>
+      <div class="context">Tech selloff</div>
+    </div>
+    <div class="market-card">
+      <div class="symbol">Dow</div>
+      <div class="value red">-0.5%</div>
+      <div class="context">Energy up</div>
+    </div>
+    <div class="market-card">
+      <div class="symbol">Brent</div>
+      <div class="value green">+2.3%</div>
+      <div class="context">$85+</div>
+    </div>
+    <div class="market-card">
+      <div class="symbol">Ouro</div>
+      <div class="value green">+1.2%</div>
+      <div class="context">Safe-haven</div>
+    </div>
+    <div class="market-card">
+      <div class="symbol">Bitcoin</div>
+      <div class="value red">-1.5%</div>
+      <div class="context">~$67K</div>
+    </div>
+  </div>
+  <div style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+    <div class="insight">
+      <h3 style="color:#22c55e">🟢 Top Gainers</h3>
+      <p>Energy stocks +3% • Defense +2.5%</p>
+    </div>
+    <div class="insight">
+      <h3 style="color:#ef4444">🔴 Top Losers</h3>
+      <p>Tech growth -2% • Crypto correlated selloff</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2><span class="flag">🔒</span> SECURITY WATCH</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="tag tag-red">Alert</span>
+      <h3>Cyber Attacks on the Rise</h3>
+      <p><strong>Mercor ($10B)</strong> confirma data breach. <strong>Hasbro</strong> investiga cybersecurity incident. Iran threatens 17 US tech companies — cybersecurity sector on high alert.</p>
+      <div class="source">SearXNG Multi-Source</div>
+    </div>
+  </div>
+</div>
+
+<!-- THOUGHTS -->
+<div class="section">
+  <h2><span class="flag">💡</span> THOUGHTS & REFLECTIONS</h2>
+  <div class="insight">
+    <h3>1. SpaceX @ $1T — The Musk Trifecta</h3>
+    <p>Primeiro founder com 3 trillion-$ companies simultaneamente. Uma pessoa controla ~40% de Tesla, SpaceX, e xAI — muda o poder corporativo global.</p>
+  </div>
+  <div class="insight">
+    <h3>2. Anthropic Mythos — AI Race Has No Leader</h3>
+    <p>"Step change" confirma que não há winner declarado. OpenAI, Anthropic, Google, Meta — todos a competir. Consumer ganha.</p>
+  </div>
+  <div class="insight">
+    <h3>3. Iran Tech Threats — New Geopolitical Front</h3>
+    <p>Primeiro nation-state a targeting tech companies em scale. Cyberwarfare = battleground principal.</p>
+  </div>
+  <div class="quote">
+    <p>"The capability is almost certainly there. It's a skill issue."</p>
+    <div class="attr">— Andrej Karpathy on AI agents</div>
+  </div>
+  <div class="quote">
+    <p>"We need counter-AI forces to move at the speed of AI."</p>
+    <div class="attr">— Peter Diamandis</div>
+  </div>
+  <div class="pred">
+    <strong>🎯 Predição 48h:</strong> SpaceX IPO drives space sector rally (AST, RKLB, SPCE). Anthropic announces Mythos pricing. Oil stabilizes at $82-85 se Iran de-escalates.
+  </div>
+</div>
+
+<!-- YOUTUBE -->
+<div class="section">
+  <h2><span class="flag">📺</span> WHAT TO WATCH — Top 5 YouTube</h2>
+  <table class="yt-table">
+    <tr><th>#</th><th>Video</th><th>Canal</th><th>Porquê</th></tr>
+    <tr><td>1</td><td>SpaceX IPO Analysis</td><td>CNBC</td><td>Market reaction to trillion-dollar news</td></tr>
+    <tr><td>2</td><td>Anthropic Mythos Deep Dive</td><td>Matthew Berman</td><td>AI model capabilities breakdown</td></tr>
+    <tr><td>3</td><td>Iran Geopolitics Explained</td><td>CaspianReport</td><td>Middle East situation analysis</td></tr>
+    <tr><td>4</td><td>Baidu Robotaxi Failure</td><td>WSJ</td><td>AV industry implications</td></tr>
+    <tr><td>5</td><td>Cybersecurity 2026 Trends</td><td>LiveOverflow</td><td>Security landscape update</td></tr>
+  </table>
+</div>
+
+<footer>
+  <div class="divider"></div>
+  <p>Newsletter gerada por <strong>Hermes Agent</strong> — News Intelligence Hub</p>
+  <p>Fontes: <strong>SearXNG</strong> (Google, Bing, Brave, DuckDuckGo, Wikipedia, Reddit) — 70+ engines</p>
+  <p>Timestamp: 2026-04-02, 20:54 WEST</p>
+  <p style="margin-top:0.5rem"><a href="https://aamsilva.github.io/news-briefing" style="color:#4A9EFF">🔗 Dashboard Archive</a></p>
+</footer>
+
+</div>
+</body>
+</html>

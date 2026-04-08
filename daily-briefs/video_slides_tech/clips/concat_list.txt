@@ -1,0 +1,5 @@
+file 'tech_01_title.mp4'
+file 'tech_02_openai_anthropic.mp4'
+file 'tech_03_claude_oracle.mp4'
+file 'tech_04_baidu_security.mp4'
+file 'tech_05_outro.mp4'

@@ -1,0 +1,13 @@
+Olá! Bem-vindo ao News Pack Diário de 3 de Abril de 2026. Aqui estão as principais notícias.
+
+Começamos pela Inteligigência Artificial. A Anysphere lançou o Cursor 3, com desenvolvimento orientado por agentes e fluxos de trabalho multi-repositório. A Google DeepMind revelou o Gemma 4, modelos de raciocínio com licença Apache 2.0 e capacidade multimodal.
+
+Em Big Tech, a OpenAI comprou o TBPN, um talk show online com 70 mil espetadores por episódio. O programa gerou 5 milhões de dólares em receita.
+
+Em Segurança Informática, a Anthropic expôs 512 mil linhas de código do Claude Code. Mais de 14 mil sistemas F5 BIG-IP permanecem vulneráveis a execução remota de código.
+
+Em Mercados, a Coinbase, Cloudflare e Stripe criaram a x402 Foundation para pagamentos abertos na web. O protocolo Drift sofreu um hack de 285 milhões de dólares.
+
+Na Economia, o Canadá enfrenta lenders não licenciados com taxas até 1800 por cento, após uma repressão governamental que baixou a taxa de juro máxima para 35 por cento.
+
+Estas foram as principais notícias de hoje. Até amanhã!

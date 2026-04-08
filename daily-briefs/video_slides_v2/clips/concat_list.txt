@@ -1,0 +1,8 @@
+file '01_title.mp4'
+file '02_portugal_politics.mp4'
+file '03_portugal_sports.mp4'
+file '04_iran_markets.mp4'
+file '05_tech_ai.mp4'
+file '06_space_world.mp4'
+file '07_markets.mp4'
+file '08_outro.mp4'

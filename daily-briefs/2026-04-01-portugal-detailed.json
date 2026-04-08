@@ -1,0 +1,102 @@
+{
+  "title": "🇵🇹 NOTÍCIAS PORTUGAL — 1 Abril 2026",
+  "subtitle": "Edição Extraordinária — Detalhes Completos",
+  "sections": {
+    "🏛️ POLÍTICA E GOVERNO": [
+      {
+        "headline": "Lei da Nacionalidade: PSD e Chega fecham acordo antes de debate no Parlamento",
+        "source": "Público / DN",
+        "summary": "Antes da discussão em plenário, o líder parlamentar do PSD anunciou acordo com o Chega para a nova Lei da Nacionalidade. Foram 152 votos a favor, 64 contra e uma abstenção. Apesar do acordo, Hugo Soares diz que PS e Chega 'casaram' noutras matérias.",
+        "impact": "🔴 ALTO — Mudança significativa na política de imigração",
+        "details": "Reapreciada após chumbo do Tribunal Constitucional. Partidos à direita repetiram o guião da aprovação da lei dos estrangeiros. PSD reitera que revisão constitucional deve 'ficar para uma segunda fase da legislatura'."
+      },
+      {
+        "headline": "Sintra avança com retirada de outdoors ilegais em todo o concelho. São quase 200",
+        "source": "Diário de Notícias",
+        "summary": "Marco Almeida, presidente da Câmara Municipal de Sintra, anunciou que 'a bandalheira dos ferros enferrujados, torcidos, abandonados e o não respeito das regras tem de acabar'.",
+        "impact": "✅ MÉDIO — Melhoria urbanística",
+        "details": "Concelho de Sintra é um dos maiores da área de Lisboa com problemas visuais significativos."
+      },
+      {
+        "headline": "PS questiona Governo sobre utilização de aeronaves MQ-9 Reaper dos EUA na Base das Lajes",
+        "source": "DN/Lusa",
+        "summary": "Paulo Rangel foi questionado pelo PS sobre a presença de drones militares americanos nos Açores.",
+        "impact": "🟡 MÉDIO — Questão geopolítica relevante",
+        "details": "Drones de vigilância MQ-9 Reaper usados para monitorização no Atlântico."
+      }
+    ],
+    "👨‍🏫 EDUCAÇÃO E SOCIEDADE": [
+      {
+        "headline": "Concurso de professores tem mais de oito mil vagas, menos 24% do que no ano passado",
+        "source": "Público / DN",
+        "summary": "Fenprof garante haver uma 'redução expressiva' de lugares face ao concurso do ano passado 'que registou 11.482 vagas, correspondendo a uma diminuição de 28%'.",
+        "impact": "🔴 ALTO — Impacto direto no ensino e emprego",
+        "details": "O número de vagas disponíveis para professores baixou significativamente, refletindo possíveis mudanças na alocação de recursos educativos."
+      },
+      {
+        "headline": "Crimes de ódio aumentam 2236% numa década. Em 2025, 12 suspeitos tinham menos de 16 anos",
+        "source": "Diário de Notícias",
+        "summary": "Dados alarmantes mostram um aumento massivo de crimes de ódio ao longo da última década em Portugal, com participação preocupante de menores.",
+        "impact": "🔴 ALTO — Segurança pública e coesão social",
+        "details": "Reportado por Fernanda Câncio. Indicadores preocupantes em menores de idade sugere necessidade de políticas preventivas."
+      }
+    ],
+    "⚽ DESPORTO": [
+      {
+        "headline": "Portugal vence seleção dos EUA por 2-0",
+        "source": "Record.pt",
+        "summary": "Seleção portuguesa de futebol impõe-se à dos Estados Unidos num resultado confortável.",
+        "impact": "🟢 POSITIVO — Bom resultado desportivo",
+        "details": "Amistoso internacional com Portugal a dominar o jogo."
+      },
+      {
+            "headline": "Pausa FIFA — Jogos de Seleções",
+            "source": "Record.pt",
+            "summary": "Período de pausa FIFA — jogos de seleções nacionais em curso. Portugal vs EUA (vitória 2-0).",
+            "impact": "🟢 POSITIVO — Bom resultado desportivo",
+            "details": "Sem jogos de campeonato durante a pausa FIFA internacional."
+      }
+    ],
+    "💰 ECONOMIA E MERCADOS": [
+      {
+        "headline": "Agricultores consideram apoios aos combustíveis 'muito aquém do necessário'",
+        "source": "DN/Lusa",
+        "summary": "Setor agrícola português declara que os apoios governamentais aos custos de combustível são insuficientes face à subida dos preços.",
+        "impact": "🟡 MÉDIO — Impacto no setor agrícola",
+        "details": "Preços de combustíveis afetam diretamente a cadeia alimentar."
+      },
+      {
+        "headline": "Especial IRS 2026 — O que muda este ano?",
+        "source": "Diário de Notícias",
+        "summary": "Informação detalhada sobre alterações na declaração de IRS para 2026 e prazos de entrega.",
+        "impact": "🔴 ALTO — Todos os portugueses afetados",
+        "details": "Novas regras de tributação, deduções e prazos de submissão."
+      }
+    ],
+    "🌍 CONTEXTO INTERNACIONAL AFETA PORTUGAL": [
+      {
+        "headline": "Novo presidente do Irão pediu aos EUA 'um cessar-fogo', anuncia Trump. Teerão fala em declaração 'falsa'",
+        "source": "DN Internacional",
+        "summary": "Declarações contraditórias sobre o pedido de cessar-fogo no conflito do Médio Oriente afeta preços de petróleo e energia em Portugal.",
+        "impact": "🔴 ALTO — Combustíveis e energia",
+        "details": "Portugal é importador de energia. Qualquer conflito no Médio Oriente afeta diretamente os preços na bomba."
+      },
+      {
+        "headline": "Starmer quer 'parceria mais estreita' com a UE — Reino Unido",
+        "source": "DN Internacional",
+        "summary": "O primeiro-ministro britânico sinaliza reaproximação com a Europa após anos de Brexit.",
+        "impact": "🟢 POSITIVO — Relações bilaterais",
+        "details": "Pode beneficiar a comunidade portuguesa no Reino Unido e relações comerciais."
+      }
+    ],
+    "⏰ ÚLTIMA HORA": [
+      {
+        "headline": "Preços da gasolina atingem 4 dólares por gallon nos EUA — impacto global",
+        "source": "CNBC",
+        "summary": "A subida dos preços energéticos nos EUA pode ter impacto nos mercados europeus.",
+        "impact": "🟡 MÉDIO — Pressão inflacionária",
+        "details": "Portugal pode ver aumento nos preços de combustíveis importados."
+      }
+    ]
+  }
+}

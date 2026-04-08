@@ -1,0 +1,3963 @@
+{
+  "openai": {
+    "success": true,
+    "results": [
+      {
+        "url": "https://openai.com/index/accelerating-the-next-phase-ai/",
+        "title": "OpenAI raises $122 billion to accelerate the next phase of AI",
+        "content": "March 31, 2026. Company. OpenAI raises $122 billion to accelerate the next phase of AI. Share. Today, we closed our latest funding round with $122 billion\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "openai.com",
+          "/index/accelerating-the-next-phase-ai/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "OpenAI Valued At $852 Billion After Latest Funding Round",
+        "content": "1 day ago \u00b7 Topline OpenAI raised $122 billion in its latest funding round, the artificial intelligence giant announced Tuesday, bringing its post-money valuation to $852 billion.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://www.forbes.com/sites/antoniopequenoiv/2026/03/31/openai-valuation-reaches-852-billion-after-massive-funding-round/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.forbes.com",
+          "/sites/antoniopequenoiv/2026/03/31/openai-valuation-reaches-852-billion-after-massive-funding-round/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.theguardian.com/technology/2026/mar/31/openai-raises-122-billion-ai-boom",
+        "title": "OpenAI, parent firm of ChatGPT, closes $122bn funding round amid ...",
+        "content": "The artificial intelligence firm received multibillion-dollar investments from companies including Amazon, Nvidia and SoftBank, which committed\u00a0...",
+        "publishedDate": "2026-03-31T22:48:26.371829",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.theguardian.com",
+          "/technology/2026/mar/31/openai-raises-122-billion-ai-boom",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:26"
+      },
+      {
+        "template": "default.html",
+        "title": "OpenAI Closes Record $122 Billion Funding Round at $852 ...",
+        "content": "22 hours ago \u00b7 A New Era of Capital: OpenAI Secures $122 Billion The landscape of artificial intelligence investment has been irrevocably altered this week. OpenAI, the organization at the forefront of the generative AI revolution, has officially closed a record-breaking $122 billion funding round.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://creati.ai/ai-news/2026-04-01/openai-closes-record-122-billion-funding-round-852-billion-valuation/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "creati.ai",
+          "/ai-news/2026-04-01/openai-closes-record-122-billion-funding-round-852-billion-valuation/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.cnbc.com/2026/03/31/openai-funding-round-ipo.html",
+        "title": "OpenAI closes funding round at an $852 billion valuation - CNBC",
+        "content": "OpenAI closes record-breaking $122 billion funding round as anticipation builds for IPO. Published Tue, Mar 31 20264:05 PM EDT Updated Tue, Mar 31 20265:08\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.cnbc.com",
+          "/2026/03/31/openai-funding-round-ipo.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "OpenAI valued at $1 trillion after record $157 billion ...",
+        "content": "22 hours ago \u00b7 San Francisco - OpenAI has completed a deal to raise US$122 billion (S$157 billion) from investors at an US$852 billion (S$1 trillion) valuation, in a record-breaking funding round that bolsters ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.straitstimes.com/business/companies-markets/openai-valued-at-1-trillion-after-completing-157-billion-funding-round",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.straitstimes.com",
+          "/business/companies-markets/openai-valued-at-1-trillion-after-completing-157-billion-funding-round",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.nytimes.com/2026/03/31/technology/openai-12-billion-latest-funding-round.html",
+        "title": "OpenAI Adds Another $12 Billion to Latest Funding Round - ny times",
+        "content": "The start-up has raised a total of $122 billion in a funding round that values the company at $730 billion.",
+        "publishedDate": "2026-03-31T22:48:26.371958",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.nytimes.com",
+          "/2026/03/31/technology/openai-12-billion-latest-funding-round.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:26"
+      },
+      {
+        "template": "default.html",
+        "title": "OpenAI raises $122 billion in boosted funding round - Tech Xplore",
+        "content": "22 hours ago \u00b7 OpenAI on Tuesday said that the startup was valued at $852 billion in a freshly closed funding round that raised $122 billion.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://techxplore.com/news/2026-04-openai-billion-boosted-funding.html",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "techxplore.com",
+          "/news/2026-04-openai-billion-boosted-funding.html",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.coindesk.com/tech/2026/04/01/openai-raises-a-record-usd122-billion-at-as-revenue-crosses-usd2-billion-per-month",
+        "title": "OpenAI raises a record $122 billion as revenue crosses ... - CoinDesk",
+        "content": "10 hours ago ... The funding round, anchored by Amazon, Nvidia, and SoftBank, is the largest private funding ... Updated Apr 1, 2026, 5:24 a.m. Published Apr 1, 2026, 5:15\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.coindesk.com",
+          "/tech/2026/04/01/openai-raises-a-record-usd122-billion-at-as-revenue-crosses-usd2-billion-per-month",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "OpenAI Valued at $852 Billion After Completing $122 Billion Round",
+        "content": "1 day ago \u00b7 OpenAI has completed a deal to raise $122 billion from investors at an $852 billion valuation, marking the company\u2019s largest funding round to date by far and bolstering its costly push for more ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.bloomberg.com/news/articles/2026-03-31/openai-valued-at-852-billion-after-completing-122-billion-round",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.bloomberg.com",
+          "/news/articles/2026-03-31/openai-valued-at-852-billion-after-completing-122-billion-round",
+          "",
+          "",
+          ""
+        ]
+      }
+    ],
+    "latency": 10.051035165786743
+  },
+  "markets": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "Stock market today: Dow, S&P 500, Nasdaq jump to start week ...",
+        "content": "Mar 16, 2026 \u00b7 The Dow Jones Industrial Average (^DJI) gained 0.8% while the S&P 500 (^GSPC) rallied 1%. The tech-heavy Nasdaq Composite (^IXIC) moved more than 1.2%.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-jump-to-start-week-oil-slides-amid-trumps-warning-to-allies-on-iran-200450413.html?fr=sycsrp_catchall",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "finance.yahoo.com",
+          "/news/live/stock-market-today-dow-sp-500-nasdaq-jump-to-start-week-oil-slides-amid-trumps-warning-to-allies-on-iran-200450413.html",
+          "",
+          "fr=sycsrp_catchall",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.cnbc.com/2026/03/31/stock-market-today-live-updates.html",
+        "title": "Stock market news for April 1, 2026 - CNBC",
+        "content": "2 hours ago ... The S&P 500 advanced 0.72% and closed at 6,575.32, and the Nasdaq Composite gained 1.16% and settled at 21,840.95. The Dow Jones Industrial\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.cnbc.com",
+          "/2026/03/31/stock-market-today-live-updates.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Stock Market Today: Dow, S&P 500, Nasdaq Stage Comeback; Oil ...",
+        "content": "Mar 9, 2026 \u00b7 Stock Market News From March 9, 2026: Dow, S&P 500, Nasdaq Stage Comeback; Oil Price Spikes on Iran War Fears; Chevron, Exxon, Micron, Nvidia, More Movers The S&P 500, Dow, and Nasdaq are all in ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://www.barrons.com/livecoverage/stock-market-news-today-030926",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.barrons.com",
+          "/livecoverage/stock-market-news-today-030926",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.investopedia.com/stock-market-today-dow-jones-s-and-p-500-04012026-11940240",
+        "title": "Stock Market Today: Major Indexes End Sharply Higher to Begin ...",
+        "content": "3 hours ago ... The tech-heavy Nasdaq, benchmark S&P 500, and blue-chip Dow Jones Industrial Average finished up a respective 1.2%, 0.7%, and 0.5%. Memory\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.investopedia.com",
+          "/stock-market-today-dow-jones-s-and-p-500-04012026-11940240",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Stock market today: Dow, S&P 500, Nasdaq slide as Iran war ...",
+        "content": "Mar 24, 2026 \u00b7 The Dow Jones Industrial Average (^DJI) fell 0.2%, while the S&P 500 (^GSPC) dropped 0.4%. The tech-heavy Nasdaq Composite (^IXIC) slid 0.8%, leading the way down amid a tumble in software stocks.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-slide-as-iran-war-drags-on-oil-rebounds-200113329.html?fr=sycsrp_catchall",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "finance.yahoo.com",
+          "/news/live/stock-market-today-dow-sp-500-nasdaq-slide-as-iran-war-drags-on-oil-rebounds-200113329.html",
+          "",
+          "fr=sycsrp_catchall",
+          ""
+        ]
+      },
+      {
+        "url": "https://finance.yahoo.com/news/live/stock-market-today-nasdaq-leads-sp-500-dow-higher-as-deescalation-talk-in-iran-extends-rally-133208579.html",
+        "title": "Stock market today: Nasdaq leads S&P 500, Dow higher as ...",
+        "content": "",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "finance.yahoo.com",
+          "/news/live/stock-market-today-nasdaq-leads-sp-500-dow-higher-as-deescalation-talk-in-iran-extends-rally-133208579.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "US Stock Indices Rally Smells Like Dead Cat Bounce - S&P 500 ...",
+        "content": "9 hours ago \u00b7 U.S. Stock Indices Rally Smells Like A Dead Cat Bounce - Outlook On S&P 500, Nasdaq 100, And Dow Jones Apr 01, 2026, 9:35 AM ET S&P 500 Futures (SPX), DJI, NDX MarketPulse by OANDA Group 685 ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://seekingalpha.com/article/4887813-us-stock-indices-rally-smells-like-dead-cat-bounce-outlook-on-sp500-nasdaq-100-dow-jones",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "seekingalpha.com",
+          "/article/4887813-us-stock-indices-rally-smells-like-dead-cat-bounce-outlook-on-sp500-nasdaq-100-dow-jones",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://tradingeconomics.com/united-states/stock-market",
+        "title": "United States Stock Market Index - Quote - Chart - Trading Economics",
+        "content": "The main stock market index of United States, the US500, rose to 6597 points on April 1, 2026, gaining 1.06% from the previous session ... Contracts for the S&P\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "tradingeconomics.com",
+          "/united-states/stock-market",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "nasdaq stock market rally today april 1 2026: Latest News ...",
+        "content": "1 day ago \u00b7 Dow jumps 1,100 points, S&P 500 and Nasdaq post biggest gains since May - why is the stock market up today and here's the latest update on Iran war that investors need to know Stock market up today reason explained: US stocks experienced their strongest surge in months on Tuesday, driven by cautious optimism surrounding potential de-escalation in the Iran conflict. Reports suggesting both ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://economictimes.indiatimes.com/topic/nasdaq-stock-market-rally-today-april-1-2026",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "economictimes.indiatimes.com",
+          "/topic/nasdaq-stock-market-rally-today-april-1-2026",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.schwab.com/learn/story/stock-market-update-open",
+        "title": "After Brutal March, Rally Builds on Hope for Peace - Charles Schwab",
+        "content": "Published as of: April 1, 2026, 9:13 a.m. ET. Listen to this update. Listen here or subscribe to the Schwab Market Update in your favorite podcast app. Current\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.schwab.com",
+          "/learn/story/stock-market-update-open",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general"
+      }
+    ],
+    "latency": 10.058505058288574
+  },
+  "artemis": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "Artemis II launch in Florida, countdown clock. When, where to ...",
+        "content": "Godspeed, Artemis II! All eyes are on NASA's massive Space Launch System spacecraft ahead of launch day, Wednesday, April 1, 2026, from Kennedy Space Center in Florida.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://www.msn.com/en-us/news/technology/artemis-ii-launch-in-florida-countdown-clock-when-where-to-see-liftoff/ar-AA1ZQ0hX",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.msn.com",
+          "/en-us/news/technology/artemis-ii-launch-in-florida-countdown-clock-when-where-to-see-liftoff/ar-AA1ZQ0hX",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.nasa.gov/blogs/missions/2026/04/01/live-artemis-ii-launch-day-updates/",
+        "title": "LIVE: Artemis II Launch Day Updates - NASA",
+        "content": "2 hours ago ... ... Launch Complex 39B, at NASA's Kennedy Space Center in Florida on Wednesday, April 1, 2026. The Artemis II test flight will take NASA\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.nasa.gov",
+          "/blogs/missions/2026/04/01/live-artemis-ii-launch-day-updates/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "How to Watch the Artemis II Launch: Launch Time, Channel ...",
+        "content": "1 day ago \u00b7 The countdown to the Artemis II launch has begun! When is Artemis II launching? What time is takeoff? Who are the astronauts? Here's how to watch the livestream.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://www.today.com/news/when-is-artemis-2-launch-time-nasa-how-watch-channel-rcna266021",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.today.com",
+          "/news/when-is-artemis-2-launch-time-nasa-how-watch-channel-rcna266021",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.nasa.gov/blogs/missions/2026/03/30/nasas-artemis-ii-launch-mission-countdown-begins/",
+        "title": "NASA's Artemis II Launch Mission Countdown Begins",
+        "content": "... launch time of 6:24 p.m. on Wednesday, April 1. Artemis ... NASA Teams Readying Artemis II Moon Rocket for Launch. March 31, 2026. NASA Logo\u00a0...",
+        "publishedDate": "2026-03-30T22:48:26.524676",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.nasa.gov",
+          "/blogs/missions/2026/03/30/nasas-artemis-ii-launch-mission-countdown-begins/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "pubdate": "2026-03-30 22:48:26"
+      },
+      {
+        "template": "default.html",
+        "title": "Artemis 2 LIVE: Rocket fueled, astronauts at pad for NASA's ... - Space",
+        "content": "3 hours ago ... Tuesday, April 1, 2026: See our latest news and updates on NASA's Artemis 2 moon mission's progress to launch on April 1.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          10,
+          7
+        ],
+        "score": 0.4857142857142857,
+        "category": "general",
+        "url": "https://www.space.com/news/live/artemis-2-nasa-moon-mission-launch-updates-april-1-2026",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.space.com",
+          "/news/live/artemis-2-nasa-moon-mission-launch-updates-april-1-2026",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Artemis II Launch Live Updates: NASA Resolves Technical ...",
+        "content": "24 minutes ago \u00b7 Live Updates: NASA Resolves Technical Issues as Artemis Astronauts Count Down to Moon Launch The crew of four \u2014 three Americans and one Canadian \u2014 are scheduled to launch at 6:24 p.m. Eastern ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.nytimes.com/live/2026/04/01/science/moon-nasa-artemis-launch",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.nytimes.com",
+          "/live/2026/04/01/science/moon-nasa-artemis-launch",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=2PiO495X8Sg",
+        "title": "Live: Artemis II views, countdown & launch - YouTube",
+        "content": "4 hours ago ... NASA is aiming to launch its historic lunar flyby mission, Artemis II, as soon as 6:24pm ET on April 1. In the event of a delay,\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.youtube.com",
+          "/watch",
+          "",
+          "v=2PiO495X8Sg",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Watch Live: Artemis II launches, beginning NASA's historic ...",
+        "content": "2 minutes ago \u00b7 What to know for NASA's Artemis II launch today: NASA's Artemis II mission is sending four astronauts on a nine-and-a-half-day journey around the moon and back.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://www.cbsnews.com/live-updates/nasa-artemis-ii-launch/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.cbsnews.com",
+          "/live-updates/nasa-artemis-ii-launch/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.skyatnightmagazine.com/news/artemis-ii-launch-countdown-april-2026",
+        "title": "The Artemis II launch countdown has begun. NASA says the ...",
+        "content": "NASA announces the launch countdown for the April 1st launch of Artemis II has begun, with final preparations now underway.",
+        "publishedDate": "2026-03-30T22:48:26.524865",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.skyatnightmagazine.com",
+          "/news/artemis-ii-launch-countdown-april-2026",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "pubdate": "2026-03-30 22:48:26"
+      },
+      {
+        "template": "default.html",
+        "title": "What time is NASA Artemis II launch in Florida? See countdown ...",
+        "content": "1 day ago \u00b7 NASA's Artemis II two-hour launch window opens at 6:24 pm ET Wednesday, April 1, 2026. See best places on Florida's Treasure Coast to watch liftoff.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.tcpalm.com/story/news/2026/03/31/what-time-nasa-artemis-launch-florida-countdown-clock/89403017007/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.tcpalm.com",
+          "/story/news/2026/03/31/what-time-nasa-artemis-launch-florida-countdown-clock/89403017007/",
+          "",
+          "",
+          ""
+        ]
+      }
+    ],
+    "latency": 10.062603950500488
+  },
+  "oracle": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "Oracle layoffs 2026: Thousands of jobs reportedly cut amid AI ...",
+        "content": "1 day ago \u00b7 Oracle has reportedly laid off workers worldwide as it ramps up AI spending. The exact number is unclear, but reports suggest thousands of jobs may be affected.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1,
+          8
+        ],
+        "score": 2.25,
+        "category": "general",
+        "url": "https://www.statesman.com/business/technology/article/oracle-email-layoffs-ai-cost-cuts-22161723.php",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.statesman.com",
+          "/business/technology/article/oracle-email-layoffs-ai-cost-cuts-22161723.php",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Oracle lays off thousands in latest sign of tough times for tech industry",
+        "content": "22 hours ago \u00b7 Oracle has benefited from the AI boom but investors have been wary about how much the company is spending. Oracle also competes against Amazon, Salesforce, Microsoft and others for business customers.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2,
+          2
+        ],
+        "score": 2.0,
+        "category": "general",
+        "url": "https://www.latimes.com/business/story/2026-04-01/oracle-lays-off-thousands-in-latest-sign-of-tough-times-for-tech-industry",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.latimes.com",
+          "/business/story/2026-04-01/oracle-lays-off-thousands-in-latest-sign-of-tough-times-for-tech-industry",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.cnbc.com/2026/03/31/oracle-layoffs-ai-spending.html",
+        "title": "Oracle cutting thousands in latest layoff round as AI spending booms",
+        "content": "Oracle is conducting a round of layoffs, two people familiar with the move told CNBC. The layoffs were in the thousands, the people said.",
+        "publishedDate": "2026-03-31T22:48:36.567106",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.cnbc.com",
+          "/2026/03/31/oracle-layoffs-ai-spending.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:36"
+      },
+      {
+        "template": "default.html",
+        "title": "[News] Oracle Reportedly Slashes Thousands of Jobs as AI ...",
+        "content": "22 hours ago \u00b7 As highlighted by Reuters, more than 70 tech companies have cut about 40,480 jobs so far this year, according to Layoffs.fyi, as firms increasingly shift resources toward AI, raising concerns about AI-driven disruptions among workers. (Photo credit: Oracle)",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.trendforce.com/news/2026/04/01/news-oracle-reportedly-slashes-thousands-of-jobs-as-ai-spending-surges/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.trendforce.com",
+          "/news/2026/04/01/news-oracle-reportedly-slashes-thousands-of-jobs-as-ai-spending-surges/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://gizmodo.com/oracle-lays-off-thousands-to-offset-ai-spending-2000740924",
+        "title": "Oracle Lays Off Thousands to Offset AI Spending - Gizmodo",
+        "content": "4 hours ago ... Over 500 Oracle workers are being laid off in Kansas City alone. ... Oracle laid off thousands of people on Tuesday in a move that was widely\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "gizmodo.com",
+          "/oracle-lays-off-thousands-to-offset-ai-spending-2000740924",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Oracle reportedly undergoing round of layoffs amid AI push",
+        "content": "1 day ago \u00b7 Oracle reportedly cut thousands of jobs on March 31 to cut costs as its AI projects grow. Oracle stock rose 5% after the news.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://www.usatoday.com/story/money/2026/03/31/oracle-layoffs-job-cuts/89402142007/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.usatoday.com",
+          "/story/money/2026/03/31/oracle-layoffs-job-cuts/89402142007/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.wsj.com/tech/oracle-lays-off-workers-amid-heavy-ai-investment-fff8cd82",
+        "title": "Oracle Lays Off Workers Amid Heavy AI Investment - WSJ",
+        "content": "The cloud-computing and database company is cutting jobs across its business lines, according to employees and several posts on LinkedIn. On\u00a0...",
+        "publishedDate": "2026-03-31T22:48:36.567347",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.wsj.com",
+          "/tech/oracle-lays-off-workers-amid-heavy-ai-investment-fff8cd82",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:36"
+      },
+      {
+        "template": "default.html",
+        "title": "Oracle layoffs 2026: US IT firm sent brutal 6 am emails ...",
+        "content": "22 hours ago \u00b7 Oracle layoffs 2026: US-IT firm Oracle has laid off thousands of employees and sent brutal 6 am emails on Tuesday, which stated that their jobs have been terminated. In India, 12,000 jobs have ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.msn.com/en-in/money/topstories/oracle-layoffs-2026-us-it-firm-sent-brutal-6-am-emails-12k-jobs-in-india-hit-another-round-likely-soon/ar-AA1ZSapl",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.msn.com",
+          "/en-in/money/topstories/oracle-layoffs-2026-us-it-firm-sent-brutal-6-am-emails-12k-jobs-in-india-hit-another-round-likely-soon/ar-AA1ZSapl",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.theregister.com/2026/03/31/oracle_cuts_jobs/",
+        "title": "Oracle cuts jobs across sales, engineering, security - The Register",
+        "content": "Oracle laid off thousands of employees on Tuesday as it ramps spending on AI infrastructure projects internally and with major technology\u00a0...",
+        "publishedDate": "2026-03-31T22:48:36.567421",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.theregister.com",
+          "/2026/03/31/oracle_cuts_jobs/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:36"
+      },
+      {
+        "template": "default.html",
+        "title": "Oracle begins layoffs affecting thousands, CNBC reports",
+        "content": "22 hours ago \u00b7 More than 70 tech companies have cut around 40,480 jobs so far in 2026 amid ramped-up AI spending. Read more at straitstimes.com. Read more at straitstimes.com.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          6
+        ],
+        "score": 0.16666666666666666,
+        "category": "general",
+        "url": "https://www.straitstimes.com/business/companies-markets/oracle-begins-cutting-thousands-of-jobs-as-tech-giant-ramps-up-ai-spending-cnbc-reports",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.straitstimes.com",
+          "/business/companies-markets/oracle-begins-cutting-thousands-of-jobs-as-tech-giant-ramps-up-ai-spending-cnbc-reports",
+          "",
+          "",
+          ""
+        ]
+      }
+    ],
+    "latency": 0.982795238494873
+  },
+  "spacex": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "SpaceX readies 'Project Apex' mega IPO with 21 banks - report",
+        "content": "17 hours ago \u00b7 SpaceX (SPACE) is assembling one of the largest underwriting syndicates in recent years as it prepares for an upcoming IPO dubbed \u201cProject Apex\u201d that has lined up at least 21 banks, Reuters ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1,
+          4
+        ],
+        "score": 2.5,
+        "category": "general",
+        "url": "https://seekingalpha.com/news/4571036-spacex-readies-project-apex-mega-ipo-with-21-banks---report",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "seekingalpha.com",
+          "/news/4571036-spacex-readies-project-apex-mega-ipo-with-21-banks---report",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.reuters.com/business/finance/spacex-lines-up-21-banks-mega-ipo-code-named-project-apex-2026-04-01/",
+        "title": "SpaceX lines up 21 banks for mega IPO, code-named project Apex",
+        "content": "23 hours ago ... SpaceX facilities in Starbase. SpaceX's facilities and employees in Starbase, Texas, U.S. March 25, 2026. REUTERS/Gabriel V. Cardenas/File\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.reuters.com",
+          "/business/finance/spacex-lines-up-21-banks-mega-ipo-code-named-project-apex-2026-04-01/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "SpaceX lines up 21 banks for IPO - MSN",
+        "content": "SpaceX has enlisted at least 21 banks, including Morgan Stanley, Goldman Sachs, JPMorgan, Bank of America, and Citigroup, for its record-setting IPO, internally dubbed Project Apex.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://www.msn.com/en-us/news/insight/spacex-lines-up-21-banks-for-ipo/gm-GM9231E81C",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.msn.com",
+          "/en-us/news/insight/spacex-lines-up-21-banks-for-ipo/gm-GM9231E81C",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.cnbc.com/2026/04/01/spacex-lines-up-21-banks-for-mega-ipo-code-named-project-apex.html",
+        "title": "SpaceX lines up 21 banks for mega IPO, code-named project Apex",
+        "content": "20 hours ago ... ... Reuters previously reported. The plan is subject to change and ... 2026 Versant Media, LLC. All Rights Reserved. A Versant Media\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.cnbc.com",
+          "/2026/04/01/spacex-lines-up-21-banks-for-mega-ipo-code-named-project-apex.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "SpaceX lines up 21 banks for record IPO - MSN",
+        "content": "SpaceX lines up 21 banks for record IPO SpaceX has assembled a 21-bank syndicate for its $1.75 trillion IPO, codenamed 'Project Apex,' set for as early as June 2026.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.msn.com/en-us/news/other/spacex-lines-up-21-banks-for-record-ipo/gm-GMD4FFA121",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.msn.com",
+          "/en-us/news/other/spacex-lines-up-21-banks-for-record-ipo/gm-GMD4FFA121",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.facebook.com/cnbc/videos/spacex-is-working-with-at-least-21-banks-on-its-blockbuster-initial-public-offer/1281723160134792/",
+        "title": "SpaceX is working with at least 21 banks on its blockbuster initial ...",
+        "content": "10 hours ago ... ... Reuters reported. cnb.cx/4cnjCZl. SpaceX is working with at least ... SpaceX lines up 21 banks for mega IPO, code-named project. 6h. Kai\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.facebook.com",
+          "/cnbc/videos/spacex-is-working-with-at-least-21-banks-on-its-blockbuster-initial-public-offer/1281723160134792/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "US Stock Market | SpaceX lines up 21 banks for mega IPO, code ...",
+        "content": "20 hours ago \u00b7 SpaceX is preparing for a massive initial public offering. The rocket company is collaborating with over twenty banks for its upcoming stock market debut. This listing, internally known as Project Apex, is anticipated in June. Experts estimate SpaceX's valuation to reach a staggering $1.75 trillion. Major financial institutions are leading the underwriting process for this significant event.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/us-stock-market-spacex-lines-up-21-banks-for-mega-ipo-code-named-project-apex/articleshow/129939314.cms",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "economictimes.indiatimes.com",
+          "/markets/us-stocks/news/us-stock-market-spacex-lines-up-21-banks-for-mega-ipo-code-named-project-apex/articleshow/129939314.cms",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "SpaceX lines up 21 banks for mega IPO, code-named project Apex",
+        "content": "22 hours ago \u00b7 SPACEX is working with at least 21 banks on its blockbuster initial public offering, people familiar with the matter said on Tuesday, one of the largest underwriting syndicates assembled in recent years. The listing, internally codenamed Project Apex, is expected to be among the most closely watched stock market debuts on Wall Street.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.businesstimes.com.sg/companies-markets/telcos-media-tech/spacex-lines-21-banks-mega-ipo-code-named-project-apex",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.businesstimes.com.sg",
+          "/companies-markets/telcos-media-tech/spacex-lines-21-banks-mega-ipo-code-named-project-apex",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.linkedin.com/posts/dawnkopecki_exclusive-spacex-lines-up-21-banks-for-mega-activity-7445065158193750016-W0po",
+        "title": "SpaceX lines up 21 banks for mega IPO, code-named project Apex",
+        "content": "12 hours ago ... SpaceX has given its IPO a secret code name for the banks working on the deal: Project Apex. Echo Jing Wang got a hold of the full banking\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.linkedin.com",
+          "/posts/dawnkopecki_exclusive-spacex-lines-up-21-banks-for-mega-activity-7445065158193750016-W0po",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "SpaceX lines up 21 banks for IPO - MSN",
+        "content": "SpaceX has enlisted at least 21 banks, including Morgan Stanley, Goldman Sachs, JPMorgan, Bank of America, and Citigroup, for its record-setting IPO, internally dubbed Project Apex.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          6
+        ],
+        "score": 0.16666666666666666,
+        "category": "general",
+        "url": "https://www.msn.com/en-us/news/other/spacex-lines-up-21-banks-for-ipo/gm-GM9231E81C",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.msn.com",
+          "/en-us/news/other/spacex-lines-up-21-banks-for-ipo/gm-GM9231E81C",
+          "",
+          "",
+          ""
+        ]
+      }
+    ],
+    "latency": 11.36001205444336
+  },
+  "oil_gas": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "Oil price jumps to $118 a barrel after Trump comments; cost ...",
+        "content": "1 day ago \u00b7 Oil price tops $117 a barrel Brent crude, the international benchmark for oil prices, is now up 4% to $117.50 a barrel after Donald Trump told allies to buy US jet fuel or \u201ctake it\u201d from the ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://www.theguardian.com/business/live/2026/mar/31/uk-house-prices-economic-growth-iran-outlook-business-news",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.theguardian.com",
+          "/business/live/2026/mar/31/uk-house-prices-economic-growth-iran-outlook-business-news",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.cnbc.com/2026/03/31/gas-oil-diesel-price-iran-war.html",
+        "title": "U.S. gas prices hit $4 per gallon as fuel prices surge due to Iran war",
+        "content": "U.S. crude oil is heading to its biggest gain in a single month since 2020. The average monthly gas price in March is expected to be 25\u00a0...",
+        "publishedDate": "2026-03-30T22:48:37.167213",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.cnbc.com",
+          "/2026/03/31/gas-oil-diesel-price-iran-war.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "pubdate": "2026-03-30 22:48:37"
+      },
+      {
+        "template": "default.html",
+        "title": "How High Could Gas Prices Go? What to Know About the Iran War's ...",
+        "content": "1 day ago \u00b7 In its March 2026 short-term outlook, the Energy Information Administration projected Brent crude oil prices would remain above $95 per barrel for the next two months, before falling below $80 in ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          8,
+          5
+        ],
+        "score": 0.65,
+        "category": "general",
+        "url": "https://time.com/article/2026/03/31/gas-prices-us-iran-war/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "time.com",
+          "/article/2026/03/31/gas-prices-us-iran-war/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Oil Prices Post Biggest Monthly Surge in History | OilPrice.com",
+        "content": "1 day ago \u00b7 Oil markets are closing March on a historic surge, with prices posting their biggest monthly gain ever after an unprecedented global supply shock.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          9,
+          6
+        ],
+        "score": 0.5555555555555556,
+        "category": "general",
+        "url": "https://oilprice.com/Energy/Crude-Oil/Oil-Prices-Post-Biggest-Monthly-Surge-in-History.html",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "oilprice.com",
+          "/Energy/Crude-Oil/Oil-Prices-Post-Biggest-Monthly-Surge-in-History.html",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Crude Oil Price Today | Brent OIL PRICE CHART | OIL PRICE PER ...",
+        "content": "Oil Price: Get all information on the Price of Oil including News, Charts and Realtime Quotes.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://markets.businessinsider.com/commodities/oil-price",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "markets.businessinsider.com",
+          "/commodities/oil-price",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.theguardian.com/business/2026/mar/31/us-average-fuel-prices-iran-war",
+        "title": "US average fuel price passes $4 a gallon for first time in four years ...",
+        "content": "Oil prices edged down slightly by the end of the day. Brent crude, the global benchmark, was priced at $104.30 a barrel by Tuesday afternoon\u00a0...",
+        "publishedDate": "2026-03-30T22:48:37.167320",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.theguardian.com",
+          "/business/2026/mar/31/us-average-fuel-prices-iran-war",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "pubdate": "2026-03-30 22:48:37"
+      },
+      {
+        "template": "default.html",
+        "title": "Oil passed $100 a barrel, with prices expected to keep rising",
+        "content": "2 days ago \u00b7 The price of a barrel of crude oil tipped past the $100 mark this weekend, with Brent crude edging closer to $115. With the arrival of triple digit prices, it\u2019s a good time to take stock of ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          10,
+          7
+        ],
+        "score": 0.4857142857142857,
+        "category": "general",
+        "url": "https://www.marketplace.org/story/2026/03/30/oil-passed-100-a-barrel-prices-are-expected-to-keep-rising",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.marketplace.org",
+          "/story/2026/03/30/oil-passed-100-a-barrel-prices-are-expected-to-keep-rising",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Current price of oil as of March 23, 2026 - Fortune",
+        "content": "Mar 23, 2026 \u00b7 Still, the crude oil aspect affects the final price most dramatically, as it typically accounts for more than half the price per gallon. When oil prices spike, so do gas prices.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://fortune.com/article/price-of-oil-03-23-2026/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "fortune.com",
+          "/article/price-of-oil-03-23-2026/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.axios.com/2026/04/01/crude-oil-costs-explain-convert-gas-prices",
+        "title": "Here's what rising crude oil costs mean for you and your gas prices",
+        "content": "5 hours ago ... When energy observers wondered when U.S. gas prices would hit $4 due to the Iran war, they looked at the cost of crude oil.",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.axios.com",
+          "/2026/04/01/crude-oil-costs-explain-convert-gas-prices",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Gas prices top $4 a gallon as Iran war continues to drive up ...",
+        "content": "1 day ago \u00b7 Regular unleaded gas averaged $4.032 a gallon nationwide in the afternoon of March 31, up from $2.98 in February, according to GasBuddy's real-time tracker. Brent crude, the global oil benchmark ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://www.usatoday.com/story/money/2026/03/31/us-gas-prices-iran-war/89399170007/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.usatoday.com",
+          "/story/money/2026/03/31/us-gas-prices-iran-war/89399170007/",
+          "",
+          "",
+          ""
+        ]
+      }
+    ],
+    "latency": 1.6320056915283203
+  },
+  "portugal": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "Lei da Nacionalidade: O PSD vai telefonar ao PS? - Listen Notes",
+        "content": "1 day ago \u00b7 O PS prop\u00f4s tr\u00eas conjuntos de altera\u00e7\u00f5es ao decreto da Lei da Nacionalidade, que ser\u00e1 reapreciado nesta quarta-feira, 1 de Abril, no Parlamento. Nesta manh\u00e3, na Assembleia da Rep\u00fablica, Pedro Delgado Alves, vice-presidente do grupo parlamentar do PS, anunciou ainda que a bancada socialista votar\u00e1 contra o decreto que altera o C\u00f3digo ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://www.listennotes.com/podcasts/soundbite/lei-da-nacionalidade-o-psd-sOWq1ZkPKa0/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.listennotes.com",
+          "/podcasts/soundbite/lei-da-nacionalidade-o-psd-sOWq1ZkPKa0/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.theportugalnews.com/pt/noticias/2026-03-31/apelo-a-moderacao-da-lei-da-nacionalidade-portuguesa/998827",
+        "title": "Apelo \u00e0 modera\u00e7\u00e3o da lei da nacionalidade portuguesa",
+        "content": "Credits: Lusa;. Em confer\u00eancia de imprensa no parlamento, o deputado Pedro Delgado Alves apresentou as propostas do PS para a reaprecia\u00e7\u00e3o da\u00a0...",
+        "publishedDate": "2026-03-31T22:48:37.490599",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.theportugalnews.com",
+          "/pt/noticias/2026-03-31/apelo-a-moderacao-da-lei-da-nacionalidade-portuguesa/998827",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:37"
+      },
+      {
+        "template": "default.html",
+        "title": "A nossa nacionalidade n\u00e3o se vende! Se o PSD quer continuar ...",
+        "content": "22 hours ago \u00b7 A nossa nacionalidade n\u00e3o se vende! Se o PSD quer continuar de m\u00e3os dadas com o PS, ent\u00e3o continuar\u00e1 a trair a nossa p\u00e1tria. @pedropinto.chega",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://www.facebook.com/reel/1688791475439511/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.facebook.com",
+          "/reel/1688791475439511/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://sicnoticias.pt/pais/politica/2026-04-01-video-lei-da-nacionalidade-aprovada-no-parlamento-com-votos-a-favor-do-psd-chega-il-e-cds-pp-81e78980",
+        "title": "Lei da Nacionalidade aprovada com votos a favor do PSD, Chega ...",
+        "content": "4 hours ago ... Depois de o Tribunal Constitucional (TC) ter chumbado normas da primeira vers\u00e3o em dezembro passado, esta quarta-feira, o diploma da Lei da\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "sicnoticias.pt",
+          "/pais/politica/2026-04-01-video-lei-da-nacionalidade-aprovada-no-parlamento-com-votos-a-favor-do-psd-chega-il-e-cds-pp-81e78980",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "\u09aa\u09b0\u09cd\u09a4\u09c1\u0997\u09be\u09b2\u09c7\u09b0 \u099c\u09be\u09a4\u09c0\u09df\u09a4\u09be \u0986\u0987\u09a8\u09c7\u09b0 \u0986\u09aa\u09a1\u09c7\u099f! #hashtagjhuma #Portugal # ...",
+        "content": "\u09aa\u09b0\u09cd\u09a4\u09c1\u0997\u09be\u09b2\u09c7\u09b0\ud83c\uddf5\ud83c\uddf9 \u099c\u09be\u09a4\u09c0\u09df\u09a4\u09be \u0986\u0987\u09a8\u09c7\u09b0 \u0986\u09aa\u09a1\u09c7\u099f!#hashtagjhuma#Portugal#Lei#Atualidade#Imigracao#Immigration#Immigrationpolicy#republicaportuguesa#Governce#President#constru\u00e7\u00e3o#PSD#CHEGA#ps#Pol\u00edtica#law Sadik Ahmed and 192 others \udb80\udf78 193 \udb82\udd26 2 Last viewed on: Apr 1, 2026",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.facebook.com/reel/1991201018099919/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.facebook.com",
+          "/reel/1991201018099919/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://eco.sapo.pt/2026/04/01/lei-da-nacionalidade-psd-anuncia-acordo-com-o-chega/",
+        "title": "PSD anuncia acordo com o Chega na Lei da Nacionalidade - ECO",
+        "content": "3 hours ago ... Numa ced\u00eancia ao Chega, o PSD reduz os prazos de pena de pris\u00e3o para perda da nacionalidade e como fator impeditivo para obten\u00e7\u00e3o da\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "eco.sapo.pt",
+          "/2026/04/01/lei-da-nacionalidade-psd-anuncia-acordo-com-o-chega/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "RTP Not\u00edcias",
+        "content": "Lei da Nacionalidade aprovada com votos favor\u00e1veis de PSD, Chega, CDS e IL A nova Lei da Nacionalidade foi aprovada com 152 votos a favor, 64 votos contra e uma absten\u00e7\u00e3o.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://www.rtp.pt/noticias/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.rtp.pt",
+          "/noticias/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.rtp.pt/noticias/politica/lei-da-nacionalidade-aprovada-com-votos-favoraveis-de-psd-chega-cds-e-il_n1730906",
+        "title": "Lei da Nacionalidade aprovada com votos favor\u00e1veis de PSD ... - RTP",
+        "content": "3 hours ago ... A nova Lei da Nacionalidade foi aprovada com 152 votos a favor, 64 votos contra e uma absten\u00e7\u00e3o. O Parlamento aprovou as altera\u00e7\u00f5es ao\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.rtp.pt",
+          "/noticias/politica/lei-da-nacionalidade-aprovada-com-votos-favoraveis-de-psd-chega-cds-e-il_n1730906",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Jornal de Not\u00edcias",
+        "content": "O Jornal de Not\u00edcias \u00e9 um t\u00edtulo incontorn\u00e1vel no panorama da imprensa portuguesa. No Jornal de Not\u00edcias online acompanhe as not\u00edcias, os v\u00eddeos, os \u00e1udios e as infografias de toda a ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.jn.pt/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.jn.pt",
+          "/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.theportugalnews.com/br/noticias/2026-03-31/apela-a-moderacao-da-lei-da-nacionalidade-de-portugal/998832",
+        "title": "Apela \u00e0 modera\u00e7\u00e3o da Lei da Nacionalidade de Portugal",
+        "content": "Em confer\u00eancia de imprensa no parlamento, o deputado Pedro Delgado Alves apresentou as propostas do PS para reconsiderar a lei da\u00a0...",
+        "publishedDate": "2026-03-31T22:48:37.490947",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.theportugalnews.com",
+          "/br/noticias/2026-03-31/apela-a-moderacao-da-lei-da-nacionalidade-de-portugal/998832",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:37"
+      }
+    ],
+    "latency": 1.9263620376586914
+  },
+  "cyber": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "North Korea-Linked Hack Hit Axios Software That Powers Online ...",
+        "content": "22 hours ago \u00b7 Hackers linked to North Korea breached behind-the-scenes software that runs many common online functions in an effort to steal login information that could enable further cyber operations, Google ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://www.claimsjournal.com/news/national/2026/04/01/336631.htm",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.claimsjournal.com",
+          "/news/national/2026/04/01/336631.htm",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.reuters.com/sustainability/boards-policy-regulation/north-korea-linked-hack-hits-largely-invisible-software-that-powers-online-2026-03-31/",
+        "title": "North Korea-linked hack hits largely invisible software that powers ...",
+        "content": "The cyber researchers described the breach as a supply chain attack, in which \u200bthe hack could enable attacks on downstream entities. \u201cYou don't\u00a0...",
+        "publishedDate": "2026-03-31T22:48:37.894359",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.reuters.com",
+          "/sustainability/boards-policy-regulation/north-korea-linked-hack-hits-largely-invisible-software-that-powers-online-2026-03-31/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:37"
+      },
+      {
+        "template": "default.html",
+        "title": "Cybersecurity News, Insights and Analysis | SecurityWeek",
+        "content": "Mar 18, 2026 \u00b7 Axios NPM Package Breached in North Korean Supply Chain Attack A long-lived NPM access token was used to bypass the GitHub Actions OIDC-based CI/CD publishing workflow and push backdoored package versions.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://www.securityweek.com/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.securityweek.com",
+          "/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.securityweek.com/axios-npm-package-breached-in-north-korean-supply-chain-attack/",
+        "title": "Axios NPM Package Breached in North Korean Supply Chain Attack",
+        "content": "14 hours ago ... On March 31, 2026, just after midnight, two backdoored Axios versions were published to the NPM registry to automatically execute a payload\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.securityweek.com",
+          "/axios-npm-package-breached-in-north-korean-supply-chain-attack/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Axios npm Packages Compromised in Supply Chain Attack",
+        "content": "1 day ago \u00b7 Google has linked the compromise of the widely used Axios npm package to a financially driven threat cluster believed to be tied to North Korea, tracked internally as UNC1069. John Hultquist of Google\u2019s Threat Intelligence Group (GTIG) said the activity aligns with patterns previously observed from this group.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://thecybersecguru.com/news/axios-npm-package-compromised-supply-chain-attack/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "thecybersecguru.com",
+          "/news/axios-npm-package-compromised-supply-chain-attack/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.bloomberg.com/news/articles/2026-03-31/axios-software-tool-used-by-millions-compromised-in-hack",
+        "title": "North Korean Hackers Suspected in Axios Software Tool Breach",
+        "content": "... security researcher at the cybersecurity firm Huntress. \u201cThe scope ... Robertson and Hammond each said they'd seen an impact from the attack by\u00a0...",
+        "publishedDate": "2026-03-31T22:48:37.894742",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.bloomberg.com",
+          "/news/articles/2026-03-31/axios-software-tool-used-by-millions-compromised-in-hack",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "pubdate": "2026-03-31 22:48:37"
+      },
+      {
+        "template": "default.html",
+        "title": "Lazarus Group Exposes Vulnerabilities in Axios npm Supply ...",
+        "content": "22 hours ago \u00b7 Lazarus Group Exposes Vulnerabilities in Axios npm Supply Chain Attack On March 31, 2026, a significant security breach involving the Axios npm supply chain was uncovered, revealing that malicious packages had infiltrated one of JavaScript\u2019s most widely utilized libraries. This incident has been attributed to North Korea\u2019s Lazarus Group, a notorious cybercriminal organization. The ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://cyberwarriorsmiddleeast.com/lazarus-behind-axios-npm-supply-chain-attack/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "cyberwarriorsmiddleeast.com",
+          "/lazarus-behind-axios-npm-supply-chain-attack/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.wsj.com/articles/the-axios-hack-what-to-know-3068d34e?mod=pro_feat3_cs_pos1",
+        "title": "The Axios Hack: What to Know - WSJ",
+        "content": "2 hours ago ... What happened in the Axios attack? Hackers gained access to a ... North Korea. What is the fix? Advertisement. In past similar attacks\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.wsj.com",
+          "/articles/the-axios-hack-what-to-know-3068d34e",
+          "",
+          "mod=pro_feat3_cs_pos1",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "North Korea-linked hackers breach popular software to steal ...",
+        "content": "22 hours ago \u00b7 Hackers linked to North Korea breached behind-the-scenes software that runs many common online functions in an effort to steal login information that could enable further cyber operations, Google said on Tuesday. The hackers targeted Axios, a program that connects apps and \u200cweb services, by adding their own malicious software to an update issued Monday, Google and independent cyber ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://english.aaj.tv/news/330456239/north-korea-linked-hackers-breach-popular-software-to-steal-credentials",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "english.aaj.tv",
+          "/news/330456239/north-korea-linked-hackers-breach-popular-software-to-steal-credentials",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://mlq.ai/news/hasbro-confirms-cyberattack-with-weeks-long-recovery-expected/",
+        "title": "Hasbro Confirms Cyberattack with Weeks-Long Recovery Expected",
+        "content": "5 hours ago ... Incident Detection and Response. Hasbro identified the cybersecurity breach on March 28, 2026 ... attack or whether customer data was\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "mlq.ai",
+          "/news/hasbro-confirms-cyberattack-with-weeks-long-recovery-expected/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general"
+      }
+    ],
+    "latency": 1.3306431770324707
+  },
+  "crypto": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "How will Bitcoin price perform in April 2026? - Capa Learning",
+        "content": "22 hours ago \u00b7 Overall, Bitcoin\u2019s performance in April will likely be influenced by a combination of macroeconomic factors, institutional flows, and market dynamics. Traders are advised to remain vigilant and adapt to changing conditions to navigate the evolving landscape of the cryptocurrency market.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://capalearning.com/2026/04/01/how-will-bitcoin-price-perform-in-april-2026/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "capalearning.com",
+          "/2026/04/01/how-will-bitcoin-price-perform-in-april-2026/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://robinhood.com/us/en/prediction-markets/crypto/events/bitcoin-price-on-apr-1-2026-at-2pm-edt-apr-01-2026/",
+        "title": "Bitcoin price on Apr 1, 2026 at 2pm EDT - Crypto - Robinhood",
+        "content": "1 hour ago ... What will the price of Bitcoin be On Apr 1, 2026 at 2pm EDT? The price used to determine this market is based on CF Benchmarks'\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "robinhood.com",
+          "/us/en/prediction-markets/crypto/events/bitcoin-price-on-apr-1-2026-at-2pm-edt-apr-01-2026/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Current price of Bitcoin for April 1, 2026 - Fortune",
+        "content": "10 hours ago \u00b7 What is Bitcoin? Bitcoin was the world\u2019s first cryptocurrency and continues to be the most prominent digital coin on the market. Its market cap is about $1.33 trillion, placing it well ahead of ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://fortune.com/article/price-of-bitcoin-04-01-2026/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "fortune.com",
+          "/article/price-of-bitcoin-04-01-2026/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.binance.com/en/square/post/307142932992609",
+        "title": "Price forecast for Bitcoin in April 2026 - Binance",
+        "content": "The price of Bitcoin (BTC) is at a crossroads as it enters April 2026 ... To read the latest cryptocurrency market analysis from BeInCrypto, click\u00a0...",
+        "publishedDate": "2026-03-30T22:48:38.262913",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.binance.com",
+          "/en/square/post/307142932992609",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "pubdate": "2026-03-30 22:48:38"
+      },
+      {
+        "template": "default.html",
+        "title": "Bitcoin price news: BTC in deep bear market, could crash by ...",
+        "content": "Mar 7, 2026 \u00b7 Bitcoin could crash by another 30% as four-year cycle gains strength, investment firm says Bitcoin is now firmly in a deep bear market and could fall another 30% in 2026, firm said.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.coindesk.com/markets/2026/03/07/bitcoin-could-crash-another-30-as-four-year-cycle-gains-strength-investment-firm-says",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.coindesk.com",
+          "/markets/2026/03/07/bitcoin-could-crash-another-30-as-four-year-cycle-gains-strength-investment-firm-says",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://finance.yahoo.com/quote/BTC-USD/history/",
+        "title": "Bitcoin USD Price (BTC-USD) - Yahoo Finance",
+        "content": "2 hours ago ...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "finance.yahoo.com",
+          "/quote/BTC-USD/history/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "March 2026 FOMC: BTC, ETH Price Impact and Fed Outlook ...",
+        "content": "Mar 18, 2026 \u00b7 FOMC dot plot: BTC holds $70K level as Fed sees zero-to-one rate cut in 2026 The Fed leaves rates unchanged at 3.5% to 3.75% while upgrading inflation forecasts. Analyze the crypto market reaction and the rise in ETH staking ETF interest.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://crypto.com/us/market-updates/march-2026-fomc-recap-btc-eth-price",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "crypto.com",
+          "/us/market-updates/march-2026-fomc-recap-btc-eth-price",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.capitalstreetfx.com/crypto-market-analysis-april-1-2026/",
+        "title": "Capital Street FX \u2014 Crypto Market Analysis | April 1, 2026 - CSFX",
+        "content": "9 hours ago ... Capital Street FX crypto analysis April 1 2026: BTC at $68851 below $69171 Fib resistance. ETH at $2135 tests 0.236 support. XRP at $1.3597.",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.capitalstreetfx.com",
+          "/crypto-market-analysis-april-1-2026/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "\u2018It\u2019s Happening\u2019\u2014Elon Musk Sparks Wild Bitcoin Price ...",
+        "content": "1 day ago \u00b7 The bitcoin price has dropped to under $70,000 per bitcoin, down from $126,000 per bitcoin in October, with a crypto market crash wiping $2 trillion from the combined market that BlackRock has ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.forbes.com/sites/digital-assets/2026/03/31/trump-declares-crypto-revolution-issues-a-powerful-surprise-prediction-as-the-bitcoin-price-swings/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.forbes.com",
+          "/sites/digital-assets/2026/03/31/trump-declares-crypto-revolution-issues-a-powerful-surprise-prediction-as-the-bitcoin-price-swings/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://beincrypto.com/bitcoin-price-prediction-april-2026/",
+        "title": "Bitcoin Price Prediction For April 2026 - BeInCrypto",
+        "content": "Bitcoin (BTC) price is entering April 2026 at a crossroads. March is closing with a barely positive 0.19% gain, a sharp fade from the over 5%\u00a0...",
+        "publishedDate": "2026-03-29T22:48:38.263177",
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "beincrypto.com",
+          "/bitcoin-price-prediction-april-2026/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "pubdate": "2026-03-29 22:48:38"
+      }
+    ],
+    "latency": 1.3697891235351562
+  },
+  "italy_worldcup": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "FIFA World Cup 2026 | Four-time winners Italy fail to qualify ...",
+        "content": "21 hours ago \u00b7 Italy failed to qualify for a third consecutive World Cup as a play-off defeat on penalties to Bosnia and Hercegovina on Tuesday meant the Azzurri will not go to this year's tournament in North America, while Turkey, the Czech Republic and Sweden all secured their places at the finals.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://www.wionews.com/sports/fifa-world-cup-2026-four-time-winners-italy-fail-to-qualify-third-consecutive-time-bosnia-czechs-turkey-and-sweden-through-1775004807303",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.wionews.com",
+          "/sports/fifa-world-cup-2026-four-time-winners-italy-fail-to-qualify-third-consecutive-time-bosnia-czechs-turkey-and-sweden-through-1775004807303",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.skysports.com/football/news/23827/13526666/italy-miss-out-on-third-world-cup-in-a-row-after-penalties-defeat-to-bosnia-and-herzegovina-in-play-off",
+        "title": "Italy miss out on third World Cup in a row after penalties defeat to ...",
+        "content": "11 hours ago ... Newcastles Sandro Tonali was the only Italian player to score from the spot as Bosnia and Herzegovina found the net with all four of their\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.skysports.com",
+          "/football/news/23827/13526666/italy-miss-out-on-third-world-cup-in-a-row-after-penalties-defeat-to-bosnia-and-herzegovina-in-play-off",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Decisive day for struggling four-time champion Italy in World ...",
+        "content": "1 day ago \u00b7 Italy players react during a penalty shootout during the World Cup qualifying playoff final soccer match between Bosnia and Italy in Zenica, Bosnia, Tuesday, March 31, 2026.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://www.wsls.com/sports/2026/03/31/decisive-day-for-struggling-four-time-champion-italy-in-world-cup-playoff-at-bosnia/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.wsls.com",
+          "/sports/2026/03/31/decisive-day-for-struggling-four-time-champion-italy-in-world-cup-playoff-at-bosnia/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.nytimes.com/athletic/live-blogs/italy-vs-bosnia-and-herzegovina-live-updates-world-cup-2026-play-off-finals-score-result/zwVHiCYlX2xh/KkOvvPOnfwIC/",
+        "title": "Italy fail to qualify for World Cup 2026 after loss to Bosnia on penalties",
+        "content": "23 hours ago ... Italy fail to qualify for World Cup 2026 after loss to Bosnia on penalties: Live updates and reaction from European play-off finals \u00b7 Italy fail\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.nytimes.com",
+          "/athletic/live-blogs/italy-vs-bosnia-and-herzegovina-live-updates-world-cup-2026-play-off-finals-score-result/zwVHiCYlX2xh/KkOvvPOnfwIC/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Italy-Bosnia World Cup playoff going to extra time at 1-1 ...",
+        "content": "22 hours ago \u00b7 Bosnia Italy WCup Soccer Italy players react during a penalty shootout during the World Cup qualifying playoff final soccer match between Bosnia and Italy in Zenica, Bosnia, Tuesday, March 31, 2026.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.local10.com/sports/2026/03/31/italy-is-out-again-the-4-time-champion-misses-3rd-straight-world-cup-with-shootout-loss-in-bosnia/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.local10.com",
+          "/sports/2026/03/31/italy-is-out-again-the-4-time-champion-misses-3rd-straight-world-cup-with-shootout-loss-in-bosnia/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.aljazeera.com/sports/2026/4/1/the-world-cup-curse-outcry-as-italy-miss-out-for-third-time-in-a-row",
+        "title": "'The World Cup curse': Outcry as Italy miss out for third time in a row",
+        "content": "3 hours ago ... After the match was level at 1-1 after extra time, Bosnia and Herzegovina beat Italy 4-1 on penalties to reach finals. Published On 31 Mar 2026\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.aljazeera.com",
+          "/sports/2026/4/1/the-world-cup-curse-outcry-as-italy-miss-out-for-third-time-in-a-row",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Italy fails to qualify for the 2026 FIFA World Cup. Again ...",
+        "content": "1 day ago \u00b7 Italy lost to Bosnia and Herzegovina 1-1 (4-1 penalties) in its qualifier matchup on Tuesday, missing out on the 2026 FIFA World Cup.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://www.nbcnewyork.com/news/sports/soccer/italy-fails-qualify-2026-fifa-world-cup/6483931/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.nbcnewyork.com",
+          "/news/sports/soccer/italy-fails-qualify-2026-fifa-world-cup/6483931/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.facebook.com/cgtneuropeofficial/posts/italy-have-missed-out-on-qualification-for-the-fifa-world-cup-for-a-third-time-i/1500715432088997/",
+        "title": "Italy have missed out on qualification for the FIFA World Cup for a ...",
+        "content": "10 hours ago ... Italy have missed out on qualification for the FIFA World Cup for a third time in a row, after they were knocked out by Bosnia and\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.facebook.com",
+          "/cgtneuropeofficial/posts/italy-have-missed-out-on-qualification-for-the-fifa-world-cup-for-a-third-time-i/1500715432088997/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Italy miss out on World Cup for third straight time after ...",
+        "content": "1 day ago \u00b7 Four-time champions Italy had lost out at the playoff stage to miss the last two World Cups, and their last qualification in 2014 coincided with Bosnia's only previous \u200cappearance.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.reuters.com/sports/soccer/italy-fail-reach-third-straight-world-cup-after-penalty-shootout-loss-bosnia-2026-03-31/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.reuters.com",
+          "/sports/soccer/italy-fail-reach-third-straight-world-cup-after-penalty-shootout-loss-bosnia-2026-03-31/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.turkishminute.com/2026/04/01/italy-to-miss-world-cup-again-as-turkey-bosnia-czech-republic-and-sweden-qualify/",
+        "title": "Italy to miss World Cup again as Turkey, Bosnia, Czech Republic ...",
+        "content": "17 hours ago ... Italy failed to qualify for a third straight World Cup after losing to Bosnia and Herzegovina on penalties Tuesday in a European playoff,\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.turkishminute.com",
+          "/2026/04/01/italy-to-miss-world-cup-again-as-turkey-bosnia-czech-republic-and-sweden-qualify/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general"
+      }
+    ],
+    "latency": 1.4554522037506104
+  },
+  "baidu": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "'System malfunction' causes robotaxis to stall in the middle of the ...",
+        "content": "5 hours ago \u00b7 A \u201csystem malfunction\u201d has caused several self-driving robotaxis to stall in the middle of the road in China, police have confirmed, after distressed riders found themselves stranded for hours.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          10,
+          1
+        ],
+        "score": 2.2,
+        "category": "general",
+        "url": "https://www.theguardian.com/technology/2026/apr/01/system-malfunction-causes-robotaxis-to-stall-in-the-middle-of-the-road-in-china",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.theguardian.com",
+          "/technology/2026/apr/01/system-malfunction-causes-robotaxis-to-stall-in-the-middle-of-the-road-in-china",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Baidu robotaxi malfunction causes disruption on the streets ...",
+        "content": "22 hours ago \u00b7 Wuhan is home to the largest fleet of Apollo Go robotaxis, with over 1,000 Level 4 (L4), or fully driverless, vehicles in operation in the city. Baidu operates in numerous cities across the world, predominantly in China, and claims to have 300 million autonomous kilometres under its belt.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://movemnt.net/baidu-robotaxi-malfunction-causes-disruption-on-the-streets-of-wuhan/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "movemnt.net",
+          "/baidu-robotaxi-malfunction-causes-disruption-on-the-streets-of-wuhan/",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Chinese robotaxis stall in apparent 'malfunction': Police - CNA",
+        "content": "22 hours ago \u00b7 The photo taken on Aug 1, 2024 shows a user scanning a QR code to enter a driverless autonomous robotaxi vehicle developed as part of tech giant Baidu's Apollo Go self-driving project, in Wuhan ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3,
+          7
+        ],
+        "score": 0.9523809523809523,
+        "category": "general",
+        "url": "https://www.channelnewsasia.com/east-asia/china-robotaxis-baidu-apollo-go-outage-stranding-passengers-6030391",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.channelnewsasia.com",
+          "/east-asia/china-robotaxis-baidu-apollo-go-outage-stranding-passengers-6030391",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Robot Taxis Stop in Traffic in Chinese City, Stranding Travelers",
+        "content": "9 hours ago \u00b7 The authorities in Wuhan, the site of one of the world\u2019s largest experiments in self-driving cars, cited a \u201csystem failure\u201d after widespread reports on Tuesday evening.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          6,
+          5
+        ],
+        "score": 0.7333333333333334,
+        "category": "general",
+        "url": "https://www.nytimes.com/2026/04/01/business/baidu-robotaxi-wuhan-china.html",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.nytimes.com",
+          "/2026/04/01/business/baidu-robotaxi-wuhan-china.html",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Robotaxi outage leaves passengers stranded in Wuhan | AP News",
+        "content": "12 hours ago \u00b7 BEIJING (AP) \u2014 Some robotaxi passengers were left stranded in the middle of fast-moving traffic in a major Chinese city after their driverless vehicles stopped running, according to police and media reports on Wednesday. A preliminary investigation indicates more than 100 robotaxis came to a halt because of a \u201csystem malfunction,\u201d police in the city of Wuhan said in a statement, without ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://apnews.com/article/china-baidu-robotaxi-wuhan-ec3dcd026dfa1a19eb79467d5211f01d",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "apnews.com",
+          "/article/china-baidu-robotaxi-wuhan-ec3dcd026dfa1a19eb79467d5211f01d",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.reuters.com/world/asia-pacific/baidu-robotaxi-outage-wuhan-caused-by-system-failure-police-say-2026-04-01/",
+        "title": "Baidu robotaxi outage in Wuhan caused by 'system failure', police say",
+        "content": "18 hours ago ... [1/2]A driverless car by Apollo Go, Baidu's robotaxi service, drives ... Baidu is one of China's largest operators of autonomous driving fleets,\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.reuters.com",
+          "/world/asia-pacific/baidu-robotaxi-outage-wuhan-caused-by-system-failure-police-say-2026-04-01/",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general"
+      },
+      {
+        "url": "https://www.cnbc.com/2026/04/01/baidu-robotaxis-caused-crashes-in-wuhan-reports.html",
+        "title": "Baidu robotaxis caused crashes in Wuhan: reports - CNBC",
+        "content": "14 hours ago ... ... robotaxi deployment in China, with more than 1,000 vehicles ... autonomous vehicle operator Waymo's robotaxi fleet to stall across the city.",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.cnbc.com",
+          "/2026/04/01/baidu-robotaxis-caused-crashes-in-wuhan-reports.html",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Mass robotaxi malfunction sparks chaos in Chinese megacity",
+        "content": "8 hours ago \u00b7 A mass robotaxi malfunction left passengers stranded in the middle of fast-moving traffic in a major Chinese city.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://www.dailymail.co.uk/news/article-15698129/Mass-robotaxi-malfunction-chaos-Chinese-megacity.html",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.dailymail.co.uk",
+          "/news/article-15698129/Mass-robotaxi-malfunction-chaos-Chinese-megacity.html",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.aa.com.tr/en/asia-pacific/robotaxi-breakdown-in-china-s-wuhan-leaves-passengers-stranded/3888612",
+        "title": "Robotaxi breakdown in China's Wuhan leaves passengers stranded",
+        "content": "System failure likely behind disruption affecting Baidu's autonomous fleet. Berk Kutay G\u00f6kmen | 01.04.2026 - Update : 01.04.2026. Robotaxi breakdown in\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.aa.com.tr",
+          "/en/asia-pacific/robotaxi-breakdown-in-china-s-wuhan-leaves-passengers-stranded/3888612",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Robotaxi Breakdown Raises Safety Concerns in China's Wuhan",
+        "content": "17 hours ago \u00b7 A robotaxi network malfunction in Wuhan, China, has renewed debate over the safety of driverless vehicles. Baidu's Apollo Go fleet experienced a significant outage, affecting multiple autonomous cars and causing chaos on the roads.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5
+        ],
+        "score": 0.2,
+        "category": "general",
+        "url": "https://www.devdiscourse.com/article/business/3857993-robotaxi-breakdown-raises-safety-concerns-in-chinas-wuhan",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.devdiscourse.com",
+          "/article/business/3857993-robotaxi-breakdown-raises-safety-concerns-in-chinas-wuhan",
+          "",
+          "",
+          ""
+        ]
+      }
+    ],
+    "latency": 1.49342679977417
+  },
+  "iran": {
+    "success": true,
+    "results": [
+      {
+        "template": "default.html",
+        "title": "Iran-US war latest: Iran\u2019s president hits out at \u2018unprovoked ...",
+        "content": "22 hours ago \u00b7 Iran\u2019s president has hit out at \u201cunprovoked military aggression\u201d hours before Donald trump is set to address the Oval Office. In a letter addressed to the \u2060American peopleIranian president ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general",
+        "url": "https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-oil-israel-strait-of-hormuz-b2949695.html",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.independent.co.uk",
+          "/news/world/middle-east/iran-us-war-live-trump-oil-israel-strait-of-hormuz-b2949695.html",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.bbc.com/news/live/c36r5p1l7w3t",
+        "title": "Iran denies Trump's claim it requested ceasefire, calling it 'false and ...",
+        "content": "59 minutes ago ... Donald Trump earlier said Iran's \"New Regime President\" had asked for a ceasefire - without specifying who he was referring to.",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.bbc.com",
+          "/news/live/c36r5p1l7w3t",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          1
+        ],
+        "score": 1.0,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Iran war: Trump says Iran's president asked for ceasefire - DW.com",
+        "content": "1 day ago \u00b7 Iran's Foreign Ministry has denied Trump's claim that a ceasefire has been requested. Meanwhile, an Iranian missile has wounded 14 people in central Israel, while Israel bombed Beirut, killing ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol",
+          "startpage"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          5,
+          5
+        ],
+        "score": 0.8,
+        "category": "general",
+        "url": "https://www.dw.com/en/iran-war-trump-says-us-will-be-leaving-soon-as-strikes-hit-beirut-tehran-and-central-israel/live-76615254",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.dw.com",
+          "/en/iran-war-trump-says-us-will-be-leaving-soon-as-strikes-hit-beirut-tehran-and-central-israel/live-76615254",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "template": "default.html",
+        "title": "Iran war latest: Tehran issues warning to American ... - Sky News",
+        "content": "22 hours ago \u00b7 The Iranian president has written a letter to the American people, hours after Donald Trump said the country had asked for a ceasefire - a claim dismissed as \"baseless\" by Tehran. Follow the ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general",
+        "url": "https://news.sky.com/story/iran-war-latest-trump-tehran-us-israel-kharg-island-netanyahu-lebanon-strikes-drone-live-sky-news-13509565",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "news.sky.com",
+          "/story/iran-war-latest-trump-tehran-us-israel-kharg-island-netanyahu-lebanon-strikes-drone-live-sky-news-13509565",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.aljazeera.com/news/2026/4/1/iran-denies-trumps-claim-iranian-president-requested-ceasefire",
+        "title": "Iran denies Trump's claim Iranian president requested ceasefire",
+        "content": "7 hours ago ... ... April 1, 2026, the White House says [Brendan Smialowski/AFP]. By Al ... list 1 of 3How are NATO allies pushing back against Trump's Iran war\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.aljazeera.com",
+          "/news/2026/4/1/iran-denies-trumps-claim-iranian-president-requested-ceasefire",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          2
+        ],
+        "score": 0.5,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Trump Says U.S. Military Campaign in Iran to Wind Down and ...",
+        "content": "1 day ago \u00b7 Trump Says U.S. Military Campaign to Wind Down and Plans National Address \u201cWe will be leaving very soon,\u201d the president told reporters in the Oval Office. A few hours later, the White House ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general",
+        "url": "https://www.nytimes.com/live/2026/03/31/world/iran-war-oil-trump",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.nytimes.com",
+          "/live/2026/03/31/world/iran-war-oil-trump",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://www.nytimes.com/live/2026/04/01/world/iran-war-trump-oil-news",
+        "title": "Iran War Live Updates: Trump Downplays Nuclear Threat After ...",
+        "content": "2 hours ago ... The officials said the targeting of Kharazi is being viewed as an attempt to derail diplomacy. Shirin Hakim. April 1, 2026, 4:08 p.m. ET\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "www.nytimes.com",
+          "/live/2026/04/01/world/iran-war-trump-oil-news",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          3
+        ],
+        "score": 0.3333333333333333,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Middle East crisis live: Iran\u2019s president says his country ...",
+        "content": "18 hours ago \u00b7 Iran\u2019s foreign ministry spokesperson, Esmail Baghaei, called Trump\u2019s claim that it has asked for a ceasefire is \u201cfalse and baseless\u201d, according to a report on Iranian state television.",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general",
+        "url": "https://www.theguardian.com/world/middle-east-live/live/2026/apr/01/iran-live-updates-trump-claims-war-will-end-rubio-nato-relationship",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.theguardian.com",
+          "/world/middle-east-live/live/2026/apr/01/iran-live-updates-trump-claims-war-will-end-rubio-nato-relationship",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "url": "https://apnews.com/live/iran-war-israel-trump-04-01-2026",
+        "title": "Live updates: Trump claims Iran wants ceasefire, Iran says that's 'false'",
+        "content": "7 hours ago ... All Rights Reserved. Iran war. live The latest \u00b7 Stock market today ... Iran, Wednesday, April 1, 2026. (AP Photo/Vahid Salemi). Iran's\u00a0...",
+        "publishedDate": null,
+        "engine": "startpage",
+        "template": "default.html",
+        "parsed_url": [
+          "https",
+          "apnews.com",
+          "/live/iran-war-israel-trump-04-01-2026",
+          "",
+          "",
+          ""
+        ],
+        "img_src": "",
+        "thumbnail": "",
+        "priority": "",
+        "engines": [
+          "startpage"
+        ],
+        "positions": [
+          4
+        ],
+        "score": 0.25,
+        "category": "general"
+      },
+      {
+        "template": "default.html",
+        "title": "Iran, Israel-US war Live: Drone strike hits UK-owned oil ...",
+        "content": "5 hours ago \u00b7 Israel Iran war latest news: In a fresh post on Truth Social, Donald Trump said that Iran\u2019s New Regime President is \u201cmuch less radicalised and far more intelligent\u201d than its predecessors ...",
+        "img_src": "",
+        "iframe_src": "",
+        "audio_src": "",
+        "thumbnail": "",
+        "publishedDate": null,
+        "pubdate": "",
+        "length": null,
+        "views": "",
+        "author": "",
+        "metadata": "",
+        "priority": "",
+        "engines": [
+          "aol"
+        ],
+        "open_group": false,
+        "close_group": false,
+        "positions": [
+          6
+        ],
+        "score": 0.16666666666666666,
+        "category": "general",
+        "url": "https://www.financialexpress.com/world-news/iran-us-israel-war-live-updates-oil-price-trump-military-action-india-strait-of-hormuz-supply/4188562/",
+        "engine": "aol",
+        "parsed_url": [
+          "https",
+          "www.financialexpress.com",
+          "/world-news/iran-us-israel-war-live-updates-oil-price-trump-military-action-india-strait-of-hormuz-supply/4188562/",
+          "",
+          "",
+          ""
+        ]
+      }
+    ],
+    "latency": 20.19527292251587
+  }
+}
