@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Model Metrics Dashboard 2026-04-07 00:29 UTC</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .last-update { color: #888; font-size: 0.85rem; }
+
+        /* Alert banner */
+        .alert-banner {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .alert-banner .icon { font-size: 1.2rem; }
+
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .card h3 { color: #00d4ff; margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; gap: 6px; }
+
+        .quota-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+        .quota-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .fill-green { background: #4ade80; }
+        .fill-yellow { background: #fbbf24; }
+        .fill-red { background: #f87171; }
+        .fill-blue { background: #60a5fa; }
+
+        .quota-detail { font-size: 0.85rem; color: #aaa; display: flex; justify-content: space-between; }
+        .quota-value { font-size: 1.3rem; font-weight: bold; color: #fff; margin-top: 4px; }
+
+        .system-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        @media (max-width: 768px) { .system-grid { grid-template-columns: repeat(2, 1fr); } }
+        .sys-item {
+            text-align: center;
+            padding: 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+        .sys-value { font-size: 1.4rem; font-weight: bold; }
+        .sys-label { font-size: 0.7rem; color: #888; margin-top: 4px; }
+        .sys-ok { color: #4ade80; }
+        .sys-warn { color: #fbbf24; }
+        .sys-err { color: #f87171; }
+
+        .infra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .infra-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+        }
+        .infra-val { font-size: 1.2rem; font-weight: bold; color: #00d4ff; }
+        .infra-lbl { font-size: 0.7rem; color: #888; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+        th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.85rem; }
+        th { color: #888; font-weight: normal; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .model-name { font-family: monospace; font-size: 0.8rem; }
+        .latency { color: #fbbf24; font-family: monospace; }
+
+        .chart-wrap { height: 220px; position: relative; }
+        .chart-wrap-sm { height: 160px; position: relative; }
+
+        .provider-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        .badge-ok { background: #4ade8022; color: #4ade80; }
+        .badge-err { background: #f8717122; color: #f87171; }
+
+        .footer { text-align: center; color: #555; font-size: 0.75rem; margin-top: 30px; padding: 16px; }
+        section { margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>&#128202; Hermes Model Metrics Dashboard</h1>
+            <span class="last-update" id="lastUpdate">Last update: 2026-04-07 00:29 UTC</span>
+        </div>
+
+        <!-- ALERTS BANNER -->
+        <div class="alert-banner">
+            <span class="icon">&#9888;&#65039;</span>
+            <span><strong>Active alerts:</strong> OpenRouter $9.02 remaining (30%). &#9888;&#65039; Synthetic Subscription: 0/335 (renews 01:53 UTC). &#9888;&#65039; Synthetic Free: 0/1250. 2/5 tiers exhausted &mdash; quota renewal needed.</span>
+        </div>
+
+        <!-- TOP METRICS CARDS -->
+        <div class="cards">
+            <div class="card">
+                <h3>&#128308; OpenRouter Credits</h3>
+                <div class="quota-value">$9.02</div>
+                <div class="quota-bar"><div class="quota-fill fill-red" style="width:70%"></div></div>
+                <div class="quota-detail">
+                    <span>remaining</span>
+                    <span>30% of $30.00</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>&#128306; Synthetic Subscription</h3>
+                <div class="quota-value" style="color:#f87171">0 / 335 &#8987; Renews 01:53 UTC (~2h 24m)</div>
+                <div class="quota-bar"><div class="quota-fill fill-red" style="width:100%"></div></div>
+                <div class="quota-detail">
+                    <span>335 used of 335</span>
+                    <span>Renews 01:53 UTC</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>&#128306; Synthetic Free Tier</h3>
+                <div class="quota-value" style="color:#f87171">0 / 1250 EXHAUSTED</div>
+                <div class="quota-bar"><div class="quota-fill fill-red" style="width:100%"></div></div>
+                <div class="quota-detail"><span>1250 used</span><span>0 remaining</span></div>
+            </div>
+
+            <div class="card">
+                <h3>&#128270; Synthetic Search (Hourly)</h3>
+                <div class="quota-value" style="color:#4ade80">250 / 250</div>
+                <div class="quota-bar"><div class="quota-fill fill-green" style="width:100%"></div></div>
+                <div class="quota-detail"><span>100% available</span><span>Hourly reset</span></div>
+            </div>
+        </div>
+
+        <!-- SYSTEM HEALTH -->
+        <section>
+            <div class="card">
+                <h3>&#128421;&#65039; System Health</h3>
+                <div class="system-grid">
+                    <div class="sys-item">
+                        <div class="sys-value sys-ok">2.9%</div>
+                        <div class="sys-label">CPU Usage</div>
+                    </div>
+                    <div class="sys-item">
+                        <div class="sys-value sys-ok">48.6%</div>
+                        <div class="sys-label">Memory</div>
+                    </div>
+                    <div class="sys-item">
+                        <div class="sys-value sys-warn">76.5%</div>
+                        <div class="sys-label">Disk Usage</div>
+                    </div>
+                    <div class="sys-item">
+                        <div class="sys-value sys-ok">100.0%</div>
+                        <div class="sys-label">Gateway Avail</div>
+                    </div>
+                    <div class="sys-item">
+                        <div class="sys-value sys-ok">100.0%</div>
+                        <div class="sys-label">Uptime</div>
+                    </div>
+                    <div class="sys-item">
+                        <div class="sys-value sys-ok">95.0%</div>
+                        <div class="sys-label">Cron Success</div>
+                    </div>
+                    <div class="sys-item">
+                        <div class="sys-value sys-ok">0.00%</div>
+                        <div class="sys-label">Error Rate</div>
+                    </div>
+                    <div class="sys-item">
+                        <div class="sys-value sys-ok">1.4 GB</div>
+                        <div class="sys-label">DB Size</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVIDER STATUS + LATENCY CHART -->
+        <section>
+            <div class="cards" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="card">
+                    <h3>&#9889; Provider Status</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Model</th><th>Provider</th><th>Latency</th><th>Status</th></tr>
+                        </thead>
+                        <tbody id="provTable">
+            <tr>
+                <td class="model-name">hf:MiniMaxAI/MiniMax-M2.5</td>
+                <td><span style="color:#888">synthetic</span></td>
+                <td class="latency">timeout</td>
+                <td style="color:#f87171;font-weight:bold">&#10060; 429</td>
+            </tr>
+            <tr>
+                <td class="model-name">q/qwen3.6-plus:free</td>
+                <td><span style="color:#888">openrouter</span></td>
+                <td class="latency">-</td>
+                <td style="color:#f87171;font-weight:bold">&#10060; 429</td>
+            </tr>
+            <tr>
+                <td class="model-name">anthropic/claude-sonnet-4-20250514</td>
+                <td><span style="color:#888">openrouter</span></td>
+                <td class="latency">-</td>
+                <td style="color:#fbbf24;font-weight:bold">&#9888;&#65039; No check</td>
+            </tr>
+
+                        </tbody>
+                    </table>
+                    <div style="margin-top:10px;padding:8px;background:rgba(255,255,255,0.03);border-radius:6px;">
+                        <div style="font-size:0.8rem;color:#f87171">Latency Health: <span style="color:#f87171">0.0%</span></div>
+                        <div style="font-size:0.8rem;color:#f87171;margin-top:4px;">Healthy: <span style="color:#f87171">0/2 providers</span></div>
+                        <div style="font-size:0.8rem;color:#f87171;margin-top:6px;">&#10060; synthetic/MiniMax &mdash; HTTP 429 (quota exhausted)</div>
+                        <div style="font-size:0.8rem;color:#f87171;margin-top:6px;">&#10060; openrouter/qwen3.6-plus:free &mdash; HTTP 429 (rate limited)</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>&#11088;&#65039; Provider Latency</h3>
+                    <div class="chart-wrap"><canvas id="latencyChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HEALTH HISTORY CHART -->
+        <section>
+            <div class="card">
+                <h3>&#128200; Provider Health History (24h)</h3>
+                <div class="chart-wrap-sm"><canvas id="healthChart"></canvas></div>
+            </div>
+        </section>
+
+        <!-- TOOL PERFORMANCE -->
+        <section>
+            <div class="cards" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="card">
+                    <h3>&#128295; Tool Performance (Top 8)</h3>
+                    <table>
+                        <thead><tr><th>Tool</th><th>Calls</th><th>Success</th><th>Avg Latency</th></tr></thead>
+                        <tbody>
+            <tr><td class="model-name">terminal</td><td>3,007</td><td style="color:#4ade80">100.0%</td><td class="latency">0.01ms</td></tr>
+            <tr><td class="model-name">execute_code</td><td>1,272</td><td style="color:#4ade80">100.0%</td><td class="latency">0.01ms</td></tr>
+            <tr><td class="model-name">read_file</td><td>389</td><td style="color:#4ade80">100.0%</td><td class="latency">0.01ms</td></tr>
+            <tr><td class="model-name">cronjob</td><td>378</td><td style="color:#4ade80">100.0%</td><td class="latency">0.00ms</td></tr>
+            <tr><td class="model-name">patch</td><td>279</td><td style="color:#4ade80">100.0%</td><td class="latency">0.01ms</td></tr>
+            <tr><td class="model-name">search_files</td><td>199</td><td style="color:#4ade80">100.0%</td><td class="latency">0.00ms</td></tr>
+            <tr><td class="model-name">browser_navigate</td><td>191</td><td style="color:#4ade80">100.0%</td><td class="latency">0.01ms</td></tr>
+            <tr><td class="model-name">browser_snapshot</td><td>178</td><td style="color:#4ade80">100.0%</td><td class="latency">0.02ms</td></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <h3>&#128202; Tool Call Distribution</h3>
+                    <div class="chart-wrap"><canvas id="toolChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFRASTRUCTURE -->
+        <section>
+            <div class="card">
+                <h3>&#127968; Hermes Infrastructure</h3>
+                <div class="infra-grid">
+                    <div class="infra-item"><div class="infra-val">71</div><div class="infra-lbl">Skills</div></div>
+                    <div class="infra-item"><div class="infra-val">88</div><div class="infra-lbl">Cron Jobs</div></div>
+                    <div class="infra-item"><div class="infra-val">25</div><div class="infra-lbl">Enabled</div></div>
+                    <div class="infra-item"><div class="infra-val">2,551</div><div class="infra-lbl">Errors</div></div>
+                    <div class="infra-item"><div class="infra-val">1,083</div><div class="infra-lbl">Realtime DB</div></div>
+                    <div class="infra-item"><div class="infra-val">4,945</div><div class="infra-lbl">Smart DB</div></div>
+                    <div class="infra-item"><div class="infra-val">29</div><div class="infra-lbl">YT Channels</div></div>
+                    <div class="infra-item"><div class="infra-val">2</div><div class="infra-lbl">Today Transcripts</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ALERTS TABLE -->
+        <section>
+            <div class="card">
+                <h3>&#128681; Active Alerts</h3>
+                <table>
+                    <thead><tr><th style="width:40px"></th><th>Alert</th></tr></thead>
+                    <tbody>
+            <tr><td style="color:#f87171">&#10060;</td><td>synthetic/MiniMax &mdash; HTTP 429 (quota exhausted, renews ~01:53 UTC)</td></tr>
+            <tr><td style="color:#f87171">&#10060;</td><td>openrouter/qwen3.6-plus:free &mdash; HTTP 429 (rate limited)</td></tr>
+            <tr><td style="color:#fbbf24">&#9888;&#65039;</td><td>OpenRouter credits: $9.02 remaining (30% of $30.00)</td></tr>
+            <tr><td style="color:#f87171">&#10060;</td><td>Synthetic Free Tier: 0/1250 remaining &mdash; EXHAUSTED</td></tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- STORAGE -->
+        <section>
+            <div class="cards" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="card">
+                    <h3>&#128190; Storage - System</h3>
+                    <div class="quota-value">16Gi free</div>
+                    <div class="quota-bar"><div class="quota-fill fill-yellow" style="width:42%"></div></div>
+                    <div class="quota-detail"><span>42% used</span><span>of 228Gi</span></div>
+                </div>
+                <div class="card">
+                    <h3>&#128190; Storage - Data Disk</h3>
+                    <div class="quota-value">410Gi free</div>
+                    <div class="quota-bar"><div class="quota-fill fill-yellow" style="width:56%"></div></div>
+                    <div class="quota-detail"><span>56% used</span><span>of 931Gi</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>&#129302; Hermes Agent v4.0 &mdash; Model Metrics Dashboard &mdash; Generated 2026-04-07 00:29 UTC</p>
+            <p style="margin-top:4px;">Total Metrics: 60 | Tools Tracked: 34 | Status: &#9888;&#65039; QUOTA CRITICAL</p>
+        </div>
+    </div>
+
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        // Tool Call Distribution Chart
+        new Chart(document.getElementById('toolChart'), {
+            type: 'bar',
+            data: {
+                labels: ["terminal", "execute_code", "read_file", "cronjob", "patch", "search_files", "browser_navigate", "browser_snapshot"],
+                datasets: [{
+                    label: 'Calls',
+                    data: [3007, 1272, 389, 378, 279, 199, 191, 178],
+                    backgroundColor: ['#00d4ff33', '#00d4ff22', '#00d4ff11', '#7b2ff722', '#7b2ff711', '#60a5fa33', '#60a5fa22', '#4ade8033'],
+                    borderColor: ['#00d4ff', '#00d4ff', '#00d4ff', '#7b2ff7', '#7b2ff7', '#60a5fa', '#60a5fa', '#4ade80'],
+                    borderWidth: 1,
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: '#888', font: {size: 9} }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true },
+                    y: { ticks: { color: '#ccc', font: {size: 9, family: 'monospace'} }, grid: { display: false } }
+                }
+            }
+        });
+
+        // Provider Latency Chart
+        new Chart(document.getElementById('latencyChart'), {
+            type: 'bar',
+            data: {
+                labels: ["MiniMax-M2.5 (429)", "qwen3.6-plus:free (429)"],
+                datasets: [{
+                    label: 'Latency (ms)',
+                    data: [0, 0],
+                    backgroundColor: ["#f87171", "#f87171"],
+                    borderRadius: 6,
+                    barThickness: 40,
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: '#888', font: {size: 9}, callback: function(v) { return v + 'ms'; } }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true },
+                    y: { ticks: { color: '#ccc', font: {size: 9, family: 'monospace'} }, grid: { display: false } }
+                }
+            }
+        });
+
+        // Provider Health History Chart
+        var healthData = [1, 2, 1, 0, 3, 0, 1, 2];
+        var healthLabels = ["2026-04-05 21:01", "2026-04-05 21:05", "2026-04-06 00:47", "2026-04-06 04:55", "2026-04-06 09:04", "2026-04-06 16:14", "2026-04-06 16:15", "2026-04-07 00:29"];
+        var healthTotal = 3;
+        var healthColors = healthData.map(function(v) {
+            var pct = (v / healthTotal) * 100;
+            return pct >= 80 ? '#4ade80' : (pct >= 50 ? '#fbbf24' : '#f87171');
+        });
+
+        new Chart(document.getElementById('healthChart'), {
+            type: 'bar',
+            data: {
+                labels: healthLabels,
+                datasets: [{
+                    label: 'Healthy Providers',
+                    data: healthData,
+                    backgroundColor: healthColors.map(function(c) { return c + '44'; }),
+                    borderColor: healthColors,
+                    borderWidth: 1,
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: '#888', font: {size: 8}, maxRotation: 45 }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                    y: { ticks: { color: '#888', font: {size: 9}, stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true, max: 3, title: { display: true, text: 'Healthy / Total', color: '#888' } }
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
