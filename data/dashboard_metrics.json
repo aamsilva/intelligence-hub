@@ -10,7 +10,7 @@
     "reddit_posts": 0
   },
   "youtube": {
-    "total_transcripts": 3839,
+    "total_transcripts": 2129,
     "date_folders": 8,
     "latest_date": "2026-04-09",
     "transcripts_per_day": [
@@ -20,7 +20,7 @@
       },
       {
         "date": "2026-04-08",
-        "count": 1734
+        "count": 24
       },
       {
         "date": "2026-04-07",
@@ -194,7 +194,7 @@
   },
   "system": {
     "hub_size": "10G",
-    "yt_size": "134M",
+    "yt_size": "2.8M",
     "total_files": ""
   },
   "auto_optimization": {

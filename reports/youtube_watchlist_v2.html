@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📺 YouTube Watchlist — News Intelligence Hub</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2236;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: #1e293b;
+            --accent-ai: #6366f1;
+            --accent-ai-light: #818cf8;
+            --accent-finance: #10b981;
+            --accent-finance-light: #34d399;
+            --accent-science: #f59e0b;
+            --accent-science-light: #fbbf24;
+            --accent-benfica: #ef4444;
+            --accent-benfica-light: #f87171;
+            --accent-geo: #8b5cf6;
+            --accent-geo-light: #a78bfa;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -4px rgba(0,0,0,0.2);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-ai) 0%, var(--accent-geo) 50%, var(--accent-finance) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .header .last-updated {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .stat-value.ai { color: var(--accent-ai); }
+        .stat-value.finance { color: var(--accent-finance); }
+        .stat-value.science { color: var(--accent-science); }
+        .stat-value.benfica { color: var(--accent-benfica); }
+        .stat-value.geo { color: var(--accent-geo); }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .tab:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .tab.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 1px var(--accent-ai);
+        }
+
+        .tab[data-filter="all"].active { box-shadow: 0 0 0 1px #fff; }
+        .tab[data-filter="ai"].active { box-shadow: 0 0 0 1px var(--accent-ai); }
+        .tab[data-filter="finance"].active { box-shadow: 0 0 0 1px var(--accent-finance); }
+        .tab[data-filter="science"].active { box-shadow: 0 0 0 1px var(--accent-science); }
+        .tab[data-filter="benfica"].active { box-shadow: 0 0 0 1px var(--accent-benfica); }
+        .tab[data-filter="geo"].active { box-shadow: 0 0 0 1px var(--accent-geo); }
+
+        /* Section */
+        .niche-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-emoji {
+            font-size: 1.75rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .section-count {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Channel Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .channel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .channel-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .channel-card.ai::before { background: var(--accent-ai); }
+        .channel-card.finance::before { background: var(--accent-finance); }
+        .channel-card.science::before { background: var(--accent-science); }
+        .channel-card.benfica::before { background: var(--accent-benfica); }
+        .channel-card.geo::before { background: var(--accent-geo); }
+
+        .channel-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--text-muted);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .channel-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .channel-name:hover {
+            text-decoration: underline;
+        }
+
+        .scout-badge {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+            margin-left: 0.5rem;
+        }
+
+        .subs {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .subs-icon {
+            opacity: 0.6;
+        }
+
+        .channel-focus {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .open-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 1rem;
+            padding: 0.4rem 0.9rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-ai-light);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .open-link:hover {
+            background: rgba(99, 102, 241, 0.25);
+        }
+
+        /* Legend */
+        .legend {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+        }
+
+        .legend-title {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .header h1 { font-size: 1.75rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📺 YouTube Watchlist</h1>
+            <p class="subtitle">News Intelligence Hub — Canal Monitoring Dashboard</p>
+            <p class="last-updated">Atualizado: April 1, 2026 | Último scout: +15 canais</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Canais</div>
+                <div class="stat-value" style="color: var(--text-primary);">29+</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🤖 AI & Tech</div>
+                <div class="stat-value ai">19</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🔬 Ciência</div>
+                <div class="stat-value science">6</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">💰 Finanças</div>
+                <div class="stat-value finance">9</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">⚽ Benfica</div>
+                <div class="stat-value benfica">6</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🌍 Geopolítica</div>
+                <div class="stat-value geo">6</div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="tab active" data-filter="all">Todos (29+)</button>
+            <button class="tab" data-filter="ai">🤖 AI & Tech (19)</button>
+            <button class="tab" data-filter="science">🔬 Ciência (6)</button>
+            <button class="tab" data-filter="finance">💰 Finanças (9)</button>
+            <button class="tab" data-filter="benfica">⚽ Benfica (6)</button>
+            <button class="tab" data-filter="geo">🌍 Geopolítica (6)</button>
+        </div>
+
+        <!-- AI & TECH -->
+        <div class="niche-section" data-category="ai">
+            <div class="section-header">
+                <span class="section-emoji">🤖</span>
+                <h2 class="section-title">AI & Tech</h2>
+                <span class="section-count">19 canais</span>
+            </div>
+            <div class="cards-grid">
+                <a class="channel-card ai" href="https://youtube.com/@peterdiamandis" target="_blank">
+                    <div class="card-top">
+                        <span class="channel-name">Peter Diamandis</span>
+                    </div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~2.3M subs</div>
+                    <div class="channel-focus">Exponential tech, XPRIZE, Longevity, Space, AI Robotics, Moonshots</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@TwoMinutePapers" target="_blank">
+                    <div class="card-top"><span class="channel-name">Two Minute Papers</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1.79M subs</div>
+                    <div class="channel-focus">AI/CS research papers, DeepMind, NVIDIA breakthroughs — early signals</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@matthew_berman" target="_blank">
+                    <div class="card-top"><span class="channel-name">Matthew Berman</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1M+ subs</div>
+                    <div class="channel-focus">LLMs, Agentic AI, OpenAI, Anthropic, Vibe Coding, ARC AGI</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@mreflow" target="_blank">
+                    <div class="card-top"><span class="channel-name">Matt Wolfe (Future Tools)</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1M+ subs</div>
+                    <div class="channel-focus">AI tool roundups, major announcements, commercial AI tracking</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@aiexplained-official" target="_blank">
+                    <div class="card-top"><span class="channel-name">AI Explained</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~413K subs</div>
+                    <div class="channel-focus">AI research breakdown, model releases — best signal-to-noise ratio</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@lexfridman" target="_blank">
+                    <div class="card-top"><span class="channel-name">Lex Fridman</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~3.7M subs</div>
+                    <div class="channel-focus">Deep interviews — AI, NVIDIA, Tech leaders, Philosophy, BJJ</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@NetworkChuck" target="_blank">
+                    <div class="card-top"><span class="channel-name">NetworkChuck</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~5M+ subs</div>
+                    <div class="channel-focus">IT/AI Tools, CCNA, Linux, Claude Code, Cybersecurity</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@AIRevolution" target="_blank">
+                    <div class="card-top"><span class="channel-name">AI Revolution</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~250K subs</div>
+                    <div class="channel-focus">Breaking AI — China AI, Anthropic Mythos, Google AI, Humanoid Robots</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@DavidOndrej" target="_blank">
+                    <div class="card-top"><span class="channel-name">David Ondrej</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~200K subs</div>
+                    <div class="channel-focus">AI Startups, Vibe Coding, SaaS Scaling, AgentZero</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@nickponte" target="_blank">
+                    <div class="card-top"><span class="channel-name">Nick Ponte</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~500K subs</div>
+                    <div class="channel-focus">AI Marketing, Agency Growth, Google Gemini, AI automation</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@BuildInPublic" target="_blank">
+                    <div class="card-top"><span class="channel-name">Build In Public</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~100K subs</div>
+                    <div class="channel-focus">SaaS Building, Vibe Coding, Next.js, AI Agents, Railway</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@60minutes" target="_blank">
+                    <div class="card-top"><span class="channel-name">60 Minutes</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~14M subs</div>
+                    <div class="channel-focus">Investigative journalism — Defense, Iran, Ukraine, Economy, Science</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@natebjones" target="_blank">
+                    <div class="card-top"><span class="channel-name">Nate B Jones</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~100K subs</div>
+                    <div class="channel-focus">AI Strategy — High-paying jobs, Industrial AI, Supply Chain</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@DiaryOfACEO" target="_blank">
+                    <div class="card-top"><span class="channel-name">Diary Of A CEO</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~8M+ subs</div>
+                    <div class="channel-focus">Business — AI Warnings, Health, Finance, Tech leaders</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@aidailybrief" target="_blank">
+                    <div class="card-top"><span class="channel-name">AI Daily Brief</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~50K subs</div>
+                    <div class="channel-focus">AI Research — Agents, Open Source, Vertical AI, Work AGI</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@AndrejKarpathy" target="_blank">
+                    <div class="card-top"><span class="channel-name">Andrej Karpathy</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~800K subs</div>
+                    <div class="channel-focus">Deep Learning, Neural networks, AI education from first principles</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@DeepLearningAI" target="_blank">
+                    <div class="card-top"><span class="channel-name">DeepLearningAI</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1M subs</div>
+                    <div class="channel-focus">ML courses, expert interviews, AI education</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@TinaHuang1" target="_blank">
+                    <div class="card-top"><span class="channel-name">Tina Huang</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~400K subs</div>
+                    <div class="channel-focus">Data Science, Machine Learning, data engineering</div>
+                </a>
+                <a class="channel-card ai" href="https://youtube.com/@AlexFinnOfficial" target="_blank">
+                    <div class="card-top"><span class="channel-name">Alex Finn</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~500K subs</div>
+                    <div class="channel-focus">AI tools/automation — Live streams M/W/F, tool reviews</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- CIÊNCIA -->
+        <div class="niche-section" data-category="science">
+            <div class="section-header">
+                <span class="section-emoji">🔬</span>
+                <h2 class="section-title">Ciência</h2>
+                <span class="section-count">6 canais</span>
+            </div>
+            <div class="cards-grid">
+                <a class="channel-card science" href="https://youtube.com/@veritasium" target="_blank">
+                    <div class="card-top"><span class="channel-name">Veritasium</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~18M subs</div>
+                    <div class="channel-focus">Science experiments, physics explainers, counterintuitive discoveries</div>
+                </a>
+                <a class="channel-card science" href="https://youtube.com/@kurzgesagt" target="_blank">
+                    <div class="card-top"><span class="channel-name">Kurzgesagt</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~24M subs</div>
+                    <div class="channel-focus">Science explainers (animated) — universe, biology, tech</div>
+                </a>
+                <a class="channel-card science" href="https://youtube.com/@SeanMCarroll" target="_blank">
+                    <div class="card-top"><span class="channel-name">Sean Carroll's Mindscape</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1.2M subs</div>
+                    <div class="channel-focus">Physics, consciousness, AI safety — leading academics</div>
+                </a>
+                <a class="channel-card science" href="https://youtube.com/@crashcourse" target="_blank">
+                    <div class="card-top"><span class="channel-name">CrashCourse</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~15M subs</div>
+                    <div class="channel-focus">Science education — biology, chemistry, physics, astronomy</div>
+                </a>
+                <a class="channel-card science" href="https://youtube.com/@numberphile" target="_blank">
+                    <div class="card-top"><span class="channel-name">Numberphile</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~4.5M subs</div>
+                    <div class="channel-focus">Mathematics — fascinating numbers, problems, proofs</div>
+                </a>
+                <a class="channel-card science" href="https://youtube.com/@joaoroxomedeiros" target="_blank">
+                    <div class="card-top"><span class="channel-name">João Medeiros</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~8.4K subs</div>
+                    <div class="channel-focus">Ciência em Português — engagement altíssimo por subscriber</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- FINANÇAS -->
+        <div class="niche-section" data-category="finance">
+            <div class="section-header">
+                <span class="section-emoji">💰</span>
+                <h2 class="section-title">Finanças & Investimento</h2>
+                <span class="section-count">9 canais</span>
+            </div>
+            <div class="cards-grid">
+                <a class="channel-card finance" href="https://youtube.com/@BenFelixcsi" target="_blank">
+                    <div class="card-top"><span class="channel-name">Ben Felix</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1M+ subs</div>
+                    <div class="channel-focus">Factor investing, evidence-based portfolio management</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@thepainbagel" target="_blank">
+                    <div class="card-top"><span class="channel-name">The Plain Bagel</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~800K subs</div>
+                    <div class="channel-focus">Investing education, debunking financial myths</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@YahooFinance" target="_blank">
+                    <div class="card-top"><span class="channel-name">Yahoo Finance</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~10M+ subs</div>
+                    <div class="channel-focus">Market data, breaking financial news, earnings</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@WhiteBoardFinance" target="_blank">
+                    <div class="card-top"><span class="channel-name">WhiteBoard Finance</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1M+ subs</div>
+                    <div class="channel-focus">Personal finance, investing, economics explainers</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@EdgeOverHedge" target="_blank">
+                    <div class="card-top"><span class="channel-name">Edge Over Hedge</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~25K subs</div>
+                    <div class="channel-focus">CFA Franklin Silva — análise institucional de mercados PT/EU</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@XTBPortugal" target="_blank">
+                    <div class="card-top"><span class="channel-name">XTB Portugal</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~12K subs</div>
+                    <div class="channel-focus">Análise diária de mercados — PSI20 + macro global</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@dividendosportugal" target="_blank">
+                    <div class="card-top"><span class="channel-name">Dividendos Portugal</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~13K subs</div>
+                    <div class="channel-focus">Investimento longo prazo no mercado PT — 271+ vídeos</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@doomberg" target="_blank">
+                    <div class="card-top"><span class="channel-name">Doomberg</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~400K subs</div>
+                    <div class="channel-focus">Energy/geopolitics finance, macro analysis</div>
+                </a>
+                <a class="channel-card finance" href="https://youtube.com/@compoundingquality" target="_blank">
+                    <div class="card-top"><span class="channel-name">Compounding Quality</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~50K subs</div>
+                    <div class="channel-focus">Quality investing newsletter, deep fundamental analysis</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- BENFICA -->
+        <div class="niche-section" data-category="benfica">
+            <div class="section-header">
+                <span class="section-emoji">⚽</span>
+                <h2 class="section-title">Benfica & Futebol PT</h2>
+                <span class="section-count">6 canais</span>
+            </div>
+            <div class="cards-grid">
+                <a class="channel-card benfica" href="https://youtube.com/@SLBenfica" target="_blank">
+                    <div class="card-top"><span class="channel-name">SL Benfica Oficial</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~500K+ subs</div>
+                    <div class="channel-focus">Conteúdo oficial do clube — jogos, entrevistas, bastidores</div>
+                </a>
+                <a class="channel-card benfica" href="https://youtube.com/@433" target="_blank">
+                    <div class="card-top"><span class="channel-name">433</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~10M+ subs</div>
+                    <div class="channel-focus">Football tactics, skills, viral moments, global coverage</div>
+                </a>
+                <a class="channel-card benfica" href="https://youtube.com/@FootballExplained" target="_blank">
+                    <div class="card-top"><span class="channel-name">Football Explained</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1M+ subs</div>
+                    <div class="channel-focus">Tactical explainers — football strategy and analysis</div>
+                </a>
+                <a class="channel-card benfica" href="https://youtube.com/@BenficaIndependente" target="_blank">
+                    <div class="card-top"><span class="channel-name">Benfica Independente</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~15K subs</div>
+                    <div class="channel-focus">Perspetiva independente — transferências, política do clube</div>
+                </a>
+                <a class="channel-card benfica" href="https://youtube.com/@BrunoFranciscoBenfica" target="_blank">
+                    <div class="card-top"><span class="channel-name">Bruno Francisco</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~10K subs</div>
+                    <div class="channel-focus">Análise tática de matches em profundidade</div>
+                </a>
+                <a class="channel-card benfica" href="https://youtube.com/@PlayPT" target="_blank">
+                    <div class="card-top"><span class="channel-name">Play PT</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~9K subs</div>
+                    <div class="channel-focus">Liga Portugal cobertura completa — contexto competitivo</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- GEOPOLÍTICA -->
+        <div class="niche-section" data-category="geo">
+            <div class="section-header">
+                <span class="section-emoji">🌍</span>
+                <h2 class="section-title">Geopolítica Iran/Israel</h2>
+                <span class="section-count">6 canais</span>
+            </div>
+            <div class="cards-grid">
+                <a class="channel-card geo" href="https://youtube.com/@CaspianReport" target="_blank">
+                    <div class="card-top"><span class="channel-name">CaspianReport</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1.7M subs</div>
+                    <div class="channel-focus">Geopolitical essays — Iran, Russia, Middle East power structures</div>
+                </a>
+                <a class="channel-card geo" href="https://youtube.com/@VisualPolitikEN" target="_blank">
+                    <div class="card-top"><span class="channel-name">VisualPolitik EN</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~500K subs</div>
+                    <div class="channel-focus">Geopolitics with data/maps — Israel, Iran, regional dynamics</div>
+                </a>
+                <a class="channel-card geo" href="https://youtube.com/@theduran" target="_blank">
+                    <div class="card-top"><span class="channel-name">The Duran</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~1M+ subs</div>
+                    <div class="channel-focus">Non-western perspective — daily Iran/US/Middle East coverage</div>
+                </a>
+                <a class="channel-card geo" href="https://youtube.com/@TheNewAtlas" target="_blank">
+                    <div class="card-top"><span class="channel-name">The New Atlas</span><span class="scout-badge">SCOUT</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~300K subs</div>
+                    <div class="channel-focus">Russia-Iran-China axis, multipolar world analysis</div>
+                </a>
+                <a class="channel-card geo" href="https://youtube.com/@ILTVIsraelNews" target="_blank">
+                    <div class="card-top"><span class="channel-name">ILTV Israel News</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~500K subs</div>
+                    <div class="channel-focus">Israel/Middle East news — breaking developments</div>
+                </a>
+                <a class="channel-card geo" href="https://youtube.com/@ABCNews" target="_blank">
+                    <div class="card-top"><span class="channel-name">ABC News</span></div>
+                    <div class="subs"><span class="subs-icon">👥</span> ~18M subs</div>
+                    <div class="channel-focus">World news — breaking global events, Middle East coverage</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-title">📋 Legenda</div>
+            <div class="legend-items">
+                <span>🟢 = Ativo na watchlist</span>
+                <span>🔵 SCOUT = Adicionado pelo scout mais recente</span>
+                <span>📅 Próximo scout: Quarta-feira, Abril 8</span>
+                <span>👥 Subs = Aproximados, retirados da plataforma</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🤖 News Intelligence Hub — YouTube Watchlist v2.0</p>
+            <p>Gerido por Hermes Agent | Atualizado automaticamente</p>
+        </div>
+    </div>
+
+    <script>
+        // Filter tabs
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                
+                if (filter === 'all') {
+                    document.querySelectorAll('.niche-section').forEach(s => {
+                        s.style.display = 'block';
+                    });
+                } else {
+                    document.querySelectorAll('.niche-section').forEach(s => {
+                        s.style.display = s.dataset.category === filter ? 'block' : 'none';
+                    });
+                }
+            });
+        });
+
+        // Hover color for cards
+        document.querySelectorAll('.channel-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                if (this.classList.contains('ai')) {
+                    this.style.borderColor = 'var(--accent-ai)';
+                } else if (this.classList.contains('finance')) {
+                    this.style.borderColor = 'var(--accent-finance)';
+                } else if (this.classList.contains('science')) {
+                    this.style.borderColor = 'var(--accent-science)';
+                } else if (this.classList.contains('benfica')) {
+                    this.style.borderColor = 'var(--accent-benfica)';
+                } else if (this.classList.contains('geo')) {
+                    this.style.borderColor = 'var(--accent-geo)';
+                }
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'var(--border-color)';
+            });
+        });
+    </script>
+</body>
+</html>

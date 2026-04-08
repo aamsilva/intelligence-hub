@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Channels Monitor — Augusto AI Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --text-primary: #e8e8ed;
+  --text-secondary: #8b8b9e;
+  --text-dim: #5a5a6e;
+  --accent: #00D4FF;
+  --accent-glow: rgba(0, 212, 255, 0.15);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(255, 255, 255, 0.12);
+  --red: #FF3B30;
+  --orange: #FF9500;
+  --yellow: #FFCC00;
+  --green: #34C759;
+  --purple: #BF5AF2;
+  --pink: #FF375F;
+  --blue: #5AC8FA;
+  --teal: #64D2FF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(191, 90, 242, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 55, 95, 0.03) 0%, transparent 60%);
+  animation: gradientDrift 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gradientDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(2%, 2%) rotate(1deg); }
+  66% { transform: translate(-1%, -1%) rotate(-0.5deg); }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Header ── */
+.header {
+  margin-bottom: 48px;
+  animation: fadeInUp 0.6s ease;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.header-title {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.header-subtitle span {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(255,255,255,0.05);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* ── Stats Bar ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-change {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.stat-change.up { color: var(--green); }
+.stat-change.down { color: var(--red); }
+.stat-change.neutral { color: var(--text-secondary); }
+
+/* ── Category Section ── */
+.category-section {
+  margin-bottom: 48px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.category-icon {
+  font-size: 24px;
+}
+
+.category-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.category-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* ── Channel Card ── */
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.channel-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease;
+}
+
+.channel-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.channel-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.channel-card.science::before { background: linear-gradient(90deg, var(--blue), var(--teal)); }
+.channel-card.ai::before { background: linear-gradient(90deg, var(--accent), var(--purple)); }
+.channel-card.finance::before { background: linear-gradient(90deg, var(--green), var(--yellow)); }
+.channel-card.futurism::before { background: linear-gradient(90deg, var(--pink), var(--purple)); }
+
+.channel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.channel-info {
+  flex: 1;
+}
+
+.channel-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.channel-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.subs-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.channel-category-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.tag-science { color: var(--blue); background: rgba(90, 200, 250, 0.1); }
+.tag-ai { color: var(--accent); background: rgba(0, 212, 255, 0.1); }
+.tag-finance { color: var(--green); background: rgba(52, 199, 89, 0.1); }
+.tag-futurism { color: var(--pink); background: rgba(255, 55, 95, 0.1); }
+
+/* ── Top Video ── */
+.top-video {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.top-video-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-video-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.top-video-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.top-video-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Video Pills ── */
+.other-videos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.video-pill {
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 6px 12px;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.video-pill:hover {
+  background: rgba(0, 212, 255, 0.06);
+  border-color: rgba(0, 212, 255, 0.15);
+  color: var(--text-primary);
+}
+
+.video-pill .pill-highlight {
+  color: var(--yellow);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+/* ── Focus Area ── */
+.channel-focus {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.focus-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.focus-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Overview Table ── */
+.overview-section {
+  margin-top: 48px;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.overview-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--purple), transparent);
+}
+
+.overview-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.overview-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.overview-table td {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  font-family: 'Inter', sans-serif;
+}
+
+.overview-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-primary);
+}
+
+.stars {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* ── Warning ── */
+.warning-note {
+  margin-top: 32px;
+  background: rgba(255, 149, 0, 0.06);
+  border: 1px solid rgba(255, 149, 0, 0.12);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.warning-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.warning-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.warning-text strong {
+  color: var(--orange);
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.04s; }
+.stat-card:nth-child(2) { animation-delay: 0.08s; }
+.stat-card:nth-child(3) { animation-delay: 0.12s; }
+.stat-card:nth-child(4) { animation-delay: 0.16s; }
+
+.channel-card:nth-child(1) { animation-delay: 0.1s; }
+.channel-card:nth-child(2) { animation-delay: 0.15s; }
+.channel-card:nth-child(3) { animation-delay: 0.2s; }
+.channel-card:nth-child(4) { animation-delay: 0.25s; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .channel-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .header-title { font-size: 24px; }
+}
+
+@media (max-width: 600px) {
+  .stats-bar { grid-template-columns: 1fr; }
+  .container { padding: 24px 16px 60px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-row">
+      <div class="header-title">📺 YouTube Channels Monitor</div>
+      <div class="header-subtitle">Augusto AI Hub • <span>1 Abril 2026</span></div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-label">Canais Monitorizados</div>
+      <div class="stat-value">14</div>
+      <div class="stat-change up">↑ +2 este mês</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Subscritores Totais</div>
+      <div class="stat-value">42M+</div>
+      <div class="stat-change neutral">Across all channels</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Vídeos Identificados</div>
+      <div class="stat-value">38</div>
+      <div class="stat-change up">↑ Novos últimos 7d</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Cobertura</div>
+      <div class="stat-value">100%</div>
+      <div class="stat-change up">✅ All 14 channels</div>
+    </div>
+  </div>
+
+  <!-- 🔬 CIÊNCIA & PESQUISA -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">🔬</span>
+      <span class="category-title">Ciência & Pesquisa</span>
+      <span class="category-count">3 canais</span>
+    </div>
+    <div class="channel-grid">
+
+      <!-- Two Minute Papers -->
+      <div class="channel-card science">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">TwoMinutePapers</div>
+            <div class="channel-meta">
+              <span class="subs-badge">📊 1.79M subs</span>
+              <span class="channel-category-tag tag-science">Ciência</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Top Vídeo Recente</div>
+          <div class="top-video-title">"DeepMind's New AI Just Changed Science Forever"</div>
+          <div class="top-video-meta">
+            <span>📅 4 dias atrás</span>
+            <span>👁️ 216K views</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">"This Physics Breakthrough Looks Impossible" <span class="pill-highlight">NVIDIA</span></span>
+          <span class="video-pill">"The Algorithm That Made Me Cry"</span>
+          <span class="video-pill">"NVIDIA's New AI Cracked Self-Driving"</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">Research papers explicados em 2 minutos. DeepMind, NVIDIA AI aplicada, física e ciência computacional. Formato ultra-condensado com clareza excecional.</span>
+        </div>
+      </div>
+
+      <!-- Kurzgesagt -->
+      <div class="channel-card science">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">Kurzgesagt – In a Nutshell</div>
+            <div class="channel-meta">
+              <span class="subs-badge">📊 25.2M subs</span>
+              <span class="channel-category-tag tag-science">Ciência</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Latest</div>
+          <div class="top-video-title">"The Most Insane Megaproject You Never Heard About"</div>
+          <div class="top-video-meta">
+            <span>📅 Recente</span>
+            <span>🔊 Soundtrack: Supervoids 2026</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">Cosmologia & Space</span>
+          <span class="video-pill">Nuclear Health & Energy</span>
+          <span class="video-pill">Existential Crisis Playlist</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">Animações de alta qualidade que explicam ciência complexa. Espaço, medicina, futurismo, filosofia. A melhor produção visual do YouTube em ciência. Qualidade sempre top-tier.</span>
+        </div>
+      </div>
+
+      <!-- Veritasium -->
+      <div class="channel-card science">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">Veritasium</div>
+            <div class="channel-meta">
+              <span class="subs-badge">📊 6.3M subs</span>
+              <span class="channel-category-tag tag-science">Ciência</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Latest Batch (30 dias)</div>
+          <div class="top-video-title">"The Internet Was Weeks Away From Disaster and No One Knew"</div>
+          <div class="top-video-meta">
+            <span>👁️ Vídeo mais popular</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">"This Paradox Splits Smart People 50/50"</span>
+          <span class="video-pill">"How One Rock Secretly Poisoned the Planet"</span>
+          <span class="video-pill">"The Tiny Donut That Proved We Don't Understand Magnetism"</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">Mistérios científicos, paradoxos, história da ciência. Narrativa forte + visuals cinematográficos. Derek Muller cria documentários em formato YouTube — cada vídeo é mini-filme.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🤖 AI EDUCATION & TOOLS -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">🤖</span>
+      <span class="category-title">AI Education & Tools</span>
+      <span class="category-count">2 canais</span>
+    </div>
+    <div class="channel-grid">
+
+      <!-- DeepLearningAI -->
+      <div class="channel-card ai">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">DeepLearningAI</div>
+            <div class="channel-meta">
+              <span class="subs-badge">🔷 Andrew Ng's Team</span>
+              <span class="channel-category-tag tag-ai">AI Education</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Focus 2026</div>
+          <div class="top-video-title">"The Only AI Certification Guide You Need in 2026"</div>
+          <div class="top-video-meta">
+            <span>📅 2026 Content Wave</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">"7 FREE AI Courses You Need to Master AI in 2026"</span>
+          <span class="video-pill">Machine Learning Specialization <span class="pill-highlight">Stanford</span></span>
+          <span class="video-pill">Deep Learning Specialization</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">Educação AI formal. Cursos certificados com OpenAI, Google, Anthropic, Microsoft. O "padrão académico" da educação AI — Andrew Ng transforma complexidade em acessibilidade.</span>
+        </div>
+      </div>
+
+      <!-- Tina Huang -->
+      <div class="channel-card ai">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">Tina Huang</div>
+            <div class="channel-meta">
+              <span class="subs-badge">📊 1.14M subs</span>
+              <span class="channel-category-tag tag-ai">AI Education</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Most Popular</div>
+          <div class="top-video-title">"How To Learn To Code In 2026"</div>
+          <div class="top-video-meta">
+            <span>👁️ 208K views</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">"My Favour. AI Workflow Nobody Talks About" <span class="pill-highlight">46K</span></span>
+          <span class="video-pill">"How To Run Open Source AI Models" <span class="pill-highlight">45K</span></span>
+          <span class="video-pill">"3 AI Coding Tools in 2026"</span>
+          <span class="video-pill">"Essential AI Skills For 2026"</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">"Learn ML without a PhD." AI skills práticas, workflows, ferramentas open source. Tina traduz papers complexos em tutoriais accionáveis. Top 3 para developers em 2026.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 💰 FINANCE & INVESTMENT -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">💰</span>
+      <span class="category-title">Finance & Investment</span>
+      <span class="category-count">2 canais</span>
+    </div>
+    <div class="channel-grid">
+
+      <!-- The Plain Bagel -->
+      <div class="channel-card finance">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">The Plain Bagel</div>
+            <div class="channel-meta">
+              <span class="subs-badge">💼 Richard Coffin</span>
+              <span class="channel-category-tag tag-finance">Finance</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Latest</div>
+          <div class="top-video-title">"AI Scored My $1M Stock Portfolio A 9.5/10"</div>
+          <div class="top-video-meta">
+            <span>🔗 AI + Investing crossover</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">Investment Analyst Reacts to Finance TikToks</span>
+          <span class="video-pill">Collab with Ben Felix</span>
+          <span class="video-pill">TWB Podcast #7</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">Análise de portfólios, comportamento financeiro, reagir a "finfluencers" no TikTok. Acessível mas rigoroso. CFA charterholder que desmistifica finanças.</span>
+        </div>
+      </div>
+
+      <!-- Ben Felix -->
+      <div class="channel-card finance">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">Ben Felix</div>
+            <div class="channel-meta">
+              <span class="subs-badge">💼 PortfolioManager</span>
+              <span class="channel-category-tag tag-finance">Finance</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Critical For You</div>
+          <div class="top-video-title">"The AI Bubble" <span class="pill-highlight">283K views</span></div>
+          <div class="top-video-meta">
+            <span>⚠️ Hype vs Reality check</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">"The Most Controversial Paper in Finance"</span>
+          <span class="video-pill">"The Problem With Saving 10% of Your Income"</span>
+          <span class="video-pill">Amber Kanwar: Active vs Passive Debate</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">"Evidence-based investing." Finance academic aplicada ao retail investor. Skeptico de hype de mercado — o vídeo "The AI Bubble" é especialmente relevante para avaliar overvaluation em tech.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🚀 TECH FUTURISM -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">🚀</span>
+      <span class="category-title">Tech Futurism</span>
+      <span class="category-count">1 canal</span>
+    </div>
+    <div class="channel-grid">
+
+      <!-- Peter Diamandis -->
+      <div class="channel-card futurism">
+        <div class="channel-header">
+          <div class="channel-info">
+            <div class="channel-name">Peter Diamandis</div>
+            <div class="channel-meta">
+              <span class="subs-badge">🌟 XPRIZE Founder</span>
+              <span class="channel-category-tag tag-futurism">Futurism</span>
+            </div>
+          </div>
+        </div>
+        <div class="top-video">
+          <div class="top-video-label">Featured Collab</div>
+          <div class="top-video-title">"Exponential Technologies" c/ Raoul Pal (Real Vision)</div>
+          <div class="top-video-meta">
+            <span>📹 Real Vision • Exponential mindset</span>
+          </div>
+        </div>
+        <div class="other-videos">
+          <span class="video-pill">Longevity & healthspan extension</span>
+          <span class="video-pill">XPRIZE & space exploration</span>
+          <span class="video-pill">"Counter-AI forces need to move at speed of AI"</span>
+        </div>
+        <div class="channel-focus">
+          <span class="focus-label">FOCO:</span>
+          <span class="focus-text">"Exponential mindset." AI, longevity, space, humanity future. Otimista radical — acredita que AI resolverá os maiores desafios da humanidade nas próximas décadas. Visão macro para investidores.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OVERVIEW TABLE -->
+  <div class="overview-section">
+    <div class="overview-title">📊 Visão Geral por Categoria</div>
+    <table class="overview-table">
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Canais</th>
+          <th>Última Atualização</th>
+          <th>Relevância</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🔬 Ciência</td>
+          <td>ThreeMinutePapers, Kurzgesagt, Veritasium</td>
+          <td>Abr 2026</td>
+          <td class="stars">⭐⭐⭐⭐</td>
+          <td>Breakthroughs em AI science</td>
+        </tr>
+        <tr>
+          <td>🤖 AI Education</td>
+          <td>DeepLearningAI, Tina Huang</td>
+          <td>Abr 2026</td>
+          <td class="stars">⭐⭐⭐⭐⭐</td>
+          <td>Coding tools, skills 2026</td>
+        </tr>
+        <tr>
+          <td>💰 Finance</td>
+          <td>Plain Bagel, Ben Felix</td>
+          <td>Abr 2026</td>
+          <td class="stars">⭐⭐⭐⭐⭐</td>
+          <td>"AI Bubble" — 283K views</td>
+        </tr>
+        <tr>
+          <td>🚀 Futurism</td>
+          <td>Peter Diamandis</td>
+          <td>Mar 2026</td>
+          <td class="stars">⭐⭐⭐⭐</td>
+          <td>Counter-AI forces</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-note">
+      <span class="warning-icon">⚠️</span>
+      <span class="warning-text">
+        <strong>Limitação permanente:</strong> Dados recolhidos via <code style="background:rgba(255,149,0,0.15);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;">web_search</code> — apenas vídeos públicos mais recentes. A tua watchlist pessoal do YouTube <strong>não é acessível</strong> (browser sessions são isoladas sem cookies). 
+        <br><br>
+        <strong>Alternativa:</strong> Export via <a href="takeout.google.com" style="color:var(--accent);">Google Takeout</a> → YouTube Watch History → Eu processo o ficheiro e gero watchlist completa personalizada.
+      </span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
