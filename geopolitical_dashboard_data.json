@@ -1,36 +1,37 @@
 {
-  "last_updated": "2026-04-08 20:55 UTC+1",
+  "last_updated": "2026-04-09 19:12 UTC+1",
   "timezone": "WEST (UTC+1)",
-  "data_source": "SearXNG local + Reuters + CNBC + CNN + AP News + PBS + TIME + Guardian",
+  "data_source": "SearXNG local + Reuters + CNBC + CNN + AP News + PBS + TIME + Guardian + EU Council",
   "overall_risk_index": "CRITICAL",
   "total_tracked": 5,
   "risks": [
     {
       "id": 1,
-      "event": "US-Iran CEASEFIRE + Trump Strike Threat (April 8, 2026): Trump announces ceasefire with Iran AFTER 39 days of war. Says Iran 'agreed to reopen Hormuz.' However, Trump ALSO warns US will strike Iran with 'GREAT FORCE' in next 2-3 weeks if terms violated. Ceasefire details unclear - Iran parliament formalizing Hormuz toll collection. Israel continues operations. 13+ US service members killed during conflict.",
+      "event": "US-Iran CEASEFIRE + Trump Strike Threat (April 9, 2026): 2-week ceasefire formally concluded between US and Iran (April 8). EU welcomes the agreement, thanks Pakistan. Trump warns 'GREAT FORCE' strike if terms violated within 2-3 weeks. Iran parliament formalizing Hormuz toll collection. Israel continues separate operations. 13+ US service members killed during 39-day conflict.",
       "risk_level": "Critical",
       "region": "Middle East / Iran, Iraq, Gulf States, USA",
-      "timestamp": "2026-04-08",
+      "timestamp": "2026-04-09",
       "key_facts": [
-        "Trump announces Iran CEASEFIRE - 39 days after war began (Feb 28)",
-        "Iran 'agreed to reopen Hormuz Strait' as part of deal",
-        "WARNING: Trump threatens 'GREAT FORCE' strike within 2-3 weeks",
+        "2-week CEASEFIRE formally concluded (April 8)",
+        "EU welcomes agreement, thanks Pakistan for mediation",
+        "Trump threatens 'GREAT FORCE' strike within 2-3 weeks if violated",
         "Iran parliament formalizing toll collection on Hormuz vessels",
         "Israel continues separate operations against Iran",
         "13+ US service members killed during 39-day conflict",
-        "Ceasefire terms still unclear - major verification risk"
+        "Hostilities began Feb 28, 2026 with US-Israel airstrikes (per Wikipedia)",
+        "Verification risk - terms still unclear"
       ],
-      "trend": "CEASEFIRE ANNOUNCED but 2-3 week strike threat looms - HIGH INSTABILITY"
+      "trend": "CEASEFIRE ACTIVE but fragile - 2-3 week strike deadline"
     },
     {
       "id": 2,
-      "event": "Russia-Ukraine War — Ceasefire Momentum (April 8): Zelensky welcomes US-Iran ceasefire, says Ukraine ready to 'respond accordingly.' US envoys Witkoff & Kushner visiting Kyiv to reboot peace talks. Geneva negotiations remained 'on pause.' Russia planning new offensive while world focused on Middle East. Putin rejected Orthodox Easter ceasefire. Western support uncertainty as Iran conflict ends.",
+      "event": "Russia-Ukraine War — Ceasefire Momentum (April 9): Zelensky welcomes US-Iran ceasefire, says Ukraine ready to 'respond accordingly.' US envoys Witkoff & Kushner visiting Kyiv to reboot peace talks. Geneva negotiations remained 'on pause.' Russia planning new offensive while world focused on Middle East. Putin rejected Orthodox Easter ceasefire. Western support uncertainty as Iran conflict ends.",
       "risk_level": "High",
       "region": "Eastern Europe / Ukraine, Russia",
-      "timestamp": "2026-04-08",
+      "timestamp": "2026-04-09",
       "key_facts": [
         "Zelensky welcomes Iran ceasefire - Ukraine ready to respond",
-        "US envoys Witkoff & Kushner to visit Kyiv - peace talks reboot",
+        "US envouts Witkoff & Kushner to visit Kyiv - peace talks reboot",
         "Geneva negotiations still 'on pause' with Russia",
         "Russia planning new offensive exploiting distraction",
         "Putin rejected Orthodox Easter ceasefire",
@@ -41,10 +42,10 @@
     },
     {
       "id": 3,
-      "event": "NATO Alliance Strain — Post-Iran Ceasefire (April 8): With Iran conflict ending, attention returns to NATO dispute. Trump previously threatened US withdrawal over Iran war. Reuters: 'Few signs actual withdrawal progressing.' Constitutional questions on unilateral exit remain unresolved. Germany still floated as potential NATO leader. Macron-Rutte private messages exposed by Trump. Alliance faces April renegotiation pressure.",
+      "event": "NATO Alliance Strain — Post-Iran Ceasefire (April 9): With Iran conflict ending, attention returns to NATO dispute. Trump previously threatened US withdrawal over Iran war. Reuters: 'Few signs actual withdrawal progressing.' Constitutional questions on unilateral exit remain unresolved. Germany still floated as potential NATO leader. Macron-Rutte private messages exposed by Trump. Alliance faces April renegotiation pressure.",
       "risk_level": "High",
       "region": "North America / Europe",
-      "timestamp": "2026-04-08",
+      "timestamp": "2026-04-09",
       "key_facts": [
         "Iran war ending - NATO focus returns",
         "Trump threatened withdrawal during Iran conflict",
@@ -58,10 +59,10 @@
     },
     {
       "id": 4,
-      "event": "China-Taiwan — Stable (April 8): ISW April 3-8 updates: No new escalation. US intelligence confirms China NOT planning 2027 invasion. ADIZ incursions below 200 (first time under Lai). Taiwan opposition: 'World does not need a crisis over Taiwan.' China pursuing peaceful unification conditions. Situation remains de-escalated.",
+      "event": "China-Taiwan — Stable (April 9): ISW April 3-8 updates: No new escalation. US intelligence confirms China NOT planning 2027 invasion. ADIZ incursions below 200 (first time under Lai). Taiwan opposition: 'World does not need a crisis over Taiwan.' China pursuing peaceful unification conditions. Situation remains de-escalated.",
       "risk_level": "Medium",
       "region": "East Asia / Taiwan, China",
-      "timestamp": "2026-04-08",
+      "timestamp": "2026-04-09",
       "key_facts": [
         "ISW April 3-8: No new escalation",
         "US intel: NO 2027 invasion planned",
@@ -74,10 +75,10 @@
     },
     {
       "id": 5,
-      "event": "Sudan Civil War — Spillover Risk (April 8): RSF shifting operations south toward South Sudan border. UNSC condemns attacks in Kordofan. 850+ families displaced. MSF warns of systematic violence against women. South Sudan at increasing risk of spillover. Humanitarian crisis deepening into Year 3.",
+      "event": "Sudan Civil War — Spillover Risk (April 9): RSF shifting operations south toward South Sudan border. UNSC condemns attacks in Kordofan. 850+ families displaced. MSF warns of systematic violence against women. South Sudan at increasing risk of spillover. Humanitarian crisis deepening into Year 3.",
       "risk_level": "Medium",
       "region": "Africa / Sudan, South Sudan",
-      "timestamp": "2026-04-08",
+      "timestamp": "2026-04-09",
       "key_facts": [
         "UNSC condemns RSF attacks in Kordofan",
         "RSF operations shifting toward South Sudan border",
