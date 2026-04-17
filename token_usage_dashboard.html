@@ -1,4 +1,421 @@
-<!DOCTYPE html><html><head><title>Token Usage Dashboard</title></head><body>
-<h1>Token Usage Dashboard</h1>
-<p>Total Tokens: 238751094</p>
-<h2>Top Jobs</h2><ul><li>cron:cd7dce4f7a23: 38998483</li><li>cron:92cd976b5b19: 37009652</li><li>cron:736c86856dde: 21814711</li><li>cron:57fe331360fb: 15216013</li><li>cron:yt_transcript_maximizer: 11290864</li></ul></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Token Usage Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
+  h1 { text-align: center; color: #58a6ff; margin-bottom: 5px; font-size: 1.8em; }
+  .subtitle { text-align: center; color: #8b949e; margin-bottom: 25px; font-size: 0.9em; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 25px; }
+  .stat-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; text-align: center; }
+  .stat-card .value { font-size: 1.6em; font-weight: 700; color: #58a6ff; }
+  .stat-card .label { font-size: 0.75em; color: #8b949e; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 25px; }
+  .chart-box { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; }
+  .chart-box.full { grid-column: 1 / -1; }
+  .chart-box h3 { color: #c9d1d9; margin-bottom: 10px; font-size: 1em; }
+  canvas { max-height: 350px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+  th { background: #21262d; color: #c9d1d9; padding: 8px 10px; text-align: left; border-bottom: 1px solid #30363d; }
+  td { padding: 6px 10px; border-bottom: 1px solid #21262d; }
+  tr:hover { background: #161b22; }
+  .bar-cell { width: 120px; }
+  .progress-bar { height: 8px; border-radius: 4px; background: #21262d; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #58a6ff, #1f6feb); }
+  .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .section h3 { color: #58a6ff; margin-bottom: 12px; }
+  .mono { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em; }
+  @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>⚡ Hermes Token Usage Dashboard</h1>
+<p class="subtitle">All-time metrics • 20260406 – 20260417 • Generated 2026-04-17 22:41</p>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="value">2.51B</div><div class="label">Total Tokens</div></div>
+  <div class="stat-card"><div class="value">1.44B</div><div class="label">Input Tokens</div></div>
+  <div class="stat-card"><div class="value">15.5M</div><div class="label">Output Tokens</div></div>
+  <div class="stat-card"><div class="value">56.8K</div><div class="label">API Calls</div></div>
+  <div class="stat-card"><div class="value">53.0K</div><div class="label">Tool Calls</div></div>
+  <div class="stat-card"><div class="value">1.05B</div><div class="label">Cache Read</div></div>
+  <div class="stat-card"><div class="value">0</div><div class="label">Reasoning</div></div>
+  <div class="stat-card"><div class="value">$0.0000</div><div class="label">Cost USD</div></div>
+</div>
+
+<div class="charts-grid">
+  <div class="chart-box full">
+    <h3>📈 Daily Token Usage Trend</h3>
+    <canvas id="dailyChart"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3>🏆 Top 15 Jobs by Tokens</h3>
+    <canvas id="jobsChart"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3>🤖 Model Breakdown</h3>
+    <canvas id="modelChart"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3>🏢 Provider Breakdown</h3>
+    <canvas id="providerChart"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3>📊 Daily API Calls</h3>
+    <canvas id="callsChart"></canvas>
+  </div>
+</div>
+
+<div class="section">
+<h3>📋 Job Details (Top 20)</h3>
+<table>
+<thead><tr><th>#</th><th>Source</th><th>Total Tokens</th><th>Input</th><th>Output</th><th>Calls</th><th>Tools</th><th>Cache Read</th><th>Share</th></tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td class="mono" title="gateway:discord">gateway:discord</td>
+<td class="mono">414,788,480</td>
+<td class="mono">406,258,763</td>
+<td class="mono">1,878,911</td>
+<td>6,365</td>
+<td>5,732</td>
+<td class="mono">6,650,806</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:100.0%"></div></div></div> <span class="mono">16.5%</span></td>
+</tr><tr>
+<td>2</td>
+<td class="mono" title="cron:2a4d7c310e5a">cron:2a4d7c310e5a</td>
+<td class="mono">187,611,415</td>
+<td class="mono">103,985,993</td>
+<td class="mono">1,223,285</td>
+<td>5,080</td>
+<td>5,211</td>
+<td class="mono">82,402,137</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:45.2%"></div></div></div> <span class="mono">7.5%</span></td>
+</tr><tr>
+<td>3</td>
+<td class="mono" title="cron:54d5cdceaaff">cron:54d5cdceaaff</td>
+<td class="mono">185,614,383</td>
+<td class="mono">101,107,344</td>
+<td class="mono">1,080,286</td>
+<td>5,011</td>
+<td>4,744</td>
+<td class="mono">83,426,753</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:44.7%"></div></div></div> <span class="mono">7.4%</span></td>
+</tr><tr>
+<td>4</td>
+<td class="mono" title="cron:yt_transcript_maximizer">cron:yt_transcript_maximizer</td>
+<td class="mono">176,204,135</td>
+<td class="mono">68,459,821</td>
+<td class="mono">1,147,327</td>
+<td>3,886</td>
+<td>3,631</td>
+<td class="mono">106,596,987</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:42.5%"></div></div></div> <span class="mono">7.0%</span></td>
+</tr><tr>
+<td>5</td>
+<td class="mono" title="cron:6b455b33933f">cron:6b455b33933f</td>
+<td class="mono">175,991,946</td>
+<td class="mono">99,746,119</td>
+<td class="mono">1,009,946</td>
+<td>3,621</td>
+<td>3,403</td>
+<td class="mono">75,235,881</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:42.4%"></div></div></div> <span class="mono">7.0%</span></td>
+</tr><tr>
+<td>6</td>
+<td class="mono" title="cron:44f512059a48">cron:44f512059a48</td>
+<td class="mono">143,370,852</td>
+<td class="mono">81,622,967</td>
+<td class="mono">798,684</td>
+<td>4,193</td>
+<td>4,003</td>
+<td class="mono">60,949,201</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:34.6%"></div></div></div> <span class="mono">5.7%</span></td>
+</tr><tr>
+<td>7</td>
+<td class="mono" title="cron:528b2cf44fd6">cron:528b2cf44fd6</td>
+<td class="mono">94,159,874</td>
+<td class="mono">41,352,187</td>
+<td class="mono">711,146</td>
+<td>2,105</td>
+<td>2,400</td>
+<td class="mono">52,096,541</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:22.7%"></div></div></div> <span class="mono">3.7%</span></td>
+</tr><tr>
+<td>8</td>
+<td class="mono" title="cron:7c84992164b8">cron:7c84992164b8</td>
+<td class="mono">79,987,006</td>
+<td class="mono">45,094,139</td>
+<td class="mono">302,869</td>
+<td>1,533</td>
+<td>1,442</td>
+<td class="mono">34,589,998</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:19.3%"></div></div></div> <span class="mono">3.2%</span></td>
+</tr><tr>
+<td>9</td>
+<td class="mono" title="cron:736c86856dde">cron:736c86856dde</td>
+<td class="mono">70,018,182</td>
+<td class="mono">36,229,402</td>
+<td class="mono">399,635</td>
+<td>1,556</td>
+<td>1,369</td>
+<td class="mono">33,389,145</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:16.9%"></div></div></div> <span class="mono">2.8%</span></td>
+</tr><tr>
+<td>10</td>
+<td class="mono" title="cron:133559891500">cron:133559891500</td>
+<td class="mono">53,566,516</td>
+<td class="mono">22,391,465</td>
+<td class="mono">433,570</td>
+<td>1,328</td>
+<td>1,214</td>
+<td class="mono">30,741,481</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:12.9%"></div></div></div> <span class="mono">2.1%</span></td>
+</tr><tr>
+<td>11</td>
+<td class="mono" title="cron:8ef9360a5885">cron:8ef9360a5885</td>
+<td class="mono">46,915,369</td>
+<td class="mono">15,169,498</td>
+<td class="mono">263,835</td>
+<td>1,173</td>
+<td>826</td>
+<td class="mono">31,482,036</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:11.3%"></div></div></div> <span class="mono">1.9%</span></td>
+</tr><tr>
+<td>12</td>
+<td class="mono" title="cron:92cd976b5b19">cron:92cd976b5b19</td>
+<td class="mono">44,370,628</td>
+<td class="mono">13,478,027</td>
+<td class="mono">300,943</td>
+<td>759</td>
+<td>658</td>
+<td class="mono">30,591,658</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:10.7%"></div></div></div> <span class="mono">1.8%</span></td>
+</tr><tr>
+<td>13</td>
+<td class="mono" title="cron:cd7dce4f7a23">cron:cd7dce4f7a23</td>
+<td class="mono">41,910,417</td>
+<td class="mono">7,525,459</td>
+<td class="mono">237,233</td>
+<td>660</td>
+<td>532</td>
+<td class="mono">34,147,725</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:10.1%"></div></div></div> <span class="mono">1.7%</span></td>
+</tr><tr>
+<td>14</td>
+<td class="mono" title="cron:69a13177ad16">cron:69a13177ad16</td>
+<td class="mono">41,800,153</td>
+<td class="mono">21,821,238</td>
+<td class="mono">272,071</td>
+<td>1,170</td>
+<td>658</td>
+<td class="mono">19,706,844</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:10.1%"></div></div></div> <span class="mono">1.7%</span></td>
+</tr><tr>
+<td>15</td>
+<td class="mono" title="cron:57fe331360fb">cron:57fe331360fb</td>
+<td class="mono">39,108,187</td>
+<td class="mono">18,738,396</td>
+<td class="mono">290,130</td>
+<td>814</td>
+<td>767</td>
+<td class="mono">20,079,661</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:9.4%"></div></div></div> <span class="mono">1.6%</span></td>
+</tr><tr>
+<td>16</td>
+<td class="mono" title="cron:4f308893c96a">cron:4f308893c96a</td>
+<td class="mono">36,657,413</td>
+<td class="mono">20,045,602</td>
+<td class="mono">301,948</td>
+<td>987</td>
+<td>935</td>
+<td class="mono">16,309,863</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:8.8%"></div></div></div> <span class="mono">1.5%</span></td>
+</tr><tr>
+<td>17</td>
+<td class="mono" title="cron:5701dee16f7e">cron:5701dee16f7e</td>
+<td class="mono">36,170,718</td>
+<td class="mono">18,995,579</td>
+<td class="mono">198,408</td>
+<td>564</td>
+<td>640</td>
+<td class="mono">16,976,731</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:8.7%"></div></div></div> <span class="mono">1.4%</span></td>
+</tr><tr>
+<td>18</td>
+<td class="mono" title="cron:06b699cc0de5">cron:06b699cc0de5</td>
+<td class="mono">35,153,798</td>
+<td class="mono">12,738,445</td>
+<td class="mono">325,510</td>
+<td>986</td>
+<td>955</td>
+<td class="mono">22,089,843</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:8.5%"></div></div></div> <span class="mono">1.4%</span></td>
+</tr><tr>
+<td>19</td>
+<td class="mono" title="cron:5943682761ff">cron:5943682761ff</td>
+<td class="mono">32,621,484</td>
+<td class="mono">19,355,355</td>
+<td class="mono">209,334</td>
+<td>925</td>
+<td>905</td>
+<td class="mono">13,056,795</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:7.9%"></div></div></div> <span class="mono">1.3%</span></td>
+</tr><tr>
+<td>20</td>
+<td class="mono" title="cron:b543d5a1a05c">cron:b543d5a1a05c</td>
+<td class="mono">31,177,653</td>
+<td class="mono">15,906,680</td>
+<td class="mono">121,824</td>
+<td>568</td>
+<td>546</td>
+<td class="mono">15,149,149</td>
+<td><div class="bar-cell"><div class="progress-bar"><div class="progress-fill" style="width:7.5%"></div></div></div> <span class="mono">1.2%</span></td>
+</tr></tbody></table></div>
+
+<div class="section">
+<h3>📅 Daily Breakdown</h3>
+<table>
+<thead><tr><th>Date</th><th>Total Tokens</th><th>Input</th><th>Output</th><th>API Calls</th><th>Tool Calls</th></tr></thead>
+<tbody>
+<tr><td class="mono">20260406</td><td class="mono">238,751,094</td><td class="mono">109,888,606</td><td class="mono">1,718,204</td><td>3,859</td><td>3,565</td></tr><tr><td class="mono">20260407</td><td class="mono">320,667,137</td><td class="mono">240,868,369</td><td class="mono">2,247,776</td><td>6,068</td><td>5,891</td></tr><tr><td class="mono">20260408</td><td class="mono">557,731,789</td><td class="mono">300,687,864</td><td class="mono">3,028,396</td><td>12,585</td><td>11,318</td></tr><tr><td class="mono">20260409</td><td class="mono">592,309,471</td><td class="mono">340,805,571</td><td class="mono">3,729,074</td><td>13,202</td><td>12,676</td></tr><tr><td class="mono">20260410</td><td class="mono">49,549,487</td><td class="mono">32,145,570</td><td class="mono">368,585</td><td>1,217</td><td>1,137</td></tr><tr><td class="mono">20260411</td><td class="mono">103,731,637</td><td class="mono">66,468,713</td><td class="mono">596,415</td><td>2,487</td><td>2,356</td></tr><tr><td class="mono">20260412</td><td class="mono">145,087,650</td><td class="mono">78,028,220</td><td class="mono">779,566</td><td>3,684</td><td>3,416</td></tr><tr><td class="mono">20260413</td><td class="mono">119,079,168</td><td class="mono">64,663,541</td><td class="mono">693,166</td><td>3,080</td><td>2,854</td></tr><tr><td class="mono">20260414</td><td class="mono">105,712,464</td><td class="mono">57,927,858</td><td class="mono">629,096</td><td>2,792</td><td>2,566</td></tr><tr><td class="mono">20260415</td><td class="mono">112,701,036</td><td class="mono">61,077,499</td><td class="mono">604,062</td><td>3,084</td><td>2,860</td></tr><tr><td class="mono">20260416</td><td class="mono">102,662,253</td><td class="mono">55,783,492</td><td class="mono">637,774</td><td>2,861</td><td>2,607</td></tr><tr><td class="mono">20260417</td><td class="mono">63,904,174</td><td class="mono">34,700,166</td><td class="mono">494,338</td><td>1,873</td><td>1,711</td></tr></tbody></table></div>
+
+<div class="section">
+<h3>🧠 Model Breakdown</h3>
+<table>
+<thead><tr><th>Model</th><th>Total Tokens</th><th>Input</th><th>Output</th><th>Calls</th></tr></thead>
+<tbody>
+<tr><td class="mono">hf:MiniMaxAI/MiniMax-M2.5</td><td class="mono">1,899,124,726</td><td class="mono">965,808,501</td><td class="mono">10,510,495</td><td>42,939</td></tr><tr><td class="mono">z-ai/glm-4.5-air:free</td><td class="mono">246,661,417</td><td class="mono">159,079,663</td><td class="mono">1,701,413</td><td>6,106</td></tr><tr><td class="mono">qwen/qwen3.6-plus:free</td><td class="mono">246,064,280</td><td class="mono">243,628,632</td><td class="mono">2,435,648</td><td>5,022</td></tr><tr><td class="mono">hf:zai-org/GLM-5</td><td class="mono">59,783,434</td><td class="mono">31,251,978</td><td class="mono">405,952</td><td>1,206</td></tr><tr><td class="mono">hf:zai-org/GLM-5.1</td><td class="mono">30,695,076</td><td class="mono">16,829,954</td><td class="mono">265,826</td><td>893</td></tr><tr><td class="mono">nvidia/nemotron-3-super-120b-a12b:free</td><td class="mono">21,930,154</td><td class="mono">21,770,109</td><td class="mono">160,045</td><td>492</td></tr><tr><td class="mono">minimax/minimax-m2.5:free</td><td class="mono">3,450,632</td><td class="mono">540,648</td><td class="mono">17,696</td><td>53</td></tr><tr><td class="mono">openrouter/free</td><td class="mono">3,124,484</td><td class="mono">3,091,196</td><td class="mono">24,008</td><td>46</td></tr><tr><td class="mono">llama3.2:latest</td><td class="mono">982,331</td><td class="mono">979,601</td><td class="mono">2,730</td><td>33</td></tr><tr><td class="mono">nvidia/nemotron-nano-9b-v2:free</td><td class="mono">58,426</td><td class="mono">56,987</td><td class="mono">1,439</td><td>1</td></tr><tr><td class="mono">anthropic/claude-sonnet-4-20250514</td><td class="mono">12,400</td><td class="mono">8,200</td><td class="mono">1,200</td><td>1</td></tr></tbody></table></div>
+
+<script>
+const ctx = document.getElementById.bind(document);
+
+// Daily trend chart (dual axis: tokens bar + calls line)
+new Chart(ctx('dailyChart'), {
+  type: 'bar',
+  data: {
+    labels: ["20260406", "20260407", "20260408", "20260409", "20260410", "20260411", "20260412", "20260413", "20260414", "20260415", "20260416", "20260417"],
+    datasets: [
+      {
+        label: 'Total Tokens',
+        data: [238751094, 320667137, 557731789, 592309471, 49549487, 103731637, 145087650, 119079168, 105712464, 112701036, 102662253, 63904174],
+        backgroundColor: 'rgba(88,166,255,0.6)',
+        borderColor: 'rgba(88,166,255,1)',
+        borderWidth: 1,
+        yAxisID: 'y'
+      },
+      {
+        label: 'API Calls',
+        data: [3859, 6068, 12585, 13202, 1217, 2487, 3684, 3080, 2792, 3084, 2861, 1873],
+        type: 'line',
+        borderColor: '#f78166',
+        backgroundColor: 'rgba(247,129,102,0.1)',
+        borderWidth: 2,
+        pointRadius: 4,
+        fill: false,
+        yAxisID: 'y1'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: { type: 'logarithmic', position: 'left', title: { display: true, text: 'Tokens', color: '#8b949e' }, ticks: { color: '#8b949e' }, grid: { color: '#21262d' } },
+      y1: { position: 'right', title: { display: true, text: 'Calls', color: '#8b949e' }, ticks: { color: '#8b949e' }, grid: { display: false } },
+      x: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } }
+    },
+    plugins: { legend: { labels: { color: '#c9d1d9' } } }
+  }
+});
+
+// Top jobs chart
+new Chart(ctx('jobsChart'), {
+  type: 'bar',
+  data: {
+    labels: ["gateway:discord", "cron:2a4d7c310e5a", "cron:54d5cdceaaff", "cron:yt_transcript_maximizer", "cron:6b455b33933f", "cron:44f512059a48", "cron:528b2cf44fd6", "cron:7c84992164b8", "cron:736c86856dde", "cron:133559891500", "cron:8ef9360a5885", "cron:92cd976b5b19", "cron:cd7dce4f7a23", "cron:69a13177ad16", "cron:57fe331360fb"],
+    datasets: [{
+      label: 'Total Tokens',
+      data: [414788480, 187611415, 185614383, 176204135, 175991946, 143370852, 94159874, 79987006, 70018182, 53566516, 46915369, 44370628, 41910417, 41800153, 39108187],
+      backgroundColor: 'rgba(56,139,253,0.6)',
+      borderColor: 'rgba(56,139,253,1)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    scales: {
+      x: { type: 'logarithmic', ticks: { color: '#8b949e' }, grid: { color: '#21262d' } },
+      y: { ticks: { color: '#c9d1d9', font: { size: 10 } }, grid: { display: false } }
+    },
+    plugins: { legend: { labels: { color: '#c9d1d9' } } }
+  }
+});
+
+// Model doughnut
+new Chart(ctx('modelChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ["hf:MiniMaxAI/MiniMax-M2.5", "z-ai/glm-4.5-air:free", "qwen/qwen3.6-plus:free", "hf:zai-org/GLM-5", "hf:zai-org/GLM-5.1", "nvidia/nemotron-3-super-120b-a12b:f", "minimax/minimax-m2.5:free", "openrouter/free"],
+    datasets: [{
+      data: [1899124726, 246661417, 246064280, 59783434, 30695076, 21930154, 3450632, 3124484],
+      backgroundColor: ['rgba(88,166,255,0.7)','rgba(63,185,80,0.7)','rgba(247,129,102,0.7)','rgba(188,140,255,0.7)','rgba(255,209,77,0.7)','rgba(121,192,255,0.7)','rgba(255,123,114,0.7)','rgba(147,209,131,0.7)'],
+      borderColor: '#0d1117'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'right', labels: { color: '#c9d1d9', font: { size: 11 } } } }
+  }
+});
+
+// Provider doughnut
+new Chart(ctx('providerChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ["custom", "openrouter"],
+    datasets: [{
+      data: [1990585567, 521301793],
+      backgroundColor: ['rgba(88,166,255,0.7)','rgba(247,129,102,0.7)','rgba(63,185,80,0.7)','rgba(188,140,255,0.7)'],
+      borderColor: '#0d1117'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'right', labels: { color: '#c9d1d9' } } }
+  }
+});
+
+// Daily calls chart
+new Chart(ctx('callsChart'), {
+  type: 'line',
+  data: {
+    labels: ["20260406", "20260407", "20260408", "20260409", "20260410", "20260411", "20260412", "20260413", "20260414", "20260415", "20260416", "20260417"],
+    datasets: [{
+      label: 'API Calls',
+      data: [3859, 6068, 12585, 13202, 1217, 2487, 3684, 3080, 2792, 3084, 2861, 1873],
+      borderColor: '#3fb950',
+      backgroundColor: 'rgba(63,185,80,0.1)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } },
+      x: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } }
+    },
+    plugins: { legend: { labels: { color: '#c9d1d9' } } }
+  }
+});
+</script>
+
+</body>
+</html>
