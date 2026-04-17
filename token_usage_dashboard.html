@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Usage Dashboard - April 17, 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #f0c674; text-align: center; margin-bottom: 30px; font-weight: 300; }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .card-label { color: #8899a6; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .card-value { color: #fff; font-size: 28px; font-weight: 600; margin-top: 8px; }
+        .card-sub { color: #59c2c3; font-size: 14px; margin-top: 4px; }
+        .section { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.08); }
+        .section h2 { color: #c5e8f7; font-size: 18px; margin-bottom: 15px; font-weight: 400; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; color: #8899a6; font-weight: 500; padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 12px; text-transform: uppercase; }
+        td { padding: 12px 8px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+        .rank { color: #f0c674; font-weight: 600; width: 40px; }
+        .job-id { font-family: monospace; color: #b294bb; font-size: 12px; }
+        .tokens { color: #a7bd68; font-weight: 500; }
+        .chart-container { height: 300px; margin-top: 20px; }
+        .footer { text-align: center; color: #555; font-size: 12px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Token Usage Dashboard</h1>
+        
+        <div class="summary">
+            <div class="card">
+                <div class="card-label">Total Tokens</div>
+                <div class="card-value">17,149,828</div>
+                <div class="card-sub">Input: 9,238,251 | Output: 117,072</div>
+            </div>
+            <div class="card">
+                <div class="card-label">Total Requests</div>
+                <div class="card-value">474</div>
+                <div class="card-sub">Avg 36,181 tokens/req</div>
+            </div>
+            <div class="card">
+                <div class="card-label">Active Jobs</div>
+                <div class="card-value">18</div>
+                <div class="card-sub">Cron jobs tracked</div>
+            </div>
+            <div class="card">
+                <div class="card-label">Date</div>
+                <div class="card-value">April 17</div>
+                <div class="card-sub">2026</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Token Distribution</h2>
+            <div class="chart-container">
+                <canvas id="tokensChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🏆 Top 15 Jobs by Token Consumption</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Job ID</th>
+                        <th>Input</th>
+                        <th>Output</th>
+                        <th>Total</th>
+                        <th>Requests</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="rank">1</td>
+                        <td class="job-id">cron:2569b839db20...</td>
+                        <td class="tokens">2,439,030</td>
+                        <td class="tokens">18,008</td>
+                        <td class="tokens">4,749,226</td>
+                        <td>112</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">2</td>
+                        <td class="job-id">cron:7c84992164b8...</td>
+                        <td class="tokens">1,418,092</td>
+                        <td class="tokens">7,198</td>
+                        <td class="tokens">2,628,940</td>
+                        <td>48</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">3</td>
+                        <td class="job-id">cron:21e88caa316e...</td>
+                        <td class="tokens">1,163,897</td>
+                        <td class="tokens">21,592</td>
+                        <td class="tokens">2,018,700</td>
+                        <td>48</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">4</td>
+                        <td class="job-id">cron:b33c33b3ed9c...</td>
+                        <td class="tokens">624,142</td>
+                        <td class="tokens">4,618</td>
+                        <td class="tokens">1,206,638</td>
+                        <td>46</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">5</td>
+                        <td class="job-id">cron:6f5af0c6d47f...</td>
+                        <td class="tokens">483,842</td>
+                        <td class="tokens">5,568</td>
+                        <td class="tokens">927,328</td>
+                        <td>28</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">6</td>
+                        <td class="job-id">cron:6b61af6f937e...</td>
+                        <td class="tokens">441,152</td>
+                        <td class="tokens">16,654</td>
+                        <td class="tokens">817,444</td>
+                        <td>28</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">7</td>
+                        <td class="job-id">cron:755ce0ca79ad...</td>
+                        <td class="tokens">419,562</td>
+                        <td class="tokens">4,704</td>
+                        <td class="tokens">815,008</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">8</td>
+                        <td class="job-id">cron:e1f4acf9da0d...</td>
+                        <td class="tokens">401,786</td>
+                        <td class="tokens">3,458</td>
+                        <td class="tokens">745,530</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">9</td>
+                        <td class="job-id">cron:56d9d0dda252...</td>
+                        <td class="tokens">310,336</td>
+                        <td class="tokens">12,154</td>
+                        <td class="tokens">552,086</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">10</td>
+                        <td class="job-id">cron:80af616496d0...</td>
+                        <td class="tokens">270,911</td>
+                        <td class="tokens">2,436</td>
+                        <td class="tokens">478,922</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">11</td>
+                        <td class="job-id">cron:c2682e5abab0...</td>
+                        <td class="tokens">265,327</td>
+                        <td class="tokens">2,444</td>
+                        <td class="tokens">474,378</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">12</td>
+                        <td class="job-id">cron:fc092602a730...</td>
+                        <td class="tokens">256,766</td>
+                        <td class="tokens">2,104</td>
+                        <td class="tokens">456,148</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">13</td>
+                        <td class="job-id">cron:cd7dce4f7a23...</td>
+                        <td class="tokens">203,010</td>
+                        <td class="tokens">4,512</td>
+                        <td class="tokens">346,038</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">14</td>
+                        <td class="job-id">cron:92cd976b5b19...</td>
+                        <td class="tokens">177,444</td>
+                        <td class="tokens">6,246</td>
+                        <td class="tokens">293,616</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">15</td>
+                        <td class="job-id">cron:yt_transcrip...</td>
+                        <td class="tokens">150,942</td>
+                        <td class="tokens">2,588</td>
+                        <td class="tokens">262,776</td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            Generated: 2026-04-17 05:01:22 | Data source: ~/.hermes/metrics/token_usage/20260417.jsonl
+        </div>
+    </div>
+    
+    <script>
+        const ctx = document.getElementById('tokensChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["cron:2569b839db20...", "cron:7c84992164b8...", "cron:21e88caa316e...", "cron:b33c33b3ed9c...", "cron:6f5af0c6d47f...", "cron:6b61af6f937e...", "cron:755ce0ca79ad...", "cron:e1f4acf9da0d..."],
+                datasets: [{
+                    data: [4749226, 2628940, 2018700, 1206638, 927328, 817444, 815008, 745530],
+                    backgroundColor: [
+                        '#f0c674', '#b294bb', '#81a2be', '#a7bd68', 
+                        '#de935f', '#c5c8c6', '#cc6666', '#59c2c3'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { color: '#8899a6', padding: 15 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
