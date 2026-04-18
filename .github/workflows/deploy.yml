@@ -2,7 +2,7 @@ name: Deploy Intelligence Hub Dashboard
 
 on:
   push:
-    branches: [main]
+    branches: [gh-pages]
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
@@ -19,8 +19,12 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
