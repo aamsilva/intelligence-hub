@@ -10,13 +10,17 @@
     "reddit_posts": 0
   },
   "youtube": {
-    "total_transcripts": 3779,
-    "date_folders": 24,
-    "latest_date": "2026-04-26",
+    "total_transcripts": 3938,
+    "date_folders": 25,
+    "latest_date": "2026-04-27",
     "transcripts_per_day": [
       {
-        "date": "2026-04-26",
+        "date": "2026-04-27",
         "count": 0
+      },
+      {
+        "date": "2026-04-26",
+        "count": 159
       },
       {
         "date": "2026-04-24",
@@ -37,23 +41,19 @@
       {
         "date": "2026-04-20",
         "count": 759
-      },
-      {
-        "date": "2026-04-19",
-        "count": 14
       }
     ],
     "avg_words_per_transcript": 0,
     "total_estimated_words": 0,
     "pipeline_state": {
       "started_at": "2026-04-03T17:16:09.865731",
-      "last_run": "2026-04-26T20:51:19.680695",
-      "total_runs": 274,
-      "successful_runs": 227,
-      "failed_runs": 47,
-      "last_extraction_time": "2026-04-24T13:05:19.612614",
-      "last_optimization_time": "2026-04-26T20:51:20.060557",
-      "consecutive_failures": 3,
+      "last_run": "2026-04-27T00:29:41.852897",
+      "total_runs": 284,
+      "successful_runs": 229,
+      "failed_runs": 55,
+      "last_extraction_time": "2026-04-26T23:22:02.728162",
+      "last_optimization_time": "2026-04-26T23:12:48.288944",
+      "consecutive_failures": 1,
       "auto_optimization_enabled": true,
       "status": "ready",
       "last_status": "success",
@@ -199,7 +199,7 @@
   },
   "system": {
     "hub_size": "28G",
-    "yt_size": "333M",
+    "yt_size": "347M",
     "total_files": ""
   },
   "auto_optimization": {
