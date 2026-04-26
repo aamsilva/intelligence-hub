@@ -10,13 +10,17 @@
     "reddit_posts": 0
   },
   "youtube": {
-    "total_transcripts": 3774,
-    "date_folders": 23,
-    "latest_date": "2026-04-24",
+    "total_transcripts": 3779,
+    "date_folders": 24,
+    "latest_date": "2026-04-26",
     "transcripts_per_day": [
       {
+        "date": "2026-04-26",
+        "count": 0
+      },
+      {
         "date": "2026-04-24",
-        "count": 177
+        "count": 182
       },
       {
         "date": "2026-04-23",
@@ -37,23 +41,19 @@
       {
         "date": "2026-04-19",
         "count": 14
-      },
-      {
-        "date": "2026-04-18",
-        "count": 6
       }
     ],
-    "avg_words_per_transcript": 2782,
-    "total_estimated_words": 10499268,
+    "avg_words_per_transcript": 0,
+    "total_estimated_words": 0,
     "pipeline_state": {
       "started_at": "2026-04-03T17:16:09.865731",
-      "last_run": "2026-04-24T08:32:20.413675",
-      "total_runs": 270,
-      "successful_runs": 226,
-      "failed_runs": 44,
-      "last_extraction_time": "2026-04-24T04:32:12.406598",
-      "last_optimization_time": "2026-04-24T08:32:20.629457",
-      "consecutive_failures": 4,
+      "last_run": "2026-04-26T20:51:19.680695",
+      "total_runs": 274,
+      "successful_runs": 227,
+      "failed_runs": 47,
+      "last_extraction_time": "2026-04-24T13:05:19.612614",
+      "last_optimization_time": "2026-04-26T20:51:20.060557",
+      "consecutive_failures": 3,
       "auto_optimization_enabled": true,
       "status": "ready",
       "last_status": "success",
@@ -198,7 +198,7 @@
     "error": "'str' object has no attribute 'get'"
   },
   "system": {
-    "hub_size": "26G",
+    "hub_size": "28G",
     "yt_size": "333M",
     "total_files": ""
   },
@@ -235,141 +235,5 @@
     },
     "timestamp": "2026-04-05T00:06:31.072111"
   },
-  "sample_scoring": [
-    {
-      "id": "3203b596",
-      "title": "Which Is Better Levi\u2019s x Air Jordan 3 Black vs Indigo",
-      "source": "2026-04-24",
-      "score": 56,
-      "kill_reason": null,
-      "urgency": 4,
-      "economics": 19,
-      "moat": 12,
-      "feasibility": 2,
-      "sales": 12,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "0feb96de",
-      "title": "Was I Wrong About the Macbook Neo?",
-      "source": "2026-04-24",
-      "score": 48,
-      "kill_reason": null,
-      "urgency": 4,
-      "economics": 19,
-      "moat": 12,
-      "feasibility": 2,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "a9d37492",
-      "title": "The International Airport That Can Only Send Flights to Turkey",
-      "source": "2026-04-24",
-      "score": 27,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 2,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "20b86e6a",
-      "title": "The Importance of Asset Allocation",
-      "source": "2026-04-24",
-      "score": 64,
-      "kill_reason": null,
-      "urgency": 4,
-      "economics": 19,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 12,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Engineering Leadership (CTO/VP Eng)",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "8c9493e6",
-      "title": "Tour Kennedy Space Center Visitor's Complex w/ guests!",
-      "source": "2026-04-24",
-      "score": 27,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 2,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "c98bfe62",
-      "title": "It's Overpriced and I'm EXCITED - Ryzen 9 9950X3D2 Dual Edition Review",
-      "source": "2026-04-24",
-      "score": 71,
-      "kill_reason": null,
-      "urgency": 9,
-      "economics": 19,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 12,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "75b4d079",
-      "title": "So This is Peak Smartphone",
-      "source": "2026-04-24",
-      "score": 41,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 17,
-      "feasibility": 12,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Engineering Leadership (CTO/VP Eng)",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "dac57d77",
-      "title": "America's fishing paradox",
-      "source": "2026-04-24",
-      "score": 42,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 9,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    },
-    {
-      "id": "adc23d06",
-      "title": "The hidden \"country\" of CAUCASIA explained",
-      "source": "2026-04-24",
-      "score": 35,
-      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
-      "urgency": 4,
-      "economics": 4,
-      "moat": 12,
-      "feasibility": 12,
-      "sales": 2,
-      "mvp": "SaaS API or Web Tool",
-      "buyer": "Generic Enterprise",
-      "model": "Subscription (ARR)"
-    }
-  ]
+  "sample_scoring": []
 }
