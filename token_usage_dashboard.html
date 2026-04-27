@@ -1,1 +1,77 @@
-<html><head><title>Token Dashboard</title><style>...</style></head><body>...</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Token Usage Dashboard - 2026-04-27</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+body {background: #0d1117; color: #c9d1d9; font-family: Arial, sans-serif; margin: 0; padding: 20px;}
+.cards {display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px;}
+.card {background: #161b22; border-radius: 8px; padding: 16px; text-align: center;}
+.card h3 {color: #8b949e; margin: 0 0 8px; font-size: 13px; text-transform: uppercase;}
+.card .value {color: #80ece5; font-size: 20px; font-weight: bold;}
+.chart-container {background: #161b22; border-radius: 8px; padding: 16px; margin: 16px 0;}
+h2 {color: #c9d1d9; border-bottom: 1px solid #30363d; padding-bottom: 8px;}
+table {width: 100%; border-collapse: collapse;}
+th, td {padding: 8px 12px; border-bottom: 1px solid #30363d; text-align: left; color: #c9d1d9;}
+th {color: #8b949e; font-weight: normal;}
+.progress {height: 6px; background: #30363d; border-radius: 3px; overflow: hidden;}
+.progress-fill {height: 100%; background: #80ece5;}
+</style>
+</head>
+<body>
+<div class="cards">
+<div class="card"><h3>Total Tokens</h3><div class="value">238751094</div></div>
+<div class="card"><h3>API Calls</h3><div class="value">3859</div></div>
+<div class="card"><h3>Jobs</h3><div class="value">55</div></div>
+<div class="card"><h3>Models</h3><div class="value">6</div></div>
+<div class="card"><h3>Providers</h3><div class="value">2</div></div>
+</div>
+
+<h2>Top Jobs by Tokens</h2>
+<table id="jobsTable">
+<thead><tr><th>Job</th><th>Tokens</th><th>Calls</th><th>Model Shares</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<div class="chart-container">
+<canvas id="modelChart"></canvas>
+</div>
+<div class="chart-container">
+<canvas id="providerChart"></canvas>
+</div>
+
+<script>
+const jobsData = [{"name": "cron:cd7dce4f7a23", "tokens": 38998483, "calls": 570}, {"name": "cron:92cd976b5b19", "tokens": 37009652, "calls": 539}, {"name": "cron:736c86856dde", "tokens": 21814711, "calls": 350}, {"name": "cron:57fe331360fb", "tokens": 15216013, "calls": 267}, {"name": "cron:yt_transcript_maximizer", "tokens": 11290864, "calls": 217}, {"name": "cron:49756f23e396", "tokens": 8556776, "calls": 120}, {"name": "cron:2a4d7c310e5a", "tokens": 7430181, "calls": 82}, {"name": "cron:e9a656bc36ef", "tokens": 6516315, "calls": 103}, {"name": "cron:ae4ec306350f", "tokens": 6348889, "calls": 119}, {"name": "cron:dce8bc4ea7db", "tokens": 5859599, "calls": 91}];
+const modelsData = {"qwen/qwen3.6-plus:free": {"tokens": 98864241, "count": 1736}, "anthropic/claude-sonnet-4-20250514": {"tokens": 12400, "count": 1}, "hf:MiniMaxAI/MiniMax-M2.5": {"tokens": 136105579, "count": 2060}, "llama3.2:latest": {"tokens": 259816, "count": 8}, "minimax/minimax-m2.5:free": {"tokens": 3450632, "count": 53}, "nvidia/nemotron-nano-9b-v2:free": {"tokens": 58426, "count": 1}};
+const providersData = {"openrouter": {"tokens": 102385699, "count": 1791}, "custom": {"tokens": 136365395, "count": 2068}};
+
+// Fill jobs table
+const tbody = document.querySelector('#jobsTable tbody');
+jobsData.forEach(j => {
+    const tr = document.createElement('tr');
+    const modelSharesStr = Object.entries(j.modelShares || {}).map(([m,t]) => `${m}:${t}`).join(', ');
+    tr.innerHTML = `<td>${j.name}</td><td>${j.tokens.toLocaleString()}</td><td>${j.calls}</td><td>${modelSharesStr}</td>`;
+    tbody.appendChild(tr);
+});
+
+// Model chart
+const modelLabels = Object.keys(modelsData);
+const modelTokens = modelLabels.map(l => modelsData[l].tokens);
+new Chart(document.getElementById('modelChart').getContext('2d'), {
+    type: 'bar',
+    data: {labels: modelLabels, datasets: [{label: 'Tokens', data: modelTokens, backgroundColor: '#80ece5'}]},
+    options: {responsive: true, scales: {y: {beginAtZero: true}}}
+});
+
+// Provider chart
+const provLabels = Object.keys(providersData);
+const provTokens = provLabels.map(l => providersData[l].tokens);
+new Chart(document.getElementById('providerChart').getContext('2d'), {
+    type: 'doughnut',
+    data: {labels: provLabels, datasets: [{data: provTokens, backgroundColor: ['#80ece5', '#58a6ff', '#f5c2e7', '#e55934', '#7c3aed']}]},
+    options: {responsive: true}
+});
+</script>
+</body>
+</html>
