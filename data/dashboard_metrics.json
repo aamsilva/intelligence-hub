@@ -47,13 +47,13 @@
     "total_estimated_words": 0,
     "pipeline_state": {
       "started_at": "2026-04-03T17:16:09.865731",
-      "last_run": "2026-04-27T00:29:41.852897",
-      "total_runs": 284,
+      "last_run": "2026-04-27T02:21:40.391058",
+      "total_runs": 287,
       "successful_runs": 229,
-      "failed_runs": 55,
+      "failed_runs": 58,
       "last_extraction_time": "2026-04-26T23:22:02.728162",
-      "last_optimization_time": "2026-04-26T23:12:48.288944",
-      "consecutive_failures": 1,
+      "last_optimization_time": "2026-04-27T02:21:40.963135",
+      "consecutive_failures": 4,
       "auto_optimization_enabled": true,
       "status": "ready",
       "last_status": "success",
@@ -198,7 +198,7 @@
     "error": "'str' object has no attribute 'get'"
   },
   "system": {
-    "hub_size": "28G",
+    "hub_size": "26G",
     "yt_size": "347M",
     "total_files": ""
   },
