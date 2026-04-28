@@ -1,461 +1,339 @@
 <!DOCTYPE html>
-<html lang="pt">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Intelligence Hub — Dashboard Global</title>
+<html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SearXNG Performance Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0f;--card:#14141f;--border:#1e1e2e;--text:#e2e2f0;--muted:#8888a0;--accent:#6366f1;--green:#4ade80;--yellow:#fbbf24;--red:#ef4444}
-body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono','SF Mono','Fira Code',monospace;font-size:13px;line-height:1.6;padding:20px;max-width:1400px;margin:0 auto}
-h1{color:var(--accent);font-size:18px;margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:10px}
-h2{color:var(--accent);font-size:15px;margin:30px 0 15px;padding-left:10px;border-left:3px solid var(--accent)}
-.subtitle{color:var(--muted);font-size:11px;margin-bottom:25px}
-.timestamp{color:var(--yellow);float:right}
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:30px}
-.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
-.kpi .value{font-size:28px;font-weight:700;color:#fff}
-.kpi .label{font-size:10px;color:var(--muted);text-transform:uppercase;margin-top:4px}
-.kpi.accent .value{color:var(--accent)}
-.kpi.green .value{color:var(--green)}
-.kpi.yellow .value{color:var(--yellow)}
-.kpi.red .value{color:var(--red)}
-.bar-chart{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
-.bar-row{display:flex;align-items:center;margin:4px 0}
-.bar-label{width:60px;font-size:10px;color:var(--muted);text-align:right;padding-right:8px}
-.bar{height:22px;border-radius:3px;color:#000;font-size:10px;font-weight:700;line-height:22px;padding:0 6px;min-width:20px;text-align:left}
-table{width:100%;border-collapse:collapse;margin:10px 0}
-th{background:var(--card);color:var(--accent);font-size:10px;text-transform:uppercase;padding:10px 8px;text-align:left;border-bottom:2px solid var(--border)}
-td{padding:8px;border-bottom:1px solid var(--border);font-size:12px}
-tr:hover td{background:#1a1a2a}
-.status-badge{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
-.hot-lead-card{background:var(--card);border:1px solid var(--green);border-radius:8px;margin:8px 0;overflow:hidden}
-.hot-lead-header{display:flex;align-items:center;padding:12px;gap:10px;background:#1a2e1a}
-.hot-lead-body{padding:12px}
-.hot-lead-body p{margin:4px 0}
-.score-badge{background:var(--green);color:#000;padding:4px 12px;border-radius:20px;font-weight:700;font-size:14px}
-.hot-lead-title{font-weight:700;font-size:14px}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:900px){.two-col{grid-template-columns:1fr}}
-.text-muted{color:var(--muted)}
-.section-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px}
-.flow-pipeline{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;align-items:center;justify-content:center}
-.flow-step{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:center;min-width:140px}
-.flow-step .step-title{font-size:10px;color:var(--muted);text-transform:uppercase}
-.flow-step .step-value{font-size:22px;font-weight:700;margin:4px 0}
-.flow-arrow{color:var(--accent);font-size:20px}
-.legend{display:flex;gap:20px;margin:10px 0;font-size:11px}
-.legend-item{display:flex;align-items:center;gap:4px}
-.legend-dot{width:10px;height:10px;border-radius:50%}
-
-/* ACTION BUTTONS */
-.actions-grid{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
-.action-btn{
-    display:inline-flex;align-items:center;gap:8px;padding:12px 20px;
-    border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;
-    text-decoration:none;border:none;transition:all 0.2s
-}
-.action-btn{background:var(--card);border:1px solid var(--border);color:var(--text)}
-.action-btn:hover{background:var(--border);transform:translateY(-2px)}
-.action-btn.primary{background:var(--accent);color:#000;border-color:var(--accent)}
-.action-btn.danger{background:var(--red);color:#000;border-color:var(--red)}
-.action-btn.success{background:var(--green);color:#000;border-color:var(--green)}
-
-/* MULTI-SOURCE CARDS */
-.source-card{
-    background:var(--card);border:1px solid var(--border);border-radius:8px;
-    padding:16px;margin:8px 0
-}
-.source-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.source-icon{font-size:24px}
-.source-title{font-weight:700;font-size:14px}
-.source-stats{display:flex;gap:20px;font-size:12px;color:var(--muted)}
-.source-stat{display:flex;align-items:center;gap:4px}
-
-/* AUTO-OPTIMIZATION PANEL */
-.optimization-panel{
-    background:#1a1a2e;border:1px solid var(--accent);border-radius:8px;
-    padding:16px;margin:16px 0
-}
-.optimization-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.insight-item{
-    display:flex;align-items:flex-start;gap:10px;padding:10px;
-    background:var(--card);border-radius:6px;margin:8px 0
-}
-.insight-severity{font-size:16px}
-.insight-content{flex:1}
-.insight-area{font-weight:700;font-size:12px;color:var(--accent)}
-.insight-message{font-size:13px;margin:4px 0}
-.insight-action{font-size:11px;color:var(--muted)}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; }
+.header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 24px 32px; border-bottom: 1px solid #2a2a4a; display: flex; justify-content: space-between; align-items: center; }
+.header h1 { margin: 0; font-size: 20px; color: #fff; }
+.header .meta { color: #888; font-size: 13px; margin-top: 4px; }
+.container { padding: 20px 24px; max-width: 1500px; margin: 0 auto; }
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.metric-card { background: #14141f; border: 1px solid #222; border-radius: 10px; padding: 16px; transition: border-color 0.2s; }
+.metric-card:hover { border-color: #444; }
+.metric-card .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px; }
+.metric-card .value { font-size: 26px; font-weight: bold; }
+.metric-card .sub { font-size: 11px; color: #666; margin-top: 4px; }
+.chart-section { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.chart-card { background: #14141f; border: 1px solid #222; border-radius: 10px; padding: 20px; }
+.chart-card h3 { margin: 0 0 16px 0; font-size: 12px; text-transform: uppercase; color: #888; letter-spacing: 1px; }
+.chart-wrap { height: 240px; }
+.full-width { grid-column: 1 / -1; }
+.data-panel { background: #14141f; border: 1px solid #222; border-radius: 10px; padding: 20px; margin-bottom: 14px; }
+.data-panel h3 { margin: 0 0 14px 0; font-size: 12px; text-transform: uppercase; color: #888; letter-spacing: 1px; }
+.footer { text-align: center; color: #444; font-size: 11px; padding: 20px; margin-top: 20px; border-top: 1px solid #1a1a2e; }
+.status-bar { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.status-tag { padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: 600; }
+.tag-ok { background: rgba(46,204,113,0.12); color: #2ecc71; border: 1px solid rgba(46,204,113,0.25); }
+.tag-warn { background: rgba(241,196,15,0.12); color: #f1c40f; border: 1px solid rgba(241,196,15,0.25); }
+.tag-err { background: rgba(231,76,60,0.12); color: #e74c3c; border: 1px solid rgba(231,76,60,0.25); }
+.obs-list { margin: 0; padding-left: 20px; font-size: 13px; line-height: 2; color: #aaa; }
+.obs-list li { margin-bottom: 2px; }
 </style>
-</head>
-<body>
-
-<h1>🧠 SUPER INTELLIGENCE HUB — DASHBOARD GLOBAL <span class="timestamp">⏰ 2026-04-27 10:32:09 UTC</span></h1>
-<p class="subtitle">Super Intelligence Center: Multi-Source Aggregation + Auto-Optimization + VC-Style Scoring</p>
-
-<!-- ACTION BUTTONS -->
-<h2>🎮 Painel de Ações</h2>
-<div class="actions-grid">
-    <a href="javascript:fetch('/run/ingest-multi',{method:'POST'}).then(()=>alert('Ingestão iniciada!'));void 0" class="action-btn primary">📥 Nova Ingestão</a>
-    <a href="javascript:fetch('/run/refresh-dashboard',{method:'POST'}).then(()=>location.reload());void 0" class="action-btn">🔄 Refresh Dashboard</a>
-    <a href="javascript:fetch('/run/auto-optimize',{method:'POST'}).then(r=>r.json()).then(console.log);void 0" class="action-btn success">🔧 Auto-Otimizar</a>
-    <a href="javascript:fetch('/run/run-pipeline',{method:'POST'}).then(()=>alert('Pipeline iniciado!'));void 0" class="action-btn">⚡ Executar Pipeline</a>
-    <a href="https://aamsilva.github.io/intelligence-hub/" target="_blank" class="action-btn">🌐 Ver GitHub Pages</a>
-    <a href="/debug" class="action-btn danger">🐛 Debug Mode</a>
-</div>
-<p class="text-muted" style="font-size:11px">💡 As ações acima requerem API endpoint configurado. Use os botões para управления manual ou configure Webhooks.</p>
-
-<!-- PIPELINE FLOW -->
-<h2>🔄 Pipeline de Inteligência — Fluxo End-to-End</h2>
-<div class="flow-pipeline">
-    <div class="flow-step">
-        <div class="step-title">📥 1. Ingestão</div>
-        <div class="step-value" style="color:var(--accent)">4,104</div>
-        <div class="text-muted">Transcripts YouTube</div>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-        <div class="step-title">⚙️ 2. Processamento</div>
-        <div class="step-value" style="color:var(--accent)">0</div>
-        <div class="text-muted">Vídeos com Score</div>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-        <div class="step-title">🧩 3. Scoring VC</div>
-        <div class="step-value" style="color:var(--yellow)">0</div>
-        <div class="text-muted">Score ≥ 70/100</div>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-        <div class="step-title">🚀 4. Board Proposals</div>
-        <div class="step-value" style="color:var(--green)">0</div>
-        <div class="text-muted">Propostas Geradas</div>
-    </div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step">
-        <div class="step-title">💰 5. Revenue Opportunity</div>
-        <div class="step-value" style="color:var(--green)">703</div>
-        <div class="text-muted">Oportunidades Identificadas</div>
+</head><body>
+<div class="header">
+    <div><h1>🔍 SearXNG Performance Dashboard</h1><div class="meta">Project Unbreakable Hermes • Monitorização Contínua</div></div>
+    <div style="text-align:right">
+        <div class="meta">Última atualização</div>
+        <div style="font-size:16px;color:#fff">03:50:44</div>
+        <div class="meta">0h uptime</div>
     </div>
 </div>
-
-<!-- MULTI-SOURCE DATA AGGREGATION -->
-<h2>📡 Agregação Multi-Fonte — Super Intelligence</h2>
-<div class="two-col">
-    <div class="source-card">
-        <div class="source-header">
-            <span class="source-icon">📧</span>
-            <span class="source-title">Gmail / Google Workspace</span>
-        </div>
-        <div class="source-stats">
-            <span class="source-stat">📬 Newsletters: Configured</span>
-            <span class="source-stat">🏷️ Labels: OAuth Ready</span>
-        </div>
-    </div>
-    <div class="source-card">
-        <div class="source-header">
-            <span class="source-icon">📡</span>
-            <span class="source-title">RSS Feeds</span>
-        </div>
-        <div class="source-stats">
-            <span class="source-stat">📰 Feeds: 9</span>
-            <span class="source-stat">📊 Itens hoje: 28</span>
-        </div>
-    </div>
-    <div class="source-card">
-        <div class="source-header">
-            <span class="source-icon">🐦</span>
-            <span class="source-title">Twitter/X</span>
-        </div>
-        <div class="source-stats">
-            <span class="source-stat">👤 Contas: 17</span>
-            <span class="source-stat">📝 Tweets: 0</span>
-        </div>
-    </div>
-    <div class="source-card">
-        <div class="source-header">
-            <span class="source-icon">📱</span>
-            <span class="source-title">Reddit</span>
-        </div>
-        <div class="source-stats">
-            <span class="source-stat">💬 Subreddits: 9</span>
-            <span class="source-stat">🔥 Posts: 0</span>
-        </div>
-    </div>
-</div>
-
-<!-- AUTO-OPTIMIZATION PANEL -->
-<h2>🔧 Auto-Optimization Engine</h2>
-<div class="optimization-panel">
-    <div class="optimization-header">
-        <span style="font-size:24px">🤖</span>
-        <span style="font-weight:700;font-size:16px">Sistema de Auto-Otimização Karpathy-Style</span>
+<div class="container">
+    <div class="status-bar">
+        <span class="status-tag tag-ok">Latência 0.0s</span>
+        <span class="status-tag tag-warn">Cache Hit 0%</span>
+        <span class="status-tag tag-ok">Erros: 0</span>
+        <span class="status-tag tag-ok">Docker: UP</span>
+        <span class="status-tag tag-ok">GitHub Pages: LIVE</span>
+        <span class="status-tag tag-ok">1000+ snapshots</span>
     </div>
     
-        <div class="insight-item">
-            <span class="insight-severity">🟡</span>
-            <div class="insight-content">
-                <div class="insight-area">Pipeline Efficiency</div>
-                <div class="insight-message">Apenas 0/1443 (0.0%) videos processados</div>
-                <div class="insight-action">→ Aumentar batch size ou frequência do cron</div>
-            </div>
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="label">Latência Média</div>
+            <div class="value" style="color:#2ecc71">0.0s</div>
+            <div class="sub">P50: 0.0s • P95: 0.0s</div>
         </div>
-        
-</div>
-
-<!-- KPI GRID -->
-<h2>📊 KPIs Globais</h2>
-<div class="kpi-grid">
-    <div class="kpi accent"><div class="value">4,104</div><div class="label">Total Transcripts</div></div>
-    <div class="kpi"><div class="value">11,417,328</div><div class="label">Palavras Estimadas</div></div>
-    <div class="kpi"><div class="value">~2,782</div><div class="label">Média/Vídeo</div></div>
-    <div class="kpi green"><div class="value">0</div><div class="label">High Score (≥70)</div></div>
-    <div class="kpi yellow"><div class="value">N/A</div><div class="label">Score Médio (YouTube)</div></div>
-    <div class="kpi green"><div class="value">586</div><div class="label">Insights RAG DB</div></div>
-    <div class="kpi accent"><div class="value">703</div><div class="label">Oportunidades</div></div>
-    <div class="kpi green"><div class="value">0</div><div class="label">Board Proposals</div></div>
-    <div class="kpi yellow"><div class="value">0/0</div><div class="label">Jobs Online</div></div>
-    <div class="kpi red"><div class="value">27G</div><div class="label">Tamanho Hub</div></div>
-    <div class="kpi red"><div class="value">361M</div><div class="label">Tamanho YouTube</div></div>
-</div>
-
-<!-- YOUTUBE DAILY VOLUME -->
-<div class="two-col">
-    <div>
-        <h2>📈 Transcripts por Dia (Últimos 7 dias)</h2>
-        <div class="bar-chart">
-            <div class="bar-row"><span class="bar-label">04-27</span><div class="bar" style="width:100%;background:#6366f1">166</div></div><div class="bar-row"><span class="bar-label">04-26</span><div class="bar" style="width:100%;background:#6366f1">159</div></div><div class="bar-row"><span class="bar-label">04-24</span><div class="bar" style="width:100%;background:#6366f1">182</div></div><div class="bar-row"><span class="bar-label">04-23</span><div class="bar" style="width:100%;background:#6366f1">191</div></div><div class="bar-row"><span class="bar-label">04-22</span><div class="bar" style="width:8%;background:#6366f1">4</div></div><div class="bar-row"><span class="bar-label">04-21</span><div class="bar" style="width:100%;background:#6366f1">178</div></div><div class="bar-row"><span class="bar-label">04-20</span><div class="bar" style="width:100%;background:#6366f1">759</div></div>
+        <div class="metric-card">
+            <div class="label">Latência P99</div>
+            <div class="value" style="color: #2ecc71">0.0s</div>
+            <div class="sub">Worst case (99th %ile)</div>
         </div>
-    </div>
-    <div>
-        <h2>🎯 Distribuição de Scores</h2>
-        <div class="bar-chart">
-            <div class="legend">
-                <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> ≥70 (Hot Lead)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div> 45-69 (Archive)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> &lt;45 (Kill)</div>
-            </div>
-            <div class="bar-row"><span class="bar-label">100</span><div class="bar" style="width:100%;background:#4ade80">180</div></div><div class="bar-row"><span class="bar-label">99</span><div class="bar" style="width:90%;background:#4ade80">18</div></div><div class="bar-row"><span class="bar-label">97</span><div class="bar" style="width:95%;background:#4ade80">19</div></div><div class="bar-row"><span class="bar-label">96</span><div class="bar" style="width:35%;background:#4ade80">7</div></div><div class="bar-row"><span class="bar-label">94</span><div class="bar" style="width:100%;background:#4ade80">27</div></div><div class="bar-row"><span class="bar-label">93</span><div class="bar" style="width:100%;background:#4ade80">32</div></div><div class="bar-row"><span class="bar-label">92</span><div class="bar" style="width:70%;background:#4ade80">14</div></div><div class="bar-row"><span class="bar-label">90</span><div class="bar" style="width:100%;background:#4ade80">21</div></div><div class="bar-row"><span class="bar-label">89</span><div class="bar" style="width:85%;background:#4ade80">17</div></div><div class="bar-row"><span class="bar-label">88</span><div class="bar" style="width:100%;background:#4ade80">32</div></div>
+        <div class="metric-card">
+            <div class="label">Cache Hit Ratio</div>
+            <div class="value" style="color:#e74c3c">0%</div>
+            <div class="sub">0 hits / 0 miss</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Redis Keys</div>
+            <div class="value" style="color:#3498db">0</div>
+            <div class="sub">Mem: 0B</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Mem SearXNG</div>
+            <div class="value" style="color:#9b59b6">0 MiB</div>
+            <div class="sub">CPU: 0%</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Mem Redis</div>
+            <div class="value" style="color:#e67e22">0 MiB</div>
+            <div class="sub">CPU: 0%</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Erros (6h)</div>
+            <div class="value" style="color:#2ecc71">0</div>
+            <div class="sub"><div style="margin:4px 0"><span>🟢</span> <b>timeout</b>: 0</div><div style="margin:4px 0"><span>🟢</span> <b>http_error</b>: 0</div><div style="margin:4px 0"><span>🟢</span> <b>engine_fail</b>: 0</div><div style="margin:4px 0"><span>🟢</span> <b>total</b>: 0</div></div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Melhoria vs Baseline</div>
+            <div class="value" style="color:#2ecc71">100.0%</div>
+            <div class="sub">Baseline: 15.15s → 0.0s</div>
         </div>
     </div>
-</div>
-
-<!-- SCORING CRITERIA DETAIL -->
-<h2>⚡ Teste de Scoring em Tempo Real (Últimos 10 Transcripts)</h2>
-<div class="section-card">
-    <p class="text-muted" style="margin-bottom:12px">Avaliação instantânea dos últimos textos com os 5 critérios VC (Urgency, Economics, Moat, Feasibility, Sales). Máximo = 85/100</p>
-    <table>
-    <thead><tr>
-        <th>Score</th><th>Título</th><th>Urgency</th><th>Economics</th><th>Moat</th><th>Feasibility</th><th>Sales</th><th>MVP</th><th>Buyer</th><th>Modelo</th>
-    </tr></thead>
-    <tbody>
     
-                <tr>
-                    <td><span class="status-badge" style="background:#4ade8020;color:#4ade80">🚀 85</span></td>
-                    <td>The End Of Pax Americana</td>
-                    <td>19</td>
-                    <td>19</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#4ade8020;color:#4ade80">🚀 78</span></td>
-                    <td>They're Using This War To 'Replace The Dollar'</td>
-                    <td>19</td>
-                    <td>14</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#fbbf2420;color:#fbbf24">📦 67</span></td>
-                    <td>The Exact Amount You Should Have Saved At Every Age</td>
-                    <td>9</td>
-                    <td>19</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>7</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#fbbf2420;color:#fbbf24">📦 63</span></td>
-                    <td>MILLIONAIRE EXPLAINS: If I Started Investing With $0, This Is Exactly What I'd D...</td>
-                    <td>9</td>
-                    <td>19</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>2</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#fbbf2420;color:#fbbf24">📦 48</span></td>
-                    <td>Was I Wrong About the Macbook Neo?</td>
-                    <td>4</td>
-                    <td>19</td>
-                    <td>12</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#ef444420;color:#ef4444">❌ 42</span></td>
-                    <td>Glass is glass</td>
-                    <td>9</td>
-                    <td>4</td>
-                    <td>12</td>
-                    <td>2</td>
-                    <td>12</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#ef444420;color:#ef4444">❌ 42</span></td>
-                    <td>America's fishing paradox</td>
-                    <td>9</td>
-                    <td>4</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>2</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#ef444420;color:#ef4444">❌ 41</span></td>
-                    <td>So This is Peak Smartphone</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>17</td>
-                    <td>12</td>
-                    <td>2</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Engineering Leadership (CTO/VP Eng)</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#ef444420;color:#ef4444">❌ 35</span></td>
-                    <td>Why did Austria-Hungary do so poorly in World War One? (Short Animated Documenta...</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>2</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-                <tr>
-                    <td><span class="status-badge" style="background:#ef444420;color:#ef4444">❌ 27</span></td>
-                    <td>Asia's "hidden" country ZOMIA...explained</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>12</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>SaaS API or Web Tool</td>
-                    <td>Generic Enterprise</td>
-                    <td>Subscription (ARR)</td>
-                </tr>
-    </tbody>
-    </table>
-</div>
-
-<!-- HOT LEADS -->
-<h2>🚀 Hot Leads (Board-Ready Opportunities)</h2>
-<div class="section-card">
-    <div class="hot-lead-card">
-            <div class="hot-lead-header">
-                <span class="score-badge">100</span>
-                <span class="hot-lead-title">Has the World Become Uninsurable?</span>
-            </div>
-            <div class="hot-lead-body">
-                <p><strong>MVP:</strong> SaaS API or Web Tool</p>
-                <p><strong>Buyer:</strong> Generic Enterprise</p>
-            </div>
-        </div><div class="hot-lead-card">
-            <div class="hot-lead-header">
-                <span class="score-badge">100</span>
-                <span class="hot-lead-title">Apple’s ‘AI Can’t Reason’ Claim Seen By 13M+, What You Need to Know</span>
-            </div>
-            <div class="hot-lead-body">
-                <p><strong>MVP:</strong> SaaS API or Web Tool</p>
-                <p><strong>Buyer:</strong> Generic Enterprise</p>
-            </div>
-        </div><div class="hot-lead-card">
-            <div class="hot-lead-header">
-                <span class="score-badge">100</span>
-                <span class="hot-lead-title">The End Of Pax Americana</span>
-            </div>
-            <div class="hot-lead-body">
-                <p><strong>MVP:</strong> SaaS API or Web Tool</p>
-                <p><strong>Buyer:</strong> Engineering Leadership (CTO/VP Eng)</p>
-            </div>
-        </div><div class="hot-lead-card">
-            <div class="hot-lead-header">
-                <span class="score-badge">100</span>
-                <span class="hot-lead-title">The most important question nobody's asking about AI.</span>
-            </div>
-            <div class="hot-lead-body">
-                <p><strong>MVP:</strong> SaaS API or Web Tool</p>
-                <p><strong>Buyer:</strong> Engineering Leadership (CTO/VP Eng)</p>
-            </div>
-        </div><div class="hot-lead-card">
-            <div class="hot-lead-header">
-                <span class="score-badge">100</span>
-                <span class="hot-lead-title">Exclusive: NASA’s Jared Isaacman Talks Artemis II, Moon Base, & Gateway Corrosio</span>
-            </div>
-            <div class="hot-lead-body">
-                <p><strong>MVP:</strong> SaaS API or Web Tool</p>
-                <p><strong>Buyer:</strong> Engineering Leadership (CTO/VP Eng)</p>
-            </div>
+    <div class="chart-section">
+        <div class="chart-card">
+            <h3>📈 Latência Timeline (Avg / P50 / P95 / P99)</h3>
+            <div class="chart-wrap"><canvas id="latencyChart"></canvas></div>
         </div>
+        <div class="chart-card">
+            <h3>🗺️ Memória ao Longo do Tempo</h3>
+            <div class="chart-wrap"><canvas id="memoryChart"></canvas></div>
+        </div>
+    </div>
+    <div class="chart-section">
+        <div class="chart-card">
+            <h3>🔄 Cache Performance (Hits vs Misses)</h3>
+            <div class="chart-wrap"><canvas id="cacheChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+            <h3>⚠️ Erros ao Longo do Tempo</h3>
+            <div class="chart-wrap"><canvas id="errorsChart"></canvas></div>
+        </div>
+    </div>
+    <div class="chart-section">
+        <div class="chart-card">
+            <h3>💹 Qualidade da Latência (P50 vs P99)</h3>
+            <div class="chart-wrap"><canvas id="qualityChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+            <h3>📊 Distribuição de Latência (Histograma)</h3>
+            <div class="chart-wrap"><canvas id="histogramChart"></canvas></div>
+        </div>
+    </div>
+    <div class="chart-section">
+        <div class="chart-card">
+            <h3>🔎 Pesquisas Mais Frequentes (6h)</h3>
+            <div class="chart-wrap"><canvas id="queriesChart"></canvas></div>
+            <div style="margin-top:10px"><div style="color:#888;font-size:13px;padding:10px 0">Sem dados ainda — as queries serao registadas com o uso</div></div>
+        </div>
+        <div class="chart-card">
+            <h3>⚙️ Distribuição por Engine</h3>
+            <div class="chart-wrap"><canvas id="engineChart"></canvas></div>
+        </div>
+    </div>
+    <div class="chart-section">
+        <div class="chart-card full-width">
+            <h3>📈 CPU Utilização (6h)</h3>
+            <div class="chart-wrap"><canvas id="cpuChart"></canvas></div>
+        </div>
+    </div>
+    
+    <div class="data-panel">
+        <h3>📋 Pontos de Observação</h3>
+        <ul class="obs-list">
+            <li><strong>Baseline original:</strong> 15.15s → <strong>Atual:</strong> 0.0s (100.0% melhoria)</li>
+            <li><strong>P99 Latency:</strong> 0.0s (alvo: &lt;5s) → ✅</li>
+            <li><strong>Cache Efficiency:</strong> 0% → ⚠️ Crescendo</li>
+            <li><strong>Memória SearXNG:</strong> 0 MiB (controlada)</li>
+            <li><strong>Uptime:</strong> 0h contínuo</li>
+            <li><strong>Engines ativas:</strong> Google, Bing, Brave, Sapo | Desativadas: DuckDuckGo, KarmaSearch</li>
+            <li><strong>Redis:</strong> Cache 24h TTL — 0 keys em memória</li>
+            <li><strong>Coletas:</strong> 200 snapshots (atualização 10min) — a acumular dados desde 08:16</li>
+        </ul>
+    </div>
+    
+    <div class="data-panel">
+<h3>🤖 Auto-Research Insights (last run)</h3>
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+<span style="font-size:13px;color:#aaa">Data Quality Score</span>
+<span style="font-size:24px;font-weight:bold;color:#e74c3c">40/100</span>
 </div>
-
-<!-- CRON JOBS STATUS -->
-<h2>⏱️ Status dos Cron Jobs (Pipeline Automation)</h2>
-<div class="section-card">
-    <table>
-        <thead><tr><th>Job</th><th>Status</th><th>Última Execução</th><th>Próxima</th></tr></thead>
-        <tbody>
-        <tr><td colspan="4" class="text-muted">Nenhum job encontrado</td></tr>
-        </tbody>
-    </table>
+<div style="margin-bottom:12px">
+<div style="font-size:11px;text-transform:uppercase;color:#888;letter-spacing:1px;margin-bottom:6px">Strategic</div>
+<div style="margin:4px 0;font-size:13px;color:#ccc">💡 💡 Melhor período: 02:33-07:53 (avg 0 errors)</div>
 </div>
-
-<!-- SCORING RUBRIC -->
-<h2>📋 Rubrica VC-Style — Critérios de Scoring</h2>
-<div class="section-card">
-<table>
-<thead><tr><th>Critério</th><th>Peso</th><th>O que avalia</th><th>Exemplos de Sinais Positivos</th></tr></thead>
-<tbody>
-<tr><td>🔥 Market Urgency</td><td>25%</td><td>Problema é "hair-on-fire"?</td><td>"perdem milhões", "bottleneck crítico", "waitlist"</td></tr>
-<tr><td>💰 Economics/TAM</td><td>25%</td><td>Mercado é grande + dispostos a pagar?</td><td>"budget aprovado", "$10B mercado", "willing to pay"</td></tr>
-<tr><td>🛡️ Moat/Advantage</td><td>20%</td><td>Vantagem competitiva difícil de copiar?</td><td>"dados proprietários", "patente", "inflection point"</td></tr>
-<tr><td>⚙️ Feasibility</td><td>15%</td><td>MVP rápido? Sem bloqueadores?</td><td>"API wrapper", "SaaS prototype" (evitar hardware/regulação)</td></tr>
-<tr><td>📢 Sales Path</td><td>15%</td><td>Comprador claro + distribuição?</td><td>"CTO compra", "integra com Salesforce", "viral"</td></tr>
-</tbody>
-</table>
+<div>
+<div style="font-size:11px;text-transform:uppercase;color:#888;letter-spacing:1px;margin-bottom:6px">Suggestions</div>
+<div style="margin:4px 0;font-size:13px;color:#3498db">📊 Add success rate metric (queries/min with successful results)</div>
 </div>
-
-<div style="text-align:center;margin-top:40px;color:var(--muted);font-size:10px;border-top:1px solid var(--border);padding-top:20px">
-    Intelligence Hub v2.0 — Powered by Hermes Agent — Última atualização: 2026-04-27 10:32:09 UTC<br>
-    Auto-refresh a cada 6 horas via Cron Job | GitHub Pages Deployment
 </div>
+    
+    <div class="data-panel"><h3>🕷️ Mass Extraction Results</h3>
+<div style="display:flex;gap:20px;margin-bottom:16px;flex-wrap:wrap;">
+<div style="text-align:center"><div style="font-size:24px;color:#2ecc71">228</div><div style="font-size:11px;color:#666">Success</div></div>
+<div style="text-align:center"><div style="font-size:24px;color:#e74c3c">11</div><div style="font-size:11px;color:#666">Failed</div></div>
+<div style="text-align:center"><div style="font-size:24px;color:#2ecc71">95.4%</div><div style="font-size:11px;color:#666">Success Rate</div></div>
+<div style="text-align:center"><div style="font-size:24px;color:#3498db">239</div><div style="font-size:11px;color:#666">Total</div></div>
+</div>
+<div style="margin-bottom:16px"><div style="font-size:11px;color:#888;margin-bottom:8px;">By Method:</div><div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;"><span style="color:#aaa">bs4</span><span style="color:#2ecc71">5 extractions</span><span style="color:#666">avg 75418 chars</span></div><div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;"><span style="color:#aaa">readability</span><span style="color:#2ecc71">223 extractions</span><span style="color:#666">avg 3522 chars</span></div></div>
+<div><div style="font-size:11px;color:#888;margin-bottom:8px;">Recent Extractions:</div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://arstechnica.com" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">Serving the Technologist since 1998. News, reviews, and anal</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">133 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://techcrunch.com" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">Startup and Technology News</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">256 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://www.theverge.com" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">The Verge</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">405 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://www.publico.pt/tecnologia/" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">Tecnologia | PÚBLICO</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">500 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://observador.pt/opiniao/" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">leia os principais colunistas do país</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">12572 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://www.jornaldenegocios.pt/empresas/" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">Empresas - Jornal de Negócios</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">294 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://arstechnica.com" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">Serving the Technologist since 1998. News, reviews, and anal</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">143 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://techcrunch.com" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">Startup and Technology News</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">256 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://www.theverge.com" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">The Verge</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">393 chars</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222;font-size:11px;"><a href="https://www.publico.pt/tecnologia/" style="color:#3498db;text-decoration:none;flex:2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" target="_blank">Tecnologia | PÚBLICO</a><span style="color:#888;flex:0.5;text-align:center">readability</span><span style="color:#2ecc71;flex:0.5;text-align:right">500 chars</span></div></div>
+</div>
+    
+    <div class="footer">Project Unbreakable Hermes • SearXNG Metrics Pipeline • 200 dados • Atualizado a cada 10 min • Auto-Research: ON</div>
+</div>
+<script>
+const labels = ["08:16", "08:18", "08:40", "09:02", "10:44", "12:02", "13:33", "13:48", "14:47", "15:29", "17:25", "17:25", "18:02", "18:03", "18:46", "21:04", "21:17", "21:35", "21:56", "23:33", "23:33", "23:53", "00:13", "00:25", "00:38", "02:31", "02:32", "02:50", "03:23", "03:34", "04:20", "04:49", "05:04", "05:26", "06:14", "06:40", "06:52", "06:53", "07:38", "07:54", "08:11", "08:16", "08:32", "08:51", "09:03", "10:04", "10:31", "10:46", "10:58", "11:22", "12:58", "13:09", "13:56", "14:10", "14:24", "14:40", "15:11", "18:16", "14:57", "21:01", "21:31", "21:34", "14:51", "20:54", "03:01", "09:08", "16:00", "19:01", "23:48", "00:33", "00:46", "01:03", "01:47", "01:58", "03:18", "04:52", "04:53", "06:07", "06:59", "07:44", "08:30", "12:25", "14:14", "14:48", "16:31", "17:39", "20:27", "22:42", "01:04", "01:16", "01:37", "02:20", "02:22", "02:24", "02:25", "02:27", "02:38", "02:39", "05:45", "08:41", "08:45", "12:32", "15:31", "18:07", "19:10", "19:49", "21:09", "21:37", "21:41", "21:44", "21:45", "21:47", "21:48", "21:52", "21:53", "21:54", "00:07", "01:07", "01:27", "08:43", "09:59", "10:06", "10:24", "12:27", "14:10", "15:17", "16:21", "16:22", "18:32", "19:50", "02:33", "03:22", "06:00", "06:53", "07:53", "12:31", "13:15", "14:50", "14:54", "20:15", "21:31", "00:00", "03:13", "04:24", "06:21", "09:30", "10:34", "14:18", "16:44", "09:54", "10:56", "02:49", "14:20", "14:56", "15:36", "16:21", "16:53", "17:33", "18:14", "18:56", "19:31", "20:13", "20:51", "00:19", "00:47", "01:45", "02:40", "02:58", "03:27", "03:49", "05:47", "05:49", "05:49", "05:49", "05:51", "06:27", "08:37", "09:17", "09:36", "10:00", "10:09", "11:20", "11:30", "11:30", "11:35", "17:42", "20:14", "21:05", "22:29", "23:13", "23:14", "00:42", "01:09", "01:26", "01:49", "02:21", "03:01", "03:17", "03:34", "03:50"];
+const latAvg = [0.912, 0.907, 0.897, 0.901, 0.901, 0.978, 0.523, 0.482, 0.592, 1.471, 0.504, 0.502, 0.985, 0.981, 0.912, 0.0, 0.483, 0.498, 0.921, 0.927, 0.919, 0.935, 1.01, 0.893, 0.887, 0.0, 0.0, 0.0, 0.848, 0.797, 0.919, 0.877, 0.798, 0.986, 0.869, 0.857, 0.678, 0.754, 0.775, 0.762, 0.737, 0.738, 0.798, 0.785, 1.095, 0.732, 0.703, 0.757, 0.805, 0.906, 1.028, 1.001, 1.033, 1.13, 1.309, 0.935, 1.293, 0.808, 0.82, 1.296, 0.734, 0.954, 0.825, 0.828, 0.784, 0.855, 1.003, 1.21, 0.878, 0.807, 0.676, 0.77, 0.808, 0.942, 0.79, 0.818, 0.841, 0.858, 0.691, 0.895, 0.686, 0.997, 0.904, 0.844, 0.802, 1.181, 0.946, 0.947, 1.044, 1.22, 0.912, 0.848, 0.695, 0.733, 0.846, 0.676, 0.89, 0.857, 0.706, 1.088, 0.957, 0.852, 0.99, 1.299, 0.96, 0.875, 1.135, 1.13, 0.834, 0.775, 0.881, 0.799, 0.972, 1.126, 0.968, 0.71, 0.969, 1.052, 0.723, 0.838, 1.119, 1.074, 1.363, 0.783, 1.59, 1.02, 1.23, 0.967, 0.896, 0.833, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const latP50 = [0.473, 0.44, 0.441, 0.412, 0.431, 0.533, 0.486, 0.43, 0.514, 0.642, 0.478, 0.493, 0.475, 0.526, 0.432, 0.0, 0.427, 0.473, 0.472, 0.449, 0.485, 0.5, 0.666, 0.416, 0.43, 0.0, 0.0, 0.0, 0.814, 0.725, 0.756, 0.884, 0.837, 0.95, 0.898, 0.757, 0.724, 0.781, 0.806, 0.734, 0.675, 0.776, 0.782, 0.83, 0.578, 0.679, 0.743, 0.785, 0.61, 0.84, 0.562, 0.927, 0.825, 0.972, 1.218, 0.71, 0.966, 0.726, 0.779, 1.069, 0.642, 0.836, 0.719, 0.799, 0.811, 0.896, 0.826, 0.94, 0.919, 0.814, 0.649, 0.72, 0.634, 0.886, 0.821, 0.786, 0.78, 0.904, 0.691, 0.717, 0.621, 1.056, 0.82, 0.891, 0.776, 0.867, 0.79, 0.982, 0.967, 0.931, 0.916, 0.807, 0.667, 0.749, 0.723, 0.653, 0.901, 0.853, 0.606, 0.467, 0.934, 0.729, 1.066, 0.883, 1.038, 0.658, 0.916, 0.987, 0.692, 0.699, 0.767, 0.67, 0.799, 1.05, 1.005, 0.68, 0.81, 0.902, 0.66, 0.855, 0.816, 0.98, 1.097, 0.775, 0.625, 1.219, 0.753, 0.827, 0.851, 0.811, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const latP95 = [5.039, 5.124, 5.093, 5.172, 5.112, 5.063, 0.887, 0.698, 1.047, 5.17, 0.888, 0.67, 5.164, 5.077, 5.029, 0.0, 0.867, 0.907, 5.044, 5.013, 5.028, 5.041, 5.036, 5.033, 5.035, 0.0, 0.0, 0.0, 1.678, 1.399, 1.608, 1.341, 1.314, 1.801, 1.089, 1.658, 0.919, 1.132, 0.971, 1.04, 1.076, 0.921, 1.205, 1.206, 5.012, 1.285, 0.893, 1.319, 1.883, 2.06, 5.013, 2.249, 2.667, 2.785, 3.819, 2.804, 3.705, 1.405, 1.189, 2.888, 1.211, 1.755, 1.86, 1.2, 1.209, 1.422, 3.159, 3.154, 1.38, 1.242, 0.999, 1.253, 1.544, 1.894, 1.034, 1.391, 1.249, 1.362, 1.019, 1.655, 0.992, 1.48, 1.578, 1.113, 1.441, 2.269, 2.126, 2.059, 2.211, 5.013, 1.472, 1.508, 1.033, 0.94, 1.553, 0.908, 1.422, 1.258, 1.15, 5.021, 1.808, 1.536, 1.569, 5.237, 1.995, 2.167, 3.548, 3.807, 1.6, 1.649, 1.433, 1.959, 2.935, 2.374, 1.254, 1.025, 2.341, 2.925, 1.132, 1.128, 4.4, 2.465, 3.745, 1.113, 5.634, 1.594, 5.647, 1.596, 1.379, 1.599, 0.0, 0.0, 0.0, 0.0, 0.0, 0.001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const latP99 = [5.039, 5.124, 5.093, 5.172, 5.112, 5.063, 0.887, 0.698, 1.047, 5.17, 0.888, 0.67, 5.164, 5.077, 5.029, 0.0, 0.867, 0.907, 5.044, 5.013, 5.028, 5.041, 5.036, 5.033, 5.035, 0.0, 0.0, 0.0, 1.678, 1.399, 1.608, 1.341, 1.314, 1.801, 1.089, 1.658, 0.919, 1.132, 0.971, 1.04, 1.076, 0.921, 1.205, 1.206, 5.012, 1.285, 0.893, 1.319, 1.883, 2.06, 5.013, 2.249, 2.667, 2.785, 3.819, 2.804, 3.705, 1.405, 1.189, 2.888, 1.211, 1.755, 1.86, 1.2, 1.209, 1.422, 3.159, 3.154, 1.38, 1.242, 0.999, 1.253, 1.544, 1.894, 1.034, 1.391, 1.249, 1.362, 1.019, 1.655, 0.992, 1.48, 1.578, 1.113, 1.441, 2.269, 2.126, 2.059, 2.211, 5.013, 1.472, 1.508, 1.033, 0.94, 1.553, 0.908, 1.422, 1.258, 1.15, 5.021, 1.808, 1.536, 1.569, 5.237, 1.995, 2.167, 3.548, 3.807, 1.6, 1.649, 1.433, 1.959, 2.935, 2.374, 1.254, 1.025, 2.341, 2.925, 1.132, 1.128, 4.4, 2.465, 3.745, 1.113, 5.634, 1.594, 5.647, 1.596, 1.379, 1.599, 0.0, 0.0, 0.0, 0.0, 0.0, 0.001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const memSX = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const memRD = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const cpuSX = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+const errs = [713, 731, 709, 747, 704, 630, 503, 526, 394, 406, 479, 495, 531, 536, 652, 0, 651, 752, 851, 943, 940, 1004, 957, 962, 962, 1, 1, 2, 38, 50, 120, 156, 177, 209, 397, 482, 497, 497, 565, 602, 611, 622, 639, 663, 712, 754, 773, 812, 824, 854, 773, 782, 725, 740, 723, 712, 689, 688, 13, 33, 39, 48, 291, 60, 137, 6, 31, 43, 38, 47, 56, 65, 74, 83, 98, 96, 96, 84, 75, 75, 76, 73, 58, 54, 73, 80, 62, 27, 33, 46, 55, 70, 70, 79, 79, 79, 88, 88, 123, 67, 76, 69, 68, 96, 81, 90, 108, 106, 115, 115, 124, 124, 133, 142, 143, 143, 124, 133, 131, 77, 86, 89, 89, 91, 105, 111, 111, 111, 77, 89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const cacheH = [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 0, 0, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const cacheM = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 5, 5, 5, 0, 1, 2, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const qLabels = [];
+const qData = [];
+const eLabels = [];
+const eData = [];
+const histLabels = ["0.0-0.6s", "0.6-1.1s", "1.1-1.7s", "1.7-2.3s", "2.3-2.8s", "2.8-3.4s", "3.4-4.0s", "4.0-4.5s", "4.5-5.1s", "5.1-5.6s"];
+const histData = [32, 258, 104, 28, 14, 10, 10, 2, 30, 16];
 
-</body>
-</html>
+function cloneOpts() {
+  return JSON.parse(JSON.stringify({
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { color: '#888', font: { size: 10 }, boxWidth: 10, padding: 8 } }
+    },
+    scales: {
+      x: { ticks: { color: '#555', maxTicksLimit: 15, maxRotation: 0, font: { size: 9 } }, grid: { color: '#1a1a2e' } },
+      y: { ticks: { color: '#555', font: { size: 9 } }, grid: { color: '#1a1a2e' }, beginAtZero: true }
+    }
+  }));
+}
+
+  new Chart(document.getElementById('latencyChart'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'Media', data: latAvg, borderColor: '#2ecc71', backgroundColor: 'rgba(46,204,113,0.08)', fill: true, tension: 0.3, pointRadius: 2 },
+        { label: 'P50', data: latP50, borderColor: '#3498db', borderDash: [8,3], pointRadius: 1, tension: 0.3 },
+        { label: 'P95', data: latP95, borderColor: '#f39c12', borderDash: [5,3], pointRadius: 1, tension: 0.3 },
+        { label: 'P99', data: latP99, borderColor: '#e74c3c', borderDash: [3,3], pointRadius: 1, tension: 0.3 }
+      ]
+    },
+    options: cloneOpts()
+  });
+
+  new Chart(document.getElementById('memoryChart'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'SearXNG MiB', data: memSX, borderColor: '#9b59b6', backgroundColor: 'rgba(155,89,182,0.08)', fill: true, tension: 0.3, pointRadius: 2 },
+        { label: 'Redis MiB', data: memRD, borderColor: '#e67e22', backgroundColor: 'rgba(230,126,34,0.08)', fill: true, tension: 0.3, pointRadius: 2 }
+      ]
+    },
+    options: cloneOpts()
+  });
+
+  var cacheOpts = cloneOpts();
+  cacheOpts.scales.x.stacked = true;
+  cacheOpts.scales.y.stacked = true;
+  new Chart(document.getElementById('cacheChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'Cache Hits', data: cacheH, backgroundColor: 'rgba(46,204,113,0.6)', borderRadius: 3 },
+        { label: 'Cache Misses', data: cacheM, backgroundColor: 'rgba(231,76,60,0.6)', borderRadius: 3 }
+      ]
+    },
+    options: cacheOpts
+  });
+
+  new Chart(document.getElementById('errorsChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{ label: 'Erros', data: errs,
+        backgroundColor: errs.map(function(v) { return v > 5 ? 'rgba(231,76,60,0.6)' : 'rgba(46,204,113,0.4)'; }),
+        borderRadius: 3 }]
+    },
+    options: cloneOpts()
+  });
+
+  new Chart(document.getElementById('qualityChart'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'P50', data: latP50, borderColor: '#3498db', backgroundColor: 'rgba(52,152,219,0.08)', fill: true, tension: 0.3, pointRadius: 2 },
+        { label: 'P99', data: latP99, borderColor: '#e74c3c', backgroundColor: 'rgba(231,76,60,0.05)', fill: true, tension: 0.3, pointRadius: 2 }
+      ]
+    },
+    options: cloneOpts()
+  });
+
+  new Chart(document.getElementById('histogramChart'), {
+    type: 'bar',
+    data: {
+      labels: histLabels.length > 0 ? histLabels : ['sem dados'],
+      datasets: [{
+        label: 'Frequencia',
+        data: histData.length > 0 ? histData : [0],
+        backgroundColor: [
+          'rgba(46,204,113,0.7)','rgba(52,190,113,0.7)','rgba(58,176,113,0.7)',
+          'rgba(80,152,113,0.7)','rgba(122,133,113,0.7)','rgba(165,113,113,0.7)',
+          'rgba(200,93,113,0.7)','rgba(220,83,113,0.7)','rgba(231,76,60,0.7)','rgba(231,76,60,0.7)'
+        ].slice(0, histLabels.length || 1),
+        borderRadius: 4
+      }]
+    },
+    options: cloneOpts()
+  });
+
+  new Chart(document.getElementById('queriesChart'), {
+    type: 'bar',
+    data: {
+      labels: qLabels.length > 0 ? qLabels : ['sem dados'],
+      datasets: [{ label: 'Frequencia', data: qData.length > 0 ? qData : [0], backgroundColor: 'rgba(52,152,219,0.6)', borderRadius: 4 }]
+    },
+    options: (function() { var o = cloneOpts(); o.indexAxis = 'y'; return o; })()
+  });
+
+  new Chart(document.getElementById('engineChart'), {
+    type: 'doughnut',
+    data: {
+      labels: eLabels.length > 0 ? eLabels : ['sem dados'],
+      datasets: [{
+        data: eData.length > 0 ? eData : [1],
+        backgroundColor: ['#3498db','#e74c3c','#2ecc71','#f39c12','#9b59b6','#1abc9c','#e67e22'].slice(0, eData.length > 0 ? eData.length : 1),
+        borderColor: '#14141f', borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'right', labels: { color: '#888', font: { size: 11 }, boxWidth: 10 } } }
+    }
+  });
+
+  new Chart(document.getElementById('cpuChart'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'SearXNG CPU %', data: cpuSX, borderColor: '#e67e22', fill: true, backgroundColor: 'rgba(230,126,34,0.1)', tension: 0.3, pointRadius: 2 }
+      ]
+    },
+    options: cloneOpts()
+  });
+
+</script>
+</body></html>
