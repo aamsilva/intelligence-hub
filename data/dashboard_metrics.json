@@ -10,13 +10,13 @@
     "reddit_posts": 0
   },
   "youtube": {
-    "total_transcripts": 4491,
+    "total_transcripts": 4646,
     "date_folders": 27,
     "latest_date": "2026-04-29",
     "transcripts_per_day": [
       {
         "date": "2026-04-29",
-        "count": 0
+        "count": 155
       },
       {
         "date": "2026-04-28",
@@ -43,17 +43,17 @@
         "count": 4
       }
     ],
-    "avg_words_per_transcript": 0,
-    "total_estimated_words": 0,
+    "avg_words_per_transcript": 2257,
+    "total_estimated_words": 10486022,
     "pipeline_state": {
       "started_at": "2026-04-03T17:16:09.865731",
-      "last_run": "2026-04-28T09:13:52.091288",
-      "total_runs": 315,
-      "successful_runs": 232,
-      "failed_runs": 83,
-      "last_extraction_time": "2026-04-28T07:03:18.146263",
-      "last_optimization_time": "2026-04-28T06:57:04.681837",
-      "consecutive_failures": 0,
+      "last_run": "2026-04-29T02:17:10.088908",
+      "total_runs": 319,
+      "successful_runs": 233,
+      "failed_runs": 86,
+      "last_extraction_time": "2026-04-29T01:37:44.158463",
+      "last_optimization_time": "2026-04-29T02:17:11.188572",
+      "consecutive_failures": 3,
       "auto_optimization_enabled": true,
       "status": "ready",
       "last_status": "success",
@@ -200,7 +200,7 @@
   },
   "system": {
     "hub_size": "28G",
-    "yt_size": "388M",
+    "yt_size": "401M",
     "total_files": ""
   },
   "auto_optimization": {
@@ -236,5 +236,156 @@
     },
     "timestamp": "2026-04-05T00:06:31.072111"
   },
-  "sample_scoring": []
+  "sample_scoring": [
+    {
+      "id": "26c1239b",
+      "title": "Goodbye Tim Cook",
+      "source": "2026-04-29",
+      "score": 80,
+      "kill_reason": null,
+      "urgency": 19,
+      "economics": 14,
+      "moat": 12,
+      "feasibility": 15,
+      "sales": 12,
+      "mvp": "DevTool / Infra",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "7ff261eb",
+      "title": "The Year of Windows Humiliation",
+      "source": "2026-04-29",
+      "score": 76,
+      "kill_reason": null,
+      "urgency": 19,
+      "economics": 14,
+      "moat": 12,
+      "feasibility": 15,
+      "sales": 7,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "d538c375",
+      "title": "The Steam Controller is Here",
+      "source": "2026-04-29",
+      "score": 56,
+      "kill_reason": null,
+      "urgency": 4,
+      "economics": 19,
+      "moat": 12,
+      "feasibility": 2,
+      "sales": 12,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "206d52b9",
+      "title": "Glass is glass",
+      "source": "2026-04-29",
+      "score": 42,
+      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
+      "urgency": 9,
+      "economics": 4,
+      "moat": 12,
+      "feasibility": 2,
+      "sales": 12,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "eacc5f0a",
+      "title": "The Ticketmaster monopoly is over, now what?",
+      "source": "2026-04-29",
+      "score": 77,
+      "kill_reason": null,
+      "urgency": 19,
+      "economics": 19,
+      "moat": 12,
+      "feasibility": 12,
+      "sales": 2,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "c38b5387",
+      "title": "The Supreme Court\u2019s Internet problem | The Gray Area",
+      "source": "2026-04-29",
+      "score": 44,
+      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
+      "urgency": 4,
+      "economics": 4,
+      "moat": 12,
+      "feasibility": 12,
+      "sales": 12,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Engineering Leadership (CTO/VP Eng)",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "5550ff98",
+      "title": "Can Sen. Gallego move past the Swalwell allegations? | America, Actually",
+      "source": "2026-04-29",
+      "score": 68,
+      "kill_reason": null,
+      "urgency": 19,
+      "economics": 4,
+      "moat": 17,
+      "feasibility": 15,
+      "sales": 7,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "725af320",
+      "title": "What we lose when we become adults | The Gray Area",
+      "source": "2026-04-29",
+      "score": 35,
+      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
+      "urgency": 4,
+      "economics": 4,
+      "moat": 12,
+      "feasibility": 12,
+      "sales": 2,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "bf2cee52",
+      "title": "Why $129,000 Is the New Poor",
+      "source": "2026-04-29",
+      "score": 91,
+      "kill_reason": null,
+      "urgency": 19,
+      "economics": 19,
+      "moat": 25,
+      "feasibility": 12,
+      "sales": 2,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Generic Enterprise",
+      "model": "Subscription (ARR)"
+    },
+    {
+      "id": "4be25100",
+      "title": "Why did Mao win the Chinese Civil War?",
+      "source": "2026-04-29",
+      "score": 44,
+      "kill_reason": "Baixa Viabilidade Comercial (Score < 45)",
+      "urgency": 4,
+      "economics": 4,
+      "moat": 12,
+      "feasibility": 12,
+      "sales": 12,
+      "mvp": "SaaS API or Web Tool",
+      "buyer": "Engineering Leadership (CTO/VP Eng)",
+      "model": "Subscription (ARR)"
+    }
+  ]
 }
