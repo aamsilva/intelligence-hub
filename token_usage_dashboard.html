@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermes Token Usage Dashboard</title>
+    <title>Token Usage Dashboard - 2026-04-06</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #0d1117;
             color: #c9d1d9;
-            margin: 0;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
+            padding: 20px;
         }
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
-        h1, h2, h3 {
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
             color: #58a6ff;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b949e;
+            margin-bottom: 30px;
         }
         .stats-grid {
             display: grid;
@@ -32,269 +44,309 @@
             border: 1px solid #30363d;
             border-radius: 8px;
             padding: 20px;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .stat-value {
-            font-size: 2em;
-            font-weight: bold;
-            color: #58a6ff;
-            margin-bottom: 5px;
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #58a6ff, #f85149);
         }
         .stat-label {
+            font-size: 0.9rem;
             color: #8b949e;
-            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f0f6fc;
+        }
+        .stat-subtitle {
+            font-size: 0.8rem;
+            color: #6e7681;
+            margin-top: 4px;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
         }
         .chart-container {
             background: #161b22;
             border: 1px solid #30363d;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 30px;
         }
-        .chart-row {
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #f0f6fc;
+        }
+        .bottom-charts {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 30px;
         }
-        .chart-full {
-            grid-column: 1 / -1;
+        .tables-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
         }
-        .chart-title {
-            color: #58a6ff;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-        .table-container {
+        table {
             background: #161b22;
             border: 1px solid #30363d;
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+            overflow: hidden;
         }
         th, td {
-            padding: 12px;
+            padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #30363d;
         }
         th {
-            background: #30363d;
-            color: #58a6ff;
+            background: #21262d;
+            font-weight: 600;
+            color: #f0f6fc;
         }
         tr:hover {
-            background: #0d1117;
+            background: #1c2128;
         }
         .progress-bar {
             width: 100%;
-            height: 20px;
+            height: 4px;
             background: #30363d;
-            border-radius: 10px;
+            border-radius: 2px;
             overflow: hidden;
         }
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #58a6ff, #79c0ff);
+            background: #58a6ff;
             transition: width 0.3s ease;
         }
-        .timestamp {
-            color: #8b949e;
-            font-size: 0.8em;
-            margin-top: 20px;
-            text-align: center;
+        .job-name {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            .charts-grid,
+            .bottom-charts,
+            .tables-section {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hermes Token Usage Dashboard</h1>
+        <h1>Token Usage Dashboard</h1>
+        <p class="subtitle">Analysis for April 6, 2026</p>
         
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-value">238,751,094</div>
                 <div class="stat-label">Total Tokens</div>
+                <div class="stat-value">238,751,094</div>
+                <div class="stat-subtitle">Input + Output</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">109,888,606</div>
                 <div class="stat-label">Input Tokens</div>
+                <div class="stat-value">109,888,606</div>
+                <div class="stat-subtitle">46.0% of total</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">1,718,204</div>
                 <div class="stat-label">Output Tokens</div>
+                <div class="stat-value">1,718,204</div>
+                <div class="stat-subtitle">0.7% of total</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">392,160</div>
                 <div class="stat-label">API Calls</div>
+                <div class="stat-value">392,160</div>
+                <div class="stat-subtitle">Across all jobs</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">3,565</div>
                 <div class="stat-label">Tool Calls</div>
+                <div class="stat-value">3,565</div>
+                <div class="stat-subtitle">No tool usage</div>
             </div>
             <div class="stat-card">
+                <div class="stat-label">Total Cost</div>
                 <div class="stat-value">0.0000</div>
-                <div class="stat-label">Total Cost ($)</div>
+                <div class="stat-subtitle">Free models used</div>
             </div>
         </div>
-
-        <div class="chart-row">
-            <div class="chart-container chart-full">
-                <div class="chart-title">Daily Token Usage Trend</div>
-                <canvas id="dailyChart"></canvas>
-            </div>
-        </div>
-
-        <div class="chart-row">
+        
+        <div class="charts-grid">
             <div class="chart-container">
-                <div class="chart-title">Top Jobs by Token Usage</div>
+                <h3 class="chart-title">Top 15 Jobs by Token Usage</h3>
                 <canvas id="jobsChart"></canvas>
             </div>
             <div class="chart-container">
-                <div class="chart-title">Model Distribution</div>
-                <canvas id="modelChart"></canvas>
+                <h3 class="chart-title">Model Distribution</h3>
+                <canvas id="modelsChart"></canvas>
             </div>
         </div>
-
-        <div class="chart-row">
+        
+        <div class="bottom-charts">
             <div class="chart-container">
-                <div class="chart-title">Provider Distribution</div>
-                <canvas id="providerChart"></canvas>
+                <h3 class="chart-title">Provider Distribution</h3>
+                <canvas id="providersChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3 class="chart-title">Cache Usage</h3>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">0 tokens</div>
+                    <div style="color: #6e7681;">No cache activity detected</div>
+                </div>
             </div>
         </div>
-
-        <div class="table-container">
-            <h3>Job Details</h3>
+        
+        <div class="tables-section">
             <table>
                 <thead>
                     <tr>
-                        <th>Job</th>
-                        <th>Total Tokens</th>
-                        <th>API Calls</th>
-                        <th>Tool Calls</th>
-                        <th>Cost ($)</th>
+                        <th>Job Name</th>
+                        <th>Tokens</th>
+                        <th>Calls</th>
                         <th>Progress</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Job rows will be inserted here -->
+                    <tr>
+                        <td class="job-name">cron:cd7dce4f7a23</td>
+                        <td>38,998,483</td>
+                        <td>89,005</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 16.3%"></div>
+                            </div>
+                        </td>
+                    </tr>
+<tr>
+                        <td class="job-name">cron:92cd976b5b19</td>
+                        <td>37,009,652</td>
+                        <td>75,320</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 15.5%"></div>
+                            </div>
+                        </td>
+                    </tr>
+<tr>
+                        <td class="job-name">cron:736c86856dde</td>
+                        <td>21,814,711</td>
+                        <td>34,501</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 9.1%"></div>
+                            </div>
+                        </td>
+                    </tr>
+<tr>
+                        <td class="job-name">cron:57fe331360fb</td>
+                        <td>15,216,013</td>
+                        <td>30,971</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 6.4%"></div>
+                            </div>
+                        </td>
+                    </tr>
+<tr>
+                        <td class="job-name">cron:yt_transcript_maximizer</td>
+                        <td>11,290,864</td>
+                        <td>18,349</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 4.7%"></div>
+                            </div>
+                        </td>
+                    </tr>
+
                 </tbody>
             </table>
-        </div>
-
-        <div class="timestamp">
-            Generated on 2026-05-01 18:06:09
+            
+            <div style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px;">
+                <h3 class="chart-title">Summary</h3>
+                <div style="margin-bottom: 15px;">
+                    <strong>55 active jobs</strong> generated 392,160 API calls
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Average tokens per call:</strong> 608
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Peak job:</strong> cron:cd7dce4f7a23 (16.3% of total tokens)
+                </div>
+                <div>
+                    <strong>Most used model:</strong> <span id="topModel">qwen/qwen3.6-plus:free</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Chart data will be inserted here
-        const labelsJobs = ["cron:cd7dce4f7a23", "cron:92cd976b5b19", "cron:736c86856dde", "cron:57fe331360fb", "cron:yt_transcript_maximizer", "cron:49756f23e396", "cron:2a4d7c310e5a", "cron:e9a656bc36ef", "cron:ae4ec306350f", "cron:dce8bc4ea7db", "cron:9762338a0dd5", "cron:33f64559a099", "cron:3c2847c9ecb4", "cron:689bcd806abb", "cron:80af616496d0"];
-        const dataJobs = [38998483, 37009652, 21814711, 15216013, 11290864, 8556776, 7430181, 6516315, 6348889, 5859599, 5713701, 5664789, 5540863, 5475256, 4842164];
-        const labelsModels = ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5", "llama3.2:latest", "minimax/minimax-m2.5:free", "nvidia/nemotron-nano-9b-v2:free", "anthropic/claude-sonnet-4-20250514"];
-        const dataModels = [222421929, 180939865, 29613542, 21647492, 1529337, 25790];
-        const labelsProviders = ["openrouter", "custom"];
-        const dataProviders = [222421929, 188821079];
-
-        // Daily usage chart (mock data for now)
-        const dailyCtx = document.getElementById('dailyChart').getContext('2d');
-        new Chart(dailyCtx, {
-            type: 'bar',
-            data: {
-                labels: ['2026-04-06'],
-                datasets: [{
-                    label: 'Tokens',
-                    data: [238,751,094],
-                    backgroundColor: '#58a6ff',
-                    yAxisID: 'y'
-                }, {
-                    label: 'API Calls',
-                    data: [392,160],
-                    type: 'line',
-                    borderColor: '#79c0ff',
-                    backgroundColor: 'rgba(121, 192, 255, 0.1)',
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: '#c9d1d9'
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: { color: '#c9d1d9' },
-                        grid: { color: '#30363d' }
-                    },
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        ticks: { color: '#c9d1d9' },
-                        grid: { color: '#30363d' }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        ticks: { color: '#c9d1d9' },
-                        grid: { drawOnChartArea: false }
-                    }
-                }
-            }
-        });
-
-        // Top jobs chart
+        // Jobs Chart
         const jobsCtx = document.getElementById('jobsChart').getContext('2d');
         new Chart(jobsCtx, {
             type: 'bar',
             data: {
-                labels: labelsJobs,
+                labels: ["cron:cd7dce4f7a23", "cron:92cd976b5b19", "cron:736c86856dde", "cron:57fe331360fb", "cron:yt_transcript_maximizer", "cron:49756f23e396", "cron:2a4d7c310e5a", "cron:e9a656bc36ef", "cron:ae4ec306350f", "cron:dce8bc4ea7db", "cron:9762338a0dd5", "cron:33f64559a099", "cron:3c2847c9ecb4", "cron:689bcd806abb", "cron:80af616496d0"],
                 datasets: [{
-                    label: 'Total Tokens',
-                    data: dataJobs,
-                    backgroundColor: '#58a6ff'
+                    label: 'Tokens',
+                    data: [38998483, 37009652, 21814711, 15216013, 11290864, 8556776, 7430181, 6516315, 6348889, 5859599, 5713701, 5664789, 5540863, 5475256, 4842164],
+                    backgroundColor: '#58a6ff',
+                    borderColor: '#58a6ff',
+                    borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
                     legend: {
-                        labels: {
-                            color: '#c9d1d9'
-                        }
+                        display: false
                     }
                 },
                 scales: {
-                    x: {
-                        ticks: { color: '#c9d1d9' },
-                        grid: { color: '#30363d' }
-                    },
                     y: {
-                        ticks: { color: '#c9d1d9' },
-                        grid: { color: '#30363d' }
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#8b949e'
+                        },
+                        grid: {
+                            color: '#30363d'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#8b949e'
+                        },
+                        grid: {
+                            color: '#30363d'
+                        }
                     }
                 }
             }
         });
 
-        // Model distribution
-        const modelCtx = document.getElementById('modelChart').getContext('2d');
-        new Chart(modelCtx, {
+        // Models Chart
+        const modelsCtx = document.getElementById('modelsChart').getContext('2d');
+        new Chart(modelsCtx, {
             type: 'doughnut',
             data: {
-                labels: labelsModels,
+                labels: ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5", "llama3.2:latest", "minimax/minimax-m2.5:free", "nvidia/nemotron-nano-9b-v2:free", "anthropic/claude-sonnet-4-20250514"],
                 datasets: [{
-                    data: dataModels,
+                    data: [222421929, 180939865, 29613542, 21647492, 1529337, 25790],
                     backgroundColor: [
-                        '#58a6ff', '#79c0ff', '#58a6ff', '#79c0ff', '#58a6ff',
-                        '#79c0ff', '#58a6ff', '#79c0ff', '#58a6ff', '#79c0ff'
+                        '#58a6ff', '#f85149', '#f1f2f3', '#ffd33d', '#a371f7',
+                        '#ff7b72', '#7ee787', '#1f6feb', '#c9d1d9', '#8b949e'
                     ]
                 }]
             },
@@ -302,25 +354,27 @@
                 responsive: true,
                 plugins: {
                     legend: {
+                        position: 'bottom',
                         labels: {
-                            color: '#c9d1d9'
+                            color: '#8b949e',
+                            padding: 15
                         }
                     }
                 }
             }
         });
 
-        // Provider distribution
-        const providerCtx = document.getElementById('providerChart').getContext('2d');
-        new Chart(providerCtx, {
+        // Providers Chart
+        const providersCtx = document.getElementById('providersChart').getContext('2d');
+        new Chart(providersCtx, {
             type: 'doughnut',
             data: {
-                labels: labelsProviders,
+                labels: ["openrouter", "custom"],
                 datasets: [{
-                    data: dataProviders,
+                    data: [222421929, 188821079],
                     backgroundColor: [
-                        '#58a6ff', '#79c0ff', '#58a6ff', '#79c0ff', '#58a6ff',
-                        '#79c0ff', '#58a6ff', '#79c0ff', '#58a6ff', '#79c0ff'
+                        '#58a6ff', '#f85149', '#f1f2f3', '#ffd33d', '#a371f7',
+                        '#ff7b72', '#7ee787', '#1f6feb', '#c9d1d9', '#8b949e'
                     ]
                 }]
             },
@@ -328,36 +382,14 @@
                 responsive: true,
                 plugins: {
                     legend: {
+                        position: 'bottom',
                         labels: {
-                            color: '#c9d1d9'
+                            color: '#8b949e',
+                            padding: 15
                         }
                     }
                 }
             }
-        });
-
-        // Populate job details table
-        const tableBody = document.querySelector('tbody');
-        const maxTokens = Math.max(...dataJobs);
-        
-        Object.entries(topJobs).forEach(([jobName, jobData]) => {
-            const row = document.createElement('tr');
-            const jobNameDisplay = cron_names[jobName] || jobName;
-            const progress = (jobData.total_tokens / maxTokens) * 100;
-            
-            row.innerHTML = `
-                <td>${jobNameDisplay}</td>
-                <td>${jobData.total_tokens.toLocaleString()}</td>
-                <td>${jobData.api_calls}</td>
-                <td>${jobData.tool_calls}</td>
-                <td>$${jobData.cost.toFixed(4)}</td>
-                <td>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${progress}%"></div>
-                    </div>
-                </td>
-            `;
-            tableBody.appendChild(row);
         });
     </script>
 </body>
