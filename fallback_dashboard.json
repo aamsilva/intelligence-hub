@@ -1,0 +1,28 @@
+{
+  "timestamp": "1777677010.922006",
+  "hermes_errors": {
+    "429_Rate_Limit": 17462,
+    "404_Not_Found": 5404,
+    "Max_Retries_Exhausted": 2519,
+    "Connection_Error": 6,
+    "401_Auth_Error": 98
+  },
+  "provider_fallbacks": {
+    "Rate_Limit_Fallback": 2830
+  },
+  "total_errors": 25489,
+  "total_fallbacks": 2830,
+  "recent_fallbacks": [],
+  "cron_error_jobs": {
+    "smart-metrics-2026-04-04T2141": 1,
+    "smart-metrics-2026-04-04T22-38": 1,
+    "smart-metrics-20260405-022457": 1,
+    "health-report-20260405_210905": 1,
+    "smart-metrics-2026-04-05-0131": 1,
+    "smart-metrics-20260404T234758Z": 1,
+    "smart-metrics-20260405T072550Z": 1,
+    "smart-metrics-20260405-022417": 1,
+    "smart-metrics-20260404-234716": 1,
+    "health-report-2026-05-01": 1
+  }
+}
