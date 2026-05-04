@@ -7,205 +7,710 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
-            --bg: #0d1117;
-            --card-bg: #161b22;
-            --text: #c9d1d9;
-            --accent: #58a6ff;
-            --border: #30363d;
-            --success: #3fb950;
-            --warning: #d29922;
-            --danger: #f85149;
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2128;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --border-color: #30363d;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         body {
-            background: var(--bg);
-            color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
             padding: 20px;
         }
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
-        h1 {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
+        header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
         }
-        .stat-cards {
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
         .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 15px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
         }
         .stat-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 14px;
-            color: #8b949e;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
-        .stat-card p {
-            margin: 0;
-            font-size: 24px;
+        .stat-card .value {
+            font-size: 1.8rem;
             font-weight: 600;
         }
+        .stat-card .value.blue { color: var(--accent-blue); }
+        .stat-card .value.green { color: var(--accent-green); }
+        .stat-card .value.orange { color: var(--accent-orange); }
+        .stat-card .value.red { color: var(--accent-red); }
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
         .chart-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             padding: 20px;
         }
         .chart-card h2 {
-            margin-top: 0;
-            font-size: 18px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        .table-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            overflow-x: auto;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
         }
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-color);
         }
         th {
-            background: #1c2128;
-            color: #8b949e;
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
             font-weight: 600;
         }
         tr:hover {
-            background: #1c2128;
+            background-color: var(--bg-secondary);
         }
         .progress-bar {
             height: 8px;
-            background: #30363d;
+            background-color: var(--bg-secondary);
             border-radius: 4px;
             overflow: hidden;
         }
-        .progress-fill {
+        .progress-bar-fill {
             height: 100%;
-            background: var(--accent);
+            background-color: var(--accent-blue);
+        }
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        @media (max-width: 768px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            .chart-container {
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hermes Token Usage Dashboard</h1>
-        <p>Data from 2026-04-06</p>
+        <header>
+            <h1>Hermes Token Usage Dashboard</h1>
+            <p class="subtitle">Data from 2026-04-06 | Generated on 2026-05-05 00:53:43</p>
+        </header>
 
-        <div class="stat-cards">
+        <div class="stats-grid">
             <div class="stat-card">
                 <h3>Total Tokens</h3>
-                <p id="total-tokens">0</p>
+                <div class="value blue">238,751,094</div>
             </div>
             <div class="stat-card">
                 <h3>Input Tokens</h3>
-                <p id="total-input">0</p>
+                <div class="value green">109,888,606</div>
             </div>
             <div class="stat-card">
                 <h3>Output Tokens</h3>
-                <p id="total-output">0</p>
+                <div class="value orange">1,718,204</div>
             </div>
             <div class="stat-card">
                 <h3>API Calls</h3>
-                <p id="total-calls">0</p>
+                <div class="value blue">3,859</div>
             </div>
             <div class="stat-card">
                 <h3>Tool Calls</h3>
-                <p id="total-tool-calls">0</p>
+                <div class="value green">3,565</div>
             </div>
             <div class="stat-card">
                 <h3>Cache Read</h3>
-                <p id="total-cache-read">0</p>
+                <div class="value orange">127,144,284</div>
             </div>
             <div class="stat-card">
                 <h3>Reasoning Tokens</h3>
-                <p id="total-reasoning">0</p>
+                <div class="value red">0</div>
             </div>
             <div class="stat-card">
                 <h3>Total Cost (USD)</h3>
-                <p id="total-cost">0</p>
+                <div class="value blue">$0.0000</div>
             </div>
         </div>
 
         <div class="chart-grid">
             <div class="chart-card">
                 <h2>Daily Token Usage Trend</h2>
-                <canvas id="daily-chart"></canvas>
+                <div class="chart-container">
+                    <canvas id="dailyTrendChart"></canvas>
+                </div>
             </div>
             <div class="chart-card">
                 <h2>Top 15 Jobs by Tokens</h2>
-                <canvas id="jobs-chart"></canvas>
+                <div class="chart-container">
+                    <canvas id="topJobsChart"></canvas>
+                </div>
             </div>
         </div>
 
         <div class="chart-grid">
             <div class="chart-card">
                 <h2>Model Breakdown</h2>
-                <canvas id="model-chart"></canvas>
+                <div class="chart-container">
+                    <canvas id="modelChart"></canvas>
+                </div>
             </div>
             <div class="chart-card">
                 <h2>Provider Breakdown</h2>
-                <canvas id="provider-chart"></canvas>
+                <div class="chart-container">
+                    <canvas id="providerChart"></canvas>
+                </div>
             </div>
         </div>
 
-        <h2>Job Details</h2>
-        <table id="jobs-table">
-            <thead>
-                <tr>
-                    <th>Job Name</th>
-                    <th>Total Tokens</th>
-                    <th>Calls</th>
-                    <th>Cost (USD)</th>
-                    <th>Progress</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="table-container">
+            <h2>Job Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Name</th>
+                        <th>Total Tokens</th>
+                        <th>% of Total</th>
+                        <th>Calls</th>
+                        <th>Cost (USD)</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+        <td>cron:cd7dce4f7a23</td>
+        <td>38,998,483</td>
+        <td>16.3%</td>
+        <td>570</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 16.334368294035965%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:92cd976b5b19</td>
+        <td>37,009,652</td>
+        <td>15.5%</td>
+        <td>539</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 15.501353891178402%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:736c86856dde</td>
+        <td>21,814,711</td>
+        <td>9.1%</td>
+        <td>350</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 9.137009860151677%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:57fe331360fb</td>
+        <td>15,216,013</td>
+        <td>6.4%</td>
+        <td>267</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 6.373169959170951%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:yt_transcript_maximizer</td>
+        <td>11,290,864</td>
+        <td>4.7%</td>
+        <td>217</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 4.72913602649293%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:49756f23e396</td>
+        <td>8,556,776</td>
+        <td>3.6%</td>
+        <td>120</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 3.583973525164245%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:2a4d7c310e5a</td>
+        <td>7,430,181</td>
+        <td>3.1%</td>
+        <td>82</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 3.1121034360579722%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:e9a656bc36ef</td>
+        <td>6,516,315</td>
+        <td>2.7%</td>
+        <td>103</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.7293340905068275%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:ae4ec306350f</td>
+        <td>6,348,889</td>
+        <td>2.7%</td>
+        <td>119</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.659208338538545%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:dce8bc4ea7db</td>
+        <td>5,859,599</td>
+        <td>2.5%</td>
+        <td>91</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.454271057706651%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:9762338a0dd5</td>
+        <td>5,713,701</td>
+        <td>2.4%</td>
+        <td>94</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.3931622277718234%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:33f64559a099</td>
+        <td>5,664,789</td>
+        <td>2.4%</td>
+        <td>92</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.372675620074855%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:3c2847c9ecb4</td>
+        <td>5,540,863</td>
+        <td>2.3%</td>
+        <td>117</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.320769679907728%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:689bcd806abb</td>
+        <td>5,475,256</td>
+        <td>2.3%</td>
+        <td>108</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.293290434095351%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:80af616496d0</td>
+        <td>4,842,164</td>
+        <td>2.0%</td>
+        <td>64</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 2.0281222250650712%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:6f5af0c6d47f</td>
+        <td>3,976,831</td>
+        <td>1.7%</td>
+        <td>46</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 1.6656807444827875%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:7c84992164b8</td>
+        <td>3,975,859</td>
+        <td>1.7%</td>
+        <td>65</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 1.6652736259294376%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:92875202c239</td>
+        <td>3,292,012</td>
+        <td>1.4%</td>
+        <td>55</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 1.3788468755665682%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:2c8e7be4c370</td>
+        <td>2,847,630</td>
+        <td>1.2%</td>
+        <td>53</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 1.1927191420534393%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:2e3fa789f20e</td>
+        <td>2,636,484</td>
+        <td>1.1%</td>
+        <td>49</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 1.104281432109375%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:aa7381d38d69</td>
+        <td>2,254,028</td>
+        <td>0.9%</td>
+        <td>37</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.9440911713686221%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:e46cafeb1d85</td>
+        <td>2,077,113</td>
+        <td>0.9%</td>
+        <td>33</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.8699909873501983%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:10ef21c68546</td>
+        <td>2,016,176</td>
+        <td>0.8%</td>
+        <td>46</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.8444677535173932%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:2f09c0cc2db8</td>
+        <td>1,870,847</td>
+        <td>0.8%</td>
+        <td>45</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.78359724709785%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:c7eb46b69e74</td>
+        <td>1,771,845</td>
+        <td>0.7%</td>
+        <td>32</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.7421306308234131%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:a5e2ff35571b</td>
+        <td>1,691,131</td>
+        <td>0.7%</td>
+        <td>47</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.7083238747379311%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:aafc20781775</td>
+        <td>1,611,175</td>
+        <td>0.7%</td>
+        <td>33</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.6748346041086623%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:93fa1903bf4b</td>
+        <td>1,529,337</td>
+        <td>0.6%</td>
+        <td>27</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.6405570648400882%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:3b9c1ca63ef1</td>
+        <td>1,514,272</td>
+        <td>0.6%</td>
+        <td>19</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.6342471461094121%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:755ce0ca79ad</td>
+        <td>1,418,665</td>
+        <td>0.6%</td>
+        <td>17</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.5942025128479621%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:0b40efd05179</td>
+        <td>1,402,249</td>
+        <td>0.6%</td>
+        <td>21</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.5873267328358295%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:e8e55c1755b1</td>
+        <td>1,325,866</td>
+        <td>0.6%</td>
+        <td>41</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.5553339998517451%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:3e58fa70555e</td>
+        <td>1,273,230</td>
+        <td>0.5%</td>
+        <td>30</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.5332876087260987%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:b33c33b3ed9c</td>
+        <td>1,108,473</td>
+        <td>0.5%</td>
+        <td>14</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.4642797573945357%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:56d9d0dda252</td>
+        <td>1,060,994</td>
+        <td>0.4%</td>
+        <td>15</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.4443933563713849%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:d9eadf49d0e2</td>
+        <td>1,045,003</td>
+        <td>0.4%</td>
+        <td>12</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.4376955860147807%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:0073e8fbb05d</td>
+        <td>969,488</td>
+        <td>0.4%</td>
+        <td>14</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.40606641157422296%"></div></div></td>
+    </tr>
+<tr>
+        <td>gateway:discord</td>
+        <td>960,591</td>
+        <td>0.4%</td>
+        <td>14</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.4023399365030763%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:fc092602a730</td>
+        <td>858,287</td>
+        <td>0.4%</td>
+        <td>11</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.35949028991674487%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:5fe8a4d84634</td>
+        <td>831,039</td>
+        <td>0.3%</td>
+        <td>15</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.3480775673430003%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:1d3114b7d44d</td>
+        <td>793,006</td>
+        <td>0.3%</td>
+        <td>19</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.3321475879813141%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:808fce0b5369</td>
+        <td>777,524</td>
+        <td>0.3%</td>
+        <td>7</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.325663010365096%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:e1f4acf9da0d</td>
+        <td>760,317</td>
+        <td>0.3%</td>
+        <td>17</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.3184559229705561%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:bb781fd82b87</td>
+        <td>726,763</td>
+        <td>0.3%</td>
+        <td>15</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.30440195595501646%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:23d5fcb6fd9c</td>
+        <td>708,986</td>
+        <td>0.3%</td>
+        <td>19</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.29695612619894424%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:2569b839db20</td>
+        <td>652,752</td>
+        <td>0.3%</td>
+        <td>8</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.2734027262719056%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:21e88caa316e</td>
+        <td>632,268</td>
+        <td>0.3%</td>
+        <td>14</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.2648230797216787%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:eb9eccff9058</td>
+        <td>609,420</td>
+        <td>0.3%</td>
+        <td>6</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.2552532806404649%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:6b61af6f937e</td>
+        <td>362,946</td>
+        <td>0.2%</td>
+        <td>4</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.15201857043637254%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:10d235c0d0b5</td>
+        <td>283,547</td>
+        <td>0.1%</td>
+        <td>13</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.11876259716740815%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:a06adf4cbd8b</td>
+        <td>259,095</td>
+        <td>0.1%</td>
+        <td>4</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.10852096870391723%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:b543d5a1a05c</td>
+        <td>219,304</td>
+        <td>0.1%</td>
+        <td>3</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.09185465763771537%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:c2682e5abab0</td>
+        <td>203,759</td>
+        <td>0.1%</td>
+        <td>2</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.08534369270785415%"></div></div></td>
+    </tr>
+<tr>
+        <td>cron:2d3935c8b8e1</td>
+        <td>138,736</td>
+        <td>0.1%</td>
+        <td>2</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.05810905310448546%"></div></div></td>
+    </tr>
+<tr>
+        <td>test</td>
+        <td>25,790</td>
+        <td>0.0%</td>
+        <td>2</td>
+        <td>$0.0000</td>
+        <td><div class="progress-bar"><div class="progress-bar-fill" style="width: 0.010802044743719583%"></div></div></td>
+    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <h2>Daily Breakdown</h2>
-        <table id="daily-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Total Tokens</th>
-                    <th>Calls</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="table-container">
+            <h2>Daily Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Tokens</th>
+                        <th>Calls</th>
+                        <th>Input</th>
+                        <th>Output</th>
+                        <th>Cost (USD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+        <td>2026-04-06</td>
+        <td>238,751,094</td>
+        <td>3,859</td>
+        <td>109,888,606</td>
+        <td>1,718,204</td>
+        <td>$0.0000</td>
+    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>Generated by Hermes Token Usage Dashboard Skill | Data source: ~/.hermes/metrics/token_usage/</p>
+        </footer>
     </div>
 
     <script>
-        // Stat cards
-        document.getElementById('total-tokens').textContent = 238751094.toLocaleString();
-        document.getElementById('total-input').textContent = 109888606.toLocaleString();
-        document.getElementById('total-output').textContent = 1718204.toLocaleString();
-        document.getElementById('total-calls').textContent = 3859.toLocaleString();
-        document.getElementById('total-tool-calls').textContent = 3565.toLocaleString();
-        document.getElementById('total-cache-read').textContent = 127144284.toLocaleString();
-        document.getElementById('total-reasoning').textContent = 0.toLocaleString();
-        document.getElementById('total-cost').textContent = '$' + 0.0.toFixed(4);
-
-        // Daily chart
-        new Chart(document.getElementById('daily-chart'), {
+        // Daily Trend Chart
+        const dailyTrendCtx = document.getElementById('dailyTrendChart').getContext('2d');
+        new Chart(dailyTrendCtx, {
             type: 'bar',
             data: {
                 labels: ["2026-04-06"],
@@ -213,96 +718,137 @@
                     {
                         label: 'Total Tokens',
                         data: [238751094],
-                        backgroundColor: 'rgba(88, 166, 255, 0.7)',
+                        backgroundColor: 'rgba(88, 166, 255, 0.6)',
+                        borderColor: 'rgba(88, 166, 255, 1)',
+                        borderWidth: 1,
                         yAxisID: 'y'
                     },
                     {
                         label: 'API Calls',
                         data: [3859],
                         type: 'line',
-                        borderColor: '#3fb950',
+                        borderColor: 'rgba(63, 185, 80, 1)',
+                        backgroundColor: 'rgba(63, 185, 80, 0.1)',
+                        fill: false,
+                        tension: 0.3,
                         yAxisID: 'y1'
                     }
                 ]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
-                    y: { type: 'linear', position: 'left', title: { display: true, text: 'Tokens' } },
-                    y1: { type: 'linear', position: 'right', title: { display: true, text: 'Calls' }, grid: { drawOnChartArea: false } }
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Tokens', color: '#c9d1d9' },
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: 'Calls', color: '#c9d1d9' },
+                        grid: { drawOnChartArea: false },
+                        ticks: { color: '#8b949e' }
+                    },
+                    x: {
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#c9d1d9' } }
                 }
             }
         });
 
-        // Top jobs chart
-        new Chart(document.getElementById('jobs-chart'), {
+        // Top Jobs Chart
+        const topJobsCtx = document.getElementById('topJobsChart').getContext('2d');
+        new Chart(topJobsCtx, {
             type: 'bar',
             data: {
                 labels: ["cron:cd7dce4f7a23", "cron:92cd976b5b19", "cron:736c86856dde", "cron:57fe331360fb", "cron:yt_transcript_maximizer", "cron:49756f23e396", "cron:2a4d7c310e5a", "cron:e9a656bc36ef", "cron:ae4ec306350f", "cron:dce8bc4ea7db", "cron:9762338a0dd5", "cron:33f64559a099", "cron:3c2847c9ecb4", "cron:689bcd806abb", "cron:80af616496d0"],
                 datasets: [{
                     label: 'Total Tokens',
                     data: [38998483, 37009652, 21814711, 15216013, 11290864, 8556776, 7430181, 6516315, 6348889, 5859599, 5713701, 5664789, 5540863, 5475256, 4842164],
-                    backgroundColor: 'rgba(88, 166, 255, 0.7)'
+                    backgroundColor: 'rgba(88, 166, 255, 0.6)',
+                    borderColor: 'rgba(88, 166, 255, 1)',
+                    borderWidth: 1
                 }]
             },
             options: {
                 indexAxis: 'y',
                 responsive: true,
-                scales: { x: { title: { display: true, text: 'Tokens' } } }
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Tokens', color: '#c9d1d9' },
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
+                    },
+                    y: {
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#c9d1d9' } }
+                }
             }
         });
 
-        // Model chart
-        new Chart(document.getElementById('model-chart'), {
+        // Model Chart
+        const modelCtx = document.getElementById('modelChart').getContext('2d');
+        new Chart(modelCtx, {
             type: 'doughnut',
             data: {
-                labels: ["qwen/qwen3.6-plus:free", "anthropic/claude-sonnet-4-20250514", "hf:MiniMaxAI/MiniMax-M2.5", "llama3.2:latest", "minimax/minimax-m2.5:free", "nvidia/nemotron-nano-9b-v2:free"],
+                labels: ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free", "minimax/minimax-m2.5:free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:free", "anthropic/claude-sonnet-4-20250514"],
                 datasets: [{
-                    data: [98864241, 12400, 136105579, 259816, 3450632, 58426],
-                    backgroundColor: ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff', '#8b949e']
+                    data: [136105579, 98864241, 3450632, 259816, 58426, 12400],
+                    backgroundColor: [
+                        '#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff',
+                        '#ff9bce', '#7ee787', '#56d364', '#f0883e', '#8b949e'
+                    ],
+                    borderColor: '#161b22',
+                    borderWidth: 2
                 }]
             },
-            options: { responsive: true }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { color: '#c9d1d9' } }
+                }
+            }
         });
 
-        // Provider chart
-        new Chart(document.getElementById('provider-chart'), {
+        // Provider Chart
+        const providerCtx = document.getElementById('providerChart').getContext('2d');
+        new Chart(providerCtx, {
             type: 'doughnut',
             data: {
-                labels: ["openrouter", "custom"],
+                labels: ["custom", "openrouter"],
                 datasets: [{
-                    data: [102385699, 136365395],
-                    backgroundColor: ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff', '#8b949e']
+                    data: [136365395, 102385699],
+                    backgroundColor: [
+                        '#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff',
+                        '#ff9bce', '#7ee787', '#56d364', '#f0883e', '#8b949e'
+                    ],
+                    borderColor: '#161b22',
+                    borderWidth: 2
                 }]
             },
-            options: { responsive: true }
-        });
-
-        // Jobs table
-        const jobsTable = document.getElementById('jobs-table').getElementsByTagName('tbody')[0];
-        [{"name": "cron:cd7dce4f7a23", "tokens": 38998483, "calls": 570, "cost": 0.0, "progress": 16.334368294035965}, {"name": "cron:92cd976b5b19", "tokens": 37009652, "calls": 539, "cost": 0.0, "progress": 15.501353891178402}, {"name": "cron:736c86856dde", "tokens": 21814711, "calls": 350, "cost": 0.0, "progress": 9.137009860151677}, {"name": "cron:57fe331360fb", "tokens": 15216013, "calls": 267, "cost": 0.0, "progress": 6.373169959170951}, {"name": "cron:yt_transcript_maximizer", "tokens": 11290864, "calls": 217, "cost": 0.0, "progress": 4.72913602649293}, {"name": "cron:49756f23e396", "tokens": 8556776, "calls": 120, "cost": 0.0, "progress": 3.583973525164245}, {"name": "cron:2a4d7c310e5a", "tokens": 7430181, "calls": 82, "cost": 0.0, "progress": 3.1121034360579722}, {"name": "cron:e9a656bc36ef", "tokens": 6516315, "calls": 103, "cost": 0.0, "progress": 2.7293340905068275}, {"name": "cron:ae4ec306350f", "tokens": 6348889, "calls": 119, "cost": 0.0, "progress": 2.659208338538545}, {"name": "cron:dce8bc4ea7db", "tokens": 5859599, "calls": 91, "cost": 0.0, "progress": 2.454271057706651}, {"name": "cron:9762338a0dd5", "tokens": 5713701, "calls": 94, "cost": 0.0, "progress": 2.3931622277718234}, {"name": "cron:33f64559a099", "tokens": 5664789, "calls": 92, "cost": 0.0, "progress": 2.372675620074855}, {"name": "cron:3c2847c9ecb4", "tokens": 5540863, "calls": 117, "cost": 0.0, "progress": 2.320769679907728}, {"name": "cron:689bcd806abb", "tokens": 5475256, "calls": 108, "cost": 0.0, "progress": 2.293290434095351}, {"name": "cron:80af616496d0", "tokens": 4842164, "calls": 64, "cost": 0.0, "progress": 2.0281222250650712}].forEach(job => {
-            const row = jobsTable.insertRow();
-            row.insertCell(0).textContent = job.name;
-            row.insertCell(1).textContent = job.tokens.toLocaleString();
-            row.insertCell(2).textContent = job.calls.toLocaleString();
-            row.insertCell(3).textContent = '$' + job.cost.toFixed(4);
-            const progressCell = row.insertCell(4);
-            const progressBar = document.createElement('div');
-            progressBar.className = 'progress-bar';
-            const progressFill = document.createElement('div');
-            progressFill.className = 'progress-fill';
-            progressFill.style.width = job.progress + '%';
-            progressBar.appendChild(progressFill);
-            progressCell.appendChild(progressBar);
-        });
-
-        // Daily table
-        const dailyTable = document.getElementById('daily-table').getElementsByTagName('tbody')[0];
-        [{"day": "2026-04-06", "tokens": 238751094, "calls": 3859}].forEach(day => {
-            const row = dailyTable.insertRow();
-            row.insertCell(0).textContent = day.day;
-            row.insertCell(1).textContent = day.tokens.toLocaleString();
-            row.insertCell(2).textContent = day.calls.toLocaleString();
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { color: '#c9d1d9' } }
+                }
+            }
         });
     </script>
 </body>
