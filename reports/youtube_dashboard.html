@@ -37,7 +37,7 @@
     <div class="score-card">
       <div class="score-ring">
         <canvas id="scoreChart"></canvas>
-        <div class="score-value" style="color: #34d399">77%</div>
+        <div class="score-value" style="color: #34d399">82%</div>
       </div>
       <span class="status status-good">🟢 OPERATIONAL</span>
     </div>
@@ -70,12 +70,12 @@
 
     <div class="card">
       <h2>📈 PERFORMANCE</h2>
-      <div class="metric"><span class="label">Today</span><span class="value">1,709 transcripts</span></div>
-      <div class="metric"><span class="label">Total</span><span class="value">4,195 transcripts</span></div>
-      <div class="metric"><span class="label">Throughput/hr</span><span class="value">94.9</span></div>
-      <div class="metric"><span class="label">Efficiency</span><span class="value">9.49%</span></div>
-      <div class="metric"><span class="label">Avg Words/Video</span><span class="value">4,461</span></div>
-      <div class="metric"><span class="label">Videos/Run</span><span class="value">1,620</span></div>
+      <div class="metric"><span class="label">Today</span><span class="value">0 transcripts</span></div>
+      <div class="metric"><span class="label">Total</span><span class="value">4,888 transcripts</span></div>
+      <div class="metric"><span class="label">Total Words</span><span class="value">51.7M</span></div>
+      <div class="metric"><span class="label">Yesterday</span><span class="value">31 transcripts</span></div>
+      <div class="metric"><span class="label">Avg Words/Video</span><span class="value">10,588</span></div>
+      <div class="metric"><span class="label">Unique Videos</span><span class="value">3,039</span></div>
     </div>
   </div>
 
@@ -88,10 +88,18 @@
       <h2>⚡ Performance vs Target</h2>
       <div class="chart-container"><canvas id="perfChart"></canvas></div>
     </div>
+    <div class="card">
+      <h2>🎬 Top Channels (Yesterday)</h2>
+      <div class="metric"><span class="label">1. Jeremy Jones</span><span class="value">6 videos</span></div>
+      <div class="metric"><span class="label">2. Bankless</span><span class="value">3 videos</span></div>
+      <div class="metric"><span class="label">3. Tech Guy Labs</span><span class="value">2 videos</span></div>
+      <div class="metric"><span class="label">4. All-In Podcast</span><span class="value">2 videos</span></div>
+      <div class="metric"><span class="label">5. Y Combinator</span><span class="value">2 videos</span></div>
+    </div>
   </div>
 
   <div class="footer">
-    <p>🔄 Auto-refresh a cada 15 minutos | Última atualização: 2026-04-06T18:18:07.768545</p>
+    <p>🔄 Auto-refresh a cada 15 minutos | Última atualização: 2026-05-02T02:06:00 UTC | Última extração: 2026-05-01 (31 transcripts)</p>
   </div>
 
   <script>
@@ -100,7 +108,7 @@
       type: 'doughnut',
       data: {
         datasets: [{
-          data: [77.4, 22.599999999999994],
+          data: [77.4, 22.6],
           backgroundColor: ['#34d399', '#1e293b'],
           borderWidth: 0
         }]
