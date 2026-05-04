@@ -7,34 +7,34 @@
 <style>
 body{background:#0d1117;color:#c9d1d9;font-family:Arial,sans-serif;margin:0;padding:20px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
-.card{background:#161b22;padding:15px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.5);}
+.card{background:#161b22;padding:10px;border-radius:5px;}
 </style>
 </head>
 <body>
 <h1>Hermes Token Usage Dashboard</h1>
 <div class="grid">
-<div class="card"><strong>Total Tokens</strong><br>2,616,912,140</div>
-<div class="card"><strong>Input Tokens</strong><br>1,501,358,782</div>
-<div class="card"><strong>Output Tokens</strong><br>16,425,515</div>
-<div class="card"><strong>API Calls</strong><br>59,680</div>
-<div class="card"><strong>Tool Calls</strong><br>55,866</div>
-<div class="card"><strong>Cache Read</strong><br>1,099,127,843</div>
-<div class="card"><strong>Reasoning Tokens</strong><br>0</div>
-<div class="card"><strong>Cost USD</strong><br>$0.00</div>
+<div class="card"><b>Total Tokens</b><br>2,616,912,140</div>
+<div class="card"><b>Total Input</b><br>1,501,358,782</div>
+<div class="card"><b>Total Output</b><br>16,425,515</div>
+<div class="card"><b>API Calls</b><br>59,680</div>
+<div class="card"><b>Tool Calls</b><br>55,866</div>
+<div class="card"><b>Cache Read</b><br>1,099,127,843</div>
+<div class="card"><b>Reasoning Tokens</b><br>0</div>
+<div class="card"><b>Total Cost (USD)</b><br>0.0000</div>
 </div>
-<h2>Top Jobs by Tokens</h2>
-<canvas id="jobsChart" height="200"></canvas>
-<h2>Daily Token Usage</h2>
-<canvas id="dailyChart" height="200"></canvas>
-<h2>Model Breakdown</h2>
-<canvas id="modelChart" height="200"></canvas>
+<canvas id="dailyChart" width="800" height="400"></canvas>
+<canvas id="topJobsChart" width="800" height="400"></canvas>
+<canvas id="modelChart" width="400" height="400"></canvas>
+<canvas id="providerChart" width="400" height="400"></canvas>
 <script>
-const ctxJobs = document.getElementById('jobsChart').getContext('2d');
-new Chart(ctxJobs,{type:'horizontalBar',data:{labels:["gateway:discord", "cron:2a4d7c310e5a", "cron:54d5cdceaaff", "cron:yt_transcript_maximizer", "cron:6b455b33933f", "cron:44f512059a48", "cron:528b2cf44fd6", "cron:7c84992164b8", "cron:736c86856dde", "cron:133559891500", "cron:8ef9360a5885", "cron:92cd976b5b19", "cron:cd7dce4f7a23", "cron:69a13177ad16", "cron:57fe331360fb"],datasets:[{label:'Tokens',data:[414788480, 187611415, 185614383, 181340419, 175991946, 143370852, 94159874, 83142858, 70018182, 53566516, 46915369, 45097970, 43432947, 41800153, 39108187],backgroundColor:'rgba(54,162,235,0.6)'}]}});
-const ctxDaily = document.getElementById('dailyChart').getContext('2d');
-new Chart(ctxDaily,{type:'bar',data:{labels:["2026-04-06", "2026-04-07", "2026-04-08", "2026-04-09", "2026-04-10", "2026-04-11", "2026-04-12", "2026-04-13", "2026-04-14", "2026-04-15", "2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19"],datasets:[{label:'Tokens',data:[238751094, 320667137, 557731789, 592309471, 49549487, 103731637, 145087650, 119079168, 105712464, 112701036, 102662253, 71039706, 50598448, 47290800],backgroundColor:'rgba(75,192,192,0.6)'},{label:'Calls',data:[3859, 6068, 12585, 13202, 1217, 2487, 3684, 3080, 2792, 3084, 2861, 2057, 1449, 1255],type:'line',yAxisID:'y1'}]},options:{scales:{y:{type:'linear',position:'left'},y1:{type:'linear',position:'right',grid:{drawOnChartArea:false}}}}});
-const ctxModel = document.getElementById('modelChart').getContext('2d');
-new Chart(ctxModel,{type:'doughnut',data:{labels:["qwen/qwen3.6-plus:free", "anthropic/claude-sonnet-4-20250514", "hf:MiniMaxAI/MiniMax-M2.5", "llama3.2:latest", "minimax/minimax-m2.5:free", "nvidia/nemotron-nano-9b-v2:free", "openrouter/free", "nvidia/nemotron-3-super-120b-a12b:free", "z-ai/glm-4.5-air:free", "hf:zai-org/GLM-5", "hf:zai-org/GLM-5.1", "qwen/qwen3-next-80b-a3b-instruct:free"],datasets:[{data:[246064280, 12400, 1899124726, 982331, 3450632, 58426, 3124484, 21930154, 246661417, 59783434, 133446890, 2272966],backgroundColor:['#ff6384','#36a2eb','#ffcd56','#4bc0c0','#9966ff']}]}});
+// Daily tokens/calls chart
+new Chart(document.getElementById('dailyChart'),{type:'bar',data:{labels:["2026-04-06", "2026-04-07", "2026-04-08", "2026-04-09", "2026-04-10", "2026-04-11", "2026-04-12", "2026-04-13", "2026-04-14", "2026-04-15", "2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19"], datasets:[{label:'Tokens',data:[238751094, 320667137, 557731789, 592309471, 49549487, 103731637, 145087650, 119079168, 105712464, 112701036, 102662253, 71039706, 50598448, 47290800],backgroundColor:'rgba(75,192,192,0.4)'},{type:'line',label:'Calls',data:[3859, 6068, 12585, 13202, 1217, 2487, 3684, 3080, 2792, 3084, 2861, 2057, 1449, 1255],borderColor:'rgba(255,99,132,1)',fill:false}]},options:{responsive:true,scales:{y:{beginAtZero:true}}}});
+// Top jobs bar chart
+new Chart(document.getElementById('topJobsChart'),{type:'horizontalBar',data:{labels:["gateway:discord", "cron:2a4d7c310e5a", "cron:54d5cdceaaff", "cron:yt_transcript_maximizer", "cron:6b455b33933f", "cron:44f512059a48", "cron:528b2cf44fd6", "cron:7c84992164b8", "cron:736c86856dde", "cron:133559891500", "cron:8ef9360a5885", "cron:92cd976b5b19", "cron:cd7dce4f7a23", "cron:69a13177ad16", "cron:57fe331360fb"], datasets:[{label:'Tokens',data:[414788480, 187611415, 185614383, 181340419, 175991946, 143370852, 94159874, 83142858, 70018182, 53566516, 46915369, 45097970, 43432947, 41800153, 39108187],backgroundColor:'rgba(54,162,235,0.6)'}]},options:{indexAxis:'y',responsive:true}});
+// Model doughnut
+new Chart(document.getElementById('modelChart'),{type:'doughnut',data:{labels:["hf:MiniMaxAI/MiniMax-M2.5", "z-ai/glm-4.5-air:free", "openrouter/free", "nvidia/nemotron-3-super-120b-a12b:free", "hf:zai-org/GLM-5", "hf:zai-org/GLM-5.1", "qwen/qwen3.6-plus:free", "anthropic/claude-sonnet-4-20250514", "llama3.2:latest", "minimax/minimax-m2.5:free", "nvidia/nemotron-nano-9b-v2:free", "qwen/qwen3-next-80b-a3b-instruct:free"], datasets:[{data:[1899124726, 246661417, 3124484, 21930154, 59783434, 133446890, 246064280, 12400, 982331, 3450632, 58426, 2272966],backgroundColor:['#ff6384','#36a2eb','#ffcd56','#4bc0c0','#9966ff','#ff9f40']}}]});
+// Provider doughnut
+new Chart(document.getElementById('providerChart'),{type:'doughnut',data:{labels:["custom", "openrouter"], datasets:[{data:[2093337381, 523574759],backgroundColor:['#ff6384','#36a2eb','#ffcd56','#4bc0c0','#9966ff','#ff9f40']}}]});
 </script>
 </body>
 </html>
