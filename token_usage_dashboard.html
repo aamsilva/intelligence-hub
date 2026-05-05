@@ -9,47 +9,48 @@
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
-            --bg-card: #1c2128;
+            --bg-tertiary: #21262d;
             --text-primary: #c9d1d9;
             --text-secondary: #8b949e;
-            --accent-blue: #1f6feb;
-            --accent-green: #238636;
-            --accent-purple: #8957e5;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
             --accent-orange: #d29922;
-            --border: #30363d;
+            --accent-red: #f85149;
+            --border-color: #30363d;
         }
         body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 20px;
+            line-height: 1.5;
         }
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
         h1 {
-            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
-            margin-bottom: 30px;
         }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
+            margin: 20px 0;
         }
         .stat-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 15px;
         }
         .stat-card h3 {
             margin: 0 0 5px 0;
-            font-size: 14px;
             color: var(--text-secondary);
+            font-size: 14px;
             text-transform: uppercase;
         }
         .stat-card p {
@@ -57,46 +58,63 @@
             font-size: 24px;
             font-weight: 600;
         }
+        .stat-card .tokens { color: var(--accent-blue); }
+        .stat-card .input { color: var(--accent-green); }
+        .stat-card .output { color: var(--accent-orange); }
+        .stat-card .calls { color: #bc8cff; }
+        .stat-card .tool-calls { color: #ff7b72; }
+        .stat-card .cache { color: #79c0ff; }
+        .stat-card .reasoning { color: #ffa657; }
+        .stat-card .cost { color: #f0883e; }
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-bottom: 30px;
+            margin: 20px 0;
         }
         .chart-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 20px;
         }
         .chart-card h2 {
             margin-top: 0;
             font-size: 18px;
+            color: var(--text-primary);
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        .table-container {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
         }
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-color);
         }
         th {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-tertiary);
             color: var(--text-secondary);
             font-weight: 600;
         }
         tr:hover {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-tertiary);
         }
         .progress-bar {
             height: 8px;
-            background-color: var(--border);
+            background-color: var(--bg-tertiary);
             border-radius: 4px;
             overflow: hidden;
         }
@@ -104,207 +122,112 @@
             height: 100%;
             background-color: var(--accent-blue);
         }
-        .footer {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
+        @media (max-width: 768px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔮 Hermes Token Usage Dashboard</h1>
-        <p>Data for: <strong>2026-04-06</strong> | Generated: <strong>2026-05-05 02:06:59</strong></p>
-        
+        <h1>Hermes Token Usage Dashboard</h1>
+        <p>Data for: 2026-04-06 (20260406.jsonl)</p>
+
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Total Tokens</h3>
-                <p>238,751,094</p>
+                <p class="tokens" id="stat-total-tokens">0</p>
             </div>
             <div class="stat-card">
                 <h3>Input Tokens</h3>
-                <p>109,888,606</p>
+                <p class="input" id="stat-input-tokens">0</p>
             </div>
             <div class="stat-card">
                 <h3>Output Tokens</h3>
-                <p>1,718,204</p>
+                <p class="output" id="stat-output-tokens">0</p>
             </div>
             <div class="stat-card">
                 <h3>API Calls</h3>
-                <p>3,859</p>
+                <p class="calls" id="stat-total-calls">0</p>
             </div>
             <div class="stat-card">
                 <h3>Tool Calls</h3>
-                <p>3,565</p>
+                <p class="tool-calls" id="stat-tool-calls">0</p>
             </div>
             <div class="stat-card">
-                <h3>Cache Read</h3>
-                <p>127,144,284</p>
+                <h3>Cache Read Tokens</h3>
+                <p class="cache" id="stat-cache-read">0</p>
             </div>
             <div class="stat-card">
                 <h3>Reasoning Tokens</h3>
-                <p>0</p>
+                <p class="reasoning" id="stat-reasoning-tokens">0</p>
             </div>
             <div class="stat-card">
                 <h3>Total Cost (USD)</h3>
-                <p>$0.0000</p>
+                <p class="cost" id="stat-total-cost">$0.00</p>
             </div>
         </div>
-        
+
         <div class="chart-grid">
             <div class="chart-card">
                 <h2>Daily Token Usage Trend</h2>
-                <canvas id="dailyChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="daily-chart"></canvas>
+                </div>
             </div>
             <div class="chart-card">
                 <h2>Top 15 Jobs by Tokens</h2>
-                <canvas id="jobsChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="jobs-chart"></canvas>
+                </div>
             </div>
-        </div>
-        
-        <div class="chart-grid">
             <div class="chart-card">
                 <h2>Model Breakdown</h2>
-                <canvas id="modelChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="model-chart"></canvas>
+                </div>
             </div>
             <div class="chart-card">
                 <h2>Provider Breakdown</h2>
-                <canvas id="providerChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="provider-chart"></canvas>
+                </div>
             </div>
         </div>
-        
-        <h2>Top 15 Jobs Details</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Job Name</th>
-                    <th>Total Tokens</th>
-                    <th>Calls</th>
-                    <th>Cost (USD)</th>
-                    <th>Usage</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-        <td>cron:cd7dce4f7a23</td>
-        <td>38,998,483</td>
-        <td>570</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 100.0%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:92cd976b5b19</td>
-        <td>37,009,652</td>
-        <td>539</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 94.90023496554981%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:736c86856dde</td>
-        <td>21,814,711</td>
-        <td>350</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 55.937332229051066%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:57fe331360fb</td>
-        <td>15,216,013</td>
-        <td>267</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 39.016935607469655%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:yt_transcript_maximizer</td>
-        <td>11,290,864</td>
-        <td>217</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 28.952059494211607%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:49756f23e396</td>
-        <td>8,556,776</td>
-        <td>120</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 21.941304742546013%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:2a4d7c310e5a</td>
-        <td>7,430,181</td>
-        <td>82</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 19.05248724674752%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:e9a656bc36ef</td>
-        <td>6,516,315</td>
-        <td>103</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 16.70914994308881%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:ae4ec306350f</td>
-        <td>6,348,889</td>
-        <td>119</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 16.279835807972326%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:dce8bc4ea7db</td>
-        <td>5,859,599</td>
-        <td>91</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 15.025197262160173%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:9762338a0dd5</td>
-        <td>5,713,701</td>
-        <td>94</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.651085274265668%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:33f64559a099</td>
-        <td>5,664,789</td>
-        <td>92</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.525665011123637%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:3c2847c9ecb4</td>
-        <td>5,540,863</td>
-        <td>117</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.207893676274535%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:689bcd806abb</td>
-        <td>5,475,256</td>
-        <td>108</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.039664055650574%"></div></div></td>
-    </tr>
-<tr>
-        <td>cron:80af616496d0</td>
-        <td>4,842,164</td>
-        <td>64</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 12.416288089975192%"></div></div></td>
-    </tr>
-            </tbody>
-        </table>
-        
-        <div class="footer">
-            Generated by Hermes Token Usage Dashboard Skill | Data source: ~/.hermes/metrics/token_usage/20260406.jsonl
+
+        <div class="table-container">
+            <h2>Job Details</h2>
+            <table id="jobs-table">
+                <thead>
+                    <tr>
+                        <th>Job Name</th>
+                        <th>Total Tokens</th>
+                        <th>Progress</th>
+                        <th>Calls</th>
+                        <th>Cost (USD)</th>
+                    </tr>
+                </thead>
+                <tbody id="jobs-table-body">
+                </tbody>
+            </table>
         </div>
     </div>
-    
+
     <script>
-        // Daily Trend Chart
-        const dailyCtx = document.getElementById('dailyChart').getContext('2d');
-        const dailyChart = new Chart(dailyCtx, {
+        const stats = {"total_tokens": 238751094, "total_input": 109888606, "total_output": 1718204, "total_calls": 3859, "total_tool_calls": 3565, "total_cache_read": 127144284, "total_reasoning": 0, "total_cost": 0.0};
+        document.getElementById('stat-total-tokens').textContent = stats.total_tokens.toLocaleString();
+        document.getElementById('stat-input-tokens').textContent = stats.total_input.toLocaleString();
+        document.getElementById('stat-output-tokens').textContent = stats.total_output.toLocaleString();
+        document.getElementById('stat-total-calls').textContent = stats.total_calls.toLocaleString();
+        document.getElementById('stat-tool-calls').textContent = stats.total_tool_calls.toLocaleString();
+        document.getElementById('stat-cache-read').textContent = stats.total_cache_read.toLocaleString();
+        document.getElementById('stat-reasoning-tokens').textContent = stats.total_reasoning.toLocaleString();
+        document.getElementById('stat-total-cost').textContent = '$' + stats.total_cost.toFixed(4);
+
+        // Daily chart
+        const dailyCtx = document.getElementById('daily-chart').getContext('2d');
+        new Chart(dailyCtx, {
             type: 'bar',
             data: {
                 labels: ["2026-04-06"],
@@ -312,8 +235,8 @@
                     {
                         label: 'Total Tokens',
                         data: [238751094],
-                        backgroundColor: 'rgba(31, 111, 235, 0.7)',
-                        borderColor: 'rgba(31, 111, 235, 1)',
+                        backgroundColor: 'rgba(88, 166, 255, 0.6)',
+                        borderColor: 'rgba(88, 166, 255, 1)',
                         borderWidth: 1,
                         yAxisID: 'y'
                     },
@@ -321,186 +244,143 @@
                         label: 'API Calls',
                         data: [3859],
                         type: 'line',
-                        backgroundColor: 'rgba(137, 87, 229, 0.2)',
-                        borderColor: 'rgba(137, 87, 229, 1)',
-                        borderWidth: 2,
-                        fill: false,
+                        borderColor: 'rgba(63, 185, 80, 1)',
+                        backgroundColor: 'rgba(63, 185, 80, 0.1)',
                         yAxisID: 'y1'
                     }
                 ]
             },
             options: {
                 responsive: true,
-                interaction: {
-                    mode: 'index',
-                    intersect: false
-                },
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         type: 'linear',
                         display: true,
                         position: 'left',
-                        title: {
-                            display: true,
-                            text: 'Total Tokens',
-                            color: '#c9d1d9'
-                        },
-                        grid: {
-                            color: '#30363d'
-                        },
-                        ticks: {
-                            color: '#8b949e'
-                        }
+                        title: { display: true, text: 'Tokens', color: '#c9d1d9' },
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
                     },
                     y1: {
                         type: 'linear',
                         display: true,
                         position: 'right',
-                        title: {
-                            display: true,
-                            text: 'API Calls',
-                            color: '#c9d1d9'
-                        },
-                        grid: {
-                            drawOnChartArea: false
-                        },
-                        ticks: {
-                            color: '#8b949e'
-                        }
+                        title: { display: true, text: 'Calls', color: '#c9d1d9' },
+                        grid: { drawOnChartArea: false },
+                        ticks: { color: '#8b949e' }
                     },
                     x: {
-                        grid: {
-                            color: '#30363d'
-                        },
-                        ticks: {
-                            color: '#8b949e'
-                        }
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
                     }
                 },
                 plugins: {
-                    legend: {
-                        labels: {
-                            color: '#c9d1d9'
-                        }
-                    }
+                    legend: { labels: { color: '#c9d1d9' } }
                 }
             }
         });
-        
-        // Top Jobs Chart
-        const jobsCtx = document.getElementById('jobsChart').getContext('2d');
-        const jobsChart = new Chart(jobsCtx, {
+
+        // Jobs chart
+        const jobsCtx = document.getElementById('jobs-chart').getContext('2d');
+        new Chart(jobsCtx, {
             type: 'bar',
             data: {
                 labels: ["cron:cd7dce4f7a23", "cron:92cd976b5b19", "cron:736c86856dde", "cron:57fe331360fb", "cron:yt_transcript_maximizer", "cron:49756f23e396", "cron:2a4d7c310e5a", "cron:e9a656bc36ef", "cron:ae4ec306350f", "cron:dce8bc4ea7db", "cron:9762338a0dd5", "cron:33f64559a099", "cron:3c2847c9ecb4", "cron:689bcd806abb", "cron:80af616496d0"],
                 datasets: [{
                     label: 'Total Tokens',
                     data: [38998483, 37009652, 21814711, 15216013, 11290864, 8556776, 7430181, 6516315, 6348889, 5859599, 5713701, 5664789, 5540863, 5475256, 4842164],
-                    backgroundColor: 'rgba(31, 111, 235, 0.7)',
-                    borderColor: 'rgba(31, 111, 235, 1)',
+                    backgroundColor: 'rgba(88, 166, 255, 0.6)',
+                    borderColor: 'rgba(88, 166, 255, 1)',
                     borderWidth: 1
                 }]
             },
             options: {
                 indexAxis: 'y',
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     x: {
-                        title: {
-                            display: true,
-                            text: 'Total Tokens',
-                            color: '#c9d1d9'
-                        },
-                        grid: {
-                            color: '#30363d'
-                        },
-                        ticks: {
-                            color: '#8b949e'
-                        }
+                        title: { display: true, text: 'Tokens', color: '#c9d1d9' },
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
                     },
                     y: {
-                        grid: {
-                            color: '#30363d'
-                        },
-                        ticks: {
-                            color: '#8b949e'
-                        }
+                        grid: { color: '#30363d' },
+                        ticks: { color: '#8b949e' }
                     }
                 },
                 plugins: {
-                    legend: {
-                        labels: {
-                            color: '#c9d1d9'
-                        }
-                    }
+                    legend: { labels: { color: '#c9d1d9' } }
                 }
             }
         });
-        
-        // Model Breakdown Chart
-        const modelCtx = document.getElementById('modelChart').getContext('2d');
-        const modelChart = new Chart(modelCtx, {
+
+        // Model chart
+        const modelCtx = document.getElementById('model-chart').getContext('2d');
+        new Chart(modelCtx, {
             type: 'doughnut',
             data: {
-                labels: ["qwen/qwen3.6-plus:free", "anthropic/claude-sonnet-4-20250514", "hf:MiniMaxAI/MiniMax-M2.5", "llama3.2:latest", "minimax/minimax-m2.5:free", "nvidia/nemotron-nano-9b-v2:free"],
+                labels: ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free", "minimax/minimax-m2.5:free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:free", "anthropic/claude-sonnet-4-20250514"],
                 datasets: [{
-                    data: [98864241, 12400, 136105579, 259816, 3450632, 58426],
+                    data: [136105579, 98864241, 3450632, 259816, 58426, 12400],
                     backgroundColor: [
-                        'rgba(31, 111, 235, 0.7)',
-                        'rgba(137, 87, 229, 0.7)',
-                        'rgba(210, 153, 34, 0.7)',
-                        'rgba(35, 134, 54, 0.7)',
-                        'rgba(248, 81, 73, 0.7)',
-                        'rgba(121, 184, 255, 0.7)',
-                        'rgba(201, 148, 255, 0.7)',
-                        'rgba(255, 200, 100, 0.7)',
-                        'rgba(100, 200, 150, 0.7)',
-                        'rgba(255, 150, 150, 0.7)'
+                        '#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff',
+                        '#79c0ff', '#ff7b72', '#ffa657', '#f0883e', '#8b949e'
                     ],
-                    borderColor: '#1c2128',
+                    borderColor: '#161b22',
                     borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        labels: {
-                            color: '#c9d1d9'
-                        }
-                    }
+                    legend: { position: 'right', labels: { color: '#c9d1d9' } }
                 }
             }
         });
-        
-        // Provider Breakdown Chart
-        const providerCtx = document.getElementById('providerChart').getContext('2d');
-        const providerChart = new Chart(providerCtx, {
+
+        // Provider chart
+        const providerCtx = document.getElementById('provider-chart').getContext('2d');
+        new Chart(providerCtx, {
             type: 'doughnut',
             data: {
-                labels: ["openrouter", "custom"],
+                labels: ["custom", "openrouter"],
                 datasets: [{
-                    data: [102385699, 136365395],
+                    data: [136365395, 102385699],
                     backgroundColor: [
-                        'rgba(31, 111, 235, 0.7)',
-                        'rgba(137, 87, 229, 0.7)',
-                        'rgba(210, 153, 34, 0.7)',
-                        'rgba(35, 134, 54, 0.7)'
+                        '#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff',
+                        '#79c0ff', '#ff7b72', '#ffa657', '#f0883e', '#8b949e'
                     ],
-                    borderColor: '#1c2128',
+                    borderColor: '#161b22',
                     borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        labels: {
-                            color: '#c9d1d9'
-                        }
-                    }
+                    legend: { position: 'right', labels: { color: '#c9d1d9' } }
                 }
             }
+        });
+
+        // Jobs table
+        const jobTableData = [{"name": "cron:cd7dce4f7a23", "tokens": 38998483, "calls": 570, "cost": 0.0}, {"name": "cron:92cd976b5b19", "tokens": 37009652, "calls": 539, "cost": 0.0}, {"name": "cron:736c86856dde", "tokens": 21814711, "calls": 350, "cost": 0.0}, {"name": "cron:57fe331360fb", "tokens": 15216013, "calls": 267, "cost": 0.0}, {"name": "cron:yt_transcript_maximizer", "tokens": 11290864, "calls": 217, "cost": 0.0}, {"name": "cron:49756f23e396", "tokens": 8556776, "calls": 120, "cost": 0.0}, {"name": "cron:2a4d7c310e5a", "tokens": 7430181, "calls": 82, "cost": 0.0}, {"name": "cron:e9a656bc36ef", "tokens": 6516315, "calls": 103, "cost": 0.0}, {"name": "cron:ae4ec306350f", "tokens": 6348889, "calls": 119, "cost": 0.0}, {"name": "cron:dce8bc4ea7db", "tokens": 5859599, "calls": 91, "cost": 0.0}, {"name": "cron:9762338a0dd5", "tokens": 5713701, "calls": 94, "cost": 0.0}, {"name": "cron:33f64559a099", "tokens": 5664789, "calls": 92, "cost": 0.0}, {"name": "cron:3c2847c9ecb4", "tokens": 5540863, "calls": 117, "cost": 0.0}, {"name": "cron:689bcd806abb", "tokens": 5475256, "calls": 108, "cost": 0.0}, {"name": "cron:80af616496d0", "tokens": 4842164, "calls": 64, "cost": 0.0}, {"name": "cron:6f5af0c6d47f", "tokens": 3976831, "calls": 46, "cost": 0.0}, {"name": "cron:7c84992164b8", "tokens": 3975859, "calls": 65, "cost": 0.0}, {"name": "cron:92875202c239", "tokens": 3292012, "calls": 55, "cost": 0.0}, {"name": "cron:2c8e7be4c370", "tokens": 2847630, "calls": 53, "cost": 0.0}, {"name": "cron:2e3fa789f20e", "tokens": 2636484, "calls": 49, "cost": 0.0}, {"name": "cron:aa7381d38d69", "tokens": 2254028, "calls": 37, "cost": 0.0}, {"name": "cron:e46cafeb1d85", "tokens": 2077113, "calls": 33, "cost": 0.0}, {"name": "cron:10ef21c68546", "tokens": 2016176, "calls": 46, "cost": 0.0}, {"name": "cron:2f09c0cc2db8", "tokens": 1870847, "calls": 45, "cost": 0.0}, {"name": "cron:c7eb46b69e74", "tokens": 1771845, "calls": 32, "cost": 0.0}, {"name": "cron:a5e2ff35571b", "tokens": 1691131, "calls": 47, "cost": 0.0}, {"name": "cron:aafc20781775", "tokens": 1611175, "calls": 33, "cost": 0.0}, {"name": "cron:93fa1903bf4b", "tokens": 1529337, "calls": 27, "cost": 0.0}, {"name": "cron:3b9c1ca63ef1", "tokens": 1514272, "calls": 19, "cost": 0.0}, {"name": "cron:755ce0ca79ad", "tokens": 1418665, "calls": 17, "cost": 0.0}, {"name": "cron:0b40efd05179", "tokens": 1402249, "calls": 21, "cost": 0.0}, {"name": "cron:e8e55c1755b1", "tokens": 1325866, "calls": 41, "cost": 0.0}, {"name": "cron:3e58fa70555e", "tokens": 1273230, "calls": 30, "cost": 0.0}, {"name": "cron:b33c33b3ed9c", "tokens": 1108473, "calls": 14, "cost": 0.0}, {"name": "cron:56d9d0dda252", "tokens": 1060994, "calls": 15, "cost": 0.0}, {"name": "cron:d9eadf49d0e2", "tokens": 1045003, "calls": 12, "cost": 0.0}, {"name": "cron:0073e8fbb05d", "tokens": 969488, "calls": 14, "cost": 0.0}, {"name": "gateway:discord", "tokens": 960591, "calls": 14, "cost": 0.0}, {"name": "cron:fc092602a730", "tokens": 858287, "calls": 11, "cost": 0.0}, {"name": "cron:5fe8a4d84634", "tokens": 831039, "calls": 15, "cost": 0.0}, {"name": "cron:1d3114b7d44d", "tokens": 793006, "calls": 19, "cost": 0.0}, {"name": "cron:808fce0b5369", "tokens": 777524, "calls": 7, "cost": 0.0}, {"name": "cron:e1f4acf9da0d", "tokens": 760317, "calls": 17, "cost": 0.0}, {"name": "cron:bb781fd82b87", "tokens": 726763, "calls": 15, "cost": 0.0}, {"name": "cron:23d5fcb6fd9c", "tokens": 708986, "calls": 19, "cost": 0.0}, {"name": "cron:2569b839db20", "tokens": 652752, "calls": 8, "cost": 0.0}, {"name": "cron:21e88caa316e", "tokens": 632268, "calls": 14, "cost": 0.0}, {"name": "cron:eb9eccff9058", "tokens": 609420, "calls": 6, "cost": 0.0}, {"name": "cron:6b61af6f937e", "tokens": 362946, "calls": 4, "cost": 0.0}, {"name": "cron:10d235c0d0b5", "tokens": 283547, "calls": 13, "cost": 0.0}, {"name": "cron:a06adf4cbd8b", "tokens": 259095, "calls": 4, "cost": 0.0}, {"name": "cron:b543d5a1a05c", "tokens": 219304, "calls": 3, "cost": 0.0}, {"name": "cron:c2682e5abab0", "tokens": 203759, "calls": 2, "cost": 0.0}, {"name": "cron:2d3935c8b8e1", "tokens": 138736, "calls": 2, "cost": 0.0}, {"name": "test", "tokens": 25790, "calls": 2, "cost": 0.0}];
+        const jobsTableBody = document.getElementById('jobs-table-body');
+        const maxTokens = Math.max(...jobTableData.map(j => j.tokens));
+        jobTableData.forEach(job => {
+            const row = document.createElement('tr');
+            const progress = maxTokens > 0 ? (job.tokens / maxTokens) * 100 : 0;
+            row.innerHTML = `
+                <td>${job.name}</td>
+                <td>${job.tokens.toLocaleString()}</td>
+                <td><div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div></td>
+                <td>${job.calls.toLocaleString()}</td>
+                <td>$${job.cost.toFixed(4)}</td>
+            `;
+            jobsTableBody.appendChild(row);
         });
     </script>
 </body>
