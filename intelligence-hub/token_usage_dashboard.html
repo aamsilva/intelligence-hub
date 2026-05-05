@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermes Token Usage Dashboard - 2026-04-06</title>
+    <title>Hermes Token Usage Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
-            --bg-card: #1c2128;
+            --bg-tertiary: #21262d;
             --text-primary: #c9d1d9;
             --text-secondary: #8b949e;
             --accent-blue: #58a6ff;
             --accent-green: #3fb950;
             --accent-orange: #d29922;
             --accent-red: #f85149;
-            --border-color: #30363d;
+            --border: #30363d;
         }
         body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             margin: 0;
             padding: 20px;
+            line-height: 1.5;
         }
         .container {
             max-width: 1400px;
@@ -31,328 +32,239 @@
         }
         h1 {
             color: var(--text-primary);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
-        .stats-grid {
+        .stat-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
         .stat-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 15px;
+            padding: 20px;
         }
         .stat-card h3 {
-            margin: 0 0 5px 0;
+            margin: 0 0 10px 0;
             color: var(--text-secondary);
             font-size: 14px;
             text-transform: uppercase;
         }
-        .stat-card p {
-            margin: 0;
+        .stat-card .value {
             font-size: 24px;
-            font-weight: bold;
-            color: var(--accent-blue);
+            font-weight: 600;
+            margin: 0;
         }
-        .charts-grid {
+        .stat-card .value.blue { color: var(--accent-blue); }
+        .stat-card .value.green { color: var(--accent-green); }
+        .stat-card .value.orange { color: var(--accent-orange); }
+        .stat-card .value.red { color: var(--accent-red); }
+        .chart-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
-        .chart-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
+        .chart-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 6px;
             padding: 20px;
         }
-        .chart-card h2 {
-            margin-top: 0;
+        .chart-container h2 {
+            margin: 0 0 15px 0;
             font-size: 18px;
-            color: var(--text-primary);
-        }
-        canvas {
-            max-width: 100%;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 30px;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 6px;
         }
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
         }
         th {
-            background-color: var(--bg-secondary);
+            background: var(--bg-tertiary);
             color: var(--text-secondary);
             font-weight: 600;
         }
         tr:hover {
-            background-color: var(--bg-secondary);
+            background: var(--bg-tertiary);
         }
         .progress-bar {
-            width: 100%;
             height: 8px;
-            background-color: var(--bg-secondary);
+            background: var(--bg-tertiary);
             border-radius: 4px;
             overflow: hidden;
         }
-        .progress-fill {
+        .progress-bar-fill {
             height: 100%;
-            background-color: var(--accent-blue);
+            background: var(--accent-blue);
+        }
+        .date-range {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hermes Token Usage Dashboard</h1>
-        <p>Date: 2026-04-06 | Total Records: 3859</p>
+        <h1>🔮 Hermes Token Usage Dashboard</h1>
+        <div class="date-range">Data for: 2026-04-06</div>
         
-        <div class="stats-grid">
+        <div class="stat-cards">
             <div class="stat-card">
                 <h3>Total Tokens</h3>
-                <p>238,751,094</p>
+                <p class="value blue" id="totalTokens">0</p>
             </div>
             <div class="stat-card">
                 <h3>Input Tokens</h3>
-                <p>109,888,606</p>
+                <p class="value green" id="totalInput">0</p>
             </div>
             <div class="stat-card">
                 <h3>Output Tokens</h3>
-                <p>1,718,204</p>
+                <p class="value orange" id="totalOutput">0</p>
             </div>
             <div class="stat-card">
                 <h3>API Calls</h3>
-                <p>3859</p>
+                <p class="value blue" id="totalCalls">0</p>
             </div>
             <div class="stat-card">
                 <h3>Tool Calls</h3>
-                <p>3,565</p>
+                <p class="value green" id="totalToolCalls">0</p>
             </div>
             <div class="stat-card">
                 <h3>Cache Read</h3>
-                <p>127,144,284</p>
+                <p class="value orange" id="totalCacheRead">0</p>
             </div>
             <div class="stat-card">
                 <h3>Reasoning Tokens</h3>
-                <p>0</p>
+                <p class="value red" id="totalReasoning">0</p>
             </div>
             <div class="stat-card">
-                <h3>Total Cost (USD)</h3>
-                <p>$0.0000</p>
+                <h3>Total Cost</h3>
+                <p class="value blue" id="totalCost">$0.00</p>
             </div>
         </div>
 
-        <div class="charts-grid">
-            <div class="chart-card">
+        <div class="chart-grid">
+            <div class="chart-container">
                 <h2>Daily Token Usage Trend</h2>
-                <canvas id="dailyChart"></canvas>
+                <canvas id="dailyTrendChart"></canvas>
             </div>
-            <div class="chart-card">
+            <div class="chart-container">
                 <h2>Top 15 Jobs by Tokens</h2>
-                <canvas id="jobsChart"></canvas>
+                <canvas id="topJobsChart"></canvas>
             </div>
         </div>
 
-        <div class="charts-grid">
-            <div class="chart-card">
+        <div class="chart-grid">
+            <div class="chart-container">
                 <h2>Model Breakdown</h2>
                 <canvas id="modelChart"></canvas>
             </div>
-            <div class="chart-card">
+            <div class="chart-container">
                 <h2>Provider Breakdown</h2>
                 <canvas id="providerChart"></canvas>
             </div>
         </div>
 
-        <h2>Top Jobs Details</h2>
-        <table>
+        <h2>Job Details</h2>
+        <table id="jobTable">
             <thead>
                 <tr>
                     <th>Job Name</th>
-                    <th>Total Tokens</th>
+                    <th>Tokens</th>
+                    <th>Input</th>
+                    <th>Output</th>
                     <th>Calls</th>
-                    <th>Cost (USD)</th>
-                    <th>Progress</th>
+                    <th>Tool Calls</th>
+                    <th>Cost</th>
+                    <th>Usage</th>
+                </tr>
+            </thead>
+            <tbody id="jobTableBody">
+            </tbody>
+        </table>
+
+        <h2>Daily Breakdown</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Total Tokens</th>
+                    <th>Input</th>
+                    <th>Output</th>
+                    <th>Calls</th>
                 </tr>
             </thead>
             <tbody>
-                
-    <tr>
-        <td>cron:cd7dce4f7a23</td>
-        <td>38,998,483</td>
-        <td>570</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 100.0%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:92cd976b5b19</td>
-        <td>37,009,652</td>
-        <td>539</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 94.90023496554981%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:736c86856dde</td>
-        <td>21,814,711</td>
-        <td>350</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 55.937332229051066%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:57fe331360fb</td>
-        <td>15,216,013</td>
-        <td>267</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 39.016935607469655%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:yt_transcript_maximizer</td>
-        <td>11,290,864</td>
-        <td>217</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 28.952059494211607%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:49756f23e396</td>
-        <td>8,556,776</td>
-        <td>120</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 21.941304742546013%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:2a4d7c310e5a</td>
-        <td>7,430,181</td>
-        <td>82</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 19.05248724674752%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:e9a656bc36ef</td>
-        <td>6,516,315</td>
-        <td>103</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 16.70914994308881%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:ae4ec306350f</td>
-        <td>6,348,889</td>
-        <td>119</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 16.279835807972326%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:dce8bc4ea7db</td>
-        <td>5,859,599</td>
-        <td>91</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 15.025197262160173%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:9762338a0dd5</td>
-        <td>5,713,701</td>
-        <td>94</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.651085274265668%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:33f64559a099</td>
-        <td>5,664,789</td>
-        <td>92</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.525665011123637%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:3c2847c9ecb4</td>
-        <td>5,540,863</td>
-        <td>117</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.207893676274535%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:689bcd806abb</td>
-        <td>5,475,256</td>
-        <td>108</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 14.039664055650574%"></div></div></td>
-    </tr>
-    <tr>
-        <td>cron:80af616496d0</td>
-        <td>4,842,164</td>
-        <td>64</td>
-        <td>$0.0000</td>
-        <td><div class="progress-bar"><div class="progress-fill" style="width: 12.416288089975192%"></div></div></td>
-    </tr>
+                <tr>
+                    <td>2026-04-06</td>
+                    <td>DAILY_238751094</td>
+                    <td>DAILY_109888606</td>
+                    <td>DAILY_1718204</td>
+                    <td>DAILY_3859</td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <script>
+        // Stat card values
+        document.getElementById('totalTokens').textContent = 238751094.toLocaleString();
+        document.getElementById('totalInput').textContent = 109888606.toLocaleString();
+        document.getElementById('totalOutput').textContent = 1718204.toLocaleString();
+        document.getElementById('totalCalls').textContent = 3859.toLocaleString();
+        document.getElementById('totalToolCalls').textContent = 3565.toLocaleString();
+        document.getElementById('totalCacheRead').textContent = 127144284.toLocaleString();
+        document.getElementById('totalReasoning').textContent = 0.toLocaleString();
+        document.getElementById('totalCost').textContent = '$' + 0.0000.toFixed(4);
+
         // Daily Trend Chart
-        const dailyCtx = document.getElementById('dailyChart').getContext('2d');
+        const dailyCtx = document.getElementById('dailyTrendChart').getContext('2d');
         new Chart(dailyCtx, {
             type: 'bar',
             data: {
                 labels: ["2026-04-06"],
-                datasets: [
-                    {
-                        label: 'Total Tokens',
-                        data: [238751094],
-                        backgroundColor: 'rgba(88, 166, 255, 0.6)',
-                        borderColor: 'rgba(88, 166, 255, 1)',
-                        borderWidth: 1,
-                        yAxisID: 'y'
-                    },
-                    {
-                        label: 'API Calls',
-                        data: [3859],
-                        type: 'line',
-                        backgroundColor: 'rgba(63, 185, 80, 0.6)',
-                        borderColor: 'rgba(63, 185, 80, 1)',
-                        borderWidth: 2,
-                        yAxisID: 'y1'
-                    }
-                ]
+                datasets: [{
+                    label: 'Total Tokens',
+                    data: [238751094],
+                    backgroundColor: 'rgba(88, 166, 255, 0.7)',
+                    borderColor: 'rgba(88, 166, 255, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y'
+                }, {
+                    label: 'API Calls',
+                    data: [3859],
+                    type: 'line',
+                    borderColor: 'rgba(63, 185, 80, 1)',
+                    backgroundColor: 'rgba(63, 185, 80, 0.1)',
+                    yAxisID: 'y1'
+                }]
             },
             options: {
                 responsive: true,
+                interaction: { mode: 'index', intersect: false },
                 scales: {
-                    y: {
-                        type: 'linear',
-                        position: 'left',
-                        title: { display: true, text: 'Tokens', color: '#c9d1d9' },
-                        grid: { color: '#30363d' },
-                        ticks: { color: '#8b949e' }
-                    },
-                    y1: {
-                        type: 'linear',
-                        position: 'right',
-                        title: { display: true, text: 'Calls', color: '#c9d1d9' },
-                        grid: { drawOnChartArea: false },
-                        ticks: { color: '#8b949e' }
-                    },
-                    x: {
-                        grid: { color: '#30363d' },
-                        ticks: { color: '#8b949e' }
-                    }
+                    y: { type: 'linear', position: 'left', title: { display: true, text: 'Tokens' }, grid: { color: 'rgba(48, 54, 61, 0.5)' } },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: 'Calls' }, grid: { drawOnChartArea: false } }
                 },
-                plugins: {
-                    legend: { labels: { color: '#c9d1d9' } }
-                }
+                plugins: { legend: { labels: { color: '#c9d1d9' } } }
             }
         });
 
         // Top Jobs Chart
-        const jobsCtx = document.getElementById('jobsChart').getContext('2d');
+        const jobsCtx = document.getElementById('topJobsChart').getContext('2d');
         new Chart(jobsCtx, {
             type: 'bar',
             data: {
@@ -360,8 +272,8 @@
                 datasets: [{
                     label: 'Total Tokens',
                     data: [38998483, 37009652, 21814711, 15216013, 11290864, 8556776, 7430181, 6516315, 6348889, 5859599, 5713701, 5664789, 5540863, 5475256, 4842164],
-                    backgroundColor: 'rgba(210, 153, 34, 0.6)',
-                    borderColor: 'rgba(210, 153, 34, 1)',
+                    backgroundColor: 'rgba(88, 166, 255, 0.7)',
+                    borderColor: 'rgba(88, 166, 255, 1)',
                     borderWidth: 1
                 }]
             },
@@ -369,79 +281,74 @@
                 indexAxis: 'y',
                 responsive: true,
                 scales: {
-                    x: {
-                        title: { display: true, text: 'Tokens', color: '#c9d1d9' },
-                        grid: { color: '#30363d' },
-                        ticks: { color: '#8b949e' }
-                    },
-                    y: {
-                        grid: { color: '#30363d' },
-                        ticks: { color: '#8b949e' }
-                    }
+                    x: { title: { display: true, text: 'Tokens' }, grid: { color: 'rgba(48, 54, 61, 0.5)' } },
+                    y: { grid: { color: 'rgba(48, 54, 61, 0.5)' } }
                 },
-                plugins: {
-                    legend: { labels: { color: '#c9d1d9' } }
-                }
+                plugins: { legend: { labels: { color: '#c9d1d9' } } }
             }
         });
 
-        // Model Breakdown Chart
+        // Model Chart
         const modelCtx = document.getElementById('modelChart').getContext('2d');
         new Chart(modelCtx, {
             type: 'doughnut',
             data: {
-                labels: ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free", "minimax/minimax-m2.5:free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:free", "anthropic/claude-sonnet-4-20250514"],
+                labels: ["hf:MiniMaxAI/MiniMax", "qwen/qwen3.6-plus:fr", "minimax/minimax-m2.5", "llama3.2:latest", "nvidia/nemotron-nano", "anthropic/claude-son"],
                 datasets: [{
                     data: [136105579, 98864241, 3450632, 259816, 58426, 12400],
-                    backgroundColor: [
-                        'rgba(88, 166, 255, 0.6)',
-                        'rgba(63, 185, 80, 0.6)',
-                        'rgba(210, 153, 34, 0.6)',
-                        'rgba(248, 81, 73, 0.6)',
-                        'rgba(188, 100, 255, 0.6)',
-                        'rgba(255, 150, 100, 0.6)',
-                        'rgba(100, 200, 255, 0.6)',
-                        'rgba(150, 255, 150, 0.6)',
-                        'rgba(255, 100, 150, 0.6)',
-                        'rgba(150, 150, 255, 0.6)'
-                    ],
-                    borderColor: '#30363d',
-                    borderWidth: 1
+                    backgroundColor: ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff', '#ff7b72', '#79c0ff', '#56d364', '#e3b341', '#f85149'],
+                    borderColor: '#161b22',
+                    borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
-                plugins: {
-                    legend: { labels: { color: '#c9d1d9' } }
-                }
+                plugins: { legend: { position: 'right', labels: { color: '#c9d1d9' } } }
             }
         });
 
-        // Provider Breakdown Chart
+        // Provider Chart
         const providerCtx = document.getElementById('providerChart').getContext('2d');
         new Chart(providerCtx, {
             type: 'doughnut',
             data: {
-                labels: ["openrouter", "custom"],
+                labels: ["custom", "openrouter"],
                 datasets: [{
-                    data: [102385699, 136365395],
-                    backgroundColor: [
-                        'rgba(88, 166, 255, 0.6)',
-                        'rgba(63, 185, 80, 0.6)',
-                        'rgba(210, 153, 34, 0.6)',
-                        'rgba(248, 81, 73, 0.6)',
-                        'rgba(188, 100, 255, 0.6)'
-                    ],
-                    borderColor: '#30363d',
-                    borderWidth: 1
+                    data: [136365395, 102385699],
+                    backgroundColor: ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff'],
+                    borderColor: '#161b22',
+                    borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
-                plugins: {
-                    legend: { labels: { color: '#c9d1d9' } }
-                }
+                plugins: { legend: { position: 'right', labels: { color: '#c9d1d9' } } }
             }
+        });
+
+        // Job Table
+        const jobTableBody = document.getElementById('jobTableBody');
+        const jobData = [{"name": "cron:cd7dce4f7a23", "tokens": 38998483, "input": 5983552, "output": 210877, "calls": 570, "tool_calls": 479, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:92cd976b5b19", "tokens": 37009652, "input": 9531774, "output": 204005, "calls": 539, "tool_calls": 466, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:736c86856dde", "tokens": 21814711, "input": 9338315, "output": 129569, "calls": 350, "tool_calls": 346, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:57fe331360fb", "tokens": 15216013, "input": 5685549, "output": 100609, "calls": 267, "tool_calls": 252, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "llama3.2:latest", "qwen/qwen3.6-plus:free"]}, {"name": "cron:yt_transcript_maximizer", "tokens": 11290864, "input": 2229372, "output": 78859, "calls": 217, "tool_calls": 187, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:49756f23e396", "tokens": 8556776, "input": 7303609, "output": 99823, "calls": 120, "tool_calls": 109, "cost": 0.0, "providers": ["openrouter"], "models": ["minimax/minimax-m2.5:free", "qwen/qwen3.6-plus:free"]}, {"name": "cron:2a4d7c310e5a", "tokens": 7430181, "input": 7376649, "output": 53532, "calls": 82, "tool_calls": 77, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:e9a656bc36ef", "tokens": 6516315, "input": 3907969, "output": 34401, "calls": 103, "tool_calls": 110, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["qwen/qwen3.6-plus:free", "llama3.2:latest", "hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:ae4ec306350f", "tokens": 6348889, "input": 6295720, "output": 53169, "calls": 119, "tool_calls": 131, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["llama3.2:latest", "qwen/qwen3.6-plus:free"]}, {"name": "cron:dce8bc4ea7db", "tokens": 5859599, "input": 336864, "output": 25987, "calls": 91, "tool_calls": 86, "cost": 0.0, "providers": ["custom"], "models": ["hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:9762338a0dd5", "tokens": 5713701, "input": 2571340, "output": 65135, "calls": 94, "tool_calls": 92, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["minimax/minimax-m2.5:free", "hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:33f64559a099", "tokens": 5664789, "input": 3846334, "output": 61967, "calls": 92, "tool_calls": 88, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:3c2847c9ecb4", "tokens": 5540863, "input": 5498129, "output": 42734, "calls": 117, "tool_calls": 126, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:689bcd806abb", "tokens": 5475256, "input": 4163765, "output": 38351, "calls": 108, "tool_calls": 105, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:80af616496d0", "tokens": 4842164, "input": 1269835, "output": 24064, "calls": 64, "tool_calls": 57, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:6f5af0c6d47f", "tokens": 3976831, "input": 3641614, "output": 44849, "calls": 46, "tool_calls": 44, "cost": 0.0, "providers": ["openrouter"], "models": ["minimax/minimax-m2.5:free", "qwen/qwen3.6-plus:free"]}, {"name": "cron:7c84992164b8", "tokens": 3975859, "input": 281729, "output": 16858, "calls": 65, "tool_calls": 59, "cost": 0.0, "providers": ["custom"], "models": ["hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:92875202c239", "tokens": 3292012, "input": 584849, "output": 28218, "calls": 55, "tool_calls": 55, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:2c8e7be4c370", "tokens": 2847630, "input": 1023685, "output": 36556, "calls": 53, "tool_calls": 55, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:2e3fa789f20e", "tokens": 2636484, "input": 869948, "output": 22886, "calls": 49, "tool_calls": 46, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:aa7381d38d69", "tokens": 2254028, "input": 416475, "output": 17269, "calls": 37, "tool_calls": 39, "cost": 0.0, "providers": ["custom"], "models": ["hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:e46cafeb1d85", "tokens": 2077113, "input": 169770, "output": 10757, "calls": 33, "tool_calls": 36, "cost": 0.0, "providers": ["custom"], "models": ["hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:10ef21c68546", "tokens": 2016176, "input": 1997649, "output": 18527, "calls": 46, "tool_calls": 37, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:2f09c0cc2db8", "tokens": 1870847, "input": 1237970, "output": 22445, "calls": 45, "tool_calls": 38, "cost": 0.0, "providers": ["openrouter"], "models": ["minimax/minimax-m2.5:free", "qwen/qwen3.6-plus:free"]}, {"name": "cron:c7eb46b69e74", "tokens": 1771845, "input": 1736647, "output": 35198, "calls": 32, "tool_calls": 36, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:a5e2ff35571b", "tokens": 1691131, "input": 1684822, "output": 6309, "calls": 47, "tool_calls": 44, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:aafc20781775", "tokens": 1611175, "input": 1602053, "output": 9122, "calls": 33, "tool_calls": 31, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:93fa1903bf4b", "tokens": 1529337, "input": 1490663, "output": 38674, "calls": 27, "tool_calls": 21, "cost": 0.0, "providers": ["openrouter"], "models": ["minimax/minimax-m2.5:free", "qwen/qwen3.6-plus:free", "nvidia/nemotron-nano-9b-v2:free"]}, {"name": "cron:3b9c1ca63ef1", "tokens": 1514272, "input": 1507707, "output": 6565, "calls": 19, "tool_calls": 23, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:755ce0ca79ad", "tokens": 1418665, "input": 1394946, "output": 23719, "calls": 17, "tool_calls": 15, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:0b40efd05179", "tokens": 1402249, "input": 61295, "output": 6117, "calls": 21, "tool_calls": 19, "cost": 0.0, "providers": ["custom"], "models": ["hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:e8e55c1755b1", "tokens": 1325866, "input": 629428, "output": 6639, "calls": 41, "tool_calls": 39, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:3e58fa70555e", "tokens": 1273230, "input": 1266663, "output": 6567, "calls": 30, "tool_calls": 26, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["llama3.2:latest", "qwen/qwen3.6-plus:free"]}, {"name": "cron:b33c33b3ed9c", "tokens": 1108473, "input": 919885, "output": 9182, "calls": 14, "tool_calls": 11, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:56d9d0dda252", "tokens": 1060994, "input": 1052048, "output": 8946, "calls": 15, "tool_calls": 14, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:d9eadf49d0e2", "tokens": 1045003, "input": 1037424, "output": 7579, "calls": 12, "tool_calls": 10, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:0073e8fbb05d", "tokens": 969488, "input": 960547, "output": 8941, "calls": 14, "tool_calls": 12, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "gateway:discord", "tokens": 960591, "input": 956047, "output": 4544, "calls": 14, "tool_calls": 13, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:fc092602a730", "tokens": 858287, "input": 804787, "output": 20839, "calls": 11, "tool_calls": 8, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free"]}, {"name": "cron:5fe8a4d84634", "tokens": 831039, "input": 827068, "output": 3971, "calls": 15, "tool_calls": 14, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:1d3114b7d44d", "tokens": 793006, "input": 775342, "output": 17664, "calls": 19, "tool_calls": 21, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:808fce0b5369", "tokens": 777524, "input": 774867, "output": 2657, "calls": 7, "tool_calls": 7, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:e1f4acf9da0d", "tokens": 760317, "input": 71907, "output": 5153, "calls": 17, "tool_calls": 15, "cost": 0.0, "providers": ["custom"], "models": ["hf:MiniMaxAI/MiniMax-M2.5"]}, {"name": "cron:bb781fd82b87", "tokens": 726763, "input": 723906, "output": 2857, "calls": 15, "tool_calls": 14, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:23d5fcb6fd9c", "tokens": 708986, "input": 703724, "output": 5262, "calls": 19, "tool_calls": 12, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:2569b839db20", "tokens": 652752, "input": 650607, "output": 2145, "calls": 8, "tool_calls": 7, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:21e88caa316e", "tokens": 632268, "input": 620224, "output": 12044, "calls": 14, "tool_calls": 14, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:eb9eccff9058", "tokens": 609420, "input": 605887, "output": 3533, "calls": 6, "tool_calls": 3, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:6b61af6f937e", "tokens": 362946, "input": 361624, "output": 1322, "calls": 4, "tool_calls": 4, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:10d235c0d0b5", "tokens": 283547, "input": 281263, "output": 2284, "calls": 13, "tool_calls": 6, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:a06adf4cbd8b", "tokens": 259095, "input": 257051, "output": 2044, "calls": 4, "tool_calls": 1, "cost": 0.0, "providers": ["custom", "openrouter"], "models": ["llama3.2:latest", "qwen/qwen3.6-plus:free"]}, {"name": "cron:b543d5a1a05c", "tokens": 219304, "input": 213687, "output": 5617, "calls": 3, "tool_calls": 2, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:c2682e5abab0", "tokens": 203759, "input": 198214, "output": 5545, "calls": 2, "tool_calls": 2, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "cron:2d3935c8b8e1", "tokens": 138736, "input": 135108, "output": 3628, "calls": 2, "tool_calls": 1, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free"]}, {"name": "test", "tokens": 25790, "input": 20700, "output": 2090, "calls": 2, "tool_calls": 0, "cost": 0.0, "providers": ["openrouter"], "models": ["qwen/qwen3.6-plus:free", "anthropic/claude-sonnet-4-20250514"]}];
+        const maxTokens = Math.max(...jobData.map(j => j.tokens));
+        jobData.forEach(job => {
+            const row = document.createElement('tr');
+            const usagePercent = (job.tokens / maxTokens * 100).toFixed(1);
+            row.innerHTML = `
+                <td>${job.name}</td>
+                <td>${job.tokens.toLocaleString()}</td>
+                <td>${job.input.toLocaleString()}</td>
+                <td>${job.output.toLocaleString()}</td>
+                <td>${job.calls.toLocaleString()}</td>
+                <td>${job.tool_calls.toLocaleString()}</td>
+                <td>$${job.cost.toFixed(4)}</td>
+                <td>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: ${usagePercent}%"></div>
+                    </div>
+                    ${usagePercent}%
+                </td>
+            `;
+            jobTableBody.appendChild(row);
         });
     </script>
 </body>
